@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "start": "ts-node index.ts",
     "dev": "ts-node-dev --respawn index.ts"
   },
   "keywords": [],
@@ -21,6 +22,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "ts-node": "^10.9.1"
   }
 }

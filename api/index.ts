@@ -7,11 +7,9 @@ import { DB_USER, DB_PASSWORD, DB_NAME, DB, PORT } from "./config";
 
 async function connectDB() {
   await connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_NAME}.${DB}`);
-  console.log("database is connect");
+  server.listen(PORT, () => {
+    console.log(`listening at ${PORT}`);
+  });
 }
 
 connectDB();
-
-server.listen(PORT, () => {
-  console.log(`listening at ${PORT}`);
-});

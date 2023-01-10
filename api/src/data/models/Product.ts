@@ -1,30 +1,29 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { User } from "./Users";
+import { prop, getModelForClass} from "@typegoose/typegoose";
 
-class Product {
+export class Product {
   @prop({ type: String, required: true, trim: true })
   name: string;
-
-  @prop({ type: String, default: 0 })
-  size: string;
 
   @prop({ type: Number, default: 0 })
   price: number;
 
-  @prop({ type: String })
-  gender: string;
+  @prop({ type: String, required: true })
+  description: string;
 
   @prop({ type: String, required: true })
   brand: string;
 
   @prop({ type: String, lowercase: true })
-  url: string;
+  image: string;
 
-  // @prop({ ref: () => User })
-  // owner: Ref<User>;
+  @prop({ type: Number, default: 0 })
+  stock: number;
 
-  //   @prop({ type: () => [String] })
-  //   tags: string[];
+  @prop({ type: Number, default: 0 })
+  rating: number;
+
+  @prop({ type: () => [String] })
+  categories: string[];
 }
 
 const ProductModel = getModelForClass(Product);

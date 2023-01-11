@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 import { prop, getModelForClass, Ref } from '@typegoose/typegoose'
 
 import objectRoles from '../helpers/objectRoles'
-
-import { Role } from './Role'
-=======
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Role, RoleEnum } from "./Role";
->>>>>>> e11bc8c559ec7f44d7db542ffd46c47e4f54bd60
 
 export class User {
   @prop({ type: String, required: true })

@@ -17,18 +17,19 @@ export class User {
   @prop({ type: String, required: true, minlength: 8 })
   password: string;
 
-  @prop({ type: String, required: true })
+  @prop({ type: String })
   address: string;
 
   @prop({ type: Number, default: 0 })
   phoneNumber: number;
 
-  @prop({ type: String, required: true, trim: true })
+  @prop({ type: String, trim: true })
   avatar: string;
 
   @prop({ type: Number })
   pc: number;
 
+  //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles
   @prop({ ref: () => Role })
   roles: Ref<Role>[];
 }

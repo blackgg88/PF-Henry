@@ -1,5 +1,5 @@
 import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Role } from "./Role";
+import { Role, RoleEnum } from "./Role";
 
 export class User {
   @prop({ type: String, required: true })
@@ -29,10 +29,14 @@ export class User {
   @prop({ type: Number })
   pc: number;
 
-  //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles
-  @prop({ ref: () => Role })
-  roles: Ref<Role>[];
+ //ambas utilizan el tipo "RoleEnum" como tipo de propiedad y su valor por defecto es el mismo.
+
+  @prop({ ref: Role, default: RoleEnum.USER })
+  role: Ref<Role>;
 }
 
 const UserModel = getModelForClass(User);
 export default UserModel;
+
+/////////////////////
+

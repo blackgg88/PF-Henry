@@ -1,38 +1,46 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Role } from "./Role";
+import { prop, getModelForClass, Ref } from '@typegoose/typegoose'
+
+import objectRoles from '../helpers/objectRoles'
+
+import { Role } from './Role'
 
 export class User {
   @prop({ type: String, required: true })
-  userName: string;
+  userName: string
 
   @prop({ type: String, required: true }) //mongoose
-  firstName: string; //typescript
+  firstName: string //typescript
 
   @prop({ type: String, required: true })
-  lastName: string;
+  lastName: string
 
   @prop({ type: String, required: true, trim: true })
-  email: string;
+  email: string
 
   @prop({ type: String, required: true, minlength: 8 })
-  password: string;
+  password: string
 
   @prop({ type: String })
-  address: string;
+  address: string
 
   @prop({ type: Number, default: 0 })
-  phoneNumber: number;
+  phoneNumber: number
 
   @prop({ type: String, trim: true })
-  avatar: string;
+  avatar: string
 
   @prop({ type: Number })
-  pc: number;
+  pc: number
 
   //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles
-  @prop({ ref: () => Role })
-  roles: Ref<Role>[];
+  @prop({
+    type: [String],
+    default: [objectRoles.user],
+    validate: (val: string[]) =>
+      val.every(val => Object.values(objectRoles).includes(val)),
+  })
+  roles: Array<string>
 }
 
-const UserModel = getModelForClass(User);
-export default UserModel;
+const UserModel = getModelForClass(User)
+export default UserModel

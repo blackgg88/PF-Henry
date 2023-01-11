@@ -126,4 +126,15 @@ router.put("/products/:id", async (req, res) => {
   }
 });
 
+////////////////////////////////////////////////////////////////////////////
+router.post("/roles", async (req, res) => {
+  try {
+    const role = new UserModel(req.body);
+    await role.save();
+    res.json(role);
+  } catch (error) {
+    res.status(400).json(console.log(error));
+  }
+});
+
 export default router;

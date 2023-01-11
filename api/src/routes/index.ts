@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { User } from "../data/models/Users";
 import { Product } from "../data/models/Product";
+import { Category } from "../data/models/Category";
 import { getModelForClass } from "@typegoose/typegoose";
 
 //necesario para poder usar metodos de busqueda como find
 const UserModel = getModelForClass(User);
 const ProductModel = getModelForClass(Product);
+const CategoryModel = getModelForClass(Category);
 
 const router = Router();
 
@@ -69,7 +71,7 @@ router.put("/users/:id", async (req, res) => {
 
 /////USER ROUTES!!!!!!!!!!!!
 
-//find products// devuelve lista de todos los usuarios
+//find products// devuelve lista de todos los productos
 router.get("/products", async (req, res) => {
   try {
     const products = await ProductModel.find();

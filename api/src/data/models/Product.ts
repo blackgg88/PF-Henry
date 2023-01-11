@@ -1,4 +1,5 @@
-import { prop, getModelForClass} from "@typegoose/typegoose";
+import { prop, getModelForClass, Ref} from "@typegoose/typegoose";
+import { Category, CategoryEnum } from "./Category";
 
 export class Product {
   @prop({ type: String, required: true, trim: true })
@@ -22,8 +23,8 @@ export class Product {
   @prop({ type: Number, default: 0 })
   rating: number;
 
-  @prop({ type: () => [String] })
-  categories: string[];
+  @prop({ref:Category, default:CategoryEnum, required:true})
+  categories: Ref<Category>;
 }
 
 const ProductModel = getModelForClass(Product);

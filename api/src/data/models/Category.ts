@@ -1,15 +1,15 @@
 import { prop, getModelForClass } from "@typegoose/typegoose";
 
 export enum CategoryEnum {
-  Connectivity= "Connectivity and Control",
+  Connectivity = "Connectivity and Control",
   Entertainment = "Home Entertainment",
-  Energy= "Energy Management",
-  Safety= "Safety and Security",
-  Comfort= "Comfort and Ease",
-  Health="Lifestyle and Health"
+  Energy = "Energy Management",
+  Safety = "Safety and Security",
+  Comfort = "Comfort and Ease",
+  Health = "Lifestyle and Health",
 }
 export class Category {
-  @prop({ enum: CategoryEnum, required: true })
+  @prop({ type: String, enum: CategoryEnum, required: true })
   name: CategoryEnum;
 }
 

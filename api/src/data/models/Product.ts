@@ -1,5 +1,5 @@
-import { prop, getModelForClass, Ref} from "@typegoose/typegoose";
-import { Category, CategoryEnum } from "./Category";
+import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
+import { Category } from "./Category";
 
 export class Product {
   @prop({ type: String, required: true, trim: true })
@@ -23,7 +23,7 @@ export class Product {
   @prop({ type: Number, default: 0 })
   rating: number;
 
-  @prop({ref:Category, default:CategoryEnum, required:true})
+  @prop({ ref: Category, required: true })
   categories: Ref<Category>;
 }
 

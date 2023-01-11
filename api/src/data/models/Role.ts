@@ -1,5 +1,5 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
-import objectRoles from '../helpers/objectRoles'
+import { prop, getModelForClass } from "@typegoose/typegoose";
+import objectRoles from "../helpers/objectRoles";
 
 export enum RoleEnum {
   ADMIN = "admin",
@@ -9,11 +9,11 @@ export enum RoleEnum {
 export class Role {
   @prop({
     required: true,
-    type: [String],
-    enum: objectRoles,
+    type: String,
+    enum: RoleEnum,
   })
-  name: Array<string>
+  name: string;
 }
 
-const RoleModel = getModelForClass(Role)
-export default RoleModel
+const RoleModel = getModelForClass(Role);
+export default RoleModel;

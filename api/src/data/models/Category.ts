@@ -1,9 +1,9 @@
 import { prop, getModelForClass } from "@typegoose/typegoose";
 
-export class Role {
+export class Category {
   @prop({ type: String, required: true })
   name: string;
 }
 
-const RoleModel = getModelForClass(Role);
-export default RoleModel;
+const CategoryModel = getModelForClass(Category);
+export default CategoryModel;

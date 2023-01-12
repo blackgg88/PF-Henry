@@ -1,0 +1,8 @@
+{
+  "conventionalCommits.scopes": [
+    "Models ",
+    "Routes",
+    "add roles",
+    "Models and Routes"
+  ]
+}

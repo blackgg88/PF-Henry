@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-import './index.css';
-
 import { Auth0Provider } from '@auth0/auth0-react';
-
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID } from '../config';
+
+import App from './App';
+import './styles/styles.scss';
 
 const domain = AUTH0_DOMAIN;
 const clientId = AUTH0_CLIENT_ID;

@@ -9,7 +9,7 @@ const NavBar = () => {
   const { user, isAuthenticated } = useAuth0();
 
   return (
-    <div>
+    <div className='navbar_container'>
       <div>
         <div>Logo</div>
         <div>

@@ -23,7 +23,6 @@ enum currency {
 interface item {
   id: string;
   category_id: string;
-  currency_id: string;
   description: string;
   name: string;
   quantity: number;
@@ -31,21 +30,24 @@ interface item {
 }
 
 export const postPreference = async (req: Request, res: Response) => {
-  const { id, category_id, name, price, quantity, description }: item = req.body;
+  const itemsBody: item[] = req.body;
+
+  console.log(itemsBody);
+
   let preference = {
     binary_mode: true,
 
-    items: [
-      {
-        id: id,
-        category_id: category_id,
-        title: name,
-        unit_price: price,
-        quantity: quantity,
-        description: description,
+    items: itemsBody.map((item) => {
+      return {
+        id: item.id,
+        category_id: item.category_id,
         currency_id: currency.ARS,
-      },
-    ],
+        description: item.description,
+        title: item.name,
+        quantity: item.quantity,
+        unit_price: item.price,
+      };
+    }),
 
     payer: { email: 'newuser12354@gmail.com' },
 

@@ -6,8 +6,7 @@ import category from './categories.routes';
 import products from './product.routes';
 import user from './user.routes';
 
-//////////////////
-import test from './mp.routes';
+import mercadopago from './mp.routes';
 
 const RoleModel = getModelForClass(Role);
 const router = Router();
@@ -15,6 +14,7 @@ const router = Router();
 router.use('/products', products);
 router.use('/users', user);
 router.use('/categories', category);
+router.use('/checkout', mercadopago);
 
 ////////////////////////////////////////////////////////////////////////////
 router.get('/roles', async (req, res) => {
@@ -35,7 +35,5 @@ router.post('/roles', async (req, res) => {
     res.status(400).json(error);
   }
 });
-
-router.use('/createPreference', test);
 
 export default router;

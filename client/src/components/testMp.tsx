@@ -11,41 +11,40 @@ const TestMp = () => {
     description: 'product description',
   });
 
-  const handleFetched = async () => {
-    const response = await fetch('http://localhost:3001/createPreference', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(producto),
-    });
+  useEffect(() => {
+    const checkout = async () => {
+      const response = await fetch('http://localhost:3001/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(producto),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    console.log(data);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+      const mp = new MercadoPago(PUBLIC_KEY, {
+        locale: 'es-AR',
+      });
 
-    const mp = new MercadoPago(PUBLIC_KEY, {
-      locale: 'es-AR',
-    });
+      mp.checkout({
+        preference: {
+          id: data.id,
+        },
+        render: {
+          container: '.cho-container',
+          label: 'Pagar',
+        },
+      });
+    };
 
-    mp.checkout({
-      preference: {
-        id: data.id,
-      },
-      render: {
-        container: '.cho-container',
-        label: 'Pagar',
-      },
-    });
-  };
-  return (
-    <div className='cho-container'>
-      <button onClick={handleFetched}>Checkout</button>
-    </div>
-  );
+    checkout();
+  }, []);
+
+  return <div className='cho-container'></div>;
 };
 
 export default TestMp;

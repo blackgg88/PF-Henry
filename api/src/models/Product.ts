@@ -1,31 +1,31 @@
-import { prop, getModelForClass, Ref } from '@typegoose/typegoose'
-import { Category } from './Category'
+import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { Category } from './Category';
 
 export class Product {
   @prop({ type: String, required: true, trim: true })
-  name: string
+  name: string;
 
   @prop({ type: Number, default: 0 })
-  price: number
+  price: number;
 
   @prop({ type: String, required: true })
-  description: string
+  description: string;
 
   @prop({ type: String, required: true })
-  brand: string
+  brand: string;
 
   @prop({ type: String, lowercase: true })
-  image: string
+  images: string[];
 
   @prop({ type: Number, default: 0 })
-  stock: number
+  stock: number;
 
   @prop({ type: Number, default: 0 })
-  rating: number
+  rating: number;
 
   @prop({ ref: Category, required: true })
-  categories: Ref<Category>
+  categories: Ref<Category>;
 }
 
-const ProductModel = getModelForClass(Product)
-export default ProductModel
+const ProductModel = getModelForClass(Product);
+export default ProductModel;

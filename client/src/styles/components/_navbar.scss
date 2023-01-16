@@ -1,4 +1,16 @@
 .navbar_container {
+  display: flex;
+  justify-content: space-between;
   background-color: $main;
   padding: 10px;
+
+  .navbar_container_info {
+    display: flex;
+
+    a {
+      padding: 5px;
+      color: $white;
+      text-decoration: none;
+    }
+  }
 }

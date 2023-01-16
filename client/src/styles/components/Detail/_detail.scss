@@ -1,0 +1,112 @@
+.detail-contain {
+    margin-top: $standard-space-between-elements;
+  width: 100%;
+  height: auto;
+  background-color: $standard-color-white-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $standard-space-between-elements;
+  .info-pincipal-detail {
+    height: $standard-heigth-full-hd * 0.7;
+    width: $standard-with-full-hd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $standard-space-between-elements;
+
+    .land-images {
+      height: 100%;
+      width: 15%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: $standard-color-blue-light;
+      border-radius: $standard-border-radius;
+      gap: $standard-space-between-elements;
+      .secondary-images {
+          height: 22%;
+          width: 90%;
+          background-color: $standard-color-blue-secundary;
+          border-radius: $standard-border-radius;
+      }
+    }
+
+    .imagen-principal-detail {
+      height: 100%;
+      width: 50%;
+      background-color: $standard-color-blue-light;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $standard-border-radius;
+      .principal-image {
+        height: 95%;
+        width: 95%;
+        background-color: $standard-color-blue-secundary;
+        border-radius: $standard-border-radius;
+      }
+    }
+
+    .principal-details {
+      height: 100%;
+      width: 30%; 
+      border-radius: $standard-border-radius;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: $standard-space-between-elements;
+      .character-details{
+        height: 75%;
+        width: 100%;
+        background-color: $standard-color-blue-light;
+        border-radius: $standard-border-radius;
+      }
+      .transaction-details{
+        height: 23%;
+        width: 100%;
+        background-color: $standard-color-blue-light;
+        border-radius: $standard-border-radius;
+      }
+    }
+  }
+  .section-description {
+    height: 500px;
+    width: $standard-with-full-hd;
+    //background-color: forestgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $standard-space-between-elements;
+    .detail-detail {
+      width: 97%;
+      height: 100%;
+      background-color: $standard-color-blue-light;
+      border-radius: $standard-border-radius;
+    }
+    
+}
+.comments-section {
+    height: 500px;
+    width: $standard-with-full-hd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $standard-space-between-elements;
+    .comments-box{
+        width: 70%;
+        height: 100%;
+        background-color: $standard-color-blue-light;
+        border-radius: $standard-border-radius;
+    }
+    .other-box{
+        width: 26%;
+        height: 100%;
+        background-color: $standard-color-blue-light;
+        border-radius: $standard-border-radius;
+    }
+  }
+}

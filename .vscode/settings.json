@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "Models ",
     "Routes",
-    "Models and Routes"
+    "Models and Routes",
+    "filters"
   ]
 }

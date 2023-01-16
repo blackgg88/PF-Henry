@@ -5,6 +5,7 @@
     "add roles",
     "Models and Routes",
     "Components",
-    "Styles"
+    "Styles","Models and Routes",
+    "filters"
   ]
 }

@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Carrousel from './Carrousel';
 
 const Home = () => {
+
   return (
     <div>
       <Navbar />

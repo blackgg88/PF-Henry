@@ -3,7 +3,9 @@ import { PUBLIC_KEY } from '../../config';
 
 const TestMp = () => {
   const [producto, setProducto] = useState({
-    name: 'product name',
+    id: 230,
+    category_id: 'Safety and Security',
+    name: 'product name UwU',
     price: 50,
     quantity: 1,
     description: 'product description',
@@ -20,7 +22,7 @@ const TestMp = () => {
 
     const data = await response.json();
 
-    console.log(data.response.id);
+    console.log(data);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -31,7 +33,7 @@ const TestMp = () => {
 
     mp.checkout({
       preference: {
-        id: data.response.id,
+        id: data.id,
       },
       render: {
         container: '.cho-container',

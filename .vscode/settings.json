@@ -8,6 +8,7 @@
     "Styles",
     "Models and Routes",
     "filters",
-    "Reducer"
+    "Reducer",
+    "mercadopago"
   ]
 }

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import Shop from './Shop/Shop';
-
 import Home from './components/Home';
+import Shop from './Shop/Shop';
+import TestMp from './components/testMp';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <Route path='/catalogue' />
         <Route path='/register' />
         <Route path='/shop' element={<Shop />} />
+        <Route path='/test' element={<TestMp />} />
       </Routes>
     </div>
   );

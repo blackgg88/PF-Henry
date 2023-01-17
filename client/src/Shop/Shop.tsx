@@ -1,16 +1,20 @@
-import React from "react";
-import "./Shop.css";
+import React from 'react'
+import './Shop.css'
 
-import FiltersPanel from "../Filters/FiltersPanel";
-import RenderCards from "../RenderCard/RenderCard";
+import FiltersPanel from '../Filters/FiltersPanel'
+import RenderCards from '../RenderCard/RenderCard'
+import { Link } from 'react-router-dom'
 
 const Shop: React.FC<{}> = () => {
   return (
-    <div className="shop-contain">
-      <FiltersPanel />
-      <RenderCards />
-    </div>
-  );
-};
+    <>
+      <Link to='/'><button>Back</button></Link>
+      <div className='shop-contain'>
+        <FiltersPanel />
+        <RenderCards />
+      </div>
+    </>
+  )
+}
 
-export default Shop;
+export default Shop

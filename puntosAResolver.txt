@@ -1,4 +1,6 @@
 - el tema de los Comentarios, como asiciarlos con librerias externas (con facebook).
-- implementar Mercadopago o paypal? - solo una o las dos?
-- manejar informacion sencible en nuestra base de datos (credit Card)
-- 
+- implementar Mercadopago o paypal? - solo una o las dos?   
+- manejar informacion sencible en nuestra base de datos (credit Card).
+- tema de sucursales (unica o multiple).
+- guardar imagenes desde en el server.
+

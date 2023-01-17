@@ -7,10 +7,24 @@
   .navbar_container_info {
     display: flex;
 
-    a {
+    button {
       padding: 5px;
+      background: $standard-color-blue;
       color: $white;
       text-decoration: none;
+      
     }
   }
+}
+
+.navbar_container a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 1.2em;
+}
+
+.navbar_container img {
+  width: 50px;
+  margin-right: 20px;
 }

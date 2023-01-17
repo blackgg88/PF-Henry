@@ -13,7 +13,6 @@ const domain: string = AUTH0_DOMAIN;
 const clientId: string = AUTH0_CLIENT_ID;
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  // <React.StrictMode>
   <Provider store={store}>
     <BrowserRouter>
       <Auth0Provider
@@ -25,5 +24,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </Auth0Provider>
     </BrowserRouter>
   </Provider>
-  // </React.StrictMode>,
 );

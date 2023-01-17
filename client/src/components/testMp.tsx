@@ -2,14 +2,24 @@ import { useState, useEffect } from 'react';
 import { PUBLIC_KEY } from '../../config';
 
 const TestMp = () => {
-  const [producto, setProducto] = useState({
-    id: 230,
-    category_id: 'Safety and Security',
-    name: 'product name UwU',
-    price: 50,
-    quantity: 1,
-    description: 'product description',
-  });
+  const [producto, setProducto] = useState([
+    {
+      id: 230,
+      category_id: 'Safety and Security',
+      name: 'product name UwU',
+      price: 50,
+      quantity: 1,
+      description: 'product description',
+    },
+    {
+      id: 40,
+      category_id: 'Safety and Security',
+      name: 'product name 2 UwU',
+      price: 1500,
+      quantity: 2,
+      description: 'product description 2',
+    },
+  ]);
 
   useEffect(() => {
     const checkout = async () => {
@@ -22,6 +32,8 @@ const TestMp = () => {
       });
 
       const data = await response.json();
+
+      console.log(data);
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

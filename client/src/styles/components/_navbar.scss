@@ -1,16 +1,20 @@
 .navbar_container {
   display: flex;
   justify-content: space-between;
-  background-color: $main;
-  padding: 10px;
+  align-items: center;
+  background: linear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0)); /* gradiente azul marino */
+  padding: 10px 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-  .navbar_container_info {
-    display: flex;
+.navbar_container a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 1.2em;
+}
 
-    a {
-      padding: 5px;
-      color: $white;
-      text-decoration: none;
-    }
-  }
+.navbar_container img {
+  width: 50px;
+  margin-right: 20px;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+// import {Slider} from @materialui
 import "./FilterBy.css";
 
 interface FilterByProps {
@@ -52,6 +53,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
       )}
 
       {type === "Price" && (
+        // <Slider/>
         <input
           className="input-filterBy"
           type="range"

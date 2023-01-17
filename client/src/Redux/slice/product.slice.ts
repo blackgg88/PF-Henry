@@ -22,9 +22,11 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
-      action.payload.forEach( product => {
-        state.push(product)
-      })
+      if (!state.length) {
+        action.payload.forEach( product => {
+          state.push(product)
+        })
+      }
     }
   },
 })

@@ -3,7 +3,7 @@ import "./RenderCard.css";
 import { useAppDispatch, useAppSelector } from '../Redux/hook'
 import { ProductState } from "../Redux/slice/product.slice";
 import { getProduct } from "../Redux/slice/product.slice";
-import { getAllProduct, productFetch } from "../Redux/slice/ProductController";
+import { productFetch } from "../Redux/slice/ProductController";
 
 
 const RenderCard: React.FC<{}> = () => {
@@ -13,14 +13,13 @@ const RenderCard: React.FC<{}> = () => {
   const dispatch = useAppDispatch()
  
   useEffect(() => {
-
     if(!Allproduct.length) {
       productFetch()
       .then(res => {
         dispatch(getProduct(res))
       })
     }
-}, []);
+}, [Allproduct]);
 
   
 

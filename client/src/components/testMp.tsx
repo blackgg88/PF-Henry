@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { PUBLIC_KEY } from '../../config';
+import { useState, useEffect } from 'react'
+import { PUBLIC_KEY } from '../../config'
+import { Link } from 'react-router-dom'
 
 const TestMp = () => {
   const [producto, setProducto] = useState({
@@ -9,7 +10,7 @@ const TestMp = () => {
     price: 50,
     quantity: 1,
     description: 'product description',
-  });
+  })
 
   useEffect(() => {
     const checkout = async () => {
@@ -19,16 +20,16 @@ const TestMp = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(producto),
-      });
+      })
 
-      const data = await response.json();
+      const data = await response.json()
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
 
       const mp = new MercadoPago(PUBLIC_KEY, {
         locale: 'es-AR',
-      });
+      })
 
       mp.checkout({
         preference: {
@@ -38,13 +39,20 @@ const TestMp = () => {
           container: '.cho-container',
           label: 'Pagar',
         },
-      });
-    };
+      })
+    }
 
-    checkout();
-  }, []);
+    checkout()
+  }, [])
 
-  return <div className='cho-container'></div>;
-};
+  return (
+    <>
+      <Link to='/'>
+        <button>Back</button>
+      </Link>
+      <div className='cho-container'></div>
+    </>
+  )
+}
 
-export default TestMp;
+export default TestMp

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LoginButton from './LoginButton';
 import LogOutButton from './LogOutButton';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom'
 
 import cart from '../assets/cart.svg';
 
@@ -13,9 +14,16 @@ const NavBar = () => {
       <div className='navbar_container_info'>
         <div>Logo</div>
         <div>
-          <a href=''>Home</a>
-          <a href=''>Shop</a>
-          <a href=''>News</a>
+
+          <Link to='/'><button>Home</button></Link>
+          <Link to='/shop'><button>Shop</button></Link>
+          <Link to='/test'><button>Test</button></Link>
+          <Link to='/news'><button>News</button></Link>
+
+          {/* <a href=''>Home</a> */}
+          {/* <a href=''>Shop</a> */}
+          {/* <a href=''>News</a> */}
+          
         </div>
       </div>
       <div>

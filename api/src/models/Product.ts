@@ -1,5 +1,5 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Category } from "./Category";
+import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { Category } from './Category';
 
 export class Product {
   @prop({ type: String, required: true, trim: true })
@@ -14,7 +14,7 @@ export class Product {
   @prop({ type: String, required: true })
   brand: string;
 
-  @prop({ type: String, lowercase: true })
+  @prop({ type: String })
   images: string[];
 
   @prop({ type: Number, default: 0 })

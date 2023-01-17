@@ -1,0 +1,22 @@
+.home_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home_topLanding {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home_container_logo {
+    width: 50%;
+    .logo {
+        width: 150px;
+    }
+}
+
+.home_container_navbar {
+    width: 50%;
+    
+}

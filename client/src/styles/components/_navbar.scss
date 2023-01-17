@@ -1,18 +1,28 @@
 .navbar_container {
   display: flex;
-  justify-content: space-between;
-  background-color: $main;
+  justify-content: flex-end;
+  background: linear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0))!important;
   padding: 10px;
+  border-radius: 50px;
 
   .navbar_container_info {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+    
 
-    button {
-      padding: 5px;
-      background: $standard-color-blue;
+    p {
+      
       color: $white;
       text-decoration: none;
-      
+      border: none;
+      padding:5px 0px;
+      padding-left: 10px;
+      margin:0;
+    }
+    .logo{
+      margin-right: 8px;
     }
   }
 }
@@ -27,4 +37,19 @@
 .navbar_container img {
   width: 50px;
   margin-right: 20px;
+}
+
+
+.link-style {
+  border-left: 1px solid white;
+}
+
+.profile-div{
+  display: flex;
+  color: white
+}
+
+.profile-div img {
+  border-radius: 100%;
+  cursor: pointer;
 }

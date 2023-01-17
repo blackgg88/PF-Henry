@@ -1,4 +1,4 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
+import { prop, getModelForClass } from '@typegoose/typegoose';
 
 export enum CategoryEnum {
   Connectivity = 'Connectivity and Control',
@@ -10,8 +10,8 @@ export enum CategoryEnum {
 }
 export class Category {
   @prop({ type: String, enum: CategoryEnum, required: true })
-  name: CategoryEnum
+  name: CategoryEnum;
 }
 
-const CategoryModel = getModelForClass(Category)
-export default CategoryModel
+const CategoryModel = getModelForClass(Category);
+export default CategoryModel;

@@ -23,7 +23,7 @@ export class Product {
   @prop({ type: Number, default: 0 })
   rating: number;
 
-  @prop({ ref: Category, required: true })
+  @prop({ ref: () => Category, required: true })
   categories: Ref<Category>[];
 }
 

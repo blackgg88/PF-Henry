@@ -1,1 +1,1 @@
-export { cartSlice } from './cart.slice'
+export { productSlice } from './product.slice'

@@ -3,6 +3,7 @@ import { PUBLIC_KEY } from '../../config'
 import { Link } from 'react-router-dom'
 
 const TestMp = () => {
+<<<<<<< HEAD
   const [producto, setProducto] = useState({
     id: 230,
     category_id: 'Safety and Security',
@@ -11,6 +12,26 @@ const TestMp = () => {
     quantity: 1,
     description: 'product description',
   })
+=======
+  const [producto, setProducto] = useState([
+    {
+      id: 230,
+      category_id: 'Safety and Security',
+      name: 'product name UwU',
+      price: 50,
+      quantity: 1,
+      description: 'product description',
+    },
+    {
+      id: 40,
+      category_id: 'Safety and Security',
+      name: 'product name 2 UwU',
+      price: 1500,
+      quantity: 2,
+      description: 'product description 2',
+    },
+  ]);
+>>>>>>> dd5c280d8f64a3a9e9a8e00a3915f5af59dfa1e8
 
   useEffect(() => {
     const checkout = async () => {
@@ -23,6 +44,8 @@ const TestMp = () => {
       })
 
       const data = await response.json()
+
+      console.log(data);
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

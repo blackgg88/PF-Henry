@@ -32,11 +32,7 @@ interface item {
 export const postPreference = async (req: Request, res: Response) => {
   const itemsBody: item[] = req.body;
 
-  console.log(itemsBody);
-
   let preference = {
-    binary_mode: true,
-
     items: itemsBody.map((item) => {
       return {
         id: item.id,
@@ -59,6 +55,15 @@ export const postPreference = async (req: Request, res: Response) => {
       pending: 'http://localhost:5173',
     },
 
+    payment_methods: {
+      excluded_payment_types: [
+        {
+          id: 'ticket',
+        },
+      ],
+    },
+
+    binary_mode: true,
     auto_return: state.SUCCESS,
   };
 

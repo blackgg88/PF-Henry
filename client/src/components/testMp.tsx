@@ -3,16 +3,6 @@ import { PUBLIC_KEY } from '../../config'
 import { Link } from 'react-router-dom'
 
 const TestMp = () => {
-<<<<<<< HEAD
-  const [producto, setProducto] = useState({
-    id: 230,
-    category_id: 'Safety and Security',
-    name: 'product name UwU',
-    price: 50,
-    quantity: 1,
-    description: 'product description',
-  })
-=======
   const [producto, setProducto] = useState([
     {
       id: 230,
@@ -31,7 +21,6 @@ const TestMp = () => {
       description: 'product description 2',
     },
   ]);
->>>>>>> dd5c280d8f64a3a9e9a8e00a3915f5af59dfa1e8
 
   useEffect(() => {
     const checkout = async () => {

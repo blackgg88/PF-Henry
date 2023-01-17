@@ -4,7 +4,6 @@ import News from './components/News';
 import Shop from './Shop/Shop';
 import Home from './components/Home';
 import TestMp from './components/testMp';
-import News from './components/News'
 
 function App() {
   return (

@@ -4,22 +4,25 @@ import { Link } from 'react-router-dom'
 
 const TestMp = () => {
   const [producto, setProducto] = useState([
+   
     {
-      id: 230,
-      category_id: 'Safety and Security',
-      name: 'product name UwU',
-      price: 50,
-      quantity: 1,
-      description: 'product description',
-    },
-    {
-      id: 40,
-      category_id: 'Safety and Security',
-      name: 'product name 2 UwU',
-      price: 1500,
-      quantity: 2,
-      description: 'product description 2',
-    },
+      id: "63c6db43f46e034dfcbeea9c",
+      name: "Kasa Indoor Pan/Tilt Smart Security Camera",
+      price: 22.43,
+      description: "Live Steam from Anywhere with Pan/Tilt: Sharp and clear 1080p Full HD provides high quality video right in the palm of your hand. Swipe up, down, left and right on your phone to rotate and set your camera’s point of view in real-time",
+      brand: "Kasa",
+      quantity:5,
+      images: [
+        "https://m.media-amazon.com/images/I/61FYGI4BVoL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/51lGcD26GoL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/61aVNOoJ1sL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/61x70KDJ16L._AC_SL1000_.jpg"
+      ],
+     
+     
+      categories_id: "63bebc5f001d5278f72b926a"
+        
+    }
   ]);
 
   useEffect(() => {

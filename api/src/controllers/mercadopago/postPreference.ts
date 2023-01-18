@@ -31,7 +31,7 @@ interface item {
 
 export const postPreference = async (req: Request, res: Response) => {
   const itemsBody: item[] = req.body;
-
+console.log(itemsBody)
   let preference = {
     items: itemsBody.map((item) => {
       return {
@@ -45,9 +45,11 @@ export const postPreference = async (req: Request, res: Response) => {
       };
     }),
 
-    payer: { email: 'newuser12354@gmail.com' },
+    payer: { email: 'arrascaetaefdev@gmail.com' },
+    // payer: { email: 'newuser12354@gmail.com' },
 
-    external_reference: 'newuser12354@gmail.com',
+    external_reference: 'arrascaetaefdev@gmail.com',
+    // external_reference: 'newuser12354@gmail.com',
 
     back_urls: {
       success: 'http://localhost:5173',

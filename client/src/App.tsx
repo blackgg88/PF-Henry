@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import News from './components/News';
 import Shop from './Shop/Shop';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import TestMp from './components/testMp';
 
 function App() {

@@ -1,0 +1,107 @@
+.home_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home_topLanding {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home_container_logo {
+    width: 50%;
+    .logo {
+        width: 150px;
+    }
+}
+
+.home_container_navbar {
+    width: auto;
+}
+
+
+.home_imagepart_1{
+    display: flex;
+    justify-content: end;
+    position: relative;
+    margin-right:96px;
+
+}
+
+.home_text_1{
+    font-size: 72px;
+    margin: 0;
+}
+.home_text_2{
+    font-size: 48px;
+    margin: 0;
+}
+
+.home_button_li{
+    display:flex;
+    background-color: $standard-color-blue;
+    border: none;
+    border-radius: 50px;
+    color: $white;
+    font-size: 16px;
+    height: 36px;
+    padding-bottom:25px;
+    padding: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    align-items: center;
+    justify-content: center; 
+    position: relative;
+    right: 50px;
+    cursor:pointer;
+}
+
+.home_container_carrouselSide {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home_carrouselIMG {
+    height: 500px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+.home_carrousel_ContainerDiv {
+    display: flex;
+    flex-direction: center;
+    width: 55%;
+}
+
+.home_container_imagediv {
+    width: 45%;
+}
+
+
+.home_all_imageSide {
+    display: flex;
+}
+
+.home_image_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    align-items: flex-end;
+    z-index: 2;
+}
+
+.home_image_rigth {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    align-items: center;
+}
+
+.home_image1 {
+    position: relative;
+    right: 100px;
+}

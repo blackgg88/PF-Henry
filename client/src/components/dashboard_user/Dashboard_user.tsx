@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import { controllerUser } from './controller';
+import { is } from 'immer/dist/internal';
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ; 
     interface purchase {
@@ -16,20 +17,25 @@ import { controllerUser } from './controller';
 
 
 
-export const Dashboard_user = async () => {
+export const Dashboard_user = () => {
+
     const { user, isAuthenticated } = useAuth0();
     const [purchase, setPurchase] = useState<purchase[]>([]);
 
-     const email= 'arrascaetaefdev@gmail.cteom';
+     const email= 'arrascaetaefdev@gmail.com';
+   
 
-     const verresp= await (controllerUser(email))
-     console.log(verresp)
-  useEffect(()=> {
-    if (isAuthenticated) {
-        setPurchase=controllerUser(email)
-    }
-},[])    
-console.log(controllerUser(email))
+    useEffect( ()=> {
+        if (isAuthenticated) {
+            controllerUser(email)
+            .then( res=> {
+                console.log(res[0]?.items)
+            })
+        }
+    }, [isAuthenticated])
+     
+
+
 
   return (
     <div>

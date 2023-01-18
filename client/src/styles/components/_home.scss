@@ -17,8 +17,7 @@
 }
 
 .home_container_navbar {
-    width: 50%;
-    
+    width: auto;
 }
 
 
@@ -30,49 +29,79 @@
 
 }
 
-
-// .home_text_1{
-//     font-size: 72px;
-//     position:absolute;
-//     bottom: 0;
-//     left: 0;
-
-// }
-// .home_text_2{
-//     font-size: 48px;
-//     position:absolute;
-//     bottom: 0;
-//     left: 0;
-// }
 .home_text_1{
     font-size: 72px;
-    position:absolute;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-85%, 20%);
-    padding-top: 50px; /* add desired value here */
+    margin: 0;
 }
 .home_text_2{
     font-size: 48px;
-    position:absolute;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-70%, 40%);
-    padding-top: 50px; /* add desired value here */
+    margin: 0;
 }
 
 .home_button_li{
     display:flex;
     background-color: $standard-color-blue;
+    border: none;
+    border-radius: 50px;
     color: $white;
     font-size: 16px;
     height: 36px;
     padding-bottom:25px;
     padding: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
     align-items: center;
+    justify-content: center; 
+    position: relative;
+    right: 50px;
+    cursor:pointer;
+}
+
+.home_container_carrouselSide {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home_carrouselIMG {
+    height: 500px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+.home_carrousel_ContainerDiv {
+    display: flex;
+    flex-direction: center;
+    width: 55%;
+}
+
+.home_container_imagediv {
+    width: 45%;
+}
+
+
+.home_all_imageSide {
+    display: flex;
+}
+
+.home_image_left {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    position:absolute;
-    border-radius:5px;
-    transform: translate(-600%, 650%);
-  
+    width: 50%;
+    align-items: flex-end;
+    z-index: 2;
+}
+
+.home_image_rigth {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    align-items: center;
+}
+
+.home_image1 {
+    position: relative;
+    right: 100px;
 }

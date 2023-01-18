@@ -39,8 +39,7 @@ export default function Footer() {
   return (
     <Box  sx={{ flexGrow: 1 }}>
       <AppBar className="footer_container" position="relative">
-        <Toolbar>
-
+        <Toolbar className='footer_text'>
           <p>Todos los derechos reservados 2023</p>
         </Toolbar>
       </AppBar>

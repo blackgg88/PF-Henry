@@ -18,11 +18,12 @@ enum currency {
   COP = 'COP',
   PEN = 'PEN',
   UYU = 'UYU',
+  USD = 'USD',
 }
 
 interface item {
   id: string;
-  category_id: string;
+  categories_id: string;
   description: string;
   name: string;
   quantity: number;
@@ -31,13 +32,12 @@ interface item {
 
 export const postPreference = async (req: Request, res: Response) => {
   const itemsBody: item[] = req.body;
-console.log(itemsBody)
   let preference = {
     items: itemsBody.map((item) => {
       return {
         id: item.id,
-        category_id: item.category_id,
-        currency_id: currency.ARS,
+        category_id: item.categories_id,
+        currency_id: currency.USD,
         description: item.description,
         title: item.name,
         quantity: item.quantity,

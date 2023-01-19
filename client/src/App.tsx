@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+// import restProvider from 'ra-data-simple-rest';
 
 import News from './components/News';
 import Shop from './Shop/Shop';
@@ -6,6 +7,7 @@ import Home from './components/home/Home';
 import TestMp from './components/testMp';
 import { Dashboard_user } from './components/dashboard_user/Dashboard_user';
 import Detail from './components/details/Detail';
+import AppAdmin from './components/dashboard/AppAdmin';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path='/news' element={<News />} />
         <Route path='/profile' element={<Dashboard_user />} />
         <Route path='/product/:id' element={<Detail />} />
+        <Route path='/admin/*' element={<AppAdmin />} />
       </Routes>
     </div>
   );

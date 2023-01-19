@@ -7,27 +7,59 @@ const httpClient = fetchUtils.fetchJson;
 const dataProvider= {
     getList: async (resource, params) => {
         const { page, perPage } = params.pagination;
-        const url = `${apiUrl}/${resource}`;        
+        let url;
         
+        if(resource === "purchases"){
+            url = `${apiUrl}/checkout`; 
+        }else{
+
+            url = `${apiUrl}/${resource}`; 
+        }
+
         const response = await fetch (url);
 
         let data = await response.json();
+
+        console.log(data)
 
         const total = data.length;
 
         data = data.slice(((page - 1) * perPage), (page * perPage))
 
-        data = data.map(d => {
-            return{
-                ...d,
-                id: d._id,
-            }
-        })
+        if(resource === "purchases"){
+            data = data.map(d => {
+                return {
+                    id: d.id,
+                    client_id: d.client_id,
+                    products: d.items,
+                    date: d.date_created,
+                }
+            })
+        }else if(resource === "products"){
+            data= data.map(d => {
+                return {
+                    id: d._id, 
+                    categories: d.categories.name
+                }
+            })
+
+        }else{
+            data = data.map(d => {
+                return{
+                    ...d,
+                    id: d._id,
+                }
+            })
+
+        }
+
         
         return {
             data: data,
             total: total
         }
+               
+        
     },
 
     getOne: async (resource, params) =>{

@@ -29,10 +29,11 @@
         height: 17%;
         width: 80%;
         cursor: pointer;
-        border-radius: $standard-border-radius;
         background: #e0e0e0;
+        border-radius: $standard-border-radius;
         box-shadow: 14px 14px 17px #8b8b8b, -14px -14px 17px #ffffff;
         img {
+          border-radius: $standard-border-radius;
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -117,18 +118,34 @@
     }
   }
   .section-description {
-    height: 500px;
-    width: $standard-with-full-hd;
+    width: 100%;
+    height: 300px;
     //background-color: forestgreen;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $standard-space-between-elements;
     .detail-detail {
-      width: 97%;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
       height: 100%;
       background-color: $standard-color-blue-light;
       border-radius: $standard-border-radius;
+      .detail_product-name {
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .releated-images {
+        width: 15%;
+        height: 60%;
+        border-radius: $standard-border-radius;
+        font-size: 15px;
+        img {
+          border-radius: $standard-border-radius;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+      }
     }
   }
   .comments-section {

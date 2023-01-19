@@ -7,7 +7,7 @@ const TestMp = () => {
    
     {
       id: "63c6db43f46e034dfcbeea9c",
-      name: "Kasa Indoor Pan/Tilt Smart Security Camera",
+      name: "Kasart Indoor Pan/Tilt Smart Security Camera",
       price: 22.43,
       description: "Live Steam from Anywhere with Pan/Tilt: Sharp and clear 1080p Full HD provides high quality video right in the palm of your hand. Swipe up, down, left and right on your phone to rotate and set your camera’s point of view in real-time",
       brand: "Kasa",

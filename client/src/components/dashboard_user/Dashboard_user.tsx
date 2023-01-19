@@ -1,35 +1,57 @@
 import React, {useEffect, useState} from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import { controllerUser } from './controller';
+import { is } from 'immer/dist/internal';
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ; 
-    interface purchase {
+    interface items {
+        title:string;
         id: string;
-        name: string;
         price: number;
         description: string;
-        brand: string;
         quantity: number;
-        images: string[];
-        categories_id: string;
+    }
+
+    interface preference {
+    date_create: string,
+    items: items[]   
     }
 
 
 
-export const Dashboard_user = async () => {
+export const Dashboard_user = () => {
+
     const { user, isAuthenticated } = useAuth0();
-    const [purchase, setPurchase] = useState<purchase[]>([]);
+    const [purchase, setPurchase] = useState<preference[]>([]);
+    //purchase [{}, {}]
 
-     const email= 'arrascaetaefdev@gmail.cteom';
+     const email= 'arrascaetaefdev@gmail.com';
+   
 
-     const verresp= await (controllerUser(email))
-     console.log(verresp)
-  useEffect(()=> {
-    if (isAuthenticated) {
-        setPurchase=controllerUser(email)
-    }
-},[])    
-console.log(controllerUser(email))
+    useEffect( ()=> {
+
+        const handleGetItems = async () => {
+            const response = await controllerUser(email);
+
+            response.map((preference: any )=> {
+                
+                setPurchase([...purchase, {date_create: preference.date_created, items: preference.items}])
+            })
+        }
+        if (isAuthenticated) {            
+            handleGetItems();
+        }
+
+        
+    }, [isAuthenticated])
+     
+    interface Product {
+        title: string;
+        quantity: number;
+        }
+
+        console.log(purchase);
+        
 
   return (
     <div>
@@ -45,8 +67,15 @@ console.log(controllerUser(email))
         </div>
         <div>
             <h1>MIS COMPRAS</h1>
-            {}
+            {
+                // purchase.map( product => (
+                //     <div key={product.id}>
+                //         <h1>{product.title}</h1>
+                //         <h1>{product.quantity}</h1>
+                //     </div>
+                // ))
+            }
         </div>
-    </div>
-  )
+    </div>
+  )
 }

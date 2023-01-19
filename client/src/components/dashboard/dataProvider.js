@@ -19,8 +19,6 @@ const dataProvider = {
 
     let data = await response.json();
 
-    console.log(data);
-
     const total = data.length;
 
     data = data.slice((page - 1) * perPage, page * perPage);

@@ -35,13 +35,15 @@ const DetailProduct: React.FC<{}> = () => {
 
   const handleFilter = (res: ProductState) => {
     let aux = allProducts.filter(
-      (product: any) =>
-        product.categories.findIndex((cat: any) => cat._id === res.categories[0]) > -1,
+      (product: any) => product.categories._id === res.categories,
     );
 
     if (aux.length > 5) aux = aux.slice(0, 5);
     setRelatedProduct(aux);
   };
+
+  console.log(productDetail);
+  console.log(allProducts);
 
   return (
     <div className='detail-contain'>

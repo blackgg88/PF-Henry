@@ -14,7 +14,7 @@ const clientId: string = AUTH0_CLIENT_ID;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
       <Auth0Provider
         domain={domain}
         clientId={clientId}
@@ -22,6 +22,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       >
         <App />
       </Auth0Provider>
-    </BrowserRouter>
+      </BrowserRouter>     
   </Provider>,
 );

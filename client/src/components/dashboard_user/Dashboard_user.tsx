@@ -55,17 +55,7 @@ export const Dashboard_user = () => {
     console.log(purchase)
 
   return (
-    <div >
-        <div className="home_topLanding">
-        <div className="home_container_logo">
-          <img className="logo" src={logo} alt="logo" />
-        </div>
-        <div className="home_container_navbar">
-          <Navbar />
-        </div>
-            </div>
-
-        <div className='all'>
+    <div className='all'>
             <div className='dash_profileContainer'>
                 <div className='dash_profile_ImgSide'>
                     <img src={user?.picture} alt="picture-profile" />
@@ -90,12 +80,12 @@ export const Dashboard_user = () => {
                     <h2>My shopping</h2>
                 </div>
                 {
-                    purchase.map( product => (
-                        <div key={product.date_create} className='dash_Allpurchase_container'>
+                    purchase.map( (product, index) => (
+                        <div key={product.date_create+'_'+index} className='dash_Allpurchase_container'>
                                 {
-                                    product.items.map( sell => {
+                                    product.items.map( (sell, index) => {
                                         return (
-                                            <div className='dash_onePurchase'>
+                                            <div className='dash_onePurchase' key={sell.title+'_'+index}>
                                                 <div className='dash_onePurchase_imageSide'>
                                                     <img className='imagePurchase' src="https://m.media-amazon.com/images/I/81OeBtkiVJL.AC_SL1500.jpg" alt="imgPurchase" />
                                                 </div>
@@ -114,6 +104,5 @@ export const Dashboard_user = () => {
                 }
             </div>
         </div>
-    </div>
     )
 }

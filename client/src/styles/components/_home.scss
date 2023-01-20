@@ -1,25 +1,12 @@
+body {
+    margin: 0;
+}
+
 .home_wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
-.home_topLanding {
-    display: flex;
-    justify-content: space-between;
-}
-
-.home_container_logo {
-    width: 50%;
-    .logo {
-        width: 150px;
-    }
-}
-
-.home_container_navbar {
-    width: auto;
-}
-
 
 .home_imagepart_1{
     display: flex;
@@ -30,38 +17,69 @@
 }
 
 .home_text_1{
-    font-size: 72px;
+    font-size: 130px;
+    font-family: 'Josefin Sans', sans-serif;
     margin: 0;
+    position: relative;
+    left: 25px;
 }
 .home_text_2{
-    font-size: 48px;
+    font-size: 130px;
+    font-family: 'Exo 2', sans-serif;
     margin: 0;
+    position: relative;
+    bottom: 65px;
+    left: 50px;
 }
 
 .home_button_li{
     display:flex;
     background-color: $standard-color-blue;
-    border: none;
-    border-radius: 50px;
     color: $white;
-    font-size: 16px;
-    height: 36px;
-    padding-bottom:25px;
-    padding: 16px;
-    padding-left: 60px;
-    padding-right: 60px;
+    border: 1px solid $standard-color-blue;
+    border-radius: 50px;
+    font-size: 35px;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 5px 70px;
     align-items: center;
     justify-content: center; 
     position: relative;
     right: 50px;
+    bottom: 50px;
     cursor:pointer;
+
+    &:hover {
+        background-color: $white;
+        border: 1px solid $standard-color-blue;
+        color: $standard-color-blue;
+    }
 }
 
 .home_container_carrouselSide {
     display: flex;
-    background-color: black;
+    background-image: url("https://cdn.discordapp.com/attachments/1062718230432596059/1065996148034256936/img_fondo_oscura.png");
+    background-size: cover;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
+    transform: 
+    rotateY(calc(var(--offset) * 50deg)) 
+    scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -30rem))
+    translateX(calc(var(--direction) * -5rem));
+  filter: blur(calc(var(--abs-offset) * 1rem));
+  transition: all 0.3s ease-out;
+  background-repeat: no-repeat;
+  position: relative;
+  .home_carrousel_logo{
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+
+    width: 100px;
+    img{
+        width: 100%;}
+  }
 }
 
 .home_carrouselIMG {
@@ -108,32 +126,54 @@
 
 .home_news_container{
     display:flex;
-    
-}
+    margin-top: 20px;
 
-.home_news_side{
-   
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-}
+    .home_news_side{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
 
-.home_news_image_side{
-    
-    width: 30%;
-    
+        .news_title{
+            display: flex;
+            font-family: 'Josefin Sans', sans-serif;
+            background: linear-gradient(90deg, rgb(177, 174, 174), white);
 
-    img{
-        width: 300px;
-        height: 350px;
+            h1 {
+                font-size: 50px;
+                margin-left: 25px;
+            }
+        }
+        .news_back{
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 15px;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 30px;
+            cursor: pointer;
+
+            .news_navLink_readMore {
+                text-decoration: none;
+            }
+            
+            h3 {
+                font-weight: 500;
+                &:hover {
+                    color: $standard-color-blue;
+                    font-weight: 1000;
+                }
+            }
+        }
+    }
+
+    .home_news_image_side{
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        img{
+            width: 80%;
+        }
     }
 }
 
-.news_title{
-    margin-left:25px;
-}
-.news_back{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 15px;
-}
+
+

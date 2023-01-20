@@ -1,31 +1,97 @@
+.Nav_topLanding {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+
+  .Nav_container_logo {
+    width: 50%;
+
+    .logo {
+        width: 300px;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+  }
+
+  .Nav_container_navbar {
+    width: auto;
+  }
+}
+
 .navbar_container {
   display: flex;
-  justify-content: flex-end;
-  background: linear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0))!important;
-  padding: 10px;
+  justify-content: center;
+  position: relative;
+  //background: inear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0))!important;
+  background-color: $standard-color-blue;
+  align-items: center;
+  padding: 9px 20px;
   border-radius: 50px;
   width: auto;
 
-  .navbar_container_info {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    
-    
 
-    p {
-      
-      color: $white;
-      text-decoration: none;
-      border: none;
-      padding:5px 0px;
-      padding-left: 10px;
-      margin:0;
-    }
-    .logo{
-      margin-right: 8px;
-    }
+  .nav_middle_button {
+    border-right: 1px solid $white;
+    
   }
+
+  .link-style {
+    margin: 0;
+  }
+    
+    p {
+      margin: 0;
+      padding-left: 20px;
+      padding-right: 20px;
+      
+      &:hover {
+        color: $standard-color-blue-green;
+      }
+    }
+    .logo {
+      margin-left: 5px;
+      width: 40px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .nav_modalTriangle {
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 30px solid $standard-color-blue;
+      position: absolute;
+      right: 40px;
+      bottom: -35px;
+      align-items: center;
+
+    }
+
+    .nav_modalProfilewindows {
+      position: absolute;
+      right:  30px;
+      top: 80px;
+      width: 140px;
+      height: 70px;
+      z-index: 2;
+      background-color: $standard-color-blue;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .nav_modalWindow_Link {
+        margin: 0;
+        align-items: center;
+      }
+
+      p {
+        margin: 5px;
+        padding: 0;
+        align-items: center;
+      }
+    }
 }
 
 .navbar_container a {
@@ -33,17 +99,16 @@
   text-decoration: none;
   margin-right: 20px;
   font-size: 1.2em;
+  
 }
 
 .navbar_container img {
   width: 50px;
-  margin-right: 20px;
+  margin-right: 20px;
 }
 
 
-.link-style {
-  border-left: 1px solid white;
-}
+
 
 .profile-div{
   display: flex;

@@ -16,6 +16,7 @@ server.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept',
   );
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('X-Total-Count', '1000');
   next();
 });
 

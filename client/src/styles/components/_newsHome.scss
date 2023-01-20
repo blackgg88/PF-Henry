@@ -1,0 +1,16 @@
+.news_fake_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.news_fake_card{
+    width: 200px;
+    height: 150px;
+    background-color:$standard-color-blue;
+    margin: 10px;
+
+    img{
+        
+    }
+}

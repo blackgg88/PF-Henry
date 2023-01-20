@@ -5,6 +5,8 @@ import Card from "../carrousel/cardCarrousel";
 import logo from "../../assets/logo_smart_b.png";
 import img_home1 from "../../assets/home_img_1.png";
 import img_home2 from "../../assets/home_img_2.png";
+import img_home3 from "../../assets/home_img_3.png";
+import {NewsHome} from "../home_news_fake/NewsHome"
 
 const Home = () => {
   const CARDS = 6;
@@ -49,8 +51,25 @@ const Home = () => {
               />
             ))}
           </Carrousel>
+      
         </div>
       </div>
+      <div className="home_news_container">
+            <div className="home_news_side">
+              <div className="news_title">
+                <h3>NEWS</h3>
+              </div>
+              <NewsHome/>
+              
+              <div className="news_back">
+                <h3>Read More...</h3>
+              </div>
+            </div>
+            <div className="home_news_image_side">
+              <img src={img_home3} alt="home-news-image" />
+            </div>
+            
+          </div>
       <Footer />
     </div>
   );

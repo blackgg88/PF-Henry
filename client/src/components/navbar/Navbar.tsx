@@ -11,6 +11,13 @@ const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
   const [ profileWindow, setProfileWindow] = useState<boolean>(false)
 
+  const logoutUser = ()=> {
+    logout()
+    setProfileWindow(false)
+  }
+
+  
+
   return (
     <div className="Nav_topLanding">
       <div className="Nav_container_logo">
@@ -53,10 +60,10 @@ const NavBar = () => {
             profileWindow&& (
             <div className="nav_modalProfilewindows">
               <NavLink className="nav_modalWindow_Link" to='/profile'>
-                <p>Profile</p>
+                <p onClick={()=> setProfileWindow(!profileWindow)}>Profile</p>
               </NavLink>
               <NavLink className="nav_modalWindow_Link" to='/'>
-                <p onClick={()=> logout()}>Logout</p>
+                <p onClick={logoutUser}>Logout</p>
               </NavLink>
             </div>)
           }

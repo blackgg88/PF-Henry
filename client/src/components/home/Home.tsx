@@ -8,6 +8,7 @@ import img_home2 from "../../assets/home_img_2.png";
 import img_home3 from "../../assets/home_img_3.png";
 import { NewsHome } from "../home_news_fake/NewsHome";
 import { useAuth0 } from "@auth0/auth0-react"; 
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const CARDS = 6;
@@ -51,7 +52,9 @@ const Home = () => {
           <NewsHome />
 
           <div className="news_back">
-            <h3>Read More...</h3>
+            <NavLink className="news_navLink_readMore" to='/news'>
+              <h3>Read More...</h3>
+            </NavLink>
           </div>
         </div>
         <div className="home_news_image_side">

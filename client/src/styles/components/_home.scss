@@ -61,6 +61,7 @@
     background-color: black;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
 .home_carrouselIMG {
@@ -131,6 +132,10 @@
             font-family: 'Josefin Sans', sans-serif;
             font-size: 30px;
             cursor: pointer;
+
+            .news_navLink_readMore {
+                text-decoration: none;
+            }
             
             h3 {
                 font-weight: 500;

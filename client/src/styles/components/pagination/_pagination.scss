@@ -1,0 +1,80 @@
+// @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+.pagination-container {
+  margin: 100px auto;
+  text-align: center;
+  display: flex;
+  gap: 5px;
+
+  .pagination-button {
+    position: relative;
+    display: inline-block;
+    border-radius: 30px;
+    // color: #2c3e50;
+
+    font-size: 0.9rem;
+    padding: 8px 16px 10px;
+  }
+  & :hover {
+    background-color: rgba(48, 79, 104, 1);
+    color: #2c3e50;
+    cursor: pointer;
+  }
+}
+
+.pagination-button:before {
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  content: "";
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+  border-radius: 24px;
+  transform: scale(0);
+  transition: all 0.2s;
+}
+
+.pagination-button.active {
+  transform: scale(1);
+  background-color: rgba(20, 33, 66, 1);
+  color: aliceblue;
+}
+
+// .pagination-button.pagination-newer {
+//   margin-right: 50px;
+// }
+
+// .pagination-button.pagination-older {
+//   margin-left: 50px;
+// }
+
+// .pagination-container {
+//   position: absolute;
+//   top: 50%;
+//   right: 0;
+//   left: 0;
+//   width: 180px;
+//   height: 20px;
+//   margin: 0 auto;
+//   transform: translateY(-50%);
+//   overflow: hidden;
+//   z-index: 1;
+// }
+
+// .pagination-button {
+//   width: 20px;
+//   height: 20px;
+//   float: left;
+//   margin-right: 20px;
+//   background-color: #fff;
+//   border-radius: 20px;
+//   cursor: pointer;
+//   transition: 0.3s ease width;
+// }
+
+// .pagination-button.active {
+//   width: 60px;
+//   cursor: auto;
+// }

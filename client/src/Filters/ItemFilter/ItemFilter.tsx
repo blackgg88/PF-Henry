@@ -1,5 +1,5 @@
 import React from "react";
-import "./ItemFilter.css";
+//import "./ItemFilter.css";
 
 interface FilterByProps {
   closeItem: (e: string) => void;
@@ -7,7 +7,14 @@ interface FilterByProps {
 }
 
 const ItemFilter: React.FC<FilterByProps> = ({ filter, closeItem }) => {
-  return <div className="container-itemFilter">{filter}</div>;
+  return (
+    <div className="container-itemFilter">
+      <div className="name-filter">{filter}</div>
+      <button className="close-item" onClick={() => closeItem(filter)}>
+        x
+      </button>
+    </div>
+  );
 };
 
 export default ItemFilter;

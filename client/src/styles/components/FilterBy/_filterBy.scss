@@ -1,0 +1,159 @@
+.container-FilterBy {
+  //background-color: royalblue;
+  height: 80px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-family: $standard-font-Barlow;
+    font-weight: 300;
+    color: $standard-color-white-background;
+    position: relative;
+    top: 10px;
+    left: 20px;
+  }
+  .container-filterBy-c {
+    height: 36px;
+    border-radius: 40px;
+    background-color: $standard-color-blue-secundary;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    .input-filterByName {
+      width: 60%;
+      font-family: $standard-font-Barlow;
+      font-weight: 300;
+      color: $standard-color-white-background;
+      border: none;
+      border-bottom: 1px solid $standard-color-white;
+      background-color: $standard-color-transparent;
+      color: $standard-color-white-background;
+    }
+    .🔍 {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: $standard-color-transparent;
+      border: none;
+      scale: 1;
+      transition: background-color 0.4s scale 0.4s;
+      &:hover {
+        //background-color: $standard-color-blue-solid-grad;
+        scale: 1.05;
+      }
+    }
+    .input-filterByRating {
+      font-size: 20px;
+      border: none;
+      font-family: $standard-font-Barlow;
+      font-weight: 500;
+      color: $standard-color-white-background;
+      background-color: $standard-color-transparent;
+      color: $standard-color-white-background;
+      text-align: center;
+    }
+    .⭐️ {
+      position: relative;
+      right: -5px;
+      font-size: 30px;
+    }
+
+    .input-filterByPrice {
+      width: 85%;
+      height: auto;
+    }
+    .select-FilterByCategory {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: $standard-color-transparent;
+      border: none;
+      font-size: $standard-font-Barlow;
+      text-align: center;
+      color: $standard-color-white-background;
+      font-size: 20px;
+      width: fit-content;
+
+      .option {
+        padding: 0 30px 0 10px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        background-color: $standard-color-blue-secundary;
+        border-top: $standard-color-blue-solid-grad;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        pointer-events: none;
+        order: 2;
+        z-index: 1;
+        transition: background 0.5s ease-in-out;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: $standard-color-blue-solid-grad;
+        }
+        &:focus .option {
+          position: relative;
+          pointer-events: all;
+        }
+      }
+    }
+
+    .btn-start {
+      background-color: $standard-color-transparent;
+      //background-color: $standard-color-red;
+      border: none;
+      width: 24px;
+      height: 24px;
+      margin: 3px;
+      //background-color: blueviolet;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      &:hover {
+        margin: 0px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .img-btn {
+      width: 80%;
+      height: 75%;
+    }
+  }
+  .🔵 {
+    height: 1px;
+    width: 95%;
+    border-bottom: 2px solid $standard-color-blue-solid-grad;
+    position: relative;
+    top: 25px;
+  }
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+
+// input[typ e"range"]::-webkit-slider-thumb:after {
+//   content: attr(value); /* display the value of the thumb */

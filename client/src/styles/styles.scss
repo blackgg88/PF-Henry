@@ -9,8 +9,24 @@
 @import './components/dashboard_user';
 @import './components/newsHome';
 
+@import './navbar';
+@import './components/footer';
 
 //! Detail
 @import './components/Detail/detail';
-
-// screens
+//! FilterPanel
+@import './components/FilterPanel/filterPanel';
+//! FilterBy
+@import './components/FilterBy/filterBy';
+//! FilterList
+@import './components/FilterList/filterList';
+//! ItemFilter
+@import './components/ItemFilter/itemFilter';
+//! RenderCard
+@import './components/RenderCard/renderCard';
+//! Pagination
+@import './components/pagination/pagination'; // screens
+//! BreadCrumb
+@import './components//breadCrumb'; // screens
+//! Shop
+@import './components/Shop/shop';

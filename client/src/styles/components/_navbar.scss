@@ -22,6 +22,7 @@
 .navbar_container {
   display: flex;
   justify-content: center;
+  position: relative;
   //background: inear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0))!important;
   background-color: $standard-color-blue;
   align-items: center;
@@ -54,7 +55,39 @@
       height: 35px;
       cursor: pointer;
     }
-  
+
+    .nav_modalTriangle {
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 30px solid $standard-color-blue;
+      position: absolute;
+      right: 40px;
+      bottom: -35px;
+
+    }
+
+    .nav_modalProfilewindows {
+      position: absolute;
+      right:  30px;
+      top: 80px;
+      width: 140px;
+      height: 70px;
+      z-index: 2;
+      background-color: $standard-color-blue;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .nav_modalWindow_Link {
+        margin: 0;
+      }
+
+      p {
+        margin: 5px;
+        padding: 0;
+      }
+    }
 }
 
 .navbar_container a {

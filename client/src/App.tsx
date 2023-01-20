@@ -8,10 +8,13 @@ import TestMp from './components/testMp';
 import { Dashboard_user } from './components/dashboard_user/Dashboard_user';
 import Detail from './components/details/Detail';
 import AppAdmin from './components/dashboard/AppAdmin';
+import Footer from './components/Footer';
+import NavBar from './components/navbar/Navbar';
 
 function App() {
   return (
     <div>
+      <NavBar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />
@@ -22,6 +25,7 @@ function App() {
         <Route path='/product/:id' element={<Detail />} />
         <Route path='/admin/*' element={<AppAdmin />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

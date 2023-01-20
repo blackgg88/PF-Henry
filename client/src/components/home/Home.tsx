@@ -7,19 +7,21 @@ import img_home1 from "../../assets/home_img_1.png";
 import img_home2 from "../../assets/home_img_2.png";
 import img_home3 from "../../assets/home_img_3.png";
 import { NewsHome } from "../home_news_fake/NewsHome";
+import { useAuth0 } from "@auth0/auth0-react"; 
 
 const Home = () => {
   const CARDS = 6;
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   return (
     <div className="home_wrapper">
-      <Navbar />
-
       <div className="home_all_imageSide">
         <div className="home_image_left">
           <p className="home_text_1">Innovate</p>
           <p className="home_text_2">Home</p>
-          <button className="home_button_li">Login</button>
+          {
+            !isAuthenticated && <button onClick={() => loginWithRedirect()} className="home_button_li">Login</button>
+          }
         </div>
         <div className="home_image_rigth">
           <img className="home_image1" src={img_home1} alt="image-1" />
@@ -56,7 +58,6 @@ const Home = () => {
           <img src={img_home3} alt="home-news-image" />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface Category {
   _id: string;
@@ -14,7 +14,7 @@ export interface ProductState {
   brand: string;
   images: string[];
   rating: number;
-  categories: Category[];
+  categories: string;
   stock: number;
 }
 
@@ -25,20 +25,20 @@ const initialState: {
 } = {
   Products: [],
   ProductDetail: {
-    _id: "",
-    name: "",
+    _id: '',
+    name: '',
     price: 0,
-    description: "",
-    brand: "",
+    description: '',
+    brand: '',
     images: [],
     rating: 0,
-    categories: [],
+    categories: '',
     stock: 0,
   },
 };
 
 export const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState,
   reducers: {
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
@@ -49,7 +49,7 @@ export const productSlice = createSlice({
       }
     },
     getProductId: (state, action: PayloadAction<ProductState>) => {
-      state.ProductDetail = { ...action.payload };
+      state.ProductDetail = action.payload;
     },
   },
 });

@@ -1,1 +1,1 @@
-export { productSlice } from './product.slice'
+export { productSlice } from './product/product.slice';

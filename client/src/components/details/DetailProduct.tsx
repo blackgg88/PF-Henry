@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
-import { ProductState } from '../../Redux/slice/product.slice';
-import { getProductId } from '../../Redux/slice/product.slice';
-import { productIdFetch } from '../../Redux/slice/ProductController';
+import { ProductState } from '../../Redux/slice/product/product.slice';
+import { getProductId } from '../../Redux/slice/product/product.slice';
+import { productIdFetch } from '../../Redux/slice/product/ProductController';
 import { Link } from 'react-router-dom';
 
 const DetailProduct: React.FC<{}> = () => {

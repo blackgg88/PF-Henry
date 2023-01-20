@@ -3,6 +3,7 @@ import Footer from "../Footer";
 import Carrousel from "../carrousel/carrousel";
 import Card from "../carrousel/cardCarrousel";
 import logoTop from "../../assets/logo_smart_b.png";
+import logoWhite from "../../assets/logo_smart_w.png";
 import img_home1 from "../../assets/home_img_1.png";
 import img_home2 from "../../assets/home_img_2.png";
 import img_home3 from "../../assets/home_img_3.png";
@@ -32,6 +33,9 @@ const Home = () => {
       <div className="home_imagepart_1"></div>
 
       <div className="home_container_carrouselSide">
+        <div className="home_carrousel_logo">
+          <img src={logoWhite} alt="logo" />
+        </div>
         <div className="home_container_imagediv">
           <img className="home_carrouselIMG" src={img_home2} alt="image-1" />
         </div>

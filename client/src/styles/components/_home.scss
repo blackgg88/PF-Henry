@@ -58,10 +58,29 @@
 
 .home_container_carrouselSide {
     display: flex;
-    background-color: black;
+    background-image: url("https://cdn.discordapp.com/attachments/1062718230432596059/1065996148034256936/img_fondo_oscura.png");
+    background-size: contain;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    transform: 
+    rotateY(calc(var(--offset) * 50deg)) 
+    scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -30rem))
+    translateX(calc(var(--direction) * -5rem));
+  filter: blur(calc(var(--abs-offset) * 1rem));
+  transition: all 0.3s ease-out;
+  background-repeat: no-repeat;
+  position: relative;
+  .home_carrousel_logo{
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+
+    width: 100px;
+    img{
+        width: 100%;}
+  }
 }
 
 .home_carrouselIMG {

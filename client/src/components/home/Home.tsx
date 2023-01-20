@@ -2,7 +2,7 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../Footer";
 import Carrousel from "../carrousel/carrousel";
 import Card from "../carrousel/cardCarrousel";
-import logo from "../../assets/logo_smart_b.png";
+import logoTop from "../../assets/logo_smart_b.png";
 import img_home1 from "../../assets/home_img_1.png";
 import img_home2 from "../../assets/home_img_2.png";
 import img_home3 from "../../assets/home_img_3.png";
@@ -13,14 +13,7 @@ const Home = () => {
 
   return (
     <div className="home_wrapper">
-      <div className="home_topLanding">
-        <div className="home_container_logo">
-          <img className="logo" src={logo} alt="logo" />
-        </div>
-        <div className="home_container_navbar">
-          <Navbar />
-        </div>
-      </div>
+      <Navbar/>
 
       <div className="home_all_imageSide">
         <div className="home_image_left">

@@ -16,6 +16,13 @@
       border: 1px solid $standard-color-gray;
       height: auto;
       margin-bottom: 0px;
+      .ShoppingCart_items-titles {
+        display: grid;
+        grid-template-columns: 45% 20% 10%;
+        padding-left: 30px;
+        border: solid black 2px;
+      }
+
       .ShoppingCart_items {
         padding: 20px;
 

@@ -8,7 +8,8 @@ import TestMp from './components/testMp';
 import { Dashboard_user } from './components/dashboard_user/Dashboard_user';
 import Detail from './components/details/Detail';
 import AppAdmin from './components/dashboard/AppAdmin';
-import ShoppingCart from './components/ShoppingCart';
+import ShoppingCart from './components/checkout/ShoppingCart';
+import Form from './components/checkout/Form';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/product/:id' element={<Detail />} />
         <Route path='/admin/*' element={<AppAdmin />} />
         <Route path='/shopping_cart' element={<ShoppingCart />} />
+        <Route path='/checkout' element={<Form />} />
       </Routes>
     </div>
   );

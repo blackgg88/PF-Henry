@@ -1,0 +1,118 @@
+.contain-FilterPanel {
+  width: 300px;
+  height: 100%;
+  border-radius: 15px;
+  background-color: $standard-color-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .content-btn-span {
+    height: 10px;
+    width: 10px;
+    //background-color: red;
+    .btn-span {
+      position: relative;
+      left: 13px;
+      bottom: 45px;
+      height: 60px;
+      width: 60px;
+      border: 3px solid $standard-color-blue;
+      background-color: $standard-color-blue-secundary;
+      border-radius: $standard-border-radius;
+      font-family: $standard-font-Barlow;
+      font-weight: 900;
+      font-size: 30px;
+      color: $standard-color-white;
+    }
+  }
+
+  .dropdown {
+    font-family: $standard-font-Barlow;
+    font-weight: 100;
+    color: $standard-color-white;
+    border-radius: 10px;
+    top: 10px;
+    gap: 0px;
+    position: relative;
+    line-height: 15px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid $standard-color-blue-secundary;
+    background-color: $standard-color-blue;
+    z-index: 1;
+    .dropdown-row {
+      background-color: $standard-color-blue-solid-grad;
+      font-size: 1rem;
+      color: $standard-color-white-background;
+      width: 95%;
+      padding: 15px 10px;
+
+      &:hover {
+        color: $standard-color-blue;
+        background-color: $standard-color-white-background;
+      }
+      .separator {
+        background-color: $standard-color-blue-secundary;
+        color: $standard-color-transparent;
+        height: 2.5px;
+        border-radius: 50%;
+        width: 95%;
+        position: relative;
+        top: 18px;
+      }
+    }
+  }
+
+  .filter-filt {
+    margin-top: 60px;
+    //background-color: rgba(11, 145, 237, 1);
+    width: 89%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -40px;
+  }
+  .list-filter {
+    margin-top: 0px;
+    width: 89%;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title-filter {
+    margin-top: 10%;
+    font-family: $standard-font-Barlow;
+    font-size: 25px;
+    font-weight: 400;
+    color: $standard-color-white-background;
+    position: relative;
+    bottom: 2%;
+  }
+  .title {
+    width: 90px;
+    font-family: $standard-font-Barlow;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: start;
+    color: $standard-color-white-background;
+    position: relative;
+    bottom: 1%;
+    right: 28%;
+  }
+}
+
+.animationSpan {
+  background-color: $standard-color-red;
+  position: absolute;
+  top: 11vh;
+  left: -277px;
+  height: 80vh;
+}

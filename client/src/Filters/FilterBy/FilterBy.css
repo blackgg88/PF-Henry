@@ -1,7 +1,22 @@
 .container-FilterBy {
-  background-color: royalblue;
-  height: 100px;
+  height: 40px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: blueviolet;
+  font-size: 0.8rem;
+}
+
+.container-FilterBy {
+  padding: 10px;
+  background-color: rgba(20, 33, 66, 1);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 input[type="range"]::-webkit-slider-thumb:after {
@@ -10,5 +25,5 @@ input[type="range"]::-webkit-slider-thumb:after {
   top: -20px; /* set the top position */
   left: -15px; /* set the left position */
   font-size: 10px; /* set the font size of the value */
-  color: #fff; /* set the color of the value */
+  color: #fff; /*set the color of the value*/
 }

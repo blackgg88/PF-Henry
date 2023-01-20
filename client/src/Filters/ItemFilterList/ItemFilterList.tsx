@@ -1,5 +1,5 @@
 import React from "react";
-import "./ItemFilterList.css";
+//import "./ItemFilterList.css";
 import ItemFilter from "../ItemFilter/ItemFilter";
 
 interface FilterByProps {
@@ -15,12 +15,17 @@ const ItemFilterList: React.FC<FilterByProps> = ({
     <div className="container-ItemFilterList">
       {filterList.map((el, index) => {
         return (
-          <div key={index}>
-            {el}
-            <span>
-              <button onClick={() => onCloseListHandler(el)}>x</button>
-            </span>
-          </div>
+          // <div className="element" key={index}>
+          //   <div>{el}</div>
+
+          //   <button
+          //     className="btn-close"
+          //     onClick={() => onCloseListHandler(el)}
+          //   >
+          //     x
+          //   </button>
+          // </div>
+          <ItemFilter filter={el} closeItem={onCloseListHandler} />
         );
       })}
     </div>

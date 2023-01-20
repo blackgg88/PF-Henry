@@ -4,3 +4,6 @@ export const controllerUser = (email: any)=>{
     .then(res => {
         return res
     })
+    return response
+}
+

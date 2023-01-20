@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  Button,
-  Container,
-  Grid,
-  Paper,
-  Box,
-  Typography,
-  TextField,
-} from '@mui/material';
+import { TextField } from '@mui/material';
+import { Formik } from 'formik';
 
 interface Payer {
   addres: { street_name: string; street_number: string; zip_code: string };
@@ -20,29 +13,47 @@ interface Payer {
 
 const Form: React.FC<{}> = () => {
   return (
-    <Container maxWidth='xl'>
-      <Grid
-        container
-        direction='column'
-        alignItems='center'
-        justifyContent='center'
-        sx={{ minHeight: '100vh' }}
-      >
-        <Grid>
-          <Paper sx={{ padding: '1.2em', borderRadius: '0.5em' }}>
-            <Typography variant='h4'>Form aqui va la info</Typography>
-            <Box component='form'>
-              <TextField label='firstname' />
-              <TextField label='lastname' />
-              <TextField label='email' />
-              <Button fullWidth type='submit'>
-                El boton de submit
-              </Button>
-            </Box>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Container>
+    <div className='form_container'>
+      <Formik initialValues={{ email: '', password: '' }} onSubmit={() => {}}>
+        {() => (
+          <form>
+            <div className='form_wrapper'>
+              <p>form</p>
+              <div className='form_email-DNI'>
+                <div className='form_email'>
+                  <TextField label='email' variant='standard' />
+                </div>
+                <div className='form_DNI'>
+                  <TextField label='DNI' variant='standard' />
+                </div>
+              </div>
+              <div className='form_name'>
+                <div className='form_firstname'>
+                  <TextField label='firstname' variant='standard' />
+                </div>
+                <div className='form_lastname'>
+                  <TextField label='lastname' variant='standard' />
+                </div>
+              </div>
+              <div>
+                <div className='form_street-name'>
+                  <TextField fullWidth label='street name' variant='standard' />
+                </div>
+                <div className='form_street-zip'>
+                  <div className='form_street-number'>
+                    <TextField label='street number' variant='standard' />
+                  </div>
+                  <div className='form_street-zip-code'>
+                    <TextField label='zip code' variant='standard' />
+                  </div>
+                </div>
+              </div>
+              <button>Confirm</button>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

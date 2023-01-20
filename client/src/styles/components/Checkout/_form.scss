@@ -1,0 +1,32 @@
+.form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: 100vh;
+
+  .form_wrapper {
+    border: 1px solid red;
+
+    .form_name,
+    .form_street-zip,
+    .form_email-DNI {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      padding: 20px;
+    }
+
+    .form_email,
+    .form_DNI,
+    .form_firstname,
+    .form_lastname,
+    .form_street-number,
+    .form_street-zip-code {
+      padding: 15px;
+    }
+
+    .form_street-name {
+      padding: 35px;
+    }
+  }
+}

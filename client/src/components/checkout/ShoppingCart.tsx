@@ -7,6 +7,11 @@ import {
   deleteProduct,
 } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
@@ -18,7 +23,7 @@ const ShoppingCart = () => {
     handleTotal();
   }, [productsInCart]);
 
-  const handleSetQuantity = (e: React.ChangeEvent<HTMLSelectElement>, id: string) => {
+  const handleSetQuantity = (e: SelectChangeEvent<number>, id: string) => {
     const quantity = Number(e.target.value);
     dispatch(changeQuantity({ id, quantity }));
   };
@@ -62,17 +67,22 @@ const ShoppingCart = () => {
                     <p className='ShoppingCart_brand'>Brand: {ele.brand}</p>
                   </div>
                   <div className='ShoppingCart_quantity-container'>
-                    <select
-                      name='quantity'
-                      value={ele.quantity}
-                      onChange={(e) => handleSetQuantity(e, ele._id)}
-                    >
-                      <option value='1'>1</option>
-                      <option value='2'>2</option>
-                      <option value='3'>3</option>
-                      <option value='4'>4</option>
-                      <option value='5'>5</option>
-                    </select>
+                    <FormControl fullWidth>
+                      <InputLabel id='id_quantity'>Quantity</InputLabel>
+                      <Select
+                        labelId='id_quantity'
+                        id='demo-simple-select'
+                        value={ele.quantity}
+                        label='Quantity'
+                        onChange={(e) => handleSetQuantity(e, ele._id)}
+                      >
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                   <div className='ShoppingCart_price'>
                     <p>${(ele.price * ele.quantity).toFixed(2)}</p>

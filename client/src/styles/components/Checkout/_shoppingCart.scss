@@ -63,6 +63,7 @@
           }
           .ShoppingCart_quantity-container {
             margin: auto;
+            width: 70%;
 
             select {
               padding-top: 5px;
@@ -92,6 +93,7 @@
               background-color: white;
               border: 2px solid $standard-color-gray;
               font-weight: 500;
+              cursor: pointer;
             }
           }
         }
@@ -114,6 +116,10 @@
         background-color: indigo;
         height: 100px;
         margin: 20px;
+
+        button:hover {
+          cursor: pointer;
+        }
       }
     }
   }

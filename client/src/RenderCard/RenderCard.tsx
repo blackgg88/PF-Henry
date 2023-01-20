@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './RenderCard.css';
 import iconStar from '../assets/images/icons/star.png';
 import { useAppDispatch, useAppSelector } from '../Redux/hook';
 import { ProductState } from '../Redux/slice/product.slice';

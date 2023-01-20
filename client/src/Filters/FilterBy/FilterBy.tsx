@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 // import {Slider} from @materialui
 //import "./FilterBy.css";
-import icon from "../../assets/images/icons/search_icon_w.png";
-import iconStar from "../../assets/images/icons/star.png";
+import icon from '../../assets/images/icons/search_icon_w.png';
+import iconStar from '../../assets/images/icons/star.png';
 
 //---------------------SearchBar Suggestions
-import { useAppDispatch, useAppSelector } from "../../Redux/hook";
-import { ProductState } from "../../Redux/slice/product.slice";
-import { getProduct } from "../../Redux/slice/product.slice";
-import { productFetch } from "../../Redux/slice/ProductController";
+import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { ProductState } from '../../Redux/slice/product.slice';
+import { getProduct } from '../../Redux/slice/product.slice';
+import { productFetch } from '../../Redux/slice/ProductController';
 
 interface FilterByProps {
   switchSelect: (e: string) => void;
@@ -36,10 +36,10 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
 
   //-------------------------SearchBar Suggestions
   const Allproduct: ProductState[] = useAppSelector(
-    (state) => state.productReducer
+    (state) => state.productReducer.Products,
   );
 
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -61,40 +61,38 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
   //----------------------------------------------------------
 
   return (
-    <div className="container-FilterBy">
+    <div className='container-FilterBy'>
       {/* <img src={icon} alt="icon" /> */}
 
-      {type === "Name" && (
-        <form action="" onSubmit={onSubmitHandler}>
-          <div className="container-filterBy-c">
+      {type === 'Name' && (
+        <form action='' onSubmit={onSubmitHandler}>
+          <div className='container-filterBy-c'>
             <input
-              className="input-filterByName"
-              type="text"
-              id="inputName"
+              className='input-filterByName'
+              type='text'
+              id='inputName'
               ref={inputRef}
               value={value}
               onChange={(e) => onChange(e)}
             />
-            <button className="🔍" type="submit">
-              <img className="img-btn" src={icon} alt="icon" />
+            <button className='🔍' type='submit'>
+              <img className='img-btn' src={icon} alt='icon' />
             </button>
           </div>
-          <div className="dropdown">
+          <div className='dropdown'>
             {Allproduct.filter((prod) => {
               const searchTerm = value.toLowerCase();
               const fullName = prod.name.toLowerCase();
 
               return (
-                searchTerm &&
-                fullName.includes(searchTerm) &&
-                fullName !== searchTerm
+                searchTerm && fullName.includes(searchTerm) && fullName !== searchTerm
               );
             })
               .slice(0, 5)
               .map((prod) => (
                 <div
                   onClick={() => switchSelect(prod.name)}
-                  className="dropdown-row"
+                  className='dropdown-row'
                   key={prod.name}
                 >
                   {prod.name}
@@ -105,15 +103,15 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
         </form>
       )}
 
-      {type === "Rating" && (
-        <div className="container-filterBy-c">
-          <div className="⭐️">⭐️</div>
+      {type === 'Rating' && (
+        <div className='container-filterBy-c'>
+          <div className='⭐️'>⭐️</div>
           <input
-            className="input-filterByRating"
+            className='input-filterByRating'
             min={1}
             max={5}
             defaultValue={1}
-            type="number"
+            type='number'
             onChange={(e) => {
               const rating = `⭐️ ${e.target.value}`;
               switchSelect(rating);
@@ -122,21 +120,21 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
         </div>
       )}
 
-      {type === "stars" && (
-        <div className="container-filterBy-c">
+      {type === 'stars' && (
+        <div className='container-filterBy-c'>
           {stars.map((star) => {
             return (
               <button
-                className="btn-start"
+                className='btn-start'
                 value={star}
                 onClick={(e) => {
                   switchSelect(`⭐️ ${e.target.value}`);
                 }}
                 style={{
                   backgroundImage: `url(${iconStar})`,
-                  backgroundSize: "100%",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
+                  backgroundSize: '100%',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                 }}
               ></button>
             );
@@ -144,12 +142,12 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
         </div>
       )}
 
-      {type === "Price" && (
+      {type === 'Price' && (
         // <Slider/>
-        <div className="container-filterBy-c">
+        <div className='container-filterBy-c'>
           <input
-            className="input-filterByPrice"
-            type="range"
+            className='input-filterByPrice'
+            type='range'
             onChange={(e) => {
               const price = `💰(0 - ${e.target.value})`;
               switchSelect(price);
@@ -160,21 +158,17 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
 
       {
         //Category
-        type === "Category" && (
-          <div className="container-filterBy-c">
+        type === 'Category' && (
+          <div className='container-filterBy-c'>
             <select
-              className="select-FilterByCategory"
+              className='select-FilterByCategory'
               onChange={(e) => {
                 switchSelect(e.target.value);
               }}
             >
               {filter.categories?.map((property, index) => {
                 return (
-                  <option
-                    className="option"
-                    key={property + index}
-                    value={property}
-                  >
+                  <option className='option' key={property + index} value={property}>
                     {property}
                   </option>
                 );
@@ -186,21 +180,17 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
 
       {
         //Category
-        type === "Order" && (
-          <div className="container-filterBy-c">
+        type === 'Order' && (
+          <div className='container-filterBy-c'>
             <select
-              className="select-FilterByCategory"
+              className='select-FilterByCategory'
               onChange={(e) => {
                 switchSelect(e.target.value);
               }}
             >
               {filter.order?.map((property, index) => {
                 return (
-                  <option
-                    className="option"
-                    key={property + index}
-                    value={property}
-                  >
+                  <option className='option' key={property + index} value={property}>
                     {property}
                   </option>
                 );
@@ -209,7 +199,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
           </div>
         )
       }
-      <div className="🔵"></div>
+      <div className='🔵'></div>
     </div>
   );
 };

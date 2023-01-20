@@ -8,7 +8,7 @@ import logoTop from "../../assets/logo_smart_b.png";
 import cart from "../../assets/car_w.png";
 
 const NavBar = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, logout } = useAuth0();
   const [ profileWindow, setProfileWindow] = useState<boolean>(false)
 
   return (
@@ -56,7 +56,7 @@ const NavBar = () => {
                 <p>Profile</p>
               </NavLink>
               <NavLink className="nav_modalWindow_Link" to='/'>
-                <p>Logout</p>
+                <p onClick={()=> logout()}>Logout</p>
               </NavLink>
             </div>)
           }

@@ -42,9 +42,6 @@ const DetailProduct: React.FC<{}> = () => {
     setRelatedProduct(aux);
   };
 
-  console.log(productDetail);
-  console.log(allProducts);
-
   return (
     <div className='detail-contain'>
       <div className='info-pincipal-detail'>

@@ -6,10 +6,16 @@ import { getProduct } from '../Redux/slice/product/product.slice';
 import { productFetch } from '../Redux/slice/product/ProductController';
 import { Link } from 'react-router-dom';
 
+import { addProduct } from '../Redux/slice/shoppingCart/shoppingCart.slice';
+import { ProductCart } from '../Redux/slice/shoppingCart/shoppingCart.slice';
+
 const RenderCard: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector(
     (state) => state.productReducer.Products,
   );
+
+  const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+  console.log(productsInCart);
 
   const dispatch = useAppDispatch();
 
@@ -20,6 +26,20 @@ const RenderCard: React.FC<{}> = () => {
       });
     }
   }, [Allproduct]);
+
+  const handleAddCart = (product: ProductState) => {
+    const productCart: ProductCart = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      brand: product.brand,
+      images: product.images,
+      categories: product.categories,
+      stock: product.stock,
+      quantity: 1,
+    };
+    dispatch(addProduct(productCart));
+  };
 
   return (
     <div className='container-RenderCard'>
@@ -32,6 +52,7 @@ const RenderCard: React.FC<{}> = () => {
             </Link>
             <p>{product.description.substring(0, 200)}...</p>
             <h4>Price: {product.price}$</h4>
+            <button onClick={() => handleAddCart(product)}>Add to Cart</button>
           </div>
         );
       })}

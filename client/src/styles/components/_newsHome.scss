@@ -18,37 +18,3 @@
     }
 }
 
-.news_paginated{
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-    align-items: center;
-
-   
-}
-
-.news_paginated p {
-    margin: 10px;
-    color: $standard-color-blue;
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-align: center;
-    align-items: center;
-}
-
-
-.news_button_paginated {
-    display: flex;
-    background-color:$standard-color-blue ;
-    border: 1px solid ;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    color: $standard-color-white;
-    align-items: center;
-   
-    &:hover {
-        color: $standard-color-blue-green;
-        border: 1px solid $standard-color-blue;
-    }
-}

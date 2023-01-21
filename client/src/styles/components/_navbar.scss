@@ -60,11 +60,13 @@
 
   @media (max-width: 900px) {
     justify-content: space-between;
+    margin-bottom: 10px;
   }
 
   @media (max-width: 610px) {
     margin: 0;
     border-radius: 0;
+    
   }
 
   .Nav_responsive_LogoMenu {

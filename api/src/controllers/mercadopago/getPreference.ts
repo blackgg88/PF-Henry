@@ -6,21 +6,53 @@ import { ACCESS_TOKEN } from '../../../config';
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
-interface item {
+interface Item {
   id: string;
   category_id: string;
-  currency_id: string;
-  description: string;
+  picture_url: string;
   title: string;
   quantity: number;
   unit_price: number;
 }
 
-interface purchase {
+interface Payer {
+  first_name: string;
+  last_name: string;
+  address: {
+    street_number: number;
+    street_name: string;
+    zip_code: number;
+  };
+}
+
+interface Order {
   id: string;
-  client_id: string;
-  items: item[];
+}
+
+interface Transaction_details {
+  total_paid_amount: number;
+}
+
+interface Additional_info {
+  items: Item[];
+  payer: Payer;
+}
+interface PurchaseByMP {
+  status: string;
+  status_detail: string;
   date_created: string;
+  order: Order;
+  transaction_details: Transaction_details;
+  additional_info: Additional_info;
+}
+interface Purchase {
+  id: any;
+  payer: Payer;
+  items: Item[];
+  date_created: string;
+  status: string;
+  status_detail: string;
+  total_paid_amount: number;
 }
 
 export const getPreference = async (req: Request, res: Response) => {
@@ -28,39 +60,27 @@ export const getPreference = async (req: Request, res: Response) => {
     const { email } = req.params;
 
     const response = await axios.get(
-      `https://api.mercadopago.com/checkout/preferences/search?external_reference=${email}`,
+      `https://api.mercadopago.com/v1/payments/search?external_reference=${email}`,
       {
         headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
       },
     );
 
-    const urls = response.data.elements.map(
-      (purchase: { id: string }) =>
-        `https://api.mercadopago.com/checkout/preferences/${purchase.id}`,
-    );
-
-    const purchases = await Promise.all(
-      urls.map((purchase: string) =>
-        axios.get(purchase, {
-          headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
-        }),
-      ),
-    );
-
-    const data = purchases.map((purchaseCurrent) => {
-      const item = purchaseCurrent.data;
-
-      const purchase: purchase = {
-        id: item.id,
-        client_id: item.client_id,
-        items: item.items,
-        date_created: item.date_created,
+    const pruschases = response.data.results.map((purchase: PurchaseByMP) => {
+      const paid: Purchase = {
+        id: purchase.order.id,
+        payer: purchase.additional_info.payer,
+        items: purchase.additional_info.items,
+        date_created: purchase.date_created,
+        status: purchase.status,
+        status_detail: purchase.status_detail,
+        total_paid_amount: purchase.transaction_details.total_paid_amount,
       };
 
-      return purchase;
+      return paid;
     });
 
-    res.status(200).json(data);
+    res.status(200).json(pruschases);
   } catch (error) {
     res.status(500).json(error);
   }

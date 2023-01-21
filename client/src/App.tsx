@@ -9,6 +9,8 @@ import Detail from './components/details/Detail';
 import AppAdmin from './components/dashboard/AppAdmin';
 import Footer from './components/Footer';
 import NavBar from './components/navbar/Navbar';
+import ShoppingCart from './components/checkout/ShoppingCart';
+import Form from './components/checkout/FormComponent';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path='/profile' element={<Dashboard_user />} />
         <Route path='/product/:id' element={<Detail />} />
         <Route path='/admin/*' element={<AppAdmin />} />
+        <Route path='/shopping_cart' element={<ShoppingCart />} />
+        <Route path='/checkout' element={<Form />} />
       </Routes>
       <Footer />
     </div>

@@ -21,35 +21,44 @@ enum currency {
   USD = 'USD',
 }
 
+interface Category {
+  _id: number;
+  name: string;
+}
+
 interface item {
-  id: string;
-  categories_id: string;
-  description: string;
+  _id: string;
+  categories: Category;
   name: string;
   quantity: number;
   price: number;
+  images: string[];
 }
 
 export const postPreference = async (req: Request, res: Response) => {
-  const itemsBody: item[] = req.body;
+  const { payer, products } = req.body;
   let preference = {
-    items: itemsBody.map((item) => {
+    items: products.map((item: item) => {
       return {
-        id: item.id,
-        category_id: item.categories_id,
+        id: item._id,
+        category_id: item.categories._id,
         currency_id: currency.USD,
-        description: item.description,
         title: item.name,
         quantity: item.quantity,
         unit_price: item.price,
+        picture_url: item.images[0],
       };
     }),
 
-    payer: { email: 'arrascaetaefdev@gmail.com' },
-    // payer: { email: 'newuser12354@gmail.com' },
+    payer: {
+      email: payer.email,
+      name: payer.name,
+      surname: payer.surname,
+      identification: payer.identification,
+      address: payer.address,
+    },
 
-    external_reference: 'arrascaetaefdev@gmail.com',
-    // external_reference: 'newuser12354@gmail.com',
+    external_reference: payer.email,
 
     back_urls: {
       success: 'http://localhost:5173',

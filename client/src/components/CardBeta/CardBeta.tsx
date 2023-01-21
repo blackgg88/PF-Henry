@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom"
+import React, { useEffect, useState, ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 import iconStarB from '../../assets/images/icons/iconStartB.png';
 import iconStarW from '../../assets/images/icons/iconStartW.png';
 import iconStarM from '../../assets/images/icons/iconStartM.png';
 
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 
-import { ProductState } from '../../Redux/slice/product.slice';
-import { getProduct } from '../../Redux/slice/product.slice';
-import { productFetch } from '../../Redux/slice/ProductController';
+import { ProductState } from '../../Redux/slice/product/product.slice';
+import { getProduct } from '../../Redux/slice/product/product.slice';
+import { productFetch } from '../../Redux/slice/product/ProductController';
 import PaginationComp from '../Pagination';
-import { ChangeEvent } from 'react';
 //import QuickLookModal from './QuickLookModal';
+
+import { addProduct } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
+import { ProductCart } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 
 const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector(
     (state) => state.productReducer.Products,
   );
+
+  const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const dispatch = useAppDispatch();
   const stars = [1, 2, 3, 4, 5];
@@ -27,6 +31,20 @@ const CardBeta: React.FC<{}> = () => {
       });
     }
   }, [Allproduct]);
+
+  const handleAddCart = (product: ProductState) => {
+    const productCart: ProductCart = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      brand: product.brand,
+      images: product.images,
+      categories: product.categories,
+      stock: product.stock,
+      quantity: 1,
+    };
+    dispatch(addProduct(productCart));
+  };
 
   //-----------------------> Helper Functions <----------------------
 
@@ -98,43 +116,38 @@ const CardBeta: React.FC<{}> = () => {
             //   </div>
             // </div>
             <div key={product._id} className='product-card-beta'>
-              <div className="header-card-beta">n e w</div>
-              <div className="content-image-card-beta">
-                <img className="image-card" src={product.images[0]} alt="image" />
+              <div className='header-card-beta'>n e w</div>
+              <div className='content-image-card-beta'>
+                <img className='image-card' src={product.images[0]} alt='image' />
               </div>
-              <div className="content-title-description-card-beta">
-                <div className="content-title-card-beta">
-                  <h3 className='product-name-card-beta'>{product.name.substring(0, 25)}...</h3>
+              <div className='content-title-description-card-beta'>
+                <div className='content-title-card-beta'>
+                  <h3 className='product-name-card-beta'>
+                    {product.name.substring(0, 25)}...
+                  </h3>
                 </div>
-                <div className="content-description-card-beta">
+                <div className='content-description-card-beta'>
                   <p>{product.description.substring(0, 57)}...</p>
                 </div>
               </div>
-              <div className="content-value-rating-card-beta">
-                <div className="content-rating-card-beta">
-                  {
-                    stars.map(star=>{
-                      
-                        if(star<product.rating&&(star+1)>product.rating){
-                          return <img src={iconStarM}/>
-
-                        }
-                        else if(star<product.rating){
-                          return <img src={iconStarB}/>
-                        }else{
-                          return <img src={iconStarW}/>
-                        }
-
-                    })
-                  }
+              <div className='content-value-rating-card-beta'>
+                <div className='content-rating-card-beta'>
+                  {stars.map((star) => {
+                    if (star < product.rating && star + 1 > product.rating) {
+                      return <img src={iconStarM} />;
+                    } else if (star < product.rating) {
+                      return <img src={iconStarB} />;
+                    } else {
+                      return <img src={iconStarW} />;
+                    }
+                  })}
                 </div>
-                <div className="content-value-card-beta">
-                <h4 className='price2'>$ {priceFormat(product.price)}</h4>
+                <div className='content-value-card-beta'>
+                  <h4 className='price2'>$ {priceFormat(product.price)}</h4>
                 </div>
-
               </div>
-              <div className="content-add-car-card-beta">
-                <div className='add-car-card-beta'>
+              <div className='content-add-car-card-beta'>
+                <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
                   add to Car
                 </div>
               </div>
@@ -142,7 +155,7 @@ const CardBeta: React.FC<{}> = () => {
           );
         })}
       </div>
-       <div className='pagination2'>
+      <div className='pagination2'>
         <PaginationComp
           itemsPerPage={itemsPerPage}
           totalItems={Allproduct.length}

@@ -6,9 +6,9 @@ import iconStar from '../../assets/images/icons/star.png';
 
 //---------------------SearchBar Suggestions
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
-import { ProductState } from '../../Redux/slice/product.slice';
-import { getProduct } from '../../Redux/slice/product.slice';
-import { productFetch } from '../../Redux/slice/ProductController';
+import { ProductState } from '../../Redux/slice/product/product.slice';
+import { getProduct } from '../../Redux/slice/product/product.slice';
+import { productFetch } from '../../Redux/slice/product/ProductController';
 
 interface FilterByProps {
   switchSelect: (e: string) => void;

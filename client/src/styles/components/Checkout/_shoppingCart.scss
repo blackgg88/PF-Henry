@@ -1,0 +1,126 @@
+.ShoppingCart_contain {
+  .ShoppingCart_title {
+    background-color: rgb(247, 247, 247);
+    padding: 20px;
+    width: 100%;
+  }
+  .ShoppingCart_info {
+    display: grid;
+    grid-template-columns: 70% 25%;
+    gap: 50px;
+    margin: 30px;
+    .ShoppingCart_items-container {
+      border-radius: 5px;
+      background-color: $standard-color-gray;
+      padding: 20;
+      border: 1px solid $standard-color-gray;
+      height: auto;
+      margin-bottom: 0px;
+      .ShoppingCart_items-titles {
+        display: grid;
+        grid-template-columns: 45% 20% 10%;
+        padding-left: 30px;
+        border: solid black 2px;
+      }
+
+      .ShoppingCart_items {
+        padding: 20px;
+
+        .ShoppingCart_item-wrapper {
+          background-color: $standard-color-white;
+          border: solid red 2px;
+          display: grid;
+          grid-template-columns: 15% 30% 15% 20% 20%;
+          height: 120px;
+          margin-bottom: 10px;
+
+          .ShoppingCart_image {
+            align-self: center;
+            width: 110px;
+            height: 95px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .ShoppingCart_description {
+            margin-left: 20px;
+            .ShoppingCart_name {
+              font-size: 15px;
+              margin-bottom: 20px;
+              width: 100%;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            }
+            .ShoppingCart_category,
+            .ShoppingCart_brand {
+              color: rgb(118, 117, 117);
+              font-size: 12px;
+              margin-top: -5px;
+            }
+          }
+          .ShoppingCart_quantity-container {
+            margin: auto;
+            width: 70%;
+
+            select {
+              padding-top: 5px;
+              padding-bottom: 5px;
+              padding-left: 20px;
+              padding-right: 20px;
+              border-radius: 5px;
+              border: 2px solid $standard-color-gray;
+            }
+          }
+
+          .ShoppingCart_price {
+            margin: auto;
+
+            p {
+              font-size: 18px;
+              font-weight: 700;
+              font-stretch: expanded;
+            }
+          }
+
+          .ShoppingCart_button-remove {
+            margin: auto;
+            button {
+              padding: 10px;
+              border-radius: 5px;
+              background-color: white;
+              border: 2px solid $standard-color-gray;
+              font-weight: 500;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+    .ShoppingCart_purchases {
+      border-radius: 5px;
+      background-color: $standard-color-gray;
+      height: 360px;
+
+      .ShoppingCart_total_amount {
+        border-radius: 5px;
+        background-color: $standard-color-yellow;
+        height: 200px;
+        margin: 20px;
+      }
+
+      .ShoppingCart_confirm-button {
+        border-radius: 5px;
+        background-color: indigo;
+        height: 100px;
+        margin: 20px;
+
+        button:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

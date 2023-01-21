@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
-import { ProductState } from '../../Redux/slice/product.slice';
-import { getProductId } from '../../Redux/slice/product.slice';
-import { productIdFetch } from '../../Redux/slice/ProductController';
+import { ProductState } from '../../Redux/slice/product/product.slice';
+import { getProductId } from '../../Redux/slice/product/product.slice';
+import { productIdFetch } from '../../Redux/slice/product/ProductController';
 import { Link } from 'react-router-dom';
 
 const DetailProduct: React.FC<{}> = () => {
@@ -41,9 +41,6 @@ const DetailProduct: React.FC<{}> = () => {
     if (aux.length > 5) aux = aux.slice(0, 5);
     setRelatedProduct(aux);
   };
-
-  console.log(productDetail);
-  console.log(allProducts);
 
   return (
     <div className='detail-contain'>

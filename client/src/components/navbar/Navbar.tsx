@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import LoginButton from '../LoginButton';
-import LogOutButton from '../LogOutButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/logo_smart_w.png';
+import logoWhite from '../../assets/logo_smart_w.png';
 import logoTop from '../../assets/logo_smart_b.png';
+import menuResp from '../../assets/responsive-menu-icon.png';
 import cart from '../../assets/car_w.png';
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
   const [profileWindow, setProfileWindow] = useState<boolean>(false);
+  const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
 
   const logoutUser = () => {
     logout();
@@ -24,7 +24,14 @@ const NavBar = () => {
 
       <div className='Nav_container_navbar'>
         <div className='navbar_container'>
-          <NavLink to='/shopping_cart'>
+          <img
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className='Nav_responsive_LogoMenu'
+            src={menuResp}
+            alt='menu'
+          />
+          <img className='Nav_responsive_LogoSmartnet' src={logoWhite} alt='' />
+          <NavLink className='link-style' to='/shopping_cart'>
             <img className='logo' src={cart} alt='cart' width={20} />
           </NavLink>
           <NavLink className='link-style' to='/'>
@@ -32,9 +39,6 @@ const NavBar = () => {
           </NavLink>
           <NavLink className='link-style' to='/shop'>
             <p className='nav_middle_button'>Shop</p>
-          </NavLink>
-          <NavLink className='link-style' to='/test'>
-            <p className='nav_middle_button'>Test</p>
           </NavLink>
           <NavLink className='link-style' to='/news'>
             <p>News</p>
@@ -66,6 +70,45 @@ const NavBar = () => {
           )}
         </div>
       </div>
+      {responsiveMenu && (
+        <div className='nav_responsive_MENU'>
+          <NavLink
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className='link-style'
+            to='/'
+          >
+            <p className='nav_middle_button'>Home</p>
+          </NavLink>
+          <NavLink
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className='link-style'
+            to='/shop'
+          >
+            <p className='nav_middle_button'>Shop</p>
+          </NavLink>
+          <NavLink
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className='link-style'
+            to='/test'
+          >
+            <p className='nav_middle_button'>Test</p>
+          </NavLink>
+          <NavLink
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className='link-style'
+            to='/news'
+          >
+            <p>News</p>
+          </NavLink>
+          <NavLink
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className='link-style'
+            to='/shopping_cart'
+          >
+            <p>Cart</p>
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 };

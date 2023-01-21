@@ -3,8 +3,9 @@
     flex-direction: column;
     align-items: center;
     background-color: $white;
-    font-family: 'Courier New', Courier, monospace;
-    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    //font-family: 'Courier New', Courier, monospace;
+    //margin-top: 10px;
 }
 
 .dash_infouser_container {
@@ -115,6 +116,7 @@
     flex-direction: column;
     align-items: center;
     width: 60%;
+    min-height: 150px;
     background-color: white;
     margin-top: 20px;
     border-radius: $standard-border-radius;

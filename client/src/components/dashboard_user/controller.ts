@@ -1,4 +1,4 @@
-export const controllerUser = (email: string) => {
+export const controllerUser = (email: string | undefined) => {
   const response = fetch(`http://localhost:3001/checkout/${email}`)
     .then((res) => res.json())
     .then((res) => {

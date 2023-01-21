@@ -3,9 +3,23 @@
   align-items: center;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
+  //position: relative;
+
+  @media (max-width:900px) {
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  @media (max-width:610px) {
+    
+    padding: 0;
+  }
 
   .Nav_container_logo {
     width: 50%;
+    @media (max-width:900px) {
+      display: none;
+    }
 
     .logo {
         width: 300px;
@@ -16,6 +30,19 @@
 
   .Nav_container_navbar {
     width: auto;
+    @media (max-width:900px) {
+      width: 80%;
+    }
+
+    @media (max-width:700px) {
+      width: 90%;
+    }
+
+    @media (max-width:610px) {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
   }
 }
 
@@ -23,13 +50,39 @@
   display: flex;
   justify-content: center;
   position: relative;
-  //background: inear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0))!important;
   background-color: $standard-color-blue;
   align-items: center;
   padding: 9px 20px;
   border-radius: 50px;
   width: auto;
+  margin-right: 10px;
+  z-index: 5;
 
+  @media (max-width: 900px) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 610px) {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .Nav_responsive_LogoMenu {
+    display: none;
+    cursor: pointer;
+    @media (max-width:610px) {
+      display: block;
+    }
+  }  
+
+  .Nav_responsive_LogoSmartnet {
+    display: none;
+    width: 150px;
+
+    @media (max-width:610px) {
+      display: block;
+    }
+  }
 
   .nav_middle_button {
     border-right: 1px solid $white;
@@ -38,6 +91,9 @@
 
   .link-style {
     margin: 0;
+    @media (max-width: 610px) {
+      display: none;
+    }
   }
     
     p {
@@ -61,15 +117,17 @@
       border-right: 25px solid transparent;
       border-bottom: 30px solid $standard-color-blue;
       position: absolute;
-      right: 40px;
+      right: 20px;
       bottom: -35px;
       align-items: center;
-
+      @media (max-width: 610px) {
+        right: 20px;
+      }
     }
 
     .nav_modalProfilewindows {
       position: absolute;
-      right:  30px;
+      right:  10px;
       top: 80px;
       width: 140px;
       height: 70px;
@@ -80,6 +138,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      @media (max-width: 610px) {
+        right: 5px;
+      }
 
       .nav_modalWindow_Link {
         margin: 0;
@@ -104,7 +166,7 @@
 
 .navbar_container img {
   width: 50px;
-  margin-right: 20px;
+  //margin-right: 20px;
 }
 
 
@@ -118,4 +180,38 @@
 .profile-div img {
   border-radius: 100%;
   cursor: pointer;
+}
+
+.nav_responsive_MENU {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $standard-color-blue;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  display: none;
+
+  @media (max-width:610px) {
+    display: flex;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin: 30px;
+    cursor: pointer;
+
+    &:hover {
+      color:  $standard-color-blue-green;
+    }
+  }
 }

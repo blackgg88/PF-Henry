@@ -1,10 +1,34 @@
 // @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
 
+.container-pagination {
+  background-color: aqua;
+  height: auto;
+  width: 100%;
+}
+
 .pagination-container {
-  margin: 100px auto;
+  margin: 0px auto;
+  width: 600px;
   text-align: center;
   display: flex;
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  background-color: aquamarine;
+  gap: 10px;
+
+  .pagination-button-next {
+
+    width: 30px;
+    height: 40px;
+    border: 1px solid $standard-color-transparent;
+    //box-shadow: 4px 4px 20px 5px rgba(0, 0, 0, 0.8);
+    background-color: $standard-color-transparent;
+
+    &:hover {
+      background-color: $standard-color-transparent;
+    }
+
+  }
 
   .pagination-button {
     position: relative;
@@ -15,6 +39,7 @@
     font-size: 0.9rem;
     padding: 8px 16px 10px;
   }
+
   & :hover {
     background-color: rgba(48, 79, 104, 1);
     color: #2c3e50;

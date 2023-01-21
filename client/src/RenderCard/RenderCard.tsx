@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom"
 import iconStar from '../assets/images/icons/star.png';
 import { useAppDispatch, useAppSelector } from '../Redux/hook';
 import { ProductState } from '../Redux/slice/product.slice';
@@ -6,7 +7,7 @@ import { getProduct } from '../Redux/slice/product.slice';
 import { productFetch } from '../Redux/slice/ProductController';
 import PaginationComp from '../components/Pagination';
 import { ChangeEvent } from 'react';
-import QuickLookModal from './QuickLookModal';
+//import QuickLookModal from './QuickLookModal';
 
 const RenderCard: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector(
@@ -63,6 +64,7 @@ const RenderCard: React.FC<{}> = () => {
               </div>
               <div className='separator-top'>.</div>
               <div className='content-images'>
+                  <Link to={`/product/${product._id}`}>
                 <div
                   className='image-card'
                   style={{
@@ -71,7 +73,8 @@ const RenderCard: React.FC<{}> = () => {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                   }}
-                ></div>
+                  ></div>
+                  </Link>
               </div>
               {/* <img className="image-card" src={product.images[0]} alt="image" /> */}
               {/* <p>{product.description.substring(0,200)}...</p>  */}
@@ -82,7 +85,7 @@ const RenderCard: React.FC<{}> = () => {
                   <h4 className='rating'>{product.rating}</h4>
                 </div>
                 <div>
-                  <QuickLookModal AllProducts={Allproduct} />
+                  {/* <QuickLookModal id={product._id}/> */}
                 </div>
                 <div className='separator'>.</div>
                 <div className='value'>

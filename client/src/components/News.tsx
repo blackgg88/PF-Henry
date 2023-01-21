@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NEWS_API_KEY } from '../../config';
 const api_key: string = NEWS_API_KEY;
+import Breadcrumb from "../components/BreadCrumb"
 
 interface NewsData {
   title: string;
@@ -26,6 +27,7 @@ export const News = () => {
       <Link to='/'>
         <button>Back</button>
       </Link>
+      <Breadcrumb/>
       {news.length ? (
         news?.map((news) =>
           news.urlToImage ? (

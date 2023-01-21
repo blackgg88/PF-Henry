@@ -6,6 +6,7 @@ import logoTop from "../../assets/logo_smart_b.png";
 import logoWhite from "../../assets/logo_smart_w.png";
 import img_home1 from "../../assets/home_img_1.png";
 import img_home2 from "../../assets/home_img_2.png";
+import img_background_carrucel from "../../assets/images/bacgroundCarrucel.png";
 import img_home3 from "../../assets/home_img_3.png";
 import { NewsHome } from "../home_news_fake/NewsHome";
 import { useAuth0 } from "@auth0/auth0-react"; 
@@ -32,7 +33,14 @@ const Home = () => {
 
       <div className="home_imagepart_1"></div>
 
-      <div className="home_container_carrouselSide">
+      <div className="home_container_carrouselSide"
+       style={{
+        backgroundImage: `url(${img_background_carrucel})`,
+        backgroundSize: '143%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+      >
         <div className="home_carrousel_logo">
           <img src={logoWhite} alt="logo" />
         </div>
@@ -51,13 +59,13 @@ const Home = () => {
       <div className="home_news_container">
         <div className="home_news_side">
           <div className="news_title">
-            <h1>News</h1>
+            <h1 className="title-news">News</h1>
           </div>
           <NewsHome />
 
           <div className="news_back">
             <NavLink className="news_navLink_readMore" to='/news'>
-              <h3>Read More...</h3>
+              <h3 className="read-more-news">Read More...</h3>
             </NavLink>
           </div>
         </div>

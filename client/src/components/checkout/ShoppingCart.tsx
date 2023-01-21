@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import {
@@ -16,7 +16,6 @@ const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
-  console.log(productsInCart);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

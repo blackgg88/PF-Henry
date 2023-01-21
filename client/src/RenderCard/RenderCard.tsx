@@ -15,7 +15,6 @@ const RenderCard: React.FC<{}> = () => {
   );
 
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
-  console.log(productsInCart);
 
   const dispatch = useAppDispatch();
 

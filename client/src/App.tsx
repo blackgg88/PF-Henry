@@ -9,7 +9,7 @@ import { Dashboard_user } from './components/dashboard_user/Dashboard_user';
 import Detail from './components/details/Detail';
 import AppAdmin from './components/dashboard/AppAdmin';
 import ShoppingCart from './components/checkout/ShoppingCart';
-import Form from './components/checkout/Form';
+import Form from './components/checkout/FormComponent';
 
 function App() {
   return (

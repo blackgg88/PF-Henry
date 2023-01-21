@@ -19,7 +19,7 @@ const NavBar = () => {
   return (
     <div className='Nav_topLanding'>
       <div className='Nav_container_logo'>
-        <img className='logo' src={logoTop} alt='logo' />
+        <img className='nav_toplogo' src={logoTop} alt='logo' />
       </div>
 
       <div className='Nav_container_navbar'>
@@ -70,6 +70,8 @@ const NavBar = () => {
           )}
         </div>
       </div>
+
+      
       {responsiveMenu && (
         <div className='nav_responsive_MENU'>
           <NavLink
@@ -113,4 +115,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBar;

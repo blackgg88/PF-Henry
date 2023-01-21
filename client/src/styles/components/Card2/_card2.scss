@@ -1,0 +1,189 @@
+.container-render-card-v-beta {
+    //Buenisimo
+    //background-color: aqua;
+    width: 1502px;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .container-card-beta {
+        width: 100%;
+        height: 95%;
+        padding-top: 30px;
+        //background-color: $standard-color-gray;
+        display: grid;
+        grid: repeat(2, 350px) / auto-flow;
+        gap: 0 0px;
+        justify-content: space-around;
+        align-items: center;
+        gap: 30px 0;
+        border-radius: $standard-border-radius;
+
+        .product-card-beta {
+            box-shadow: 4px 4px 20px 5px rgba(0, 0, 0, 0.2);
+            
+            height: 292px;
+            width: 187px;
+            background-color: $standard-color-white;
+            border-radius: $standard-border-radius;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .header-card-beta {
+                //background-color: aqua;
+                position: relative;
+                top: 10px;
+                height: 40px;
+                width: 100%;
+                font-family: $standard-font-Poiret-One;
+                text-align: center;
+            }
+
+            .content-image-card-beta {
+                //background-color: red;
+                height: 110px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    max-width: 85%;
+                    max-height: 100%;
+                    background-color: $standard-color-white;
+                    //background-color: $standard-color-red;
+                    border-radius: $standard-border-radius;
+                }
+            }
+
+            .content-title-description-card-beta {
+                //background-color: blue;
+                height: 58px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+
+                .content-title-card-beta {
+                    //background-color: violet;
+                    height: 30%;
+                    width: 100%;
+                    
+                    .product-name-card-beta {
+                        
+                        margin-top: 5px;
+                        margin-left: 5px;
+                        font-family: $standard-font-Barlow;
+                        font-weight: 600;
+                        font-size: 12px;
+                    }
+                }
+
+                .content-description-card-beta {
+                    //background-color: maroon;
+                    height: 70%;
+                    width: 100%;
+                    padding: 0 5px;
+                    display: flex;
+                    align-items: flex-start;
+                    padding-top: 5px;
+                    ;
+
+                    p {
+                        font-family: $standard-font-Barlow;
+                        font-family: $standard-font-Quicksand;
+                        font-weight: 400;
+                        font-size: 11px;
+                        position: relative;
+                        z-index: 1;
+                        line-height: 85%;
+                    }
+                }
+
+
+            }
+
+            .content-value-rating-card-beta {
+                //background-color: yellowgreen;
+                height: 32px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .content-rating-card-beta {
+                    //background-color: aqua;
+                    height: 100%;
+                    width: 50%;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+                    gap: 3px;
+                    margin-left: 5px;
+
+                    img {
+                        //background-color: red;
+                        height: 16px;
+                    }
+                }
+
+                .content-value-card-beta {
+                    //background-color: aliceblue;
+                    height: 100%;
+                    width: 50%;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+
+                    h4 {
+                        font-family: 
+                        $standard-font-Urbanis-sans-serif;
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .content-add-car-card-beta {
+                //background-color: green;
+                height: 49px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .add-car-card-beta {
+                    padding: 5px 25px;
+                    border-radius: 20px;
+                    background: rgb(191, 51, 186);
+                    background: linear-gradient(90deg, rgba(191, 51, 186, 0.5) 0%, rgba(22, 9, 121, 0.5) 52%, rgba(0, 212, 255, 0.5) 100%);
+                    font-family:$standard-font-Urbanis-sans-serif;
+                    font-weight: 500;
+                    color: $standard-color-white;
+                    transition: background-color 0.3s;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: rgb(191, 51, 186);
+                    background-color: linear-gradient(90deg, rgba(191, 51, 186, 1) 0%, rgba(22, 9, 121, 1) 52%, rgba(0, 212, 255, 1) 100%);
+                    
+                    }
+                }
+
+            }
+        }
+    }
+    .pagination2{
+        background-color: red;
+        height: 80px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}

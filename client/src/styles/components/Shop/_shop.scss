@@ -1,6 +1,6 @@
 .content-shop {
   height: 99vh;
-  width: 100vw;
+  //width: 100vw;
   background-color: $standard-color-white;
   display: flex;
   gap: 10px;
@@ -19,7 +19,7 @@
   }
   .shop-contain {
     height: 85%;
-    width: 100vw;
+    //width: 100vw;
     background-color: $standard-color-white;
     display: flex;
     justify-content: space-around;

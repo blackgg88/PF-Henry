@@ -31,16 +31,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home_imagepart_1"></div>
+      
 
-      <div className="home_container_carrouselSide"
-       style={{
-        backgroundImage: `url(${img_background_carrucel})`,
-        backgroundSize: '143%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-      >
+      <div className="home_container_carrouselSide">
         <div className="home_carrousel_logo">
           <img src={logoWhite} alt="logo" />
         </div>

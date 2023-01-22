@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
 import logoWhite from '../../assets/logo_smart_w.png';
@@ -10,6 +10,14 @@ const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
   const [profileWindow, setProfileWindow] = useState<boolean>(false);
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
+
+  useEffect( ()=> {
+    if (responsiveMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [responsiveMenu])
 
   const logoutUser = () => {
     logout();

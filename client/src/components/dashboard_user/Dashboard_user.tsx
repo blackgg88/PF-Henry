@@ -11,6 +11,7 @@ interface items {
   unit_price: number;
   description: string;
   quantity: number;
+  picture_url: string
 }
 
 interface preference {
@@ -28,9 +29,9 @@ export const Dashboard_user = () => {
   const [purchase, setPurchase] = useState<preference[]>([]);
   //purchase [{}, {}]
 
-  //const email = 'arrascaetaefdev@gmail.com';
+  const email = 'Humberto@gmail.com';
 
-  const email = user?.email;
+  //const email = user?.email;
 
   useEffect(() => {
     const handleGetItems = async () => {
@@ -103,7 +104,7 @@ export const Dashboard_user = () => {
                   <div className="dash_onePurchase_imageSide">
                     <img
                       className="imagePurchase"
-                      src="https://m.media-amazon.com/images/I/81OeBtkiVJL.AC_SL1500.jpg"
+                      src={sell.picture_url}
                       alt="imgPurchase"
                     />
                   </div>

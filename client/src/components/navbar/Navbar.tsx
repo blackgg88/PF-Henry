@@ -53,7 +53,7 @@ const NavBar = () => {
                     ? user?.picture
                     : 'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg'
                 }
-                alt={user?.name}
+                alt={'pic'}
               />
             </div>
           )}

@@ -66,7 +66,6 @@ export const Dashboard_user = () => {
           <h2>{user?.name}</h2>
           <p>{email}</p>
           <p>
-            verified account
             {verified ? (
               <img src={verified_true} alt="verified_true" />
             ) : (

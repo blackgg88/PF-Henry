@@ -37,6 +37,7 @@ interface Additional_info {
   items: Item[];
   payer: Payer;
 }
+
 interface PurchaseByMP {
   status: string;
   status_detail: string;
@@ -45,6 +46,7 @@ interface PurchaseByMP {
   transaction_details: Transaction_details;
   additional_info: Additional_info;
 }
+
 interface Purchase {
   id: any;
   payer: Payer;
@@ -55,19 +57,26 @@ interface Purchase {
   total_paid_amount: number;
 }
 
-export const getPreference = async (req: Request, res: Response) => {
+export const getPayment = async (req: Request, res: Response) => {
   try {
     const { email } = req.params;
+    let response;
 
-    const response = await axios.get(
-      `https://api.mercadopago.com/v1/payments/search?external_reference=${email}`,
-      {
+    if (email) {
+      response = await axios.get(
+        `https://api.mercadopago.com/v1/payments/search?external_reference=${email}`,
+        {
+          headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
+        },
+      );
+    } else {
+      response = await axios.get(`https://api.mercadopago.com/v1/payments/search`, {
         headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
-      },
-    );
+      });
+    }
 
-    const pruschases = response.data.results.map((purchase: PurchaseByMP) => {
-      const paid: Purchase = {
+    const payments = response.data.results.map((purchase: PurchaseByMP) => {
+      const payment: Purchase = {
         id: purchase.order.id,
         payer: purchase.additional_info.payer,
         items: purchase.additional_info.items,
@@ -77,10 +86,10 @@ export const getPreference = async (req: Request, res: Response) => {
         total_paid_amount: purchase.transaction_details.total_paid_amount,
       };
 
-      return paid;
+      return payment;
     });
 
-    res.status(200).json(pruschases);
+    res.status(200).json(payments);
   } catch (error) {
     res.status(500).json(error);
   }

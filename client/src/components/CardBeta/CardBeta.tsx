@@ -118,7 +118,9 @@ const CardBeta: React.FC<{}> = () => {
             <div key={product._id} className='product-card-beta'>
               <div className='header-card-beta'>n e w</div>
               <div className='content-image-card-beta'>
-                <img className='image-card' src={product.images[0]} alt='image' />
+                <Link to={`/product/${product._id}`}>
+                  <img className='image-card' src={product.images[0]} alt='image' />
+                </Link>
               </div>
               <div className='content-title-description-card-beta'>
                 <div className='content-title-card-beta'>

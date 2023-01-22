@@ -4,6 +4,17 @@ import { stringify } from 'query-string';
 const apiUrl = 'http://localhost:3001';
 const httpClient = fetchUtils.fetchJson;
 
+const handleFormatedDate = (date_created) => {
+  const dateString = date_created;
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const formatedDate = `${day}-${month}-${year}`;
+
+  return formatedDate;
+};
+
 const dataProvider = {
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
@@ -24,12 +35,18 @@ const dataProvider = {
     data = data.slice((page - 1) * perPage, page * perPage);
 
     if (resource === 'purchases') {
-      data = data.map((d) => {
+      console.log(data);
+      data = data.map((purchase) => {
         return {
-          id: d.id,
-          client_id: d.client_id,
-          products: d.items,
-          date: d.date_created,
+          id: purchase.id,
+          Payer: `${purchase.payer?.last_name} ${purchase.payer?.first_name}`,
+          Products: purchase.items.map(
+            (product) => `${product.quantity} X ${product.title}`,
+          ),
+          Date_of_Purcharse: handleFormatedDate(purchase.date_created),
+          Status: purchase.status,
+          Status_Detail: purchase.status_detail,
+          Total_Paid: purchase.total_paid_amount.toFixed(2),
         };
       });
     } else if (resource === 'products') {

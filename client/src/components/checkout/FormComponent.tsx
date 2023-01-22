@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { fetchMP, Values, Payer } from '../../../helpers/index';
 
-const FormComponent: React.FC<{}> = () => {
+const FormComponent: React.FC = () => {
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const handleSubmit = async (values: Values) => {
@@ -28,36 +28,23 @@ const FormComponent: React.FC<{}> = () => {
   return (
     <div className='form_container'>
       <div className='form_wrapper'>
-        <Formik
-          onSubmit={async (values, { resetForm }) => {
-            console.log(values);
-            console.log('NO FUNCIONO POR ALGUNA RAZON');
-          }}
+        <Formik<Values>
           initialValues={{
             email: '',
             name: '',
             surname: '',
-            date_created: '',
             street_name: '',
             street_number: '',
             zip_code: '',
             DNI: '',
           }}
+          onSubmit={handleSubmit}
           validate={(values) => {
-            let errors = {
-              email: '',
-              name: '',
-              surname: '',
-              date_created: '',
-              street_name: '',
-              street_number: '',
-              zip_code: '',
-              DNI: '',
-            };
+            let errors: Partial<Values> = {};
             if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email))
-              errors.email = 'El Correo Electronico debe ser valido';
+              errors.email = 'Ingresa un correo electrónico válido';
 
-            if (!values.name) errors.name = 'El campo Nombre Completo es obligatorio';
+            if (!values.name) errors.name = 'El campo nombre es obligatorio';
 
             if (!values.surname)
               errors.surname = 'El campo Nombre Completo es obligatorio';
@@ -75,13 +62,8 @@ const FormComponent: React.FC<{}> = () => {
             return errors;
           }}
         >
-          {({ errors, touched, values, resetForm }) => (
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit(values as Values);
-              }}
-            >
+          {({ errors, touched }) => (
+            <Form>
               <div className='form_email-DNI'>
                 <div className='form_email'>
                   <Field name='email'>

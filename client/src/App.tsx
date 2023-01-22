@@ -6,7 +6,7 @@ import Shop from './Shop/Shop';
 import Home from './components/home/Home';
 import { Dashboard_user } from './components/dashboard_user/Dashboard_user';
 import Detail from './components/details/Detail';
-import AppAdmin from './components/dashboard/AppAdmin';
+import AppAdmin from './components/dashboard_admin/AppAdmin';
 import Footer from './components/Footer';
 import NavBar from './components/navbar/Navbar';
 import ShoppingCart from './components/checkout/ShoppingCart';

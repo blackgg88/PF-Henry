@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import { controllerUser } from './controller';
-import Navbar from '../navbar/Navbar';
-import logo from '../../assets/logo_smart_b.png';
+import React, { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { controllerUser } from "./controller";
+import Navbar from "../navbar/Navbar";
+import logo from "../../assets/logo_smart_b.png";
+import verified_true from "../../assets/verified/verified_true.png";
+import verified_false from "../../assets/verified/verified_false.png";
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface items {
@@ -31,6 +33,7 @@ export const Dashboard_user = () => {
   //const email = 'arrascaetaefdev@gmail.com';
 
   const email = user?.email;
+  const verified = user?.email_verified;
 
   useEffect(() => {
     const handleGetItems = async () => {
@@ -48,37 +51,57 @@ export const Dashboard_user = () => {
       handleGetItems();
     }
   }, [isAuthenticated]);
+  {
+    console.log(verified);
+  }
 
   return (
-    <div className='all'>
-      <div className='dash_profileContainer'>
-        <div className='dash_profile_ImgSide'>
-          <img src={user?.picture} alt='picture-profile' />
+    <div className="all">
+      <div className="dash_profileContainer">
+        <div className="dash_profile_ImgSide">
+          <img src={user?.picture} alt="picture-profile" />
         </div>
-        <div className='dash_profile_InfoSide'>
+        <div className="dash_profile_InfoSide">
           <h2>{user?.name}</h2>
           <p>{email}</p>
+          <p>
+            verified account
+            {verified ? (
+              <img src={verified_true} alt="verified_true" />
+            ) : (
+              <img src={verified_false} alt="verified_false" />
+            )}
+          </p>
+          {
+            <p>
+              {!verified ? (
+                <div>
+                  <span>Check your email and verify your account</span>
+                </div>
+              ) : null}
+            </p>
+          }
         </div>
       </div>
 
-      <div className='dash_infouser_container'>
-        <div className='dash_infouser_title'>
+      <div className="dash_infouser_container">
+        <div className="dash_infouser_title">
           <img
-            className='dash_infouser_imageMenu'
-            src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
-            alt='profileInfo'
+            className="dash_infouser_imageMenu"
+            src="https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg"
+            alt="profileInfo"
           />
           <h2>My Information</h2>
         </div>
         <p>Manage your personal data</p>
       </div>
 
-      <div className='dash_purchaseDiv'>
-        <div className='dash_purchaseTitleContainer'>
+      <div className="dash_purchaseDiv">
+        <div className="dash_purchaseTitleContainer">
           <img
-            className='dash_purchase_iconMenu'
-            src='https://icon-library.com/images/purchase-icon-png/purchase-icon-png-8.jpg'
-            alt='cartPurchase'
+            className="dash_purchase_iconMenu"
+            src="https://icon-library.com/images/purchase-icon-png/purchase-icon-png-8.jpg"
+            alt="cartPurchase"
           />
           <h2>My shopping</h2>
         </div>
@@ -86,20 +109,23 @@ export const Dashboard_user = () => {
         {purchase.length ? (
           purchase.map((product, index) => (
             <div
-              key={product.date_create + '_' + index}
-              className='dash_Allpurchase_container'
+              key={product.date_create + "_" + index}
+              className="dash_Allpurchase_container"
             >
               {product.items.map((sell, index) => {
                 return (
-                  <div className='dash_onePurchase' key={sell.title + '_' + index}>
-                    <div className='dash_onePurchase_imageSide'>
+                  <div
+                    className="dash_onePurchase"
+                    key={sell.title + "_" + index}
+                  >
+                    <div className="dash_onePurchase_imageSide">
                       <img
-                        className='imagePurchase'
-                        src='https://m.media-amazon.com/images/I/81OeBtkiVJL.AC_SL1500.jpg'
-                        alt='imgPurchase'
+                        className="imagePurchase"
+                        src="https://m.media-amazon.com/images/I/81OeBtkiVJL.AC_SL1500.jpg"
+                        alt="imgPurchase"
                       />
                     </div>
-                    <div className='dash_onePurchase_infoSide'>
+                    <div className="dash_onePurchase_infoSide">
                       <h3>{sell.title}</h3>
                       <p>Quantity: {sell.quantity}</p>
                       <p>Total: ${sell.unit_price * sell.quantity}</p>

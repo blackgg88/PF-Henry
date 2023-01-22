@@ -9,12 +9,12 @@ import img_home2 from "../../assets/home_img_2.png";
 import img_background_carrucel from "../../assets/images/bacgroundCarrucel.png";
 import img_home3 from "../../assets/home_img_3.png";
 import { NewsHome } from "../home_news_fake/NewsHome";
-import { useAuth0 } from "@auth0/auth0-react"; 
+import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const CARDS = 6;
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
   return (
     <div className="home_wrapper">
@@ -22,9 +22,14 @@ const Home = () => {
         <div className="home_image_left">
           <p className="home_text_1">Innovate</p>
           <p className="home_text_2">Home</p>
-          {
-            !isAuthenticated && <button onClick={() => loginWithRedirect()} className="home_button_li">Login</button>
-          }
+          {!isAuthenticated && (
+            <button
+              onClick={() => loginWithRedirect()}
+              className="home_button_li"
+            >
+              Login
+            </button>
+          )}
         </div>
         <div className="home_image_rigth">
           <img className="home_image1" src={img_home1} alt="image-1" />
@@ -33,13 +38,14 @@ const Home = () => {
 
       <div className="home_imagepart_1"></div>
 
-      <div className="home_container_carrouselSide"
-       style={{
-        backgroundImage: `url(${img_background_carrucel})`,
-        backgroundSize: '143%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      <div
+        className="home_container_carrouselSide"
+        style={{
+          backgroundImage: `url(${img_background_carrucel})`,
+          backgroundSize: "143%",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <div className="home_carrousel_logo">
           <img src={logoWhite} alt="logo" />
@@ -64,7 +70,7 @@ const Home = () => {
           <NewsHome />
 
           <div className="news_back">
-            <NavLink className="news_navLink_readMore" to='/news'>
+            <NavLink className="news_navLink_readMore" to="/news">
               <h3 className="read-more-news">Read More...</h3>
             </NavLink>
           </div>

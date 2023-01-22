@@ -29,9 +29,9 @@ export const Dashboard_user = () => {
   const [purchase, setPurchase] = useState<preference[]>([]);
   //purchase [{}, {}]
 
-  const email = 'Humberto@gmail.com';
+  //const email = 'Humberto@gmail.com';
 
-  //const email = user?.email;
+  const email = user?.email;
 
   useEffect(() => {
     const handleGetItems = async () => {

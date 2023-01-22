@@ -49,6 +49,7 @@ export const News = () => {
     <div className="news_container">
       {slicedNew.length > 0 ? (
         <div className="news_container_firstLine">
+          {/* contenedor de las tarjetas(a) */}
           <div className="news_firstLine_cardRow">
             <a
               className="news_firstLine_firstCard"

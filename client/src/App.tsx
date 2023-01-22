@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      {location.pathname !== '/admin' && <NavBar />}
+      {!location.pathname.includes('/admin') && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

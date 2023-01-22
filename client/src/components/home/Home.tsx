@@ -9,38 +9,47 @@ import img_home2 from "../../assets/home_img_2.png";
 import img_background_carrucel from "../../assets/images/bacgroundCarrucel.png";
 import img_home3 from "../../assets/home_img_3.png";
 import { NewsHome } from "../home_news_fake/NewsHome";
-import { useAuth0 } from "@auth0/auth0-react"; 
+import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../Redux/hook";
+import { ProductState } from "../../Redux/slice/product/product.slice";
+import { productNews } from "./productNews"
 
 const Home = () => {
   const CARDS = 6;
   const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const Allproduct: ProductState[] = useAppSelector(
+    (state) => state.productReducer.Products
+  );
 
+  const preview = Allproduct.slice(0, 6);
+    
+    
   return (
     <div className="home_wrapper">
-      <div className="home_all_imageSide">
-        <div className="home_image_left">
-          <p className="home_text_1">Innovate</p>
-          <p className="home_text_2">Home</p>
-          {
-            !isAuthenticated && <button onClick={() => loginWithRedirect()} className="home_button_li">Login</button>
-          }
-        </div>
-        <div className="home_image_rigth">
-          <img className="home_image1" src={img_home1} alt="image-1" />
+      {/*  Image And Title */}
+      <div className="home_imageTitlteContainer">
+        <div className="home_imageTitleDiv">
+          <div className="home_titleContainer">
+            <p className="home_text_1">Innovate</p>
+            <p className="home_text_2">Home</p>
+            {!isAuthenticated && (
+              <button
+                onClick={() => loginWithRedirect()}
+                className="home_button_li"
+              >
+                Login
+              </button>
+            )}
+          </div>
+          <div className="home_imageContainer">
+            <img src={img_home1} alt="logo" />
+          </div>
         </div>
       </div>
 
-      <div className="home_imagepart_1"></div>
-
-      <div className="home_container_carrouselSide"
-       style={{
-        backgroundImage: `url(${img_background_carrucel})`,
-        backgroundSize: '143%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-      >
+      {/* Carrousel Side */}
+      <div className="home_container_carrouselSide">
         <div className="home_carrousel_logo">
           <img src={logoWhite} alt="logo" />
         </div>
@@ -49,26 +58,36 @@ const Home = () => {
         </div>
         <div className="home_carrousel_ContainerDiv">
           <Carrousel>
-            {[...new Array(CARDS)].map((_, i) => (
-              <Card title={"Card " + (i + 1)} content="Pending..." />
+            {productNews.map((e, i) => (
+              <Card
+                description={e.description}
+                key={e._id}
+                name={e.name}
+                images={e.images[0]}
+                rating={e.rating}
+                price={e.price}
+              />
             ))}
           </Carrousel>
         </div>
       </div>
 
+      {/* News Section */}
       <div className="home_news_container">
         <div className="home_news_side">
           <div className="news_title">
             <h1 className="title-news">News</h1>
           </div>
+
           <NewsHome />
 
           <div className="news_back">
-            <NavLink className="news_navLink_readMore" to='/news'>
+            <NavLink className="news_navLink_readMore" to="/news">
               <h3 className="read-more-news">Read More...</h3>
             </NavLink>
           </div>
         </div>
+
         <div className="home_news_image_side">
           <img src={img_home3} alt="home-news-image" />
         </div>

@@ -4,16 +4,11 @@
   align-items: center;
   justify-content: space-between;
   font-family: $standard-font-Poiret-One;
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-top: 10px;
-  //background-color: aqua;
+  //margin-right: 30px;
+  //margin-left: 30px;
+  //margin-top: 10px;
 
-  .Nav_container_logo {
-    width: 100%;
-    top: 20px;
-    //position: relative;
-
+  
     @media (max-width: 900px) {
       justify-content: center;
       padding-top: 10px;
@@ -21,19 +16,22 @@
 
     @media (max-width: 610px) {
       padding: 0;
+      margin: 0;
+      border: none;
     }
 
     .Nav_container_logo {
       width: 50%;
+      cursor: pointer;
       @media (max-width: 900px) {
         display: none;
       }
 
-      .logo {
+      .nav_toplogo {
         width: 200px;
       }
     }
-  }
+  //}
 
   .Nav_container_navbar {
     width: auto;
@@ -42,7 +40,7 @@
     }
 
     @media (max-width: 700px) {
-      width: 90%;
+      width: 95%;
     }
 
     @media (max-width: 610px) {
@@ -71,7 +69,7 @@
   }
 
   @media (max-width: 610px) {
-    margin: 0;
+    margin-right: 0;
     border-radius: 0;
   }
 
@@ -134,6 +132,10 @@
 
   .nav_modalProfilewindows {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     right: 10px;
     top: 80px;
     width: 140px;
@@ -141,17 +143,16 @@
     z-index: 2;
     background-color: $standard-color-blue;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    background-color: $standard-color-blue;
-    //background: inear-gradient(to right,rgba(20,33,66,1), rgba(0,0,0))!important;
     align-items: center;
     padding: 9px 20px;
-    border-radius: 50px;
-    width: auto;
+    
+    
     .nav_middle_button {
       border-right: 1px solid $standard-color-blue-green;
+    }
+    
+    .nav_modalWindow_Link {
+      margin: 0;
     }
 
     .link-style {
@@ -159,14 +160,10 @@
         right: 5px;
       }
 
-      .nav_modalWindow_Link {
-        margin: 0;
-      }
-
       p {
         margin: 0;
-        padding-left: 20px;
-        padding-right: 20px;
+        //padding-left: 20px;
+        //padding-right: 20px;
 
         &:hover {
           color: $standard-color-blue-green;
@@ -273,3 +270,4 @@
     }
   }
 }
+

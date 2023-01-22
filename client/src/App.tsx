@@ -11,11 +11,17 @@ import Footer from './components/Footer';
 import NavBar from './components/navbar/Navbar';
 import ShoppingCart from './components/checkout/ShoppingCart';
 import Form from './components/checkout/FormComponent';
+import {useLocation} from 'react-router-dom';
 
 function App() {
+  const location = useLocation()
+  console.log(location.pathname)
+
   return (
     <div>
-      <NavBar />
+      {
+        location.pathname=='/admin'||location.pathname=='/shop'?null:<NavBar />
+      }
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

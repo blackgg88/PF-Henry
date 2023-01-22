@@ -16,6 +16,42 @@ $card-size: 18rem;
   height: 25rem;
   perspective: 500px;
   transform-style: preserve-3d;
+
+  @media (max-width:710px) {
+    width: 15rem;
+    height: 20.5rem;
+    .card-container {
+      //padding-bottom: 10px;
+      .HomeCard_ImageContainer {
+        
+        img {
+          height: 100px;
+        }
+      }
+      .HomeCard_DescriptionContainer {
+        font-size: 12px;
+      }
+      .HomeCard_PriceContainer {
+        font-size: 10px;
+        
+      }
+      .HomeCard_RatingContainer {
+        img {
+          width: 15px;
+        }
+      }
+      .HomeCard_AddCartButtonContainer {
+        .add-car-card-beta {
+          height: 30px;
+          @media (max-width:420px) {
+            font-size: 10px;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
 }
 
 .card-container {

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  
 }
 
 .home_wrapper {
@@ -11,6 +12,9 @@ body {
   .home_imageTitlteContainer {
     display: flex;
     justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    overflow: hidden;
 
     .home_imageTitleDiv {
       display: flex;
@@ -21,13 +25,37 @@ body {
         align-items: flex-end;
         width: 50%;
         z-index: 2;
+        
+
+
+        
+
 
         .home_text_1 {
           position: relative;
           font-family: $standard-font-Poiret-One;
           font-size: 150px;
           left: 80px;
-          //background-color: blue;
+          
+          @media (max-width: 1075px) { // --------text 1 
+            font-size: 120px;;
+          }
+
+          @media (max-width: 870px) {
+            font-size: 100px;
+          }
+
+          @media (max-width: 650px) {
+            font-size: 80px;
+          }
+
+          @media (max-width: 530px) {
+            font-size: 60px;
+          }
+          @media (max-width: 430px) {
+           left: 50px;
+          }
+
         }
 
         .home_text_2 {
@@ -36,6 +64,33 @@ body {
           font-size: 120px;
           bottom: 40px;
           left: 60px;
+
+          @media (max-width: 1075px) { // ----------- text 2
+            font-size: 90px;;
+            bottom:30px;
+          }
+
+          @media (max-width: 870px) {
+            font-size: 70px;
+            bottom: 25px;
+          }
+
+          @media (max-width: 650px) {
+            font-size: 50px;
+            bottom: 20px;
+          }
+
+          @media (max-width: 530px) {
+            font-size: 40px;
+            bottom: 15px;
+          }
+
+          @media (max-width: 430px) {
+            font-size: 30px;
+            bottom: 10px;
+            left: 50px;
+          }
+
         }
 
         .home_button_li {
@@ -57,6 +112,46 @@ body {
           cursor: pointer;
           transition: background-color 0.6s, border 0.6s;
 
+          @media (max-width: 1075px) { // ----------- text 2
+            width: 180px;
+            height: 40px;
+            font-size: 25px;
+            bottom: 40px;
+            right: 40px;
+          }
+
+          @media (max-width: 870px) {
+            width: 150px;
+            height: 35px;
+            font-size: 20px;
+            bottom: 35px;
+            right: 35px;
+          }
+
+          @media (max-width: 650px) {
+            width: 120px;
+            height: 30px;
+            font-size: 20px;
+            bottom: 25px;
+            right: 10px;
+          }
+
+          @media (max-width: 530px) {
+            width: 100px;
+            height: 25px;
+            font-size: 17px;
+            bottom: 15px;
+            right: -10px;
+          }
+
+          @media (max-width: 430px) {
+            width: 80px;
+            height: 25px;
+            font-size: 15px;
+            bottom: 10px;
+            right: -10px;
+          }
+
           &:hover {
             background-color: $standard-color-white-background;
             border: 1px solid $standard-color-blue;
@@ -72,11 +167,36 @@ body {
         justify-content: center;
         width: 50%;
         z-index: 1;
+        
 
         img {
           position: relative;
           right: 100px;
           width: 500px;
+
+          @media (max-width: 1075px) { //IMAGE RESPONSIVE
+            width: 400px;
+            right: 70px;
+          }
+          @media (max-width: 870px) {
+            width: 350px;
+            right: 40px;
+          }
+
+          @media (max-width: 650px) {
+            width: 300px;
+            right: 20px;
+          }
+
+          @media (max-width: 530px) {
+            width: 250px;
+            right: 5px;
+          }
+
+          @media (max-width: 430px) {
+            width: 200px;
+            right: 0;
+          }
         }
       }
     }
@@ -99,7 +219,28 @@ body {
     transition: all 0.3s ease-out;
     background-repeat: no-repeat;
     position: relative;
+    justify-content: center;
+    z-index: 1;
 
+      .home_carrouselIMG {
+        height: 80%;
+        margin-top: 45px;
+        margin-bottom: 45px;
+        position: absolute;
+        left: -20px;
+        top: 0;
+        @media (max-width: 1050px) {
+          display: none;
+        }
+      }
+    
+    .home_carrousel_ContainerDiv {
+      display: flex;
+      //background-color: aliceblue;
+      justify-content: center;
+      width: 50%;
+      //border: 2px solid red;
+    }
     .home_carrousel_logo {
       position: absolute;
       bottom: 40px;
@@ -110,24 +251,6 @@ body {
       img {
         width: 100%;
       }
-    }
-    .home_container_imagediv {
-      display: flex;
-      align-items: center;
-      height: 90%;
-      width: 30%;
-      //background-color: antiquewhite;
-      .home_carrouselIMG {
-        height: 80%;
-        margin-top: 45px;
-        margin-bottom: 45px;
-      }
-    }
-    .home_carrousel_ContainerDiv {
-      display: flex;
-      //background-color: aliceblue;
-      flex-direction: center;
-      width: 59%;
     }
   }
 
@@ -212,3 +335,6 @@ body {
     }
   }
 }
+
+//--------RESPONSIVE -------------
+

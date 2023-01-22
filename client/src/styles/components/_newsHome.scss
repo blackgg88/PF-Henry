@@ -5,11 +5,18 @@
 
 }
 .news_fake_card{
-    width: 120px;
-    height: 80px;
+    width: 30%;
+    height: 150px;
     background-color:$standard-color-blue;
     border-radius: $standard-border-radius;
     margin: 8px;
+    @media (max-width: 500px) {
+        width: 45%;
+    }
+    @media (max-width: 450px) {
+        width: 95%;
+        height: 200px;
+    }
 
     img{
         width: 100%;

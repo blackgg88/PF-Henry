@@ -18,21 +18,24 @@ const Home = () => {
 
   return (
     <div className="home_wrapper">
-      <div className="home_all_imageSide">
-        <div className="home_image_left">
-          <p className="home_text_1">Innovate</p>
-          <p className="home_text_2">Home</p>
-          {
+
+      {/*  Image And Title */}
+      <div className="home_imageTitlteContainer">
+        <div className="home_imageTitleDiv">
+          <div className="home_titleContainer">
+            <p className="home_text_1">Innovate</p>
+            <p className="home_text_2">Home</p>
+            {
             !isAuthenticated && <button onClick={() => loginWithRedirect()} className="home_button_li">Login</button>
-          }
-        </div>
-        <div className="home_image_rigth">
-          <img className="home_image1" src={img_home1} alt="image-1" />
+            }
+          </div>
+          <div className="home_imageContainer">
+            <img src={img_home1} alt="logo" />
+          </div>
         </div>
       </div>
 
-      
-
+      {/* Carrousel Side */}
       <div className="home_container_carrouselSide">
         <div className="home_carrousel_logo">
           <img src={logoWhite} alt="logo" />
@@ -49,11 +52,14 @@ const Home = () => {
         </div>
       </div>
 
+      {/* News Section */}
       <div className="home_news_container">
+
         <div className="home_news_side">
           <div className="news_title">
             <h1 className="title-news">News</h1>
           </div>
+          
           <NewsHome />
 
           <div className="news_back">
@@ -62,9 +68,11 @@ const Home = () => {
             </NavLink>
           </div>
         </div>
+
         <div className="home_news_image_side">
           <img src={img_home3} alt="home-news-image" />
         </div>
+
       </div>
     </div>
   );

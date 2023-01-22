@@ -90,17 +90,25 @@ export const Dashboard_user = () => {
               key={product.date_create + '_' + index}
               className='dash_Allpurchase_container'
             >
-              {product.items.map((sell, index) => (
-                <div className='dash_onePurchase' key={sell.title + '_' + index}>
-                  <div className='dash_onePurchase_imageSide'>
-                    <img
-                      className='imagePurchase'
-                      src={sell.picture_url}
-                      alt='imgPurchase'
-                    />
+              {product.items.map((sell, index) => {
+                return (
+                  <div className='dash_onePurchase' key={sell.title + '_' + index}>
+                    <div className='dash_onePurchase_imageSide'>
+                      <img
+                        className='imagePurchase'
+                        src={sell.picture_url}
+                        alt='imgPurchase'
+                      />
+                    </div>
+                    <div className='dash_onePurchase_infoSide'>
+                      <h3>{sell.title}</h3>
+                      <p>Quantity: {sell.quantity}</p>
+                      <p>Total: ${sell.unit_price * sell.quantity}</p>
+                      <p>{product.date_create}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ))
         ) : (

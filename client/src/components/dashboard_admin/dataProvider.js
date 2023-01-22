@@ -40,9 +40,9 @@ const dataProvider = {
         return {
           id: purchase.id,
           Payer: `${purchase.payer?.last_name} ${purchase.payer?.first_name}`,
-          Products: purchase.items.map(
-            (product) => `${product.quantity} X ${product.title}`,
-          ),
+          Products: purchase.items
+            .map((product) => `${product.quantity} X ${product.title}`)
+            .join('----'),
           Date_of_Purcharse: handleFormatedDate(purchase.date_created),
           Status: purchase.status,
           Status_Detail: purchase.status_detail,

@@ -56,7 +56,7 @@ const CardBeta: React.FC<{}> = () => {
   //-----------------> PAGINATION <----------------------------------
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(12);
+  const [itemsPerPage] = useState(10);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);

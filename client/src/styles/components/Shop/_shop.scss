@@ -1,10 +1,12 @@
 .content-shop {
-  height: 99vh;
-  // width: 100vw;
+  height: calc(100vh - $navbar-height - $footer-height);
   background-color: $standard-color-white;
   display: flex;
   gap: 10px;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+
   .content-navbar {
     height: 8%;
     width: 100%;
@@ -18,12 +20,13 @@
     text-decoration: none;
   }
   .shop-contain {
-    height: 85%;
-    // width: 100vw;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
     background-color: $standard-color-white;
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
+    gap: 10px;
   }
   .breadcrumb {
     width: 100%;
@@ -32,6 +35,7 @@
     justify-content: start;
     padding-left: 30px;
     //background-color: aqua;
+    display: none;
   }
   .content-footer {
     height: 5%;

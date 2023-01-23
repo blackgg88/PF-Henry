@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import mercadopago from 'mercadopago';
-import { CLIENT_URL } from '../../../config';
-
-import { ACCESS_TOKEN } from '../../../config';
+import { CLIENT_URL, ACCESS_TOKEN } from '../../../config';
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 

@@ -54,7 +54,7 @@ $card-size: 18rem;
 
 }
 
-.card-container {
+.Carrousel_card-container {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -67,7 +67,7 @@ $card-size: 18rem;
   transition: all 0.3s ease-out;
 }
 
-.card {
+.cardCarrousel {
   width: 100%;
   height: 100%;
   padding: 2rem;
@@ -148,7 +148,7 @@ $card-size: 18rem;
      justify-content: center;
      align-items: center;
 
-     .add-car-card-beta {
+     .Home_add-car-card-beta {
          padding: 5px 25px;
          border-radius: 20px;
          background: rgb(191, 51, 186);

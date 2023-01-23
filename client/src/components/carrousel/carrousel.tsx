@@ -30,7 +30,7 @@ interface StyleProps {
       {active > 0 && <button className='nav left' onClick={() => setActive(i => i - 1)}><TiChevronLeftOutline/></button>}
       
       {React.Children.map(children, (child, i) => (
-        <div className='card-container' style={{
+        <div className='Carrousel_card-container' style={{
             '--active': i === active ? 1 : 0,
             '--offset': (active - i) / 3,
             '--direction': Math.sign(active - i),

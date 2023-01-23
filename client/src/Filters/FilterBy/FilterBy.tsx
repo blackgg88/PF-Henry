@@ -31,6 +31,8 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
     if (inputRef.current) {
       console.log(inputRef.current.value);
       switchSelect(inputRef.current.value);
+      inputRef.current.value="";
+
     }
   };
 
@@ -57,6 +59,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
       });
     }
   }, [Allproduct]);
+  
 
   //----------------------------------------------------------
 
@@ -127,7 +130,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
               <button
                 className='btn-start'
                 value={star}
-                onClick={(e) => {
+                onClick={(e:any) => {
                   switchSelect(`⭐️ ${e.target.value}`);
                 }}
                 style={{

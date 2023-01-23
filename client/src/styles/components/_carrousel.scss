@@ -20,7 +20,7 @@ $card-size: 18rem;
   @media (max-width:710px) {
     width: 15rem;
     height: 20.5rem;
-    .card-container {
+    .Carrousel_card-container {
       //padding-bottom: 10px;
       .HomeCard_ImageContainer {
         
@@ -41,7 +41,7 @@ $card-size: 18rem;
         }
       }
       .HomeCard_AddCartButtonContainer {
-        .add-car-card-beta {
+        .Home_add-car-card-beta {
           height: 30px;
           @media (max-width:420px) {
             font-size: 10px;

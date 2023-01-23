@@ -1,14 +1,14 @@
 .container-ItemFilterList {
-  margin-top: 20px;
-  padding-right: 30px;
-  padding-top: 30px;
-  min-height: 280px;
+  // overflow-x: hidden;
+  margin-top: 5px;
+  padding: 10px;
   width: 95%;
+  max-height: 100%;
   background-color: $standard-color-blue-light;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   gap: 10px;
 }

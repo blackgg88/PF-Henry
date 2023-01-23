@@ -1,5 +1,5 @@
 .Nav_topLanding {
-  height: 70px;
+  height: $navbar-height;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   
     @media (max-width: 900px) {
       justify-content: center;
-      padding-top: 10px;
+      // padding-top: 10px;
     }
 
     @media (max-width: 610px) {

@@ -1,21 +1,23 @@
 .contain-FilterPanel {
-  width: 300px;
-  height: 100%;
+  width: $filterPanel-width;
+  min-height: calc(100% - $navbar-height - $footer-height - 20px );
   border-radius: 15px;
   background-color: $standard-color-blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  overflow-y: auto;
 
   .content-btn-span {
-    height: 10px;
-    width: 10px;
-    //background-color: red;
+    // height: 10px;
+    // width: 10px;
+    // background-color: red;
     .btn-span {
       position: relative;
-      left: 13px;
-      bottom: 45px;
+      left: 0px;
+      // bottom: 45px;
       height: 60px;
       width: 60px;
       border: 3px solid $standard-color-blue;
@@ -68,19 +70,19 @@
   }
 
   .filter-filt {
-    margin-top: 60px;
+    // margin-top: 60px;
     //background-color: rgba(11, 145, 237, 1);
     width: 89%;
-    min-height: 100px;
+    max-height: $filterFilt-height;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: -40px;
   }
   .list-filter {
-    margin-top: 0px;
+    margin-top: 10px;
     width: 89%;
-    min-height: 450px;
+    height: calc( 100vh - $navbar-height - $footer-height - 20px - $filterFilt-height );
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,13 +90,13 @@
   }
 
   .title-filter {
-    margin-top: 10%;
+    // margin-top: 10%;
     font-family: $standard-font-Barlow;
     font-size: 25px;
     font-weight: 400;
     color: $standard-color-white-background;
     position: relative;
-    bottom: 2%;
+    // bottom: 2%;
   }
   .title {
     width: 90px;

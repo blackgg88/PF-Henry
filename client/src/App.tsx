@@ -18,7 +18,7 @@ function App() {
   console.log(location.pathname);
 
   return (
-    <div>
+    <>
       {!location.pathname.includes('/admin') && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
         <Route path='/checkout' element={<Form />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 }
 

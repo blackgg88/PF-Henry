@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import mercadopago from 'mercadopago';
+import { CLIENT_URL } from '../../../config';
 
 import { ACCESS_TOKEN } from '../../../config';
 
@@ -79,9 +80,9 @@ export const postPreference = async (req: Request, res: Response) => {
     external_reference: payer.email,
 
     back_urls: {
-      success: 'http://localhost:5173',
-      failure: 'http://localhost:5173',
-      pending: 'http://localhost:5173',
+      success: CLIENT_URL,
+      failure: CLIENT_URL,
+      pending: CLIENT_URL,
     },
 
     payment_methods: {

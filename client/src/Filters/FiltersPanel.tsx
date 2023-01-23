@@ -7,6 +7,8 @@ import FilterByPrice from "./FilterByPriceRange/FilterByPrice";
 // import FilterByRating from "./FilterByRating/FilterByRating";
 import ItemFilterList from "./ItemFilterList/ItemFilterList";
 
+import iconFilter from "../assets/images/icons/iconFilter.png"
+
 interface Filter {
   properties: string[];
   order: string[];
@@ -50,20 +52,22 @@ const FiltersPanel: React.FC<{}> = () => {
     span: false,
   });
 
-  // const span = () => {
-  //   const filterPanel = document.getElementById("idFilterPanel");
-  //   const buttonSpan = document.getElementById("idButtonSpan");
-  //   if (filter.span === true) {
-  //     filterPanel.className += " animationSpan";
-  //     buttonSpan.innerHTML = "D";
-  //     setFilter({ ...filter, span: !filter.span });
-  //   } else {
-  //     filterPanel.className += " contain-FilterPanel";
-  //     buttonSpan.innerHTML = "R";
-  //   }
-  //   //document.querySelector(".contain-FilterPanel").style.backgroundColor ="green";
-  //   //filterPanel.classList.add("animationspan");
-  // };
+
+  const spanFilter = () => {
+    
+    const filterPanel = document.getElementById("idFilterPanel");
+    const buttonSpan = document.getElementById("idButtonSpan");
+    const backgroundFilter = document.getElementById("background-filter");
+    const listFilter = document.getElementById("list-filter");
+    
+    if(filterPanel && backgroundFilter && buttonSpan && listFilter){
+      filterPanel.classList.toggle("filter-move");
+      buttonSpan.classList.toggle("btn-move");
+      backgroundFilter.classList.toggle("filter-block");
+      listFilter.classList.toggle("filter-list-move");
+    }
+};
+  
 
   //span();
 
@@ -119,11 +123,38 @@ const FiltersPanel: React.FC<{}> = () => {
             }));
           }
         });
-      } else {
+      } 
+      
+      else if (
+        value === "Connectivity & Control" ||
+        value === "Home Entertainment" ||
+        value === "Energy Management" ||
+        value === "Safety & Security" ||
+        value === "Comfort & Ease" ||
+        value === "LifeStyle & Health"
+      ) {
+        filter.categories.map((ordr) => {
+          if (value === ordr) {
+            const focal = filter.categories.filter(
+              (excepcion) => excepcion !== value
+            );
+            focal.map((filterOrder) => {
+              focus = focus.filter((filt) => filt !== filterOrder);
+            });
+            setFilter((prevFilter) => ({
+              ...prevFilter,
+              filterList: focus,
+            }));
+          }
+        });
+      }
+
+      else {
         setFilter((prevFilter) => ({
           ...prevFilter,
           filterList: focus,
         }));
+        
       }
     }
   };
@@ -138,8 +169,8 @@ const FiltersPanel: React.FC<{}> = () => {
     <div className="contain-FilterPanel" id="idFilterPanel">
       <div className="filter-filt">
         <div className="content-btn-span">
-          <button className="btn-span" id="idButtonSpan">
-            {"<"}
+          <button className="btn-span" id="idButtonSpan" style={{backgroundImage:`url(${iconFilter})`}} onClick={spanFilter}>
+          
           </button>
         </div>
         <h3 className="title">search:</h3>
@@ -181,8 +212,8 @@ const FiltersPanel: React.FC<{}> = () => {
           filter={filter}
         /> */}
       </div>
-      <div className="list-filter">
-        <h3 className="title-filter">filters: </h3>
+      <div className="list-filter" id="list-filter">
+        <h3 className="title-filter">filter list: </h3>
         <ItemFilterList
           filterList={filter.filterList}
           onCloseListHandler={onCloseListHandler}

@@ -13,15 +13,17 @@
     top: 10px;
     left: 20px;
   }
+
   .container-filterBy-c {
     height: 36px;
     border-radius: 40px;
-    background-color: $standard-color-blue-secundary;
+    background-color: $standard-color-blue-glass;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 5px;
+
     .input-filterByName {
       width: 60%;
       font-family: $standard-font-Barlow;
@@ -31,7 +33,13 @@
       border-bottom: 1px solid $standard-color-white;
       background-color: $standard-color-transparent;
       color: $standard-color-white-background;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
     }
+
     .🔍 {
       width: 30px;
       height: 30px;
@@ -40,11 +48,13 @@
       border: none;
       scale: 1;
       transition: background-color 0.4s scale 0.4s;
+
       &:hover {
         //background-color: $standard-color-blue-solid-grad;
         scale: 1.05;
       }
     }
+
     .input-filterByRating {
       font-size: 20px;
       border: none;
@@ -55,6 +65,7 @@
       color: $standard-color-white-background;
       text-align: center;
     }
+
     .⭐️ {
       position: relative;
       right: -5px;
@@ -65,6 +76,7 @@
       width: 85%;
       height: auto;
     }
+
     .select-FilterByCategory {
       display: flex;
       flex-direction: column;
@@ -97,6 +109,7 @@
         &:hover {
           background-color: $standard-color-blue-solid-grad;
         }
+
         &:focus .option {
           position: relative;
           pointer-events: all;
@@ -124,17 +137,19 @@
         height: 30px;
       }
     }
+
     .img-btn {
       width: 80%;
       height: 75%;
     }
   }
+
   .🔵 {
     height: 1px;
-    width: 95%;
+    width: 100%;
     border-bottom: 2px solid $standard-color-blue-solid-grad;
     position: relative;
-    top: 25px;
+    top: 10px;
   }
 }
 

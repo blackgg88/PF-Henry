@@ -1,19 +1,21 @@
 // @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
 
 .container-pagination {
-  background-color: aqua;
+  //background-color: aqua;
   height: auto;
   width: 100%;
+  background-size: contain;
+  
 }
 
 .pagination-container {
   margin: 0px auto;
-  width: 600px;
+  width: 100%;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aquamarine;
+  //background-color: aquamarine;
   gap: 10px;
 
   .pagination-button-next {

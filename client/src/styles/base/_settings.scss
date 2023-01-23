@@ -26,10 +26,12 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
 
 
 //TODO color palette ( RGB )
-$standard-color-black: rgba(0, 0, 0);
+$standard-color-black: rgba(0, 0, 0,1);
+$standard-color-black-ligth: rgba(20, 20, 20,0.8);
 $standard-color-blue: rgba(20, 33, 66, 1);
 $standard-color-blue-solid-grad: rgba(68, 195, 231, 0.13);
 $standard-color-blue-light: rgba(137, 171, 202, 0.4);
+$standard-color-blue-glass: rgba(20, 33, 66, 0.6);
 $standard-color-blue-green: rgba(23, 195, 178, 1);
 $standard-color-blue-secundary: rgba(48, 79, 104, 1);
 $standard-color-gray: rgba(229, 229, 229, 1);

@@ -1,12 +1,21 @@
 .contain-FilterPanel {
   width: 300px;
-  height: 100%;
-  border-radius: 15px;
+  height: 50%;
+  border-radius: 0px ;
+  font-size: 15px;
   background-color: $standard-color-blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 120px;
+  bottom: 100px;
+  left: -300px;
+  z-index: 2;
+  transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  
+  
 
   .content-btn-span {
     height: 10px;
@@ -14,19 +23,27 @@
     //background-color: red;
     .btn-span {
       position: relative;
-      left: 13px;
-      bottom: 45px;
+      z-index: 2;
+      top:-60px;
+      left: 155px;    
       height: 60px;
       width: 60px;
-      border: 3px solid $standard-color-blue;
-      background-color: $standard-color-blue-secundary;
-      border-radius: $standard-border-radius;
+      border: 0px solid $standard-color-blue;
+      border-radius: 0px 20px 20px 0px;
       font-family: $standard-font-Barlow;
       font-weight: 900;
       font-size: 30px;
       color: $standard-color-white;
+      transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      background-color: $standard-color-blue;
+      background-repeat: no-repeat;
+background-position: center center;
     }
+    
+    
+    
   }
+  
 
   .dropdown {
     font-family: $standard-font-Barlow;
@@ -69,50 +86,75 @@
 
   .filter-filt {
     margin-top: 60px;
-    //background-color: rgba(11, 145, 237, 1);
     width: 89%;
     min-height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: -40px;
+    //background-color: $standard-color-blue-green;
   }
   .list-filter {
     margin-top: 0px;
     width: 89%;
-    min-height: 450px;
+    min-height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    position: absolute;
+    top: 10%;
+    left: 100%;
+    //background-color: $standard-color-red;
   }
+
+  
 
   .title-filter {
     margin-top: 10%;
-    font-family: $standard-font-Barlow;
-    font-size: 25px;
+    font-family: $standard-font-Hanken-Grotesk;
     font-weight: 400;
-    color: $standard-color-white-background;
+    font-size: 25px;
+    color: $standard-color-white;
     position: relative;
     bottom: 2%;
+    //background-color: aqua;
   }
   .title {
-    width: 90px;
+    //background-color: aqua;
+    padding: 5px;
+    width: 150px;
     font-family: $standard-font-Barlow;
+    font-family: $standard-font-Hanken-Grotesk;
     font-size: 20px;
     font-weight: 300;
     text-align: start;
     color: $standard-color-white-background;
     position: relative;
-    bottom: 1%;
-    right: 28%;
+    bottom: -1%;
+    right: 20%;
   }
 }
 
-.animationSpan {
-  background-color: $standard-color-red;
+
+
+.filter-move{
+ 
+  width: 300px;
+  height: 50%;
+  padding-bottom: 10px;
+  border-radius: 15px 0px 15px 15px;
+  font-size: 15px;
+  background-color: $standard-color-blue-glass;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   position: absolute;
-  top: 11vh;
-  left: -277px;
-  height: 80vh;
+  left: 50px;
+  transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
+
+
+
+

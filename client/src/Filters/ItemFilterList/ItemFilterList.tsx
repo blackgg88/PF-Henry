@@ -25,7 +25,7 @@ const ItemFilterList: React.FC<FilterByProps> = ({
           //     x
           //   </button>
           // </div>
-          <ItemFilter filter={el} closeItem={onCloseListHandler} />
+          <ItemFilter key={Math.random+el} filter={el} closeItem={onCloseListHandler} />
         );
       })}
     </div>

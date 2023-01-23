@@ -2,6 +2,9 @@ import React from "react";
 import { Pagination, Stack } from "@mui/material";
 import btnNext from "../assets/images/buttons/paginationBtnNext.png"
 import btnPrev from "../assets/images/buttons/paginationBtnBack.png"
+import btnSet from "../assets/images/buttons/paginationBtnSet.png"
+import btnUnSet from "../assets/images/buttons/paginationBtnUnset.png"
+import bg from "../assets/images/buttons/paginationBackground.png"
 
 interface PagProps {
   itemsPerPage: number;
@@ -33,19 +36,21 @@ const PaginationComp: React.FC<PagProps> = ({
           onChange={handlePageChange}
         />
       </Stack> */}
-      <nav className="pagination-container">
+      <nav className="pagination-container"
+      >
         <button
           className="pagination-button-next"
           style={{backgroundImage:`url(${btnPrev})`}}
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          Prev
+          
         </button>
 
         {pageNumbers.map((number) => (
           <button
             key={number}
+            style={{backgroundImage:`url(${btnSet})`}}
             onClick={() => handlePageChange(number)}
             className={`pagination-button ${
               number === currentPage ? "active" : ""
@@ -56,11 +61,12 @@ const PaginationComp: React.FC<PagProps> = ({
         ))}
 
         <button
-          className="pagination-button"
+          className="pagination-button-next"
+          style={{backgroundImage:`url(${btnNext})`}}
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === pageNumbers.length}
         >
-          Next
+          
         </button>
       </nav>
     </div>

@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../Redux/hook";
 import {
   ProductCart,
   changeQuantity,
   deleteProduct,
-} from '../../Redux/slice/shoppingCart/shoppingCart.slice';
+} from "../../Redux/slice/shoppingCart/shoppingCart.slice";
 
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
@@ -40,39 +40,39 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div className='ShoppingCart_contain'>
-      <div className='ShoppingCart_title'>
+    <div className="ShoppingCart_contain">
+      <div className="ShoppingCart_title">
         <h1>Shopping Cart</h1>
       </div>
-      <div className='ShoppingCart_info'>
-        <div className='ShoppingCart_items-container'>
-          <div className='ShoppingCart_items-titles'>
+      <div className="ShoppingCart_info">
+        <div className="ShoppingCart_items-container">
+          <div className="ShoppingCart_items-titles">
             <div>PRODUCT</div>
             <div>QUANTITY</div>
             <div>PRICE</div>
           </div>
-          <div className='ShoppingCart_items'>
+          <div className="ShoppingCart_items">
             {productsInCart?.map((ele: ProductCart) => {
               return (
-                <div key={ele._id} className='ShoppingCart_item-wrapper'>
-                  <div className='ShoppingCart_image'>
+                <div key={ele._id} className="ShoppingCart_item-wrapper">
+                  <div className="ShoppingCart_image">
                     <img src={ele.images[0]} alt={ele.name} />
                   </div>
-                  <div className='ShoppingCart_description'>
-                    <p className='ShoppingCart_name'>{ele.name}</p>
-                    <p className='ShoppingCart_category'>
+                  <div className="ShoppingCart_description">
+                    <p className="ShoppingCart_name">{ele.name}</p>
+                    <p className="ShoppingCart_category">
                       Category: {ele.categories.name}
                     </p>
-                    <p className='ShoppingCart_brand'>Brand: {ele.brand}</p>
+                    <p className="ShoppingCart_brand">Brand: {ele.brand}</p>
                   </div>
-                  <div className='ShoppingCart_quantity-container'>
+                  <div className="ShoppingCart_quantity-container">
                     <FormControl fullWidth>
-                      <InputLabel id='id_quantity'>Quantity</InputLabel>
+                      <InputLabel id="id_quantity">Quantity</InputLabel>
                       <Select
-                        labelId='id_quantity'
-                        id='demo-simple-select'
+                        labelId="id_quantity"
+                        id="demo-simple-select"
                         value={ele.quantity}
-                        label='Quantity'
+                        label="Quantity"
                         onChange={(e) => handleSetQuantity(e, ele._id)}
                       >
                         <MenuItem value={1}>1</MenuItem>
@@ -83,11 +83,13 @@ const ShoppingCart = () => {
                       </Select>
                     </FormControl>
                   </div>
-                  <div className='ShoppingCart_price'>
+                  <div className="ShoppingCart_price">
                     <p>${(ele.price * ele.quantity).toFixed(2)}</p>
                   </div>
-                  <div className='ShoppingCart_button-remove'>
-                    <button onClick={() => handleRemoveProduct(ele._id)}>Remove</button>
+                  <div className="ShoppingCart_button-remove">
+                    <button onClick={() => handleRemoveProduct(ele._id)}>
+                      Remove
+                    </button>
                   </div>
                 </div>
               );
@@ -95,9 +97,9 @@ const ShoppingCart = () => {
           </div>
         </div>
 
-        <div className='ShoppingCart_purchases'>
-          <div className='ShoppingCart_total_amount'>Total: ${total}</div>
-          <div className='ShoppingCart_confirm-button'>
+        <div className="ShoppingCart_purchases">
+          <div className="ShoppingCart_total_amount">Total: ${total}</div>
+          <div className="ShoppingCart_confirm-button">
             <Link to={`/checkout`}>
               <button>Confirm purchase</button>
             </Link>

@@ -5,12 +5,12 @@ import { ACCESS_TOKEN } from '../../../config';
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
-enum state {
+enum State {
   SUCCESS = 'approved',
   all = 'all',
 }
 
-enum currency {
+enum Currency {
   ARS = 'ARS',
   BRL = 'BRL',
   CLP = 'CLP',
@@ -22,11 +22,11 @@ enum currency {
 }
 
 interface Category {
-  _id: number;
+  _id: string;
   name: string;
 }
 
-interface item {
+interface Item {
   _id: string;
   categories: Category;
   name: string;
@@ -35,19 +35,37 @@ interface item {
   images: string[];
 }
 
+interface ItemMP {
+  id: string;
+  category_id: string;
+  currency_id: Currency;
+  title: string;
+  unit_price: number;
+  picture_url: string;
+}
+
+interface Payer {
+  address: { street_name: string; street_number: number; zip_code: string };
+  email: string;
+  identification: { number: string; type: string };
+  name: string;
+  surname: string;
+}
+
 export const postPreference = async (req: Request, res: Response) => {
-  const { payer, products } = req.body;
+  const payer: Payer = req.body.payer;
+  const products: Item[] = req.body.products;
   let preference = {
-    items: products.map((item: item) => {
+    items: products.map((item) => {
       return {
         id: item._id,
         category_id: item.categories._id,
-        currency_id: currency.USD,
+        currency_id: Currency.USD,
         title: item.name,
         quantity: item.quantity,
         unit_price: item.price,
         picture_url: item.images[0],
-      };
+      } as ItemMP;
     }),
 
     payer: {
@@ -75,7 +93,7 @@ export const postPreference = async (req: Request, res: Response) => {
     },
 
     binary_mode: true,
-    auto_return: state.SUCCESS,
+    auto_return: State.SUCCESS,
   };
 
   mercadopago.preferences

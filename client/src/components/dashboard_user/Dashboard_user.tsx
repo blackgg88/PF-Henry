@@ -3,6 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { controllerUser } from "./controller";
 import Navbar from "../navbar/Navbar";
 import logo from "../../assets/logo_smart_b.png";
+import verified_true from "../../assets/verified/verified_true.png";
+import verified_false from "../../assets/verified/verified_false.png";
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface items {
@@ -11,6 +13,7 @@ interface items {
   unit_price: number;
   description: string;
   quantity: number;
+  picture_url: string;
 }
 
 interface preference {
@@ -28,14 +31,15 @@ export const Dashboard_user = () => {
   const [purchase, setPurchase] = useState<preference[]>([]);
   //purchase [{}, {}]
 
-  //const email = 'arrascaetaefdev@gmail.com';
+  //const email = 'Humberto@gmail.com';
 
   const email = user?.email;
+  const verified = user?.email_verified;
 
   useEffect(() => {
     const handleGetItems = async () => {
       const response = await controllerUser(email);
-      //console.log(response) //array de dos elementos
+      console.log(response); //array de dos elementos
       const mapeado = response.map((dato: any) => {
         return {
           date_created: dato.date_created,
@@ -48,8 +52,9 @@ export const Dashboard_user = () => {
       handleGetItems();
     }
   }, [isAuthenticated]);
-
-  console.log(purchase);
+  {
+    console.log(verified);
+  }
 
   return (
     <div className="all">
@@ -60,6 +65,22 @@ export const Dashboard_user = () => {
         <div className="dash_profile_InfoSide">
           <h2>{user?.name}</h2>
           <p>{email}</p>
+          <p>
+            {verified ? (
+              <img src={verified_true} alt="verified_true" />
+            ) : (
+              <img src={verified_false} alt="verified_false" />
+            )}
+          </p>
+          {
+            <p>
+              {!verified ? (
+                <div>
+                  <span>Check your email and verify your account</span>
+                </div>
+              ) : null}
+            </p>
+          }
         </div>
       </div>
 
@@ -85,41 +106,41 @@ export const Dashboard_user = () => {
           <h2>My shopping</h2>
         </div>
 
-        
-        {
-
-          purchase.length?
+        {purchase.length ? (
           purchase.map((product, index) => (
-          <div
-            key={product.date_create + "_" + index}
-            className="dash_Allpurchase_container"
-          >
-            {product.items.map((sell, index) => {
-              return (
-                <div
-                  className="dash_onePurchase"
-                  key={sell.title + "_" + index}
-                >
-                  <div className="dash_onePurchase_imageSide">
-                    <img
-                      className="imagePurchase"
-                      src="https://m.media-amazon.com/images/I/81OeBtkiVJL.AC_SL1500.jpg"
-                      alt="imgPurchase"
-                    />
+            <div
+              key={product.date_create + "_" + index}
+              className="dash_Allpurchase_container"
+            >
+              {product.items.map((sell, index) => {
+                return (
+                  <div
+                    className="dash_onePurchase"
+                    key={sell.title + "_" + index}
+                  >
+                    <div className="dash_onePurchase_imageSide">
+                      <img
+                        className="imagePurchase"
+                        src={sell.picture_url}
+                        alt="imgPurchase"
+                      />
+                    </div>
+                    <div className="dash_onePurchase_infoSide">
+                      <h3>{sell.title}</h3>
+                      <p>Quantity: {sell.quantity}</p>
+                      <p>Total: ${sell.unit_price * sell.quantity}</p>
+                      <p>{product.date_create}</p>
+                    </div>
                   </div>
-                  <div className="dash_onePurchase_infoSide">
-                    <h3>{sell.title}</h3>
-                    <p>Quantity: {sell.quantity}</p>
-                    <p>Total: ${sell.unit_price * sell.quantity}</p>
-                    <p>{product.date_create}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )):<div>
+                );
+              })}
+            </div>
+          ))
+        ) : (
+          <div>
             <p>You have not made any purchases yet</p>
-          </div>}
+          </div>
+        )}
       </div>
     </div>
   );

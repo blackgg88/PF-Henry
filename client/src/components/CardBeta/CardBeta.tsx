@@ -22,7 +22,7 @@ const CardBeta: React.FC<{}> = () => {
   );
 
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
-
+  //console.log(Allproduct)
   const dispatch = useAppDispatch();
   const stars = [1, 2, 3, 4, 5];
   useEffect(() => {
@@ -78,7 +78,7 @@ const CardBeta: React.FC<{}> = () => {
 
   return (
     <div className="container-render-card-v-beta">
-      <Breadcrumb />
+      {/* <Breadcrumb /> */}
       <div className="container-card-beta">
         {currentItems?.map((product) => {
           return (
@@ -117,6 +117,7 @@ const CardBeta: React.FC<{}> = () => {
             //     </div>
             //   </div>
             // </div>
+<<<<<<< HEAD
 
             <div key={product._id} className="product-card-beta">
               <div className="header-card-beta">n e w</div>
@@ -135,6 +136,18 @@ const CardBeta: React.FC<{}> = () => {
               <div className="content-title-description-card-beta">
                 <div className="content-title-card-beta">
                   <h3 className="product-name-card-beta">
+=======
+            <div key={product._id} className='product-card-beta'>
+              <div className='header-card-beta'>n e w</div>
+              <div className='content-image-card-beta'>
+                <Link to={`/product/${product._id}`}>
+                  <img className='image-card' src={product.images[0]} alt='image' />
+                </Link>
+              </div>
+              <div className='content-title-description-card-beta'>
+                <div className='content-title-card-beta'>
+                  <h3 className='product-name-card-beta'>
+>>>>>>> 1c8e9485730ff1efa55b12db05e06827bff510aa
                     {product.name.substring(0, 25)}...
                   </h3>
                 </div>

@@ -10,7 +10,7 @@ import PurchaseList from './PurchaseList';
 import { Dashboard } from './Dashboard';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //             @ts-ignore
-import dataProvider from './dataProvider.js';
+import dataProvider from './dataProvider';
 
 const AppAdmin = () => {
   return (

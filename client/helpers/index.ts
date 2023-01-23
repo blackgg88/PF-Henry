@@ -2,14 +2,13 @@ import { API_URL } from '../config';
 import { ProductCart } from '../src/Redux/slice/shoppingCart/shoppingCart.slice';
 
 export interface Values {
-  email: '';
-  name: '';
-  surname: '';
-  date_created: '';
-  street_name: '';
-  street_number: '';
-  zip_code: '';
-  DNI: '';
+  email: string;
+  name: string;
+  surname: string;
+  street_name: string;
+  street_number: string;
+  zip_code: string;
+  DNI: string;
 }
 export interface Payer {
   address: { street_name: string; street_number: number; zip_code: string };

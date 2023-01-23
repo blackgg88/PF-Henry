@@ -7,7 +7,7 @@ interface Form {
     password2: string
 }
 
-const ModalWindow = ( {close}:any ) => {
+const ModalUser = ( {close}:any ) => {
 
     const { user, isAuthenticated } = useAuth0();
     const [form, setForm] = useState<Form>({
@@ -58,4 +58,4 @@ const ModalWindow = ( {close}:any ) => {
   )
 }
 
-export default ModalWindow;
+export default ModalUser;

@@ -5,7 +5,7 @@ import Navbar from '../navbar/Navbar';
 import logo from '../../assets/logo_smart_b.png';
 import verified_true from '../../assets/verified/verified_true.png';
 import verified_false from '../../assets/verified/verified_false.png';
-import ModalWindow from '../modalWindow/ModalWindow';
+import ModalUser from '../modalUser/ModalUser';
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface Items {
@@ -166,7 +166,7 @@ export const Dashboard_user = () => {
         )}
       </div>
       {
-        openModal&&<ModalWindow close={setOpenModal} />
+        openModal&&<ModalUser close={setOpenModal} />
       }
     </div>
   );

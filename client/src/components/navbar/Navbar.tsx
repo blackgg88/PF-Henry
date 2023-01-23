@@ -26,9 +26,10 @@ const NavBar = () => {
 
   return (
     <div className="Nav_topLanding">
-      <div className="Nav_container_logo">
+      <NavLink to={'/'} className="Nav_container_logo">
+        
         <img className="nav_toplogo" src={logoTop} alt="logo" />
-      </div>
+      </NavLink>
 
       <div className="Nav_container_navbar">
         <div className="navbar_container">

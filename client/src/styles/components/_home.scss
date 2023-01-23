@@ -2,6 +2,16 @@ body {
   margin: 0;
   
 }
+// ------Scroll Bar ----
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $standard-color-blue;
+  border-radius: 10px;
+}
+//--------------------------
 
 .home_wrapper {
   display: flex;

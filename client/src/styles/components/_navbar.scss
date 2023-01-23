@@ -254,6 +254,7 @@
   z-index: 3;
   bottom: 0%;
   display: none;
+  
 
   @media (max-width: 610px) {
     display: flex;
@@ -265,7 +266,7 @@
 
   p {
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: $standard-font-Poiret-One;
     font-size: 30px;
     margin: 30px;
     cursor: pointer;
@@ -300,7 +301,7 @@
 
   p {
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: $standard-font-Poiret-One;
     font-size: 30px;
     margin: 30px;
     cursor: pointer;

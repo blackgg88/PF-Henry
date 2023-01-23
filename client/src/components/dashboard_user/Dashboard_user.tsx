@@ -5,6 +5,7 @@ import Navbar from '../navbar/Navbar';
 import logo from '../../assets/logo_smart_b.png';
 import verified_true from '../../assets/verified/verified_true.png';
 import verified_false from '../../assets/verified/verified_false.png';
+import ModalWindow from '../modalWindow/ModalWindow';
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface Items {
@@ -28,6 +29,7 @@ interface Payments {
 export const Dashboard_user = () => {
   const { user, isAuthenticated } = useAuth0();
   const [purchase, setPurchase] = useState<Payments[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false)
   //purchase [{}, {}]
 
   //const email = 'Humberto@gmail.com';
@@ -46,7 +48,7 @@ export const Dashboard_user = () => {
     }
   }, [isAuthenticated]);
   {
-    console.log(verified);
+    console.log(user);
   }
 
   const handleProducts = (items: Items[]) => {
@@ -96,7 +98,7 @@ export const Dashboard_user = () => {
         </div>
       </div>
 
-      <div className='dash_infouser_container'>
+      <div onClick={()=> setOpenModal(!openModal)} className='dash_infouser_container'>
         <div className='dash_infouser_title'>
           <img
             className='dash_infouser_imageMenu'
@@ -163,6 +165,9 @@ export const Dashboard_user = () => {
           </div>
         )}
       </div>
+      {
+        openModal&&<ModalWindow close={setOpenModal} />
+      }
     </div>
   );
 };

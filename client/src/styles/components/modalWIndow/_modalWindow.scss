@@ -1,0 +1,106 @@
+
+.Modal_Overlay {
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    .Modal_Container {
+
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        min-height: 100px;
+        background: #fff;
+        position: relative;
+        top: -50px;
+        border-radius: 5px;
+        box-shadow: rgba(100,100,111,.2) 0px 7px 29px 0px;
+        padding: 20px;
+        font-family: $standard-font-Poiret-One;
+        z-index: 6;
+
+        .Modal_TitleContainer {
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        .Modal_SubmitContainer {
+            display: flex;
+            justify-content: center;
+
+            .Modal_buttonSave {
+                background-color: $standard-color-blue;
+                padding: 5px;
+                width: 70px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                color: #fff;
+                margin-right: 5px;
+                font-family: $standard-font-Barlow;
+            }
+            .Modal_buttonCancel {
+                background-color: #0a9396;
+                padding: 5px;
+                width: 70px;
+                height: 30px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                color: #fff;  
+                font-family: $standard-font-Barlow;
+            }
+        }
+        
+        .Modal_ProfilePic {
+            display: flex;
+            justify-content: center;
+
+            img {
+                border-radius: 100%;
+            }
+        }
+
+        .Modal_infoSide {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-family: $standard-font-Barlow;
+            //flex-direction: column;
+
+            .Modal_info1 {
+                width: 45%;
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    margin-bottom: 10px;
+                    height: 30px;
+                }
+            }
+
+            .Modal_info2 {
+                width: 45%;
+                display: flex;
+                flex-direction: column;
+                input {
+                    margin-bottom: 10px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+}

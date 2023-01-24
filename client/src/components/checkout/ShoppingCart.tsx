@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   ProductCart,
   changeQuantity,
@@ -11,10 +12,13 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import ModalCart from './ModalCart';
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+  const { user, isAuthenticated } = useAuth0();
+  console.log(user)
 
   const dispatch = useAppDispatch();
 
@@ -104,6 +108,9 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
+      {
+        (!user?.email_verified || !isAuthenticated)&&<ModalCart />
+      }
     </div>
   );
 };

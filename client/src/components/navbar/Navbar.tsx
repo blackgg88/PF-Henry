@@ -5,11 +5,13 @@ import logoWhite from "../../assets/logo_smart_w.png";
 import logoTop from "../../assets/logo_smart_b.png";
 import menuResp from "../../assets/responsive-menu-icon.png";
 import cart from "../../assets/car_w.png";
+import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
   const [profileWindow, setProfileWindow] = useState<boolean>(false);
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
+  const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   
   const role = 'admin' //! CAMBIAR EN EL FUTURO CUANDO MANEJEMOS ROLES
   
@@ -22,7 +24,7 @@ const NavBar = () => {
     }
   }, [responsiveMenu]);
 
-  console.log(user)
+  console.log(productsInCart)
 
   const logoutUser = () => {
     logout();
@@ -45,9 +47,17 @@ const NavBar = () => {
             alt="menu"
           />
           <img className="Nav_responsive_LogoSmartnet" src={logoWhite} alt="" />
-          <NavLink className="link-style" to="/shopping_cart">
-            <img className="logo" src={cart} alt="cart" width={20} />
-          </NavLink>
+          <div className="Nav_ShoppinCartContainer">
+            <NavLink className="link-style" to="/shopping_cart">
+              <img className="logo" src={cart} alt="cart" width={20} />
+            {
+              (productsInCart.length>0)
+              &&<div className="nav_cart_pop">
+                <h1>{productsInCart.length}</h1>
+            </div>
+            }
+            </NavLink>
+          </div>
           <NavLink className="link-style" to="/">
             <p className="nav_middle_button">Home</p>
           </NavLink>

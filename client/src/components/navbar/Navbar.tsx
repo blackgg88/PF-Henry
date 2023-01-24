@@ -10,6 +10,9 @@ const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
   const [profileWindow, setProfileWindow] = useState<boolean>(false);
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
+  
+  const role = 'admin' //! CAMBIAR EN EL FUTURO CUANDO MANEJEMOS ROLES
+  
 
   useEffect(() => {
     if (responsiveMenu) {
@@ -18,6 +21,8 @@ const NavBar = () => {
       document.body.style.overflow = "auto";
     }
   }, [responsiveMenu]);
+
+  console.log(user)
 
   const logoutUser = () => {
     logout();
@@ -50,8 +55,15 @@ const NavBar = () => {
             <p className="nav_middle_button">Shop</p>
           </NavLink>
           <NavLink className="link-style" to="/news">
-            <p>News</p>
+            <p className={(role=='admin')?"nav_middle_button":''}>News</p>
           </NavLink>
+          {
+            (role=='admin')&&   
+              <NavLink className="link-style" to="/admin">
+                <p>Admin</p>
+              </NavLink>
+          }
+       
 
           {isAuthenticated && (
             <div className="profile-div">
@@ -101,17 +113,19 @@ const NavBar = () => {
         <NavLink
           onClick={() => setResponsiveMenu(!responsiveMenu)}
           className="link-style"
-          to="/test"
-        >
-          <p className="nav_middle_button">Test</p>
-        </NavLink>
-        <NavLink
-          onClick={() => setResponsiveMenu(!responsiveMenu)}
-          className="link-style"
           to="/news"
         >
           <p>News</p>
         </NavLink>
+        {
+          (role=='admin')&&<NavLink
+            onClick={() => setResponsiveMenu(!responsiveMenu)}
+            className="link-style"
+            to="/admin"
+          >
+            <p className="nav_middle_button">Admin</p>
+          </NavLink>
+        }
         <NavLink
           onClick={() => setResponsiveMenu(!responsiveMenu)}
           className="link-style"
@@ -119,6 +133,8 @@ const NavBar = () => {
         >
           <p>Cart</p>
         </NavLink>
+
+        
       </div>
     </div>
   );

@@ -13,12 +13,11 @@ const UserList = (props: Props) => {
         <TextField source='_id' />
         <TextField source='userName' />
         <EmailField source='email' />
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            @ts-ignore */}
-        <EditButton basePath='/users' />
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            @ts-ignore */}
-        <DeleteButton basePath='/users' />
+        
+        {/* para que no tire errores le ponemos resource en vez de basePath */}
+        <EditButton resource='/users' />
+        
+        <DeleteButton resource='/users' />
     </Datagrid>
 
   </List>

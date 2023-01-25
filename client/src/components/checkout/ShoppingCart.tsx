@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { userInterface } from '../../Redux/slice/user/user.slice';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
   ProductCart,
@@ -16,9 +17,14 @@ import ModalCart from './ModalCart';
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
+
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+
+  const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+  console.log(userByBd);
+
   const { user, isAuthenticated } = useAuth0();
-  console.log(user)
+  console.log(user);
 
   const dispatch = useAppDispatch();
 
@@ -45,14 +51,12 @@ const ShoppingCart = () => {
 
   return (
     <div className='ShoppingCart_contain'>
-      {
-        /* 
+      {/* 
           <div className='ShoppingCart_title'>
             <h1>Shopping Cart</h1>
           </div>
-        */
-      }
-      
+        */}
+
       <div className='ShoppingCart_info'>
         <div className='ShoppingCart_items-container'>
           <div className='ShoppingCart_items-titles'>
@@ -109,7 +113,7 @@ const ShoppingCart = () => {
             <div className='ShoppingCart_totalContainerTitle'>
               <h1>Summary</h1>
             </div>
-            <hr/>
+            <hr />
             <div className='ShoppingCart_totalContainer'>
               <p>Subtotal</p>
               <p>${total}</p>
@@ -130,12 +134,11 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      {
-        (!user?.email_verified || !isAuthenticated)&&<ModalCart />
-      }
+      {((!user?.email_verified && !userByBd?.email_verified) || !isAuthenticated) && (
+        <ModalCart />
+      )}
     </div>
   );
 };
-
 
 export default ShoppingCart;

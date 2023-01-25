@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { controllerUser } from './controller';
 import Navbar from '../navbar/Navbar';
 import logo from '../../assets/logo_smart_b.png';
-import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { useAppSelector } from '../../Redux/hook';
 import { userInterface } from '../../Redux/slice/user/user.slice';
 import verified_true from '../../assets/verified/verified_true.png';
 import verified_false from '../../assets/verified/verified_false.png';

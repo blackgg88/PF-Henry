@@ -47,7 +47,7 @@ export const News = () => {
   }, [page]);
 
   const buttonHandler = () => {
-    if (page < news.length / 4) {
+    if (page < 12) {
       setPage(page + 1);
     }
   };

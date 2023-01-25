@@ -5,18 +5,21 @@ import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from '../../../config';
 import { useAppDispatch } from '../../Redux/hook';
 import { kevinPapitoMiAmor } from '../../Redux/slice/user/user.slice';
 import { putUserFetch } from '../../Redux/slice/user/userController';
+import { userInterface } from '../../Redux/slice/user/user.slice';
 
 interface Form {
   username: string;
   picture: string;
 }
 
-const ModalUser = ({ close, userByBd }: any) => {
+const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterface }) => {
   const { user } = useAuth0();
+
   const info: { username: string; picture: string } = {
     username: userByBd?.username,
     picture: userByBd?.picture,
   };
+
   const [form, setForm] = useState<Form>(info);
 
   const dispatch = useAppDispatch();

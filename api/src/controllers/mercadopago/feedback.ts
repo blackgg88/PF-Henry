@@ -8,7 +8,10 @@ mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
 export const feedback = async (req: Request, res: Response) => {
   console.log('funciona uwu');
+  console.log(req);
+
   console.log(req.query);
+
   console.log(req.body);
 
   res.status(200).json({ message: 'hola' });

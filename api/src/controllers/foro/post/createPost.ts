@@ -7,7 +7,6 @@ const PostModel = getModelForClass(Post);
 export const createPost = async (req: Request, res: Response) => {
     try {
       const post = new PostModel(req.body)
-    
       await post.save()
       res.json(post)
     } catch (error) {

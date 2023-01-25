@@ -16,6 +16,6 @@ comment.post('/', createComment)
 
 comment.put('/:id', putComment)
 
-comment.delete('/:id', deleteComment)
+comment.delete('/', deleteComment)
 
 export default comment;

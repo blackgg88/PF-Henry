@@ -16,13 +16,13 @@ image: string
 @prop({required: false})
 video: string
 
-@prop({ ref: "User", required: false })
+@prop({ ref: "User", required: true })
 author: Ref<User>
 
 // @prop({ type: [Comment], ref: "Comment" })
 // comments: Array<Ref<Comment>>
 @prop({ ref: () => Comment })
-comments: Ref<Comment>
+comments: Ref<Comment>[]
 }
 
 const PostModel = getModelForClass(Post)

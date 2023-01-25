@@ -1,14 +1,24 @@
 import { Request, Response } from 'express';
 import { getModelForClass } from '@typegoose/typegoose';
 import { Comment } from '../../../models/Comments';
+import { Post } from '../../../models/Post';
 
 const CommentModel = getModelForClass(Comment);
+const PostModel = getModelForClass(Post);
 
 export const createComment = async (req: Request, res: Response) => {
     try {
-      const comment = new CommentModel(req.body)
-    
+      const {post, author, content} = req.body
+
+      //CREAMOS EL COMENTARIO
+      const comment = new CommentModel({post, author, content})
       await comment.save()
+    
+      // LE AÑADIMOS EL COMENTARIO AL POST
+      const Post = await PostModel.findById(post).select('-__v');
+      Post?.comments.push(comment._id);
+      await Post?.save();
+
       res.json(comment)
     } catch (error) {
       res

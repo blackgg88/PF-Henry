@@ -3,6 +3,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { controllerUser } from './controller';
 import Navbar from '../navbar/Navbar';
 import logo from '../../assets/logo_smart_b.png';
+import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { userInterface } from '../../Redux/slice/user/user.slice';
 import verified_true from '../../assets/verified/verified_true.png';
 import verified_false from '../../assets/verified/verified_false.png';
 import ModalUser from '../modalUser/ModalUser';
@@ -29,36 +31,25 @@ interface Payments {
 export const Dashboard_user = () => {
   const { user, isAuthenticated } = useAuth0();
   const [purchase, setPurchase] = useState<Payments[]>([]);
-  const [openModal, setOpenModal] = useState<boolean>(false)
-  //purchase [{}, {}]
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
-  //const email = 'Humberto@gmail.com';
+  const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
 
   const email = user?.email;
-  const verified = user?.email_verified;
+  const verified = userByBd?.email ? userByBd?.email_verified : user?.email_verified;
 
   useEffect(() => {
     const handleGetItems = async () => {
       const response = await controllerUser(email);
-      console.log(response); //array de dos elementos
       setPurchase(response);
     };
     if (isAuthenticated) {
       handleGetItems();
     }
   }, [isAuthenticated]);
-  {
-    console.log(user);
-  }
 
-  const handleProducts = (items: Items[]) => {
-    const itemsNames = items.map(
-      (item) => item.title.slice(0, 30) + ' X ' + item.quantity,
-    );
-
-    return itemsNames.join('\n');
-  };
-
+  console.log(userByBd);
+  console.log(user);
   const handleFormatedDate = (date_created: string) => {
     const dateString = date_created;
     const date = new Date(dateString);
@@ -98,17 +89,19 @@ export const Dashboard_user = () => {
         </div>
       </div>
 
-      <div onClick={()=> setOpenModal(!openModal)} className='dash_infouser_container'>
-        <div className='dash_infouser_title'>
-          <img
-            className='dash_infouser_imageMenu'
-            src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
-            alt='profileInfo'
-          />
-          <h2>My Information</h2>
+      {userByBd?.email_verified && (
+        <div onClick={() => setOpenModal(!openModal)} className='dash_infouser_container'>
+          <div className='dash_infouser_title'>
+            <img
+              className='dash_infouser_imageMenu'
+              src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
+              alt='profileInfo'
+            />
+            <h2>My Information</h2>
+          </div>
+          <p>Manage your personal data</p>
         </div>
-        <p>Manage your personal data</p>
-      </div>
+      )}
 
       <div className='dash_purchaseDiv'>
         <div className='dash_purchaseTitleContainer'>
@@ -136,10 +129,11 @@ export const Dashboard_user = () => {
                     <h3>Items:</h3>
                     <div className='dash_onePurchase_infoItems'>
                       <ol>
-                        {payment.items.map((item) => (
-                          <li>{`${item.title.slice(0, 45)}   \nQuantity: ${
-                            item.quantity
-                          }`}</li>
+                        {payment.items.map((item, index) => (
+                          <li key={item.title + index}>{`${item.title.slice(
+                            0,
+                            45,
+                          )}   \nQuantity: ${item.quantity}`}</li>
                         ))}
                       </ol>
                     </div>
@@ -165,9 +159,7 @@ export const Dashboard_user = () => {
           </div>
         )}
       </div>
-      {
-        openModal&&<ModalUser close={setOpenModal} />
-      }
+      {openModal && <ModalUser close={setOpenModal} userByBd={userByBd} />}
     </div>
   );
 };

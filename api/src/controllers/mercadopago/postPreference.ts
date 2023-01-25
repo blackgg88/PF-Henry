@@ -60,19 +60,19 @@ export const postPreference = async (req: Request, res: Response) => {
   const payer: Payer = req.body.payer;
   const products: Item[] = req.body.products;
 
-  try {
-    products.map(async (item) => {
-      const newStock = item.stock - item.quantity;
+  // try {
+  //   products.map(async (item) => {
+  //     const newStock = item.stock - item.quantity;
 
-      const productUpdated = await ProductModel.findByIdAndUpdate(
-        item._id,
-        { stock: newStock },
-        { new: true },
-      );
-    });
-  } catch (error) {
-    res.status(500).json('Error stock UwU');
-  }
+  //     const productUpdated = await ProductModel.findByIdAndUpdate(
+  //       item._id,
+  //       { stock: newStock },
+  //       { new: true },
+  //     );
+  //   });
+  // } catch (error) {
+  //   res.status(500).json('Error stock UwU');
+  // }
 
   let preference = {
     items: products.map((item) => {
@@ -123,5 +123,6 @@ export const postPreference = async (req: Request, res: Response) => {
     })
     .catch(function (error) {
       res.status(500).json(error);
+      console.log(error);
     });
 };

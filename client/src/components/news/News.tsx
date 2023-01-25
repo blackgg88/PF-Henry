@@ -5,9 +5,9 @@ const api_key: string = NEWS_API_KEY;
 
 interface NewsData {
   title: string;
-  urlToImage: string;
+  media: string;
   url: string;
-  publishedAt: string;
+  published_date: string;
 }
 
 export const News = () => {
@@ -15,19 +15,32 @@ export const News = () => {
   const [page, setPage] = useState<number>(1);
   const [slicedNew, setSlicedNew] = useState<NewsData[]>([]);
 
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-api-key': api_key
+    }
+  };
+  console.log(slicedNew);
+  
+  const params = new URLSearchParams({
+    q: 'smart home',
+  });
+  
+  const url = `https://api.newscatcherapi.com/v2/search?${params}`;
   useEffect(() => {
     const fetchNews = async () => {
-      const response = await fetch(
-        `https://newsapi.org/v2/everything?q=smarthome&sortBy=publishedAt&apiKey=${api_key}`
-      );
+      const response = await fetch(url,options);
       const data = await response.json();
+      console.log(data.articles);
       setNews(data.articles);
       const arr = data.articles.slice((page - 1) * 4, (page - 1) * 4 + 4);
       setSlicedNew(arr);
-    };
+    }
     fetchNews();
+    
   }, []);
-
+   
   useEffect(() => {
     const arr = news.slice((page - 1) * 4, (page - 1) * 4 + 4);
     setSlicedNew(arr);
@@ -56,10 +69,10 @@ export const News = () => {
               href={slicedNew[0].url}
               target="_blank"
             >
-              <img src={slicedNew[0].urlToImage} alt="firstNews" />
+              <img src={slicedNew[0].media} alt="firstNews" />
               <div className="news_firstLine_Content">
                 <h1>{slicedNew[0].title.substring(0, 27) + "..."}</h1>
-                <p>{slicedNew[0].publishedAt.substring(0, 10)}</p>
+                <p>{slicedNew[0].published_date.substring(0, 10)}</p>
               </div>
             </a>
 
@@ -68,10 +81,10 @@ export const News = () => {
               href={slicedNew[1].url}
               target="_blank"
             >
-              <img src={slicedNew[1].urlToImage} alt="secondNews" />
+              <img src={slicedNew[1].media} alt="secondNews" />
               <div className="news_firstLine_Content">
                 <h1>{slicedNew[1].title.substring(0, 27) + "..."}</h1>
-                <p>{slicedNew[1].publishedAt.substring(0, 10)}</p>
+                <p>{slicedNew[1].published_date.substring(0, 10)}</p>
               </div>
             </a>
           </div>
@@ -81,10 +94,10 @@ export const News = () => {
               href={slicedNew[2].url}
               target="_blank"
             >
-              <img src={slicedNew[2].urlToImage} alt="thirdNew" />
+              <img src={slicedNew[2].media} alt="thirdNew" />
               <div className="news_firstLine_Content">
                 <h1>{slicedNew[2].title.substring(0, 30) + "..."}</h1>
-                <p>{slicedNew[2].publishedAt.substring(0, 10)}</p>
+                <p>{slicedNew[2].published_date.substring(0, 10)}</p>
               </div>
             </a>
             <a
@@ -92,10 +105,10 @@ export const News = () => {
               href={slicedNew[3].url}
               target="_blank"
             >
-              <img src={slicedNew[3].urlToImage} alt="fourNew" />
+              <img src={slicedNew[3].media} alt="fourNew" />
               <div className="news_firstLine_Content">
                 <h1>{slicedNew[3].title.substring(0, 30) + "..."}</h1>
-                <p>{slicedNew[3].publishedAt.substring(0, 10)}</p>
+                <p>{slicedNew[3].published_date.substring(0, 10)}</p>
               </div>
             </a>
           </div>

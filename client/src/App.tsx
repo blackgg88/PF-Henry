@@ -15,11 +15,11 @@ import { useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   return (
     <div>
-      {location.pathname !== '/admin' && <NavBar />}
+      {!location.pathname.includes("/admin") && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

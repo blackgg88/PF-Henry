@@ -22,10 +22,10 @@ const ProductList = (props: Props) => {
             <TextField source='categories' />
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
             @ts-ignore */}
-            <EditButton basePath='/products' />
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            @ts-ignore */}
-            <DeleteButton basePath='/products' />
+            {/* para que no tire errores le ponemos resource en vez de basePath */}
+            <EditButton resource='/products' />
+            
+            <DeleteButton resource='/products' />
         </Datagrid>
 
     </List>

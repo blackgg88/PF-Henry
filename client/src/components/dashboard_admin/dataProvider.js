@@ -1,5 +1,6 @@
 import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
+import orderData from './orderData'
 
 const apiUrl = 'http://localhost:3001';
 const httpClient = fetchUtils.fetchJson;
@@ -18,24 +19,29 @@ const handleFormatedDate = (date_created) => {
 const dataProvider = {
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
+    const { field, order } = params.sort;
     let url;
-
+    console.log(field, order);
+    console.log(resource);
     if (resource === 'purchases') {
       url = `${apiUrl}/checkout`;
     } else {
       url = `${apiUrl}/${resource}`;
     }
-
+    
     const response = await fetch(url);
 
     let data = await response.json();
-
+    
+    data = orderData(data, resource, order, field);
+    
     const total = data.length;
+
 
     data = data.slice((page - 1) * perPage, page * perPage);
 
     if (resource === 'purchases') {
-      console.log(data);
+      // console.log(data);
       data = data.map((purchase) => {
         return {
           id: purchase.id,

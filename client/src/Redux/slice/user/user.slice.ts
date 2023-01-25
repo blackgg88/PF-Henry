@@ -7,9 +7,10 @@ export interface userInterface {
   role: string;
   firstName: string;
   lastName: string;
-  password: string;
   email_verified: boolean;
   picture: string;
+  username: string;
+  connection: string;
 }
 
 export interface userChange {
@@ -21,14 +22,15 @@ const initialState: {
   userState: userInterface;
 } = {
   userState: {
+    connection: '',
     email: '',
     _id: '',
     role: '',
     firstName: '',
     lastName: '',
-    password: '',
     email_verified: false,
     picture: '',
+    username: '',
   },
 };
 

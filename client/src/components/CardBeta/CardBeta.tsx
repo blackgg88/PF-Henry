@@ -20,7 +20,6 @@ const CardBeta: React.FC<{}> = () => {
     (state) => state.productReducer.Products,
   );
 
-  const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   //console.log(Allproduct)
   const dispatch = useAppDispatch();
   const stars = [1, 2, 3, 4, 5];

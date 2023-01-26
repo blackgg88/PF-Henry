@@ -10,7 +10,6 @@ const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
   const [profileWindow, setProfileWindow] = useState<boolean>(false);
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
-
   useEffect(() => {
     if (responsiveMenu) {
       document.body.style.overflow = "hidden";
@@ -26,8 +25,7 @@ const NavBar = () => {
 
   return (
     <div className="Nav_topLanding">
-      <NavLink to={'/'} className="Nav_container_logo">
-        
+      <NavLink to={"/"} className="Nav_container_logo">
         <img className="nav_toplogo" src={logoTop} alt="logo" />
       </NavLink>
 
@@ -40,9 +38,11 @@ const NavBar = () => {
             alt="menu"
           />
           <img className="Nav_responsive_LogoSmartnet" src={logoWhite} alt="" />
+
           <NavLink className="link-style" to="/shopping_cart">
             <img className="logo" src={cart} alt="cart" width={20} />
           </NavLink>
+
           <NavLink className="link-style" to="/">
             <p className="nav_middle_button">Home</p>
           </NavLink>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ChangeEvent } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import iconStarB from "../../assets/images/icons/iconStartB.png";
 import iconStarW from "../../assets/images/icons/iconStartW.png";
 import iconStarM from "../../assets/images/icons/iconStartM.png";
@@ -10,8 +10,7 @@ import { ProductState } from "../../Redux/slice/product/product.slice";
 import { getProduct } from "../../Redux/slice/product/product.slice";
 import { productFetch } from "../../Redux/slice/product/ProductController";
 import PaginationComp from "../Pagination";
-//import QuickLookModal from './QuickLookModal';
-import Breadcrumb from "../BreadCrumb";
+import QuickLookModal from "./QuickLookModal";
 
 import { addProduct } from "../../Redux/slice/shoppingCart/shoppingCart.slice";
 import { ProductCart } from "../../Redux/slice/shoppingCart/shoppingCart.slice";
@@ -78,53 +77,20 @@ const CardBeta: React.FC<{}> = () => {
 
   return (
     <div className="container-render-card-v-beta">
-      {/* <Breadcrumb /> */}
       <div className="container-card-beta">
         {currentItems?.map((product) => {
           return (
-            // <div key={product._id} className='product-card2'>
-            //   <div className='content-product-name2'>
-            //     <h3 className='product-name2'>{product.name.substring(0, 51)}</h3>
-            //   </div>
-            //   <div className='separator-top2'>.</div>
-            //   <div className='content-images2'>
-            //       <Link to={`/product/${product._id}`}>
-            //     <div
-            //       className='image-card2'
-            //       style={{
-            //         backgroundImage: `url(${product.images[0]})`,
-            //         backgroundSize: '85%',
-            //         backgroundPosition: 'center',
-            //         backgroundRepeat: 'no-repeat',
-            //       }}
-            //       ></div>
-            //       </Link>
-            //   </div>
-            //   {/* <img className="image-card" src={product.images[0]} alt="image" /> */}
-            //   {/* <p>{product.description.substring(0,200)}...</p>  */}
-
-            //   <div className='details2'>
-            //     <div className='populariry2'>
-            //       <img src={iconStar} alt='icon' />
-            //       <h4 className='rating2'>{product.rating}</h4>
-            //     </div>
-            //     <div>
-            //       {/* <QuickLookModal id={product._id}/> */}
-            //     </div>
-            //     <div className='separator2'>.</div>
-            //     <div className='value2'>
-            //       <h4 className='price2'>$ {priceFormat(product.price)}</h4>
-            //     </div>
-            //   </div>
-            // </div>
-<<<<<<< HEAD
-
             <div key={product._id} className="product-card-beta">
-              <div className="header-card-beta">n e w</div>
-              <NavLink
-                to={`/product/${product._id}`}
-                style={{ textDecoration: "none", color: "black" }}
-              >
+              <div className="header-card-beta">
+                <QuickLookModal
+                  product={product}
+                  handleAddCart={handleAddCart}
+                  priceFormat={priceFormat}
+                  // handleCloseModal={handleCloseModal}
+                  // showModal={showModal}
+                />
+              </div>
+              <Link to={`/product/${product._id}`}>
                 <div className="content-image-card-beta">
                   <img
                     className="image-card"
@@ -132,22 +98,10 @@ const CardBeta: React.FC<{}> = () => {
                     alt="image"
                   />
                 </div>
-              </NavLink>
+              </Link>
               <div className="content-title-description-card-beta">
                 <div className="content-title-card-beta">
                   <h3 className="product-name-card-beta">
-=======
-            <div key={product._id} className='product-card-beta'>
-              <div className='header-card-beta'>n e w</div>
-              <div className='content-image-card-beta'>
-                <Link to={`/product/${product._id}`}>
-                  <img className='image-card' src={product.images[0]} alt='image' />
-                </Link>
-              </div>
-              <div className='content-title-description-card-beta'>
-                <div className='content-title-card-beta'>
-                  <h3 className='product-name-card-beta'>
->>>>>>> 1c8e9485730ff1efa55b12db05e06827bff510aa
                     {product.name.substring(0, 25)}...
                   </h3>
                 </div>

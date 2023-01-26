@@ -3,7 +3,7 @@ import React from "react";
 
 import FiltersPanel from "../Filters/FiltersPanel";
 import { Link } from "react-router-dom";
-import Breadcrumb from "../components/BreadCrumb";
+// import Breadcrumb from '../components/BreadCrumb'
 import Card2 from "../components/CardBeta/CardBeta";
 const Shop: React.FC<{}> = () => {
   return (
@@ -15,9 +15,7 @@ const Shop: React.FC<{}> = () => {
       {/* <div>content-navbar</div> */}
       {/* </div> */}
       <div className="breadcrumb">
-        <div className="base">
-          <Breadcrumb />
-        </div>
+        <div className="base">{/* <Breadcrumb /> */}</div>
       </div>
       <div className="shop-contain">
         <FiltersPanel />

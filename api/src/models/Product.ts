@@ -1,4 +1,4 @@
-import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+  import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
 import { Category } from './Category';
 
 export class Product {

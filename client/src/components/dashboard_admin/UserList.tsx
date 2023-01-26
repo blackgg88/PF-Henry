@@ -1,26 +1,34 @@
-import React from 'react'
-import { List, Datagrid, TextField, EmailField, EditButton, DeleteButton } from 'react-admin';
+import React from 'react';
+import {
+  List,
+  Datagrid,
+  TextField,
+  EmailField,
+  EditButton,
+  DeleteButton,
+} from 'react-admin';
 
 interface Props {
-    id: string;
-    userName: string;
-    email: string;
+  id: string;
+  userName: string;
+  email: string;
 }
 
 const UserList = (props: Props) => {
-  return <List {...props}>
-    <Datagrid>
+  return (
+    <List {...props}>
+      <Datagrid>
         <TextField source='_id' />
         <TextField source='userName' />
         <EmailField source='email' />
-        
+
         {/* para que no tire errores le ponemos resource en vez de basePath */}
         <EditButton resource='/users' />
-        
-        <DeleteButton resource='/users' />
-    </Datagrid>
 
-  </List>
-}
+        <DeleteButton resource='/users' />
+      </Datagrid>
+    </List>
+  );
+};
 
 export default UserList;

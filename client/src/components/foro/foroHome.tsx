@@ -17,7 +17,7 @@ export default function ForoHome() {
 
   return (
     <div className="foro_home_container">
-      {/*<Foro_createPost />*/}
+      <Foro_createPost />
       <div className="foro_posts_container">
         {allPost?.map((post: any) => (
           <Foro_card 

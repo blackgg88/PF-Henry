@@ -16,7 +16,7 @@ image: string
 @prop({required: false})
 video: string
 
-@prop({ ref: "User", required: true })
+@prop({ ref: "User", required: false })
 author: Ref<User>
 
 @prop({ ref: () => Comment })

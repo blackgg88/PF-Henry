@@ -7,7 +7,19 @@ const PostModel = getModelForClass(Post);
 
 export const getAllPost = async (req: Request, res: Response) => {
     try {
-        const Allposts = await PostModel.find().populate("author", "userName").select('-__v');
+    
+        const Allposts = await PostModel.find()
+            .populate("author", "userName")
+            .populate("likes","userName")
+            .populate({
+                path: "comments",
+                select: "content author likes",
+                populate: {
+                    path: "author",
+                    select: "userName"
+                }
+            })
+            .select('-__v');
 
         res.json(Allposts);
     } catch (error) {

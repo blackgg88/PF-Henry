@@ -28,7 +28,7 @@ export const deleteComment = async (req: Request, res: Response) => {
       //Guardamos los cambios
       await Post?.save();
       
-      res.json({ message: `post deleted: ${commentDeleted?.content}` })
+      res.json({ message: `Comentario eliminado: ${commentDeleted?.content}` })
     } catch (error) {
       res
         .status(400)

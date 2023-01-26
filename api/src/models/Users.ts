@@ -30,10 +30,8 @@ export class User {
   @prop({ type: Number })
   pc: number
 
-    // @prop({ type: [Post], ref: "Post" })
-    // posts: Array<Ref<Post>>
   @prop({ ref: () => Post })
-  posts: Ref<Post>
+  posts: Ref<Post>[]
 
 
   //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles

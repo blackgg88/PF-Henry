@@ -12,6 +12,10 @@ export class Comment {
 
   @prop({ ref: "User", required: true })
   author: Ref<User>
+
+  @prop({ ref: "User", required: false})
+  likes: Ref<User>[]
+
 }
 
 const CommentModel = getModelForClass(Comment)

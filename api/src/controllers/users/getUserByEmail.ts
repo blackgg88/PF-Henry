@@ -4,11 +4,13 @@ import { User } from '../../models/Users';
 const UserModel = getModelForClass(User);
 
 //find by ID // devuelve el usuario buscado por ID
-export const getUserById = async (req: Request, res: Response) => {
+export const getUserByEmail = async (req: Request, res: Response) => {
   try {
-    const user = await UserModel.findById(req.params.id).select('-__v');
+    const user = await UserModel.findOne({ email: req.params.email }).select('-__v');
     res.json(user);
   } catch (error) {
-    res.status(400).json({ message: `Error finding the user ${req.params.id}`, error });
+    res
+      .status(400)
+      .json({ message: `Error finding the user ${req.params.email}`, error });
   }
 };

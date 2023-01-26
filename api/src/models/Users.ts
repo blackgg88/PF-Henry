@@ -1,9 +1,9 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Role, RoleEnum } from "./Role";
+import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { Role, RoleEnum } from './Role';
 
 export class User {
   @prop({ type: String })
-  userName: string;
+  username: string;
 
   @prop({ type: String }) //mongoose
   firstName: string; //typescript
@@ -17,17 +17,8 @@ export class User {
   @prop({ type: String, required: true, minlength: 8 })
   password: string;
 
-  @prop({ type: String })
-  address: string;
-
-  @prop({ type: Number, default: 0 })
-  phoneNumber: number;
-
   @prop({ type: String, trim: true })
-  avatar: string;
-
-  @prop({ type: Number })
-  pc: number;
+  picture: string;
 
   //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles
 

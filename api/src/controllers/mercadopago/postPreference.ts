@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import mercadopago from 'mercadopago';
 import { CLIENT_URL, ACCESS_TOKEN } from '../../../config';
+import { getModelForClass } from '@typegoose/typegoose';
+import { Product } from '../../models/Product';
+const ProductModel = getModelForClass(Product);
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
@@ -29,9 +32,11 @@ interface Item {
   _id: string;
   categories: Category;
   name: string;
+  stock: number;
   quantity: number;
   price: number;
   images: string[];
+  brand: string;
 }
 
 interface ItemMP {
@@ -54,6 +59,21 @@ interface Payer {
 export const postPreference = async (req: Request, res: Response) => {
   const payer: Payer = req.body.payer;
   const products: Item[] = req.body.products;
+
+  // try {
+  //   products.map(async (item) => {
+  //     const newStock = item.stock - item.quantity;
+
+  //     const productUpdated = await ProductModel.findByIdAndUpdate(
+  //       item._id,
+  //       { stock: newStock },
+  //       { new: true },
+  //     );
+  //   });
+  // } catch (error) {
+  //   res.status(500).json('Error stock UwU');
+  // }
+
   let preference = {
     items: products.map((item) => {
       return {
@@ -103,5 +123,6 @@ export const postPreference = async (req: Request, res: Response) => {
     })
     .catch(function (error) {
       res.status(500).json(error);
+      console.log(error);
     });
 };

@@ -20,9 +20,9 @@ const PurchaseList = () => {
         <TextField source='Status' />
         <TextField source='Status_Detail' />
         <TextField source='Total_Paid' />
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            @ts-ignore */}
-        <DeleteButton basePath='/purchases' />
+        
+        {/* para que no tire errores le ponemos resource en vez de basePath */}
+        <DeleteButton resource='/purchases' />
       </Datagrid>
     </List>
   );

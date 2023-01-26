@@ -21,6 +21,7 @@ const initialState: {
 } = {
   Products: [],
 };
+
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState,
@@ -44,6 +45,7 @@ export const shoppingCartSlice = createSlice({
         return product;
       });
     },
+
     deleteProduct: (state, action: PayloadAction<string>) => {
       state.Products = state.Products.filter(
         (product: ProductCart) => product._id !== action.payload,

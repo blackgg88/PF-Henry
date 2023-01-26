@@ -5,6 +5,7 @@
     align-items: center;
     width: 100%;
     background-color: whitesmoke;
+    min-height: 100vh;
     
 
     .news_container_firstLine {
@@ -15,7 +16,7 @@
         height: 400px;
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 10px;
         box-shadow: 1px 1px 1px 1px rgba(161, 159, 159, 0.3);
         margin-bottom: 10px;
         @media(max-width:710px){

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { userInterface } from '../../Redux/slice/user/user.slice';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   ProductCart,
   changeQuantity,
@@ -11,10 +13,18 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import ModalCart from './ModalCart';
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
+
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+
+  const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+  console.log(userByBd);
+
+  const { user, isAuthenticated } = useAuth0();
+  console.log(user);
 
   const dispatch = useAppDispatch();
 
@@ -41,9 +51,12 @@ const ShoppingCart = () => {
 
   return (
     <div className='ShoppingCart_contain'>
-      <div className='ShoppingCart_title'>
-        <h1>Shopping Cart</h1>
-      </div>
+      {/* 
+          <div className='ShoppingCart_title'>
+            <h1>Shopping Cart</h1>
+          </div>
+        */}
+
       <div className='ShoppingCart_info'>
         <div className='ShoppingCart_items-container'>
           <div className='ShoppingCart_items-titles'>
@@ -96,14 +109,34 @@ const ShoppingCart = () => {
         </div>
 
         <div className='ShoppingCart_purchases'>
-          <div className='ShoppingCart_total_amount'>Total: ${total}</div>
+          <div className='ShoppingCart_total_amount'>
+            <div className='ShoppingCart_totalContainerTitle'>
+              <h1>Summary</h1>
+            </div>
+            <hr />
+            <div className='ShoppingCart_totalContainer'>
+              <p>Subtotal</p>
+              <p>${total}</p>
+            </div>
+            <div className='ShoppingCart_totalContainer'>
+              <p>Discount</p>
+              <p>$0</p>
+            </div>
+            <div className='ShoppingCart_totalContainer'>
+              <p>Total</p>
+              <p>${total}</p>
+            </div>
+          </div>
           <div className='ShoppingCart_confirm-button'>
             <Link to={`/checkout`}>
-              <button>Confirm purchase</button>
+              <button>Checkout</button>
             </Link>
           </div>
         </div>
       </div>
+      {((!user?.email_verified && !userByBd?.email_verified) || !isAuthenticated) && (
+        <ModalCart />
+      )}
     </div>
   );
 };

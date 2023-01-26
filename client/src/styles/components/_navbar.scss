@@ -74,6 +74,30 @@
     border-radius: 0;
   }
 
+  .Nav_ShoppinCartContainer {
+    position: relative;
+    .nav_cart_pop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 20px;
+      right: -5px;
+      background-color: red;
+      border-radius: 100%;
+      width: 20px;
+      height: 20px;
+      h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 12.5px;
+        color: white;
+        font-family: "Barlow", sans-serif;
+
+      }
+    }
+  }
+
   .Nav_responsive_LogoMenu {
     display: none;
     cursor: pointer;
@@ -143,7 +167,7 @@
     right: 10px;
     top: 80px;
     width: 140px;
-    height: 70px;
+    height: auto;
     z-index: 2;
     background-color: $standard-color-blue;
     border-radius: 10px;
@@ -254,6 +278,7 @@
   z-index: 3;
   bottom: 0%;
   display: none;
+  padding-top: 25px;
   
 
   @media (max-width: 610px) {

@@ -8,6 +8,8 @@
   display: flex;
   gap: 10px;
   border: 2px solid $standard-color-blue-light;
+  position: relative;
+  z-index: 11;
   .name-filter {
     font-family: $standard-font-Barlow;
     color: $standard-color-white-background;
@@ -22,6 +24,8 @@
     font-weight: 900;
     background-color: $standard-color-blue-light;
     color: $standard-color-blue;
+    position: relative;
+    z-index: 10;
     transition: color 0.5s background-color 0.5s;
     &:hover {
       color: $standard-color-white;

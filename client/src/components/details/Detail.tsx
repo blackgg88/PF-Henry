@@ -18,6 +18,7 @@ const Detail: React.FC<{}> = () => {
     (state) => state.productReducer.Products,
   );
 
+  console.log("ssssssssssssssssssss",productDetail);
   const [principalImage, setPrincipalImage] = useState<string>('');
   const [relatedProduct, setRelatedProduct] = useState<ProductState[]>([]);
 
@@ -99,10 +100,11 @@ const Detail: React.FC<{}> = () => {
         <div className='comments-box'>
           <div
             className='fb-comments'
-            data-href='https://developers.facebook.com/docs/plugins/comments#configurator'
+            data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
             data-width='50'
             data-numposts='5'
           ></div>
+          <span className="fb-comments-count" data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}></span>
           comments
         </div>
         <div className='other-box'>other-box</div>

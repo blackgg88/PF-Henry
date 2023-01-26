@@ -6,10 +6,8 @@ import FilterBy from "./FilterBy/FilterBy";
 import FilterByPrice from "./FilterByPriceRange/FilterByPrice";
 // import FilterByRating from "./FilterByRating/FilterByRating";
 import ItemFilterList from "./ItemFilterList/ItemFilterList";
-import logoforFilter from "../assets/images/logos/logoforFilter.png"
+
 import iconFilter from "../assets/images/icons/iconFilter.png"
-import desplegarFiltro from "../assets/images/buttons/desplegarFiltro.png"
-import replegarFiltro from "../assets/images/buttons/replegarFiltro.png"
 
 interface Filter {
   properties: string[];
@@ -55,12 +53,27 @@ const FiltersPanel: React.FC<{}> = () => {
   });
 
 
+  const spanFilter = () => {
+    
+    const filterPanel = document.getElementById("idFilterPanel");
+    const buttonSpan = document.getElementById("idButtonSpan");
+    const backgroundFilter = document.getElementById("background-filter");
+    const listFilter = document.getElementById("list-filter");
+    
+    if(filterPanel && backgroundFilter && buttonSpan && listFilter){
+      filterPanel.classList.toggle("filter-move");
+      buttonSpan.classList.toggle("btn-move");
+      backgroundFilter.classList.toggle("filter-block");
+      listFilter.classList.toggle("filter-list-move");
+    }
+};
+  
 
   //span();
 
   const switchSelect = (value: string) => {
     if (value !== "---") {
-      //onsole.log(filter.filterList);
+      console.log(filter.filterList);
       let focus = [value, ...filter.filterList];
       focus = [...new Set(focus)];
       //check if the selected filter is a price filter
@@ -141,6 +154,7 @@ const FiltersPanel: React.FC<{}> = () => {
           ...prevFilter,
           filterList: focus,
         }));
+        
       }
     }
   };
@@ -151,27 +165,14 @@ const FiltersPanel: React.FC<{}> = () => {
     setFilter((prevFilter) => ({ ...prevFilter, filterList: newList }));
   };
 
-
-  const spanFilter = () => {
-
-    const filterPanel = document.getElementById("idFilterPanel");
-    const buttonSpan = document.getElementById("idButtonSpan");
-    const backgroundFilter = document.getElementById("background-filter");
-    const listFilter = document.getElementById("list-filter");
-
-    if (filterPanel && backgroundFilter &&buttonSpan && listFilter) {
-      filterPanel.classList.toggle("filter-move");
-      buttonSpan.classList.toggle("btn-move");
-      backgroundFilter.classList.toggle("filter-block");
-      listFilter.classList.toggle("filter-list-move");
-    }
-  };
-  
-
   return (
     <div className="contain-FilterPanel" id="idFilterPanel">
-      
       <div className="filter-filt">
+        <div className="content-btn-span">
+          <button className="btn-span" id="idButtonSpan" style={{backgroundImage:`url(${iconFilter})`}} onClick={spanFilter}>
+          
+          </button>
+        </div>
         <h3 className="title">search:</h3>
         <FilterBy
           type={filter.properties[1]}

@@ -40,33 +40,35 @@ const PaginationComp: React.FC<PagProps> = ({
       >
         <button
           className="pagination-button-next"
-          style={{backgroundImage:`url(${btnPrev})`}}
+          style={{ backgroundImage: `url(${btnPrev})` }}
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          
-        </button>
 
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            style={{backgroundImage:`url(${btnSet})`}}
-            onClick={() => handlePageChange(number)}
-            className={`pagination-button ${
-              number === currentPage ? "active" : ""
-            }`}
-          >
-            {number}
-          </button>
-        ))}
+        </button>
+        <div className="container-buttons-pagination">
+
+
+          {pageNumbers.map((number) => (
+            <button
+              key={number}
+              // style={{backgroundImage:`url(${btnSet})`}}
+              onClick={() => handlePageChange(number)}
+              className={`pagination-button ${number === currentPage ? "active" : ""
+                }`}
+            >
+              {number}
+            </button>
+          ))}
+        </div>
 
         <button
           className="pagination-button-next"
-          style={{backgroundImage:`url(${btnNext})`}}
+          style={{ backgroundImage: `url(${btnNext})` }}
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === pageNumbers.length}
         >
-          
+
         </button>
       </nav>
     </div>

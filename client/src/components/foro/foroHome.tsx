@@ -16,18 +16,9 @@ export default function ForoHome() {
   ]: any = useForoHome()
 
   return (
-    <>
-      <h1>Foro</h1>
-      {/* <button onClick={(e) => handlerLike()}>Like Toggle</button> */}
-
-      <br />
-      <hr />
-
-      <Foro_createPost />
-
-      
-
-      <div className="Posts">
+    <div className="foro_home_container">
+      {/*<Foro_createPost />*/}
+      <div className="foro_posts_container">
         {allPost?.map((post: any) => (
           <Foro_card 
             key={post._id}
@@ -38,34 +29,16 @@ export default function ForoHome() {
             post={post}
             author={post.author.userName}
             userId={post.author._id}
+            comments={post.comments.length}
             likes={post.likes.length}
             onDeletePost={onDeletePost}
           />
-        
-          
-
-
-         
-          
-          // <div key={post._id}>
-          //   <h3>{post.title}</h3>
-          //   <p>{post.content}</p>
-          //   <img src={post.image} alt={post.title} />
-          //   <p>{post.author.userName}</p>
-          //   <p>{post.likes.length}</p>
-          //   <button
-          //     onClick={() => onDeletePost(post)}
-          //   >
-          //     {" "}
-          //     Borrar
-          //   </button>
-          //   <button>Editar</button>
-            
-          //   {/* <p>{post  .comments}</p> */}
-            
-          // </div>
+      
         ))}
       </div>
-    </>
+      <div className="foro_menuTags_container">
+        <h1>barras Izq</h1>
+      </div>
+    </div>
   );
 }

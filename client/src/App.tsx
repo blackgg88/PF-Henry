@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      {!location.pathname.includes('/admin') && <NavBar />}
+      {(!['/admin', '/foro'].includes(location.pathname)) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />
@@ -32,7 +32,9 @@ function App() {
         <Route path='/checkout' element={<Form />} />
         <Route path='/foro' element={<ForoHome />} />
       </Routes>
-      <Footer />
+      {
+        (!['/admin', '/foro'].includes(location.pathname))&&<Footer />
+      }    
     </>
   );
 }

@@ -113,6 +113,7 @@ export const postPreference = async (req: Request, res: Response) => {
 
     binary_mode: true,
     auto_return: State.SUCCESS,
+    notification_url: 'https://pf-henry-production-5b31.up.railway.app/checkout/feedback',
   };
 
   mercadopago.preferences

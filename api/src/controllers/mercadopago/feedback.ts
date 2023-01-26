@@ -28,7 +28,7 @@ export interface Products {
   category_id: string;
   description: string;
   id: string;
-  pictue_url: string;
+  picture_url: string;
   quantity: string;
   title: string;
   unit_price: string;
@@ -38,6 +38,8 @@ export const feedback = async (req: Request, res: Response) => {
   console.log(req.query); // data.id type
 
   console.log(req.body); //id, client_id
+
+  res.status(200).json();
 
   const response = await axios.get(
     `https://api.mercadopago.com/v1/payments/${req.query.data_id}`,
@@ -59,6 +61,4 @@ export const feedback = async (req: Request, res: Response) => {
   };
 
   sendMailPayment(payment);
-
-  res.status(200).json({ message: 'hola' });
 };

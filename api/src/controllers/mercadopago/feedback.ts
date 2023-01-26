@@ -42,7 +42,7 @@ export const feedback = async (req: Request, res: Response) => {
   res.status(200).json();
 
   const response = await axios.get(
-    `https://api.mercadopago.com/v1/payments/${req.query.data_id}`,
+    `https://api.mercadopago.com/v1/payments/${req.body.data.id}`,
     {
       headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
     },

@@ -13,7 +13,7 @@ interface cards {
 
 const Card = ({name, images, description, rating, price}:cards) => {
   return (
-    <div className='card'>
+    <div className='cardCarrousel'>
         <div className='HomeCard_HeaderContainer'>
             <p>new</p>
         </div>
@@ -41,7 +41,7 @@ const Card = ({name, images, description, rating, price}:cards) => {
              <h1>$ {price}</h1>
         </div>
         <div className='HomeCard_AddCartButtonContainer'>
-            <button className='add-car-card-beta'>add to Cart</button>
+            <button className='Home_add-car-card-beta'>add to Cart</button>
         </div>
     </div>)
 }

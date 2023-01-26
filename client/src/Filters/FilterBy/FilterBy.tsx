@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 // import {Slider} from @materialui
 //import "./FilterBy.css";
 import icon from '../../assets/images/icons/search_icon_w.png';
@@ -127,7 +127,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
               <button
                 className='btn-start'
                 value={star}
-                onClick={(e) => {
+                onClick={(e: any) => {
                   switchSelect(`⭐️ ${e.target.value}`);
                 }}
                 style={{

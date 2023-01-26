@@ -51,7 +51,8 @@ export const feedback = async (req: Request, res: Response) => {
 
   const payment = {
     id: data.id,
-    name: data.additional_info.payer.first_name + data.additional_info.payer.last_name,
+    name:
+      data.additional_info.payer.first_name + ' ' + data.additional_info.payer.last_name,
     email: data.external_reference,
     products: data.additional_info.items,
     address: data.additional_info.payer.address,

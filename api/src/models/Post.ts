@@ -4,17 +4,20 @@ import { Comment } from './Comments'
 
 
 export class Post {
-@prop({ required: true })
-title: string
+@prop({ type: String, required: true })
+title: string;
 
-@prop({ required: true })
-content: string
+@prop({ type: String, required: true })
+content: string;
 
-@prop({required: false})
-image: string
+@prop({ type: String, required: false})
+image: string;
 
-@prop({required: false})
-video: string
+@prop({ type: String, required: false})
+video: string;
+
+@prop({ type: Boolean, required: false, default: false})
+deleted: boolean;
 
 @prop({ ref: "User", required: false })
 author: Ref<User>

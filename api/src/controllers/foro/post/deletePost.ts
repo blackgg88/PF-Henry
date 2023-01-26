@@ -12,8 +12,12 @@ export const deletePost = async (req: Request, res: Response) => {
         const {userId, idPost} = req.body
 
         //BUSCAMOS Y ELIMINAMOS EL POST POR SU ID
-        const postDeleted = await PostModel.findByIdAndDelete(idPost)
-
+        const postDeleted = await PostModel.findById(idPost)
+        if(postDeleted){
+            postDeleted.deleted = true;
+            await postDeleted.save();
+        }
+        
         //BUSCAMOS EL USUARIO QUE TENIA EL POST
         const userWithPost = await UserModel.findById(userId)
 

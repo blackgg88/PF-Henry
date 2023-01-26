@@ -7,6 +7,9 @@ export class Comment {
   @prop({ required: true })
   content: string
 
+  @prop({ type: Boolean, required: false, default: false})
+  deleted: boolean;
+
   @prop({ ref: "Post", required: true })
   post: Ref<Post>
 

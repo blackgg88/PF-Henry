@@ -12,9 +12,12 @@ export const deleteComment = async (req: Request, res: Response) => {
     try {
       const {id, post} = req.body;
 
-      const commentDeleted = await CommentModel.findByIdAndDelete(id)
-      
-      const myPost = await PostModel.findById(post).select('-__v');
+      const commentDeleted = await CommentModel.findById(id);
+
+      if(commentDeleted) {
+        commentDeleted.deleted = true;
+        await commentDeleted.save();
+      }
 
       // Buscamos el post que contiene el comentario
       const Post = await PostModel.findById(post).select('-__v');

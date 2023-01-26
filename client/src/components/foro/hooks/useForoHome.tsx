@@ -21,7 +21,6 @@ export function useForoHome() {
     getPosts()
       .then((res) => res.json())
       .then((res) => setAllPost(res));
-    console.log(allPost);
   }, []);
 
 
@@ -60,10 +59,10 @@ export function useForoHome() {
  
   
 
-  const onDeletePost = (post: any) => {
+  const onDeletePost = (id: string, userId: string) => {
     deletePosts({
-      userId: post.author._id,
-      idPost: post._id,
+      userId: userId,
+      idPost: id,
     }).then((res) =>
       getPosts()
         .then((res) => res.json())
@@ -74,6 +73,6 @@ export function useForoHome() {
   return [
     form,
     allPost,
-    { handlerLike, handlerChangePost, submitPost, onDeletePost },
+    { handlerLike, handlerChangePost, submitPost, onDeletePost }
   ];
 }

@@ -1,42 +1,140 @@
+// .content-shop {
+//   height: 99vh;
+//   // width: 100vw;
+//   background-color: $standard-color-white;
+//   display: flex;
+//   gap: 10px;
+//   flex-direction: column;
+//   .content-navbar {
+//     height: 8%;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: $standard-color-blue-light;
+//     font-family: $standard-font-Barlow;
+//     font-size: 20px;
+//     font-weight: 100;
+//     text-decoration: none;
+//   }
+//   .shop-contain {
+//     height: 85%;
+//     // width: 100vw;
+//     background-color: $standard-color-white;
+//     display: flex;
+//     justify-content: space-around;
+//     flex-direction: row;
+//   }
+//   .breadcrumb {
+//     width: 100%;
+//     height: 2%;
+//     display: flex;
+//     justify-content: start;
+//     padding-left: 30px;
+//     //background-color: aqua;
+//   }
+//   .content-footer {
+//     height: 5%;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-family: $standard-font-Barlow;
+//     font-size: 20px;
+//     text-decoration: none;
+//     font-weight: 100;
+//     color: $standard-color-blue;
+//     background-color: $standard-color-blue-light;
+//   }
+// }
+
 .content-shop {
-  height: calc(100vh - $navbar-height - $footer-height);
+  height: 84vh;
+  width: 98vw;
   background-color: $standard-color-white;
   display: flex;
-  gap: 10px;
-  flex-direction: row;
-  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 0px;
+  flex-direction: column;
+  //background-color: aqua;
 
+  .filter-btn-out {
+    position: absolute;
+    top: 11%;
+    left: 19%;
+    width: 2%;
+    height: 75%;
+    z-index: 4;
+    opacity: 1;
+    border: 0px;
+    border-radius: 0px 5px 20px 0px;
+    background-color: $standard-color-blue-solid-grad;
+    transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    //background-color: red;
+    &:hover {
+      background-color: $standard-color-blue-secundary;
+      transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+
+    @media only screen and (max-width: $medium-screen) {
+      top: 15.5%;
+      left: 16.1%;
+      height: 60%;
+    }
+    @media only screen and (max-width: $small-screen) {
+      width: 8vw;
+      height: 8vw;
+      background-size: 40%;
+      padding: 3%;
+      left: 3%;
+      border-radius: 100%;
+      background-color: yellow;
+      background-color: $standard-color-blue;
+    }
+  }
 
   .content-navbar {
     height: 8%;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: $standard-color-blue-light;
+    align-items: flex-end;
+    //background-color: $standard-color-blue-green;
     font-family: $standard-font-Barlow;
     font-size: 20px;
     font-weight: 100;
     text-decoration: none;
   }
+
   .shop-contain {
-    padding: 10px;
-    height: 100%;
+    height: 85%;
     width: 100%;
-    background-color: $standard-color-white;
+    //background-color: $standard-color-white;
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
+    justify-content: flex-end;
+    flex-direction: row;
+
+    //background-color: $standard-color-gray;
+    @media only screen and (max-width: $small-screen) {
+      height: auto;
+      overflow-x: scroll;
+    }
   }
+
   .breadcrumb {
     width: 100%;
     height: 2%;
     display: flex;
     justify-content: start;
     padding-left: 30px;
-    //background-color: aqua;
-    display: none;
   }
+
   .content-footer {
     height: 5%;
     width: 100%;
@@ -50,4 +148,78 @@
     color: $standard-color-blue;
     background-color: $standard-color-blue-light;
   }
+
+  @media (max-width: 1500px) {
+    //background-color: $standard-color-red;
+  }
+
+  .filter-unblock {
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 100%;
+    display: block;
+    z-index: 10;
+    transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+    .logoforFilter {
+      height: 10%;
+      position: absolute;
+      right: 3%;
+      bottom: 10%;
+    }
+  }
+
+  .filter-block {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 10;
+    background-color: $standard-color-black-ligth;
+    backdrop-filter: blur(6px);
+    transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+}
+
+.filter-move {
+  left: 30%;
+  transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  z-index: 10;
+
+  //background-color: red;
+  .filter-list-move {
+    right: 110%;
+    transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    background-color: $standard-color-blue;
+    border-radius: 20px 20px 20px 20px;
+    //background-color: red;
+    @media only screen and (max-width: $small-screen) {
+      //background-color: aqua;
+      left: 99.5%;
+      height: 90%;
+      width: 100%;
+      border-radius: 0px 20px 20px 0px;
+      height: 100%;
+    }
+  }
+  @media only screen and (max-width: $small-screen) {
+    //background-color: aqua;
+    left: -4%;
+    font-size: 2vh;
+
+    height: 90%;
+    width: 60%;
+    border-radius: 20px 0px 0px 20px;
+  }
+}
+
+.btn-move {
+  background-color: $standard-color-blue-green;
+  left: 0%;
+  scale: 0;
+  transition: all 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }

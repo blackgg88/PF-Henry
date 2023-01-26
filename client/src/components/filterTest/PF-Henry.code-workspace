@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"conventionalCommits.scopes": [
+			"Models ",
+			"Routes",
+			"add roles",
+			"Models and Routes",
+			"Components",
+			"Styles",
+			"Models and Routes",
+			"filters",
+			"Reducer",
+			"mercadopago",
+			"comments and styles",
+			"news",
+			"comments",
+			"Home",
+			"admin dashboard",
+			"dashboard-User",
+			"merge dev branch and comments branch",
+			"ShopView",
+			"Nav",
+			"Cards and Styles"
+		]
+	}
+}

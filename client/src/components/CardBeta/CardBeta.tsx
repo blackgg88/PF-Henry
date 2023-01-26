@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 
 import { ProductState } from '../../Redux/slice/product/product.slice';
 import { getProduct } from '../../Redux/slice/product/product.slice';
-import { productFetch } from '../../Redux/slice/product/ProductController';
+import { productFetch, productIdFetch } from '../../Redux/slice/product/ProductController';
 import PaginationComp from '../Pagination';
 //import QuickLookModal from './QuickLookModal';
 
@@ -79,45 +79,14 @@ const CardBeta: React.FC<{}> = () => {
       <div className='container-card-beta'>
         {currentItems?.map((product) => {
           return (
-            // <div key={product._id} className='product-card2'>
-            //   <div className='content-product-name2'>
-            //     <h3 className='product-name2'>{product.name.substring(0, 51)}</h3>
-            //   </div>
-            //   <div className='separator-top2'>.</div>
-            //   <div className='content-images2'>
-            //       <Link to={`/product/${product._id}`}>
-            //     <div
-            //       className='image-card2'
-            //       style={{
-            //         backgroundImage: `url(${product.images[0]})`,
-            //         backgroundSize: '85%',
-            //         backgroundPosition: 'center',
-            //         backgroundRepeat: 'no-repeat',
-            //       }}
-            //       ></div>
-            //       </Link>
-            //   </div>
-            //   {/* <img className="image-card" src={product.images[0]} alt="image" /> */}
-            //   {/* <p>{product.description.substring(0,200)}...</p>  */}
-
-            //   <div className='details2'>
-            //     <div className='populariry2'>
-            //       <img src={iconStar} alt='icon' />
-            //       <h4 className='rating2'>{product.rating}</h4>
-            //     </div>
-            //     <div>
-            //       {/* <QuickLookModal id={product._id}/> */}
-            //     </div>
-            //     <div className='separator2'>.</div>
-            //     <div className='value2'>
-            //       <h4 className='price2'>$ {priceFormat(product.price)}</h4>
-            //     </div>
-            //   </div>
-            // </div>
+            
             <div key={product._id} className='product-card-beta'>
-              <div className='header-card-beta'>n e w</div>
+              <div className='header-card-beta'>
+                n e w
+                {/* <QuickLookModal/> */}
+                </div>
               <div className='content-image-card-beta'>
-                <Link to={`/product/${product._id}`}>
+                <Link className='link-image-card' to={`/product/${product._id}`}>
                   <img className='image-card' src={product.images[0]} alt='image' />
                 </Link>
               </div>
@@ -128,18 +97,18 @@ const CardBeta: React.FC<{}> = () => {
                   </h3>
                 </div>
                 <div className='content-description-card-beta'>
-                  <p>{product.description.substring(0, 57)}...</p>
+                  <p className='product-description-card-beta'>{product.description.substring(0, 57)}...</p>
                 </div>
               </div>
               <div className='content-value-rating-card-beta'>
                 <div className='content-rating-card-beta'>
                   {stars.map((star) => {
                     if (star < product.rating && star + 1 > product.rating) {
-                      return <img src={iconStarM} />;
+                      return <img key={productIdFetch+iconStarM+product.rating} src={iconStarM} />;
                     } else if (star < product.rating) {
-                      return <img src={iconStarB} />;
+                      return <img key={productIdFetch+iconStarB+product.rating} src={iconStarB} />;
                     } else {
-                      return <img src={iconStarW} />;
+                      return <img key={productIdFetch+iconStarW+product.rating} src={iconStarW} />;
                     }
                   })}
                 </div>
@@ -149,7 +118,7 @@ const CardBeta: React.FC<{}> = () => {
               </div>
               <div className='content-add-car-card-beta'>
                 <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
-                  add to Car
+                  <p>add to Cart</p>
                 </div>
               </div>
             </div>

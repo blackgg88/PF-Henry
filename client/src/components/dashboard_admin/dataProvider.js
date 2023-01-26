@@ -1,6 +1,6 @@
-import { fetchUtils } from 'react-admin';
-import { stringify } from 'query-string';
-import { API_URL } from '../../../config';
+import { fetchUtils } from "react-admin";
+import { stringify } from "query-string";
+import { API_URL } from "../../../config";
 
 const httpClient = fetchUtils.fetchJson;
 
@@ -20,7 +20,7 @@ const dataProvider = {
     const { page, perPage } = params.pagination;
     let url;
 
-    if (resource === 'purchases') {
+    if (resource === "purchases") {
       url = `${API_URL}/checkout`;
     } else {
       url = `${API_URL}/${resource}`;
@@ -34,7 +34,7 @@ const dataProvider = {
 
     data = data.slice((page - 1) * perPage, page * perPage);
 
-    if (resource === 'purchases') {
+    if (resource === "purchases") {
       console.log(data);
       data = data.map((purchase) => {
         return {
@@ -42,14 +42,14 @@ const dataProvider = {
           Payer: `${purchase.payer?.last_name} ${purchase.payer?.first_name}`,
           Products: purchase.items
             .map((product) => `${product.quantity} X ${product.title}`)
-            .join('----'),
+            .join("----"),
           Date_of_Purcharse: handleFormatedDate(purchase.date_created),
           Status: purchase.status,
           Status_Detail: purchase.status_detail,
           Total_Paid: purchase.total_paid_amount.toFixed(2),
         };
       });
-    } else if (resource === 'products') {
+    } else if (resource === "products") {
       data = data.map((d) => {
         return {
           ...d,
@@ -108,13 +108,13 @@ const dataProvider = {
 
     return httpClient(url).then(({ headers, json }) => ({
       data: json,
-      total: parseInt(headers.get('content-range').split('/').pop(), 10),
+      total: parseInt(headers.get("content-range").split("/").pop(), 10),
     }));
   },
 
   update: (resource, params) =>
     httpClient(`${API_URL}/${resource}/${params.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({ data: json })),
 
@@ -123,14 +123,14 @@ const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
     return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({ data: json }));
   },
 
   create: (resource, params) =>
     httpClient(`${API_URL}/${resource}`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({
       data: { ...params.data, id: json.id },
@@ -138,7 +138,7 @@ const dataProvider = {
 
   delete: (resource, params) =>
     httpClient(`${API_URL}/${resource}/${params.id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     }).then(({ json }) => ({ data: json })),
 
   deleteMany: (resource, params) => {
@@ -146,7 +146,7 @@ const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
     return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
-      method: 'DELETE',
+      method: "DELETE",
     }).then(({ json }) => ({ data: json }));
   },
 };

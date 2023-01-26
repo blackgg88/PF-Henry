@@ -5,6 +5,7 @@ import Navbar from "../navbar/Navbar";
 import logo from "../../assets/logo_smart_b.png";
 import verified_true from "../../assets/verified/verified_true.png";
 import verified_false from "../../assets/verified/verified_false.png";
+import UserList from "../dashboard_admin/UserList";
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface items {
@@ -52,8 +53,9 @@ export const Dashboard_user = () => {
       handleGetItems();
     }
   }, [isAuthenticated]);
+
   {
-    console.log(verified);
+    console.log(user);
   }
 
   return (

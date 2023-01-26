@@ -1,0 +1,74 @@
+$standard-font-Hanken-Grotesk: 'Hanken Grotesk', sans-serif;
+$standard-font-IBM-Plex-Sans-Arabic: 'IBM Plex Sans Arabic', sans-serif;
+$standard-font-Lexend-Deca-sans-serif: 'Lexend Deca', sans-serif;
+$standard-font-Outfit-sans-serif :'Outfit', sans-serif;
+$standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
+
+.foro_card_Container {
+    background-color: white;
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: $standard-font-Outfit-sans-serif;
+    
+
+    .foro_card_authorSide {
+        display: flex;
+        justify-content: space-between;
+        //border: 1px solid green;
+        .foro_card_buttonEdit {
+            width: 20px;
+        }
+    }
+
+    .foro_card_titleSide {
+        display: flex;
+        //border: 1px solid green;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .foro_card_contentSide {
+        display: flex;
+        width: 100%;
+        //border: 1px solid green;
+        margin: 5px 0px;
+        flex-wrap: wrap;
+        p {
+            word-break: break-all;
+          }
+    }
+
+    .foro_card_imagenSide {
+        display: flex;
+        //border: 1px solid green;
+        height: 250px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            min-height: 250px;
+        }
+    }
+
+    .foro_card_socialContainer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 5px 0px;
+
+        .foro_card_buttonLike {
+            width: 28px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+        .foro_card_buttonComment {
+            width: 25px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+    }
+}

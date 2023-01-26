@@ -19,11 +19,13 @@ video: string
 @prop({ ref: "User", required: true })
 author: Ref<User>
 
-// @prop({ type: [Comment], ref: "Comment" })
-// comments: Array<Ref<Comment>>
 @prop({ ref: () => Comment })
 comments: Ref<Comment>[]
+
+@prop({ ref: "User", required: false})
+likes: Ref<User>[]
 }
+
 
 const PostModel = getModelForClass(Post)
 export default PostModel

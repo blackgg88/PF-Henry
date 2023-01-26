@@ -10,7 +10,7 @@ const post = Router()
 
 post.get('/', getAllPost) // <--- controlador
 
-post.post('/like', likePost)
+post.post('/likes', likePost)
 
 post.get('/:id', getPostById)
 
@@ -18,7 +18,7 @@ post.post('/', createPost)
 
 post.put('/:id', putPost)
 
-post.delete('/:id', deletePost)
+post.delete('/', deletePost)
 
 
 export default post;

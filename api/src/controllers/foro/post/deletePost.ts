@@ -8,11 +8,11 @@ const UserModel = getModelForClass(User)
 
 export const deletePost = async (req: Request, res: Response) => {
     try {
-        const {id} = req.params
-        const {userId} = req.body
+        
+        const {userId, idPost} = req.body
 
         //BUSCAMOS Y ELIMINAMOS EL POST POR SU ID
-        const postDeleted = await PostModel.findByIdAndDelete(id)
+        const postDeleted = await PostModel.findByIdAndDelete(idPost)
 
         //BUSCAMOS EL USUARIO QUE TENIA EL POST
         const userWithPost = await UserModel.findById(userId)
@@ -21,7 +21,7 @@ export const deletePost = async (req: Request, res: Response) => {
             res.status(404).json({error: `Ningun usuario posee este post`})
         } else {
             //ELIMINAMOS EL POST 
-            userWithPost.posts = userWithPost.posts.filter(e=> e.toString()!== id)
+            userWithPost.posts = userWithPost.posts.filter(e=> e.toString()!== idPost)
             // GUARDAMOS AMBOS CASOS
             await userWithPost.save()
             res.json({ message: `post deleted: ${postDeleted?.title}` })
@@ -29,6 +29,6 @@ export const deletePost = async (req: Request, res: Response) => {
     } catch (error) {
         res
         .status(400)
-        .json({ message: `Error delete post :${req.params.id}`, error })
+        .json({ message: `Error delete post :${req.params.idPost}`, error })
     }
 }

@@ -32,7 +32,7 @@ const ItemFilterList: React.FC<FilterByProps> = ({
     <div className="container-ItemFilterList"  id="list-filter" >
       {filterList.map((el, index) => {
         return (
-          <ItemFilter key={Math.random+el} filter={el} closeItem={onCloseListHandler} />
+          <ItemFilter key={"colseItem"+el+index} filter={el} closeItem={onCloseListHandler} />
         );
       })}
     </div>

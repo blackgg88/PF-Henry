@@ -10,7 +10,7 @@ const ItemFilter: React.FC<FilterByProps> = ({ filter, closeItem }) => {
   return (
     <div className="container-itemFilter">
       <div className="name-filter">{filter}</div>
-      <button className="close-item" onClick={() => closeItem(filter)}>
+      <button className="close-item" onClick={() => closeItem(filter)} >
         x
       </button>
     </div>

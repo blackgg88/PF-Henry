@@ -333,8 +333,22 @@
        // background-color: $standard-color-blue-light;
 
         //background-color: blue;
+        
+        @media only screen and (max-width: 1670px) {
+            gap: 50px;
+            justify-content: center;
+            //background-color: aqua;
+        }
+
         @media only screen and (max-width: $medium-screen) {
             gap: 50px;
+            justify-content: center;
+            //background-color: aqua;
+        }
+
+
+        @media only screen and (max-width: 1030px) {
+            gap: 20px;
             justify-content: center;
             //background-color: aqua;
         }

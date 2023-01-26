@@ -63,6 +63,8 @@
   flex-direction: column;
   //background-color: aqua;
 
+  
+
   .filter-btn-out {
     position: absolute;
     top: 11%;
@@ -73,9 +75,17 @@
     opacity: 1;
     border: 0px;
     border-radius: 0px 5px 20px 0px;
-    background-color: red;
-    background-color: $standard-color-blue-secundary;
+    background-color: $standard-color-blue-solid-grad;
     transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    //background-color: red;
+    &:hover{
+      background-color: $standard-color-blue-secundary;
+      transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
     
     @media only screen and (max-width: $medium-screen) {
       top: 15.5%;
@@ -83,10 +93,11 @@
       height: 60%; 
     }
     @media only screen and (max-width: $small-screen) {
-      width: 15%;
-      height: 8.5%;
+      width: 8vw;
+      height: 8vw;
+      background-size: 40%;
       padding: 3%;
-      left:1%;
+      left:3%;
       border-radius: 100%;
       background-color: yellow;
       background-color: $standard-color-blue;

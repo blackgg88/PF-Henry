@@ -1,15 +1,16 @@
 .container-itemFilter {
-  height: 30px;
-  padding: 15px;
+  height: auto;
+  padding: 5px 15px;
   border-radius: 30px;
   align-items: center;
   justify-content: center;
   background-color: $standard-color-blue-solid-grad;
   display: flex;
-  gap: 10px;
+  gap: 5px;
   border: 2px solid $standard-color-blue-light;
   position: relative;
   z-index: 11;
+  right: 20%;
   .name-filter {
     font-family: $standard-font-Barlow;
     color: $standard-color-white-background;

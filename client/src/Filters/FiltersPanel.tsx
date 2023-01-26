@@ -152,20 +152,7 @@ const FiltersPanel: React.FC<{}> = () => {
   };
 
 
-  const spanFilter = () => {
-
-    const filterPanel = document.getElementById("idFilterPanel");
-    const buttonSpan = document.getElementById("idButtonSpan");
-    const backgroundFilter = document.getElementById("background-filter");
-    const listFilter = document.getElementById("list-filter");
-
-    if (filterPanel && backgroundFilter &&buttonSpan && listFilter) {
-      filterPanel.classList.toggle("filter-move");
-      buttonSpan.classList.toggle("btn-move");
-      backgroundFilter.classList.toggle("filter-block");
-      listFilter.classList.toggle("filter-list-move");
-    }
-  };
+ 
   
 
   return (

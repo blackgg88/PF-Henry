@@ -37,12 +37,10 @@ const Shop: React.FC<{}> = () => {
         </Link> */}
       {/* <div>content-navbar</div> */}
       {/* </div> */}
-      <button className="filter-btn-out" onClick={spanFilter} id="idButtonSpan"
+      <button className="filter-btn-out" onClick={spanFilter} title="btn-filter" id="idButtonSpan"
        style={{
         backgroundImage: `url(${desplegarFiltro})`,
-        backgroundSize: '60%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        
       }}
       ></button>
       <div className="filter-unblock" id="background-filter" onClick={spanFilter}>

@@ -24,5 +24,46 @@
     padding: 20px;
     font-family: $standard-font-Poiret-One;
     z-index: 6;
+
+    .foro_create_header {
+      display: flex;
+      justify-content: space-between;
+
+      img {
+        width: 25px
+      }
+    }
+
+    .foro_create_content {
+      display: flex;
+      width: 100%;
+      //background-color: red;
+      justify-content: center;
+      margin-top: 15px;
+      
+      .foro_create_EditTextArea {
+        resize: none;
+        width: 100%;
+        margin: 0;
+        border: 1px solid black;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .foro_create_submit {
+      display: flex;
+      justify-content: center;
+
+      button {
+        padding: 8px 15px;
+        background-color: $standard-color-blue;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+    }
   }
 }

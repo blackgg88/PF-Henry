@@ -21,12 +21,11 @@ interface Foro_Card{
     onDeletePost: any;
     userId:string;
     comments: string;
-    
-    onLikePost: any;
-    
+    onEdit: any;
+    onLikePost: any;    
 }
 // : React.FC
-export function Foro_card ({id, title, content, likes, img, author, comments, userId, post, onDeletePost,likeHandler, onLikePost}: Foro_Card) {
+export function Foro_card ({id, title, content, likes, img, author, comments, userId, post, onDeletePost, onLikePost, onEdit}: Foro_Card) {
 
   const {user} = useAuth0()
 
@@ -58,7 +57,7 @@ export function Foro_card ({id, title, content, likes, img, author, comments, us
       <div className='foro_card_socialContainer'>
         <div className='foro_card_social_Left'>
           <img className='foro_card_button_Delete' src={trashlogo} onClick={() => onDeletePost(id, userId)}/> 
-          <img className='foro_card_button_Edit' src={editLogo} />
+          <img onClick={()=> onEdit(id, content)} className='foro_card_button_Edit' src={editLogo} />
         </div>
 
         <div className='foro_card_social_Right'>

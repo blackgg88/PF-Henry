@@ -8,7 +8,7 @@ import { deletePosts } from "../../../../helpers/foro/deletePosts";
 import Swal from 'sweetalert2'
 //------- USUARIO HELPER ----------
 import { useAppDispatch, useAppSelector } from "../../../Redux/hook";
-import { useAuth0, isAuthenticated } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { userInterface } from "../../../Redux/slice/user/user.slice";
 //---------------
 
@@ -25,6 +25,7 @@ export function useForoHome() {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [addLike, setAddLike] = useState<boolean>(false);
   const [addPost, setAddPost] = useState<boolean>(false);
+  const [addEdit, setAddEdit] = useState<boolean>(false)
 
   const { user } = useAuth0();
 
@@ -41,7 +42,8 @@ export function useForoHome() {
     getPosts()
       .then((res) => res.json())
       .then((res) => setAllPost(res));
-  }, [addLike, addPost]);
+  }, [addLike, addPost, addEdit]);
+
 
   const likeHandler = (post: string) => {
     likePosts({
@@ -127,6 +129,13 @@ export function useForoHome() {
     );
   };
 
+  const handlerSubmitEdit = async (content: string, id: string) => {
+    await putPost({content}, id)
+    .then( res => {
+      setAddEdit(!addEdit)
+    })
+  }
+
   return [
     form,
     allPost,
@@ -137,6 +146,8 @@ export function useForoHome() {
       handlerChangePost,
       submitPost,
       onDeletePost,
+      setAllPost,
+      handlerSubmitEdit
     },
   ];
 }

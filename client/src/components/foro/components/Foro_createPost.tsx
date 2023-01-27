@@ -1,66 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForoHome } from "../hooks/useForoHome";
+import close from '../../../assets/foro/cancel.svg';
+import { useState } from 'react';
+import {putPost } from '../../../../helpers/foro/putPost';
+import {getPosts } from '../../../../helpers/foro/getPosts';
 
-export default function Foro_createPost(){
 
-    const [
-        form,
-        allPost,
-        { handlerLike, handlerChangePost, submitPost, onDeletePost }
-      ]: any = useForoHome()
+
+
+interface CreatePost{
+  id: string;
+  content: string;
+  onClose: any;
+  onSave: any
+}
+
+export default function Foro_createPost({onSave, id, content, onClose}: CreatePost){
+
+      const [formEdit, setFormEdit] = useState({
+        content,
+        id
+      })
+
+    const closeModal = () => onClose(false)
+
+      const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>)=> {
+        setFormEdit({
+          ...formEdit,
+          [e.target.name]: e.target.value
+        })
+      }
+
+      const saveModal =async ()=> {
+        onSave(formEdit.content, formEdit.id)
+        onClose(false)
+    }
+
 
   return (
     <div className='foro_create_overlay'>
       <div className='foro_create_containere'>
-        
-
-        <form onSubmit={submitPost}>
-        <label htmlFor="author">Author</label>
-        <input
-          placeholder="author"
-          name="author"
-          id="author"
-          onChange={(e) => handlerChangePost(e)}
-          type="text"
-          value={form.author}
-        />
-        <br />
-        <hr />
-        <label htmlFor="title">Title</label>
-        <input
-          placeholder="title"
-          name="title"
-          id="title"
-          onChange={(e) => handlerChangePost(e)}
-          type="text"
-          value={form.title}
-        />
-        <br />
-        <hr />
-        <label htmlFor="content">Content</label>
-        <input
-          placeholder="content"
-          name="content"
-          id="content"
-          onChange={(e) => handlerChangePost(e)}
-          type="text"
-          value={form.content}
-        />
-        <br />
-        <hr />
-        <label htmlFor="image">Image</label>
-        <input
-          placeholder="image"
-          name="image"
-          id="image"
-          onChange={(e) => handlerChangePost(e)}
-          type="text"
-          value={form.image}
-        />
-        <hr />
-        <br />
-        <button>Post</button>
-      </form>
+        <div className='foro_create_header'>
+          <p>Edit Content</p>
+          <img onClick={closeModal} src={close} alt="closeIcon" />
+        </div>
+        <div className='foro_create_content'>
+          <textarea onChange={(e) => changeHandler(e)} name="content" value={formEdit.content} className='foro_create_EditTextArea' placeholder='content'/>
+        </div>
+        <div className='foro_create_submit'>
+        <button onClick={saveModal}>Save</button>
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import { useForoHome } from "./hooks/useForoHome";
 import  { Foro_card }  from "./components/Foro_card";
 import  Foro_createPost  from "./components/Foro_createPost";
+import { putPost } from "../../../helpers/foro/putPost";
 //------- USUARIO HELPER ----------
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -13,24 +14,53 @@ interface ForoInterface {
   functions: object
 }
 
+interface editPost {
+  content: string,
+  id: string
+}
+
 export default function ForoHome() {
   const { user } = useAuth0();
   const [imageOpen, setImageOpen] = useState<boolean>(false)
+  const [editOpen, setEditOpen] = useState<boolean>(false)
+  const [editPost, setEditPost] = useState<editPost>({
+    content: '',
+    id: ''
+  })
+  console.log(editPost)
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
   
   const [
     form,
     allPost,
-    { likeHandler, handlerSubmit, handlerLike, handlerChangePost, submitPost, onDeletePost }
+    { likeHandler, handlerSubmit, handlerLike, handlerChangePost, submitPost, handlerSubmitEdit, onDeletePost }
   ]: any = useForoHome()
 
   // console.log(form)
 
-  
+  const editHandlerModal = (id:string, content:string)=> {
+      setEditOpen(!editOpen)
+      setEditPost({
+        ...editPost,
+        id,
+        content
+      })
+  }
+
+  interface body {
+    content: string;
+  }
+  const editHandler = (body: body, id: string)=> {
+    putPost(body, id)
+  }
+
 
   return (
     <div className="foro_home_container">
-      {/*<Foro_createPost />*/}
+      
+      {
+        editOpen&&<Foro_createPost onSave={handlerSubmitEdit} id={editPost.id} content={editPost.content} onClose={setEditOpen}/>
+      }
       
       <div className="foro_posts_container">
         <div className="foro_posts_creator">
@@ -70,6 +100,7 @@ export default function ForoHome() {
             likes={post.likes.length}
             onDeletePost={onDeletePost}
             onLikePost={likeHandler}
+            onEdit = {editHandlerModal}
           />
       
         ))}
@@ -79,6 +110,6 @@ export default function ForoHome() {
         <input type="text" placeholder="Search" />
         {/* <h1>barras Izq</h1> */}
       </div>
-    </div>
-  );
+    </div>
+  );
 }

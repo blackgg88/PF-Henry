@@ -1,0 +1,25 @@
+.comments_Container {
+    background-color: yellow;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+
+    .comments_headerDiv {
+
+    }
+
+    .comments_contentDiv {
+        word-break: break-all;
+    }
+
+    .comments_buttonsDiv {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        img {
+            width: 20px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    }
+}

@@ -52,7 +52,7 @@ export default function ForoHome() {
             post={post}
             author={post.author.userName || post.author.username}
             userId={post.author._id}
-            comments={post.comments.length}
+            comments={post.comments}
             likes={post.likes.length}
             onDeletePost={onDeletePost}
             onLikePost={likeHandler}

@@ -10,17 +10,8 @@ import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
 //---------------
 
-interface iForm {
-  email: string;
-  title: string;
-  content: string;
-  image: string;
-}
-
 export function useForoHome() {
-  const [edit, setEdit] = useState<boolean>(false);
   const [allPost, setAllPost] = useState([]);
-  const [editMode, setEditMode] = useState<boolean>(false);
   const [addLike, setAddLike] = useState<boolean>(false);
   const [addPost, setAddPost] = useState<boolean>(false);
   const [addEdit, setAddEdit] = useState<boolean>(false);

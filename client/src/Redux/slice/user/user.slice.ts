@@ -25,7 +25,7 @@ const initialState: {
     connection: '',
     email: '',
     _id: '',
-    role: '',
+    role: 'user',
     firstName: '',
     lastName: '',
     email_verified: false,

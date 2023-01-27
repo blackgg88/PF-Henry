@@ -5,6 +5,11 @@ import { sendMailPayment } from '../../config/mailer';
 import mercadopago from 'mercadopago';
 import { ACCESS_TOKEN } from '../../../config';
 
+import { getModelForClass } from '@typegoose/typegoose';
+import { Product } from '../../models/Product';
+
+const ProductModel = getModelForClass(Product);
+
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
 export interface Payment {
@@ -28,28 +33,26 @@ export interface Products {
   category_id: string;
   description: string;
   id: string;
-  pictue_url: string;
+  picture_url: string;
   quantity: string;
   title: string;
   unit_price: string;
 }
 
 export const feedback = async (req: Request, res: Response) => {
-  console.log(req.query); // data.id type
-
   console.log(req.body); //id, client_id
 
-  const response = await axios.get(
-    `https://api.mercadopago.com/v1/payments/${req.query.data_id}`,
-    {
-      headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
-    },
-  );
+  res.status(200).json({ message: 'uwu' });
+
+  const response = await axios.get(`https://api.mercadopago.com/v1/payments/${req.body.data.id}`, {
+    headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
+  });
+
   const data = response.data;
 
-  const payment = {
+  const payment: Payment = {
     id: data.id,
-    name: data.additional_info.payer.first_name + data.additional_info.payer.last_name,
+    name: data.additional_info.payer.first_name + ' ' + data.additional_info.payer.last_name,
     email: data.external_reference,
     products: data.additional_info.items,
     address: data.additional_info.payer.address,
@@ -60,5 +63,14 @@ export const feedback = async (req: Request, res: Response) => {
 
   sendMailPayment(payment);
 
-  res.status(200).json({ message: 'hola' });
+  data.items.map(async (item: Products) => {
+    await ProductModel.updateOne({ _id: item.id }, { $inc: { stock: -Number(item.quantity) } })
+      .exec()
+      .then(() => {
+        console.log('Stock actualizado con éxito');
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  });
 };

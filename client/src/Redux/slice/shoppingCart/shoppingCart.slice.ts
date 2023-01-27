@@ -51,7 +51,11 @@ export const shoppingCartSlice = createSlice({
         (product: ProductCart) => product._id !== action.payload,
       );
     },
+
+    emptyCar: (state) => {
+      state.Products = [];
+    },
   },
 });
 
-export const { addProduct, deleteProduct, changeQuantity } = shoppingCartSlice.actions;
+export const { addProduct, deleteProduct, changeQuantity, emptyCar } = shoppingCartSlice.actions;

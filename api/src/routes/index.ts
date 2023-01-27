@@ -5,6 +5,8 @@ import { Role } from '../models/Role';
 import category from './categories.routes';
 import products from './product.routes';
 import user from './user.routes';
+import post from './foro/post.routes';
+import comment from './foro/comment.routes';
 
 import mercadopago from './mp.routes';
 
@@ -15,6 +17,8 @@ router.use('/products', products);
 router.use('/users', user);
 router.use('/categories', category);
 router.use('/checkout', mercadopago);
+router.use('/posts', post);
+router.use('/comments', comment);
 
 ////////////////////////////////////////////////////////////////////////////
 router.get('/roles', async (req, res) => {

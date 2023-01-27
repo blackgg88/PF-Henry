@@ -8,21 +8,14 @@ import img_home3 from '../../assets/home_img_3.png';
 import { NewsHome } from '../home_news_fake/NewsHome';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../Redux/hook';
+import { useAppDispatch } from '../../Redux/hook';
 import { userFetch } from '../../Redux/slice/user/userController';
 import { getUserLogin } from '../../Redux/slice/user/user.slice';
-import { ProductState } from '../../Redux/slice/product/product.slice';
 import { productNews } from './productNews';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const CARDS = 6;
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
-  const Allproduct: ProductState[] = useAppSelector(
-    (state) => state.productReducer.Products,
-  );
-
-  const preview = Allproduct.slice(0, 6);
 
   useEffect(() => {
     const getUserByBd = async () => {

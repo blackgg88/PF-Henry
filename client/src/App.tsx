@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import NavBar from './components/navbar/Navbar';
 import ShoppingCart from './components/checkout/ShoppingCart';
 import Form from './components/checkout/FormComponent';
+import ForoHome from './components/foro/foroHome';
 import { useLocation } from 'react-router-dom';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <>
-      {!location.pathname.includes('/admin') && <NavBar />}
+      {!['/admin', '/foro'].includes(location.pathname) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />
@@ -30,8 +31,9 @@ function App() {
         <Route path='/admin/*' element={<AppAdmin />} />
         <Route path='/shopping_cart' element={<ShoppingCart />} />
         <Route path='/checkout' element={<Form />} />
+        <Route path='/foro' element={<ForoHome />} />
       </Routes>
-      <Footer />
+      {!['/admin', '/foro'].includes(location.pathname) && <Footer />}
     </>
   );
 }

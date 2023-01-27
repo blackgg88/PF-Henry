@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import { Response } from "express";
 import nodemailer from "nodemailer";
 import { ADMIN_EMAIL, GMAIL_API } from "../../config";
 import { Payment } from "../controllers/mercadopago/feedback";
+=======
+import { Response } from 'express';
+import nodemailer from 'nodemailer';
+import { ADMIN_EMAIL, GMAIL_API } from '../../config';
+import { Payment } from '../controllers/mercadopago/feedback';
+import { Products } from '../controllers/mercadopago/feedback';
+>>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
 
 // export const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
@@ -37,6 +45,115 @@ export const sendMailPayment = (payment: Payment) => {
       pass: `${GMAIL_API}`, // generated ethereal password
     },
   });
+
+  function renderItems(items: Products[]) {
+    let html = '';
+    for (const item of items) {
+      html += `
+      <tr>
+      <td class="esd-structure es-p20t es-p20r es-p20l esdev-adapt-off" align="left" esd-custom-block-id="731032" esdev-config="h1">
+          <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
+              <tbody>
+               <td width="125" class="esd-container-frame" align="left">
+                  <tr>
+                      <td class="esdev-mso-td" valign="top">
+                          <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                              <tbody>
+                                  <tr>
+                                      <td width="125" class="esd-container-frame" align="left">
+                                          <table cellpadding="0" cellspacing="0" width="100%">
+                                              <tbody>
+                                                  <tr>
+                                                      <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img p_image" src=${
+                                                        item.picture_url
+                                                      } alt=${
+        item.title
+      } style="display: block;" width="125" title=${item.title}></a></td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </td>
+                      <td width="20"></td>
+                      <td class="esdev-mso-td" valign="top">
+                          <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                              <tbody>
+                                  <tr>
+                                      <td width="125" align="left" class="esd-container-frame">
+                                          <table cellpadding="0" cellspacing="0" width="100%">
+                                              <tbody>
+                                                  <tr>
+                                                      <td align="left" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b es-m-txt-l">
+                                                          <h3><strong class="p_name">${
+                                                            item.title
+                                                          }</strong></h3>
+                                                      </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </td>
+                      <td width="20"></td>
+                      <td class="esdev-mso-td" valign="top">
+                          <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                              <tbody>
+                                  <tr>
+                                      <td width="176" align="left" class="esd-container-frame">
+                                          <table cellpadding="0" cellspacing="0" width="100%">
+                                              <tbody>
+                                                  <tr>
+                                                      <td align="right" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b">
+                                                          <p style="color: #666666;" class="p_description">${
+                                                            item.quantity
+                                                          }</p>
+                                                      </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </td>
+                      <td width="20"></td>
+                      <td class="esdev-mso-td" valign="top">
+                          <table cellpadding="0" cellspacing="0" class="es-right" align="right">
+                              <tbody>
+                                  <tr>
+                                      <td width="74" align="left" class="esd-container-frame">
+                                          <table cellpadding="0" cellspacing="0" width="100%">
+                                              <tbody>
+                                                  <tr>
+                                                      <td align="right" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b">
+                                                          <p class="p_price">$${(
+                                                            Number(item.unit_price) *
+                                                            Number(item.quantity)
+                                                          ).toFixed(2)} USD</p>
+                                                      </td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </td>
+  </tr>
+  <br>
+        `;
+    }
+    return html;
+  }
 
   let mailOptions = {
     from: `${ADMIN_EMAIL}`,
@@ -1058,97 +1175,9 @@ export const sendMailPayment = (payment: Payment) => {
                                                             </table>
                                                         </td>
                                                     </tr>
+                                                    <br>
 
-                                                    // INICIO PRODUCTS
-                                                    <tr>
-                                                        <td class="esd-structure es-p20t es-p20r es-p20l esdev-adapt-off" align="left" esd-custom-block-id="731032" esdev-config="h1">
-                                                            <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esdev-mso-td" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td width="125" class="esd-container-frame" align="left">
-                                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank" href="https://viewstripo.email"><img class="adapt-img p_image" src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/94441620297486948.png" alt="Marshall Monitor" style="display: block;" width="125" title="Marshall Monitor"></a></td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                        <td width="20"></td>
-                                                                        <td class="esdev-mso-td" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td width="125" align="left" class="esd-container-frame">
-                                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td align="left" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b es-m-txt-l">
-                                                                                                            <h3><strong class="p_name">Marshall Monitor</strong></h3>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                        <td width="20"></td>
-                                                                        <td class="esdev-mso-td" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td width="176" align="left" class="esd-container-frame">
-                                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td align="right" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b">
-                                                                                                            <p style="color: #666666;" class="p_description">x1</p>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                        <td width="20"></td>
-                                                                        <td class="esdev-mso-td" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" class="es-right" align="right">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td width="74" align="left" class="esd-container-frame">
-                                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td align="right" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b">
-                                                                                                            <p class="p_price">$235.00</p>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                    // FIN PRODUCTS
+                                                        ${renderItems(payment.products)}
 
                                                     <tr>
                                                         <td class="esd-structure es-p20r es-p20l" align="left">
@@ -1212,8 +1241,13 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                                     <tr>
                                                                                                         <td align="right" class="esd-block-text">
                                                                                                             <p><strong>$${payment.total_amount.toFixed(
+<<<<<<< HEAD
                                                                                                               2
                                                                                                             )}.</strong></p>
+=======
+                                                                                                              2,
+                                                                                                            )}</strong></p>
+>>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 </tbody>
@@ -1294,9 +1328,9 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                             <table cellpadding="0" cellspacing="0" width="100%" class="es-menu">
                                                                                                 <tbody>
                                                                                                     <tr class="links-images-left">
-                                                                                                        <td align="center" valign="top" width="33.33%" class="es-p10t es-p10b es-p5r es-p5l"><a target="_blank" href="https://viewstripo.email" style="color: #a0937d;"><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/58991620296762845.png" alt="FREE DELIVERY" title="FREE DELIVERY" align="absmiddle" class="es-p15r" width="25">FREE DELIVERY</a></td>
-                                                                                                        <td align="center" valign="top" width="33.33%" class="es-p10t es-p10b es-p5r es-p5l" style="border-left: 1px solid #a0937d;"><a target="_blank" href="https://viewstripo.email" style="color: #a0937d;"><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/55781620296763104.png" alt="HIGH QUALITY" title="HIGH QUALITY" align="absmiddle" class="es-p15r" width="25">HIGH QUALITY</a></td>
-                                                                                                        <td align="center" valign="top" width="33.33%" class="es-p10t es-p10b es-p5r es-p5l" style="border-left: 1px solid #a0937d;"><a target="_blank" href="https://viewstripo.email" style="color: #a0937d;"><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/88291620296763036.png" alt="BEST CHOICE" title="BEST CHOICE" align="absmiddle" class="es-p15r" width="25">BEST CHOICE</a></td>
+                                                                                                        <td align="center" valign="top" width="33.33%" class="es-p10t es-p10b es-p5r es-p5l"><a target="_blank" style="color: #a0937d;"><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/58991620296762845.png" alt="FREE DELIVERY" title="FREE DELIVERY" align="absmiddle" class="es-p15r" width="25">FREE DELIVERY</a></td>
+                                                                                                        <td align="center" valign="top" width="33.33%" class="es-p10t es-p10b es-p5r es-p5l" style="border-left: 1px solid #a0937d;"><a target="_blank" style="color: #a0937d;"><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/55781620296763104.png" alt="HIGH QUALITY" title="HIGH QUALITY" align="absmiddle" class="es-p15r" width="25">HIGH QUALITY</a></td>
+                                                                                                        <td align="center" valign="top" width="33.33%" class="es-p10t es-p10b es-p5r es-p5l" style="border-left: 1px solid #a0937d;"><a target="_blank" style="color: #a0937d;"><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/88291620296763036.png" alt="BEST CHOICE" title="BEST CHOICE" align="absmiddle" class="es-p15r" width="25">BEST CHOICE</a></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -1335,10 +1369,10 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                             <table cellpadding="0" cellspacing="0" width="100%" class="es-menu">
                                                                                                 <tbody>
                                                                                                     <tr class="links">
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" href="https://viewstripo.email." style="color: #666666;">About us</a></td>
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" href="https://viewstripo.email." style="color: #666666;">News</a></td>
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" href="https://viewstripo.email." style="color: #666666;">Forum</a></td>
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" href="https://viewstripo.email." style="color: #666666;">The shops</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">About us</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">News</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">Forum</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">The shops</a></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -1365,8 +1399,9 @@ export const sendMailPayment = (payment: Payment) => {
                                                                         <td width="560" class="esd-container-frame" align="center" valign="top">
                                                                             <table cellpadding="0" cellspacing="0" width="100%">
                                                                                 <tbody>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://res.cloudinary.com/dg1roy34p/image/upload/v1674828268/SmartNest/logo_smart_b_xxdxi8.png"><img src="https://dev--henry-pf-smartnest.netlify.app" alt width="125" style="display: block;"></a></td>
+                                                                                    <tr>/
+                                                                                    
+                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png"><img src="https://dev--henry-pf-smartnest.netlify.app" alt width="125" style="display: block;"></a></td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>

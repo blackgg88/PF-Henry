@@ -10,7 +10,10 @@ export default function Foro_createPost(){
       ]: any = useForoHome()
 
   return (
-    <div>
+    <div className='foro_create_overlay'>
+      <div className='foro_create_containere'>
+        
+     
         <form onSubmit={submitPost}>
         <label htmlFor="author">Author</label>
         <input
@@ -58,6 +61,7 @@ export default function Foro_createPost(){
         <br />
         <button>Post</button>
       </form>
+      </div>
     </div>
   )
 }

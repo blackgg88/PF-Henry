@@ -1,6 +1,8 @@
 import React from 'react'
 import likeLogo from '../../../assets/foro/like-red.png'
 import commentLogo from '../../../assets/foro/comment.png'
+import editLogo from '../../../assets/foro/edit.png'
+import trashlogo from '../../../assets/foro/trash.png'
 
 interface Foro_Card{
     id: string;
@@ -39,23 +41,19 @@ export function Foro_card ({id, title, content, likes, img, author, comments, us
         }
       
       <div className='foro_card_socialContainer'>
-        <p>{likes}</p>
-          
-        <img className='foro_card_buttonLike' src={likeLogo} alt="like" />
-        <p>{comments}</p>
-        <img className='foro_card_buttonComment' src={commentLogo} alt='comment' />
-        
-        {
-          /*
-          <button onClick={() => onDeletePost(id, userId)}> Borrar </button>
-          <button>Editar</button>
+        <div className='foro_card_social_Left'>
+          <img className='foro_card_button_Delete' src={trashlogo} onClick={() => onDeletePost(id, userId)}/> 
+          <img className='foro_card_button_Edit' src={editLogo} />
+        </div>
 
-          */
-        }
+        <div className='foro_card_social_Right'>
+          <p>{likes}</p>
+          <img className='foro_card_buttonLike' src={likeLogo} alt="like" />
+          <p>{comments}</p>
+          <img className='foro_card_buttonComment' src={commentLogo} alt='comment' />
+          
+        </div>
       </div>
-      
-      {/* <p>{post  .comments}</p> */}
-      
     </div>
   )
 }

@@ -1,0 +1,28 @@
+.foro_create_overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 6;
+
+    .foro_create_containere {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        min-height: 100px;
+        background: #fff;
+        position: relative;
+        top: -50px;
+        border-radius: 5px;
+        box-shadow: rgba(100,100,111,.2) 0px 7px 29px 0px;
+        padding: 20px;
+        font-family: $standard-font-Poiret-One;
+        z-index: 6;
+    }
+}

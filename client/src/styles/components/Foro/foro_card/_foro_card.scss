@@ -56,19 +56,42 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
 
     .foro_card_socialContainer {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         margin: 5px 0px;
 
-        .foro_card_buttonLike {
-            width: 28px;
-            margin-right: 5px;
-            margin-left: 5px;
+        .foro_card_social_Left {
+            display: flex;
+            
+            .foro_card_button_Delete {
+                width: 28px;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+
+            .foro_card_button_Edit {
+                width: 28px;
+                cursor: pointer;
+
+            }
+
         }
-        .foro_card_buttonComment {
-            width: 25px;
-            margin-right: 5px;
-            margin-left: 5px;
+
+        .foro_card_social_Right {
+            display: flex;
+            //border:1px solid red;
+
+            .foro_card_buttonLike {
+                width: 28px;
+                margin-right: 5px;
+                margin-left: 5px;
+            }
+            .foro_card_buttonComment {
+                width: 25px;
+                margin-right: 5px;
+                margin-left: 5px;
+            }
         }
+
     }
 }

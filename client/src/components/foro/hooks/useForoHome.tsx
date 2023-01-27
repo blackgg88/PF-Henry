@@ -5,11 +5,9 @@ import { useEffect, useState } from "react";
 
 import { putPost } from "../../../../helpers/foro/putPost";
 import { deletePosts } from "../../../../helpers/foro/deletePosts";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 //------- USUARIO HELPER ----------
-import { useAppDispatch, useAppSelector } from "../../../Redux/hook";
 import { useAuth0 } from "@auth0/auth0-react";
-import { userInterface } from "../../../Redux/slice/user/user.slice";
 //---------------
 
 interface iForm {
@@ -25,7 +23,7 @@ export function useForoHome() {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [addLike, setAddLike] = useState<boolean>(false);
   const [addPost, setAddPost] = useState<boolean>(false);
-  const [addEdit, setAddEdit] = useState<boolean>(false)
+  const [addEdit, setAddEdit] = useState<boolean>(false);
 
   const { user } = useAuth0();
 
@@ -36,14 +34,11 @@ export function useForoHome() {
     image: "",
   });
 
- 
-  
   useEffect(() => {
     getPosts()
-      .then((res) => res.json())
-      .then((res) => setAllPost(res));
+      .then(res => res.json())
+      .then(res => setAllPost(res));
   }, [addLike, addPost, addEdit]);
-
 
   const likeHandler = (post: string) => {
     likePosts({
@@ -51,7 +46,7 @@ export function useForoHome() {
       post,
     }).then(() => {
       setAddLike(!addLike);
-    })
+    });
   };
 
   const handlerSubmit = () => {
@@ -68,18 +63,15 @@ export function useForoHome() {
           content: "",
           image: "",
         });
-      })
-
+      });
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'El email no es valido!',
-        footer: '<a href="">Why do I have this issue?</a>'
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "El email no es valido!",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
     }
-
-   
   };
 
   const handlerLike = () => {
@@ -87,12 +79,11 @@ export function useForoHome() {
       id: "63c6f11bf46e034dfcbeeae6",
       post: "63d1f32e866456f173d36227",
     })
-      .then((res) => res.json())
-      .then((res) => alert(res));
+      .then(res => res.json())
+      .then(res => alert(res));
   };
 
   const handlerChangePost = (e: React.ChangeEvent<HTMLInputElement>) => {
-
     if (user?.email) {
       setForm({
         ...form,
@@ -104,10 +95,10 @@ export function useForoHome() {
 
   const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postPost(form).then((response) =>
-       getPosts()
-        .then((res) => res.json())
-        .then((res) => setAllPost(res))
+    postPost(form).then(response =>
+      getPosts()
+        .then(res => res.json())
+        .then(res => setAllPost(res))
     );
 
     setForm({
@@ -118,23 +109,22 @@ export function useForoHome() {
     });
   };
 
-  const onDeletePost = (id: string, userId: string) => {
+  const onDeletePost = (id: string) => {
     deletePosts({
       email: form.email,
       idPost: id,
-    }).then((res) =>
+    }).then(res =>
       getPosts()
-        .then((res) => res.json())
-        .then((res) => setAllPost(res))
+        .then(res => res.json())
+        .then(res => setAllPost(res))
     );
   };
 
   const handlerSubmitEdit = async (content: string, id: string) => {
-    await putPost({content}, id)
-    .then( res => {
-      setAddEdit(!addEdit)
-    })
-  }
+    await putPost({ content }, id).then(res => {
+      setAddEdit(!addEdit);
+    });
+  };
 
   return [
     form,
@@ -147,7 +137,7 @@ export function useForoHome() {
       submitPost,
       onDeletePost,
       setAllPost,
-      handlerSubmitEdit
+      handlerSubmitEdit,
     },
   ];
 }

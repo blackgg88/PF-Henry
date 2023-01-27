@@ -23,9 +23,9 @@ export const getAllPost = async (req: Request, res: Response) => {
         .select('-__v');
 
         if(deleted){
-            return res.json(Allposts.filter(e => e.deleted === false));
+            return res.json(Allposts.filter(e => e.deleted === false).reverse());
         } else{
-            return res.json(Allposts);
+            return res.json(Allposts.reverse());
         }
     } catch (error) {
         res.status(400).json({ message: 'Error getting post', error })

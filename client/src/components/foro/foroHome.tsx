@@ -75,7 +75,9 @@ export default function ForoHome() {
         ))}
       </div>
       <div className="foro_menuTags_container">
-        <h1>barras Izq</h1>
+        <label>Search</label>
+        <input type="text" placeholder="Search" />
+        {/* <h1>barras Izq</h1> */}
       </div>
     </div>
   );

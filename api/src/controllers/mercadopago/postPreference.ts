@@ -71,6 +71,7 @@ export const postPreference = async (req: Request, res: Response) => {
     }),
 
     marketplace: 'SmartNest',
+    statement_descriptor: 'SmartNest',
 
     payer: {
       email: payer.email,

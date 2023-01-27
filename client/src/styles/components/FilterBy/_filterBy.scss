@@ -1,0 +1,217 @@
+.container-FilterBy {
+  //background-color: royalblue;
+  height: 15%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  @media only screen and (max-width: $small-screen) {
+    //background-color: aqua;
+    gap: 10%;
+    font-size: 2vh;
+    width: 100%;
+  }
+
+  .title {
+    font-family: $standard-font-Barlow;
+    font-weight: 300;
+    color: $standard-color-white-background;
+    position: relative;
+    top: 10px;
+    left: 20px;
+
+    @media only screen and (max-width: $medium-screen) {
+      
+    }
+    @media only screen and (max-width: $small-screen) {
+      margin: 5%;
+      color: red;
+    }
+  }
+
+  .container-filterBy-c {
+    height: 3vw;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: $standard-color-blue-glass;
+
+    @media only screen and (max-width: $medium-screen) {
+      //background-color: aqua;
+    }
+
+    @media only screen and (max-width: $small-screen) {}
+
+    .input-filterByName {
+      width: 60%;
+      font-family: $standard-font-Barlow;
+      font-weight: 300;
+      color: $standard-color-white-background;
+      border: none;
+      border-bottom: 1px solid $standard-color-blue-green;
+      background-color: $standard-color-transparent;
+      color: $standard-color-white-background;
+
+      //background-color:red;
+      @media only screen and (max-width: $medium-screen) {}
+
+      @media only screen and (max-width: $small-screen) {}
+
+      &:focus {
+        border: 0px;
+        outline: none;
+        
+      }
+
+      
+    }
+
+    .🔍 {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: $standard-color-transparent;
+      border: none;
+      scale: 1;
+      transition: all 0.6s;
+
+      &:hover {
+        //background-color: $standard-color-blue-solid-grad;
+        scale: 1.3;
+      }
+    }
+
+    .input-filterByRating {
+      font-size: 20px;
+      border: none;
+      font-family: $standard-font-Barlow;
+      font-weight: 500;
+      color: $standard-color-white-background;
+      background-color: $standard-color-transparent;
+      color: $standard-color-white-background;
+      text-align: center;
+      &:focus {
+        border: 0px;
+        outline: none;
+        
+      }
+    }
+
+    .⭐️ {
+      position: relative;
+      right: -5px;
+      font-size: 30px;
+    }
+
+    .input-filterByPrice {
+      width: 85%;
+      height: auto;
+      background-color: aqua;
+      background-image: red;
+    }
+
+    .select-FilterByCategory {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: $standard-color-transparent;
+      border: none;
+      font-size: $standard-font-Barlow;
+      text-align: center;
+      color: $standard-color-white-background;
+      font-size: 20px;
+      width: 90%;
+
+      &:focus {
+        border: 0px;
+        outline: none;
+        
+      }
+
+      .option {
+        padding: 0 30px 0 10px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        background-color: $standard-color-blue-secundary;
+        border-top: $standard-color-blue-solid-grad;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        pointer-events: none;
+        order: 2;
+        z-index: 1;
+        transition: background 0.5s ease-in-out;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: $standard-color-blue-solid-grad;
+        }
+
+        &:focus .option {
+          position: relative;
+          pointer-events: all;
+        }
+      }
+    }
+
+    .btn-start {
+      background-color: $standard-color-transparent;
+      //background-color: $standard-color-red;
+      border: none;
+      width: 24px;
+      height: 24px;
+      margin: 4px;
+      //background-color: blueviolet;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.6s;
+
+      &:hover {
+        scale:1.6;
+        //margin: 0px;
+        //width: 30px;
+        //height: 30px;
+      }
+    }
+
+    .img-btn {
+      width: 80%;
+      height: 75%;
+    }
+  }
+
+  .🔵 {
+    height: 1px;
+    width: 100%;
+    border-bottom: 2px solid $standard-color-blue-solid-grad;
+    position: relative;
+    top: 10px;
+  }
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+
+// input[typ e"range"]::-webkit-slider-thumb:after {
+//   content: attr(value); /* display the value of the thumb */

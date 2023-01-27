@@ -1,0 +1,51 @@
+// UI Settings
+@import './base/settings';
+
+// Components
+@import './components/navbar';
+@import './components/footer';
+@import './components/home';
+@import './components/carrousel';
+@import './components/dashboard_user';
+@import './components/newsHome';
+@import './components/news/news';
+@import './components/footer';
+@import './components/Checkout/shoppingCart';
+@import './components/Checkout/form';
+@import './components/modalUser/modalUser';
+@import './components/modalCart/modalCart';
+@import './components/Foro/foro_Home/foro_Home';
+@import './components/Foro/foro_card/foro_card';
+
+//! Detail
+@import './components/Detail/detail';
+//! FilterPanel
+@import './components/FilterPanel/filterPanel';
+//! NewFilterPanel
+@import './components/FilterPanel/filterPanel2';
+//! FilterBy
+@import './components/FilterBy/filterBy';
+//! NewFilterBy
+@import './components/FilterBy/newFilterBy';
+//! FilterList
+@import './components/FilterList/filterList';
+//! ItemFilter
+@import './components/ItemFilter/itemFilter';
+//! RenderCard
+@import './components/RenderCard/renderCard';
+//! RenderCard
+@import './components/Card2/card2';
+//! Pagination
+@import './components/pagination/pagination'; // screens
+//! BreadCrumb
+@import './components//breadCrumb'; // screens
+//! Shop
+@import './components/Shop/shop';
+//! FilterByRating
+@import './components/FilterRating/filterRating';
+//! FilterPrice
+@import './components/FilterPrice/filterPrice';
+//! NewFilterName
+@import './components/FilterName/filterName';
+//! NewFilterCategory
+@import './components/FilterCategory/filterCategory';

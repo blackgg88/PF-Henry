@@ -1,0 +1,61 @@
+.new-container-category {
+    background-color: yellow;
+    width: 85%;
+    height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30vw;
+    background-color: $standard-color-blue-light;
+    
+
+    
+}
+.select-category {
+    width: 80%;
+    height: 80%;
+    border: none;
+    background-color: $standard-color-transparent;
+    font-weight: 400;
+    font-size: 0.8vw;
+    font-family: $standard-font-Outfit-sans-serif;
+    font-family: $standard-font-Quicksand;
+    color: $standard-color-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    &:focus {
+        border: 0px;
+        outline: none;
+        text-decoration: none;
+        color:$standard-color-blue-green
+    }
+    &:active{
+        border: 0px;
+        outline: none;
+        text-decoration: none;
+    }
+
+    option{
+        position: relative;
+        left: 100%;
+        color: $standard-color-blue-green;
+        background-color: $standard-color-blue-secundary;
+        
+        &:hover{
+            background-color: aqua;
+        }
+        &:focus {
+            border: 0px;
+            outline: none;
+            text-decoration: none;
+            color:$standard-color-blue-green
+        }
+        &:active{
+            border: 0px;
+            outline: none;
+            text-decoration: none;
+        }
+    }
+}

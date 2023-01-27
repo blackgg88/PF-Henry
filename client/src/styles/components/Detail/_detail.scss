@@ -1,0 +1,181 @@
+.detail-contain {
+  font-size: 30px;
+  margin-top: $standard-space-between-elements;
+  //background-color: $standard-color-white-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $standard-space-between-elements;
+
+  @media only screen and (max-width: $medium-screen) {}
+
+  .info-pincipal-detail {
+    height: 70vh;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $standard-space-between-elements;
+    background-color: red;
+
+    @media only screen and (max-width: $medium-screen) {
+      height: 80vh;
+      width: 90%;
+    }
+
+    .land-images {
+      height: 95%;
+      width: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      border-radius: $standard-border-radius;
+      gap: $standard-space-between-elements;
+      background-color: aqua;
+
+      .secondary-images {
+        height: 17%;
+        width: 80%;
+        cursor: pointer;
+        //background: #e0e0e0;
+        border-radius: $standard-border-radius;
+        //box-shadow: 2px 2px 7px #8b8b8b;
+
+        img {
+          border-radius: $standard-border-radius;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border: 1px solid $standard-color-blue-light;
+          transition: all 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+          &:hover {
+            border-color: $standard-color-blue-secundary;
+            scale: 1.1;
+            transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+          }
+        }
+
+      }
+    }
+
+    .imagen-principal-detail {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: blue;
+
+      .principal-image {
+        height: 95%;
+        max-width: 75%;
+        border-radius: $standard-border-radius;
+        // background: #e0e0e0;
+        // box-shadow: 14px 14px 17px #8b8b8b;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: $standard-border-radius;
+          transition: all 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+      }
+    }
+
+    .principal-details {
+      height: 95%;
+      width: 30%;
+      border-radius: $standard-border-radius;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 10px;
+      //background-color: yellow;
+
+      .character-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 45%;
+        width: 100%;
+        font-size: 1.1vw;
+        background-color: $standard-color-blue-light;
+        border-radius: $standard-border-radius;
+
+      }
+
+      .transaction-details {
+        height: 50%;
+        width: 100%;
+        background-color: $standard-color-blue-light;
+        border-radius: $standard-border-radius;
+        display: flex;
+      }
+    }
+  }
+
+  //!---------------------------------------------
+
+  .section-description {
+    width: 100%;
+    height: 300px;
+
+    //background-color: forestgreen;
+    .detail-detail {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      height: 100%;
+      background-color: $standard-color-blue-light;
+      border-radius: $standard-border-radius;
+
+      .detail_product-name {
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .releated-images {
+        width: 15%;
+        height: 60%;
+        border-radius: $standard-border-radius;
+        font-size: 15px;
+
+        img {
+          border-radius: $standard-border-radius;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .comments-section {
+    height: 500px;
+    width: $standard-with-full-hd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $standard-space-between-elements;
+
+    .comments-box {
+      width: 70%;
+      height: 100%;
+      background-color: $standard-color-blue-light;
+      border-radius: $standard-border-radius;
+    }
+
+    .other-box {
+      width: 26%;
+      height: 100%;
+      background-color: $standard-color-blue-light;
+      border-radius: $standard-border-radius;
+    }
+  }
+}

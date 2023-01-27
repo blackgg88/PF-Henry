@@ -5,6 +5,7 @@ import  Foro_createPost  from "./components/Foro_createPost";
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { useAuth0 } from '@auth0/auth0-react';
 import { userInterface } from '../../Redux/slice/user/user.slice';
+import { useState } from "react";
 //---------------
 interface ForoInterface {
   form: object,
@@ -14,6 +15,7 @@ interface ForoInterface {
 
 export default function ForoHome() {
   const { user } = useAuth0();
+  const [imageOpen, setImageOpen] = useState<boolean>(false)
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
   
   const [
@@ -29,6 +31,29 @@ export default function ForoHome() {
       {/*<Foro_createPost />*/}
       
       <div className="foro_posts_container">
+        <div className="foro_posts_creator">
+          <div className='foro_posts_inputsSide'>
+            <img src={user?.picture} alt="profilePic" />
+            <input placeholder="Title" type="text" />
+          </div>
+          <div className="foro_posts_secondInput">
+            <textarea className="foro_post_textAREA" placeholder="Description" /> 
+            {
+              imageOpen&&<input placeholder="Image" type="text" />
+            }
+          </div>
+          <hr/>
+          <div className="foro_posts_buttonSide">
+            <div className="foro_posts_AddImagen_Container">
+              <div onClick={()=> setImageOpen(!imageOpen)} className="foro_post_ImageDiv">
+                <img src="https://cdn1.iconfinder.com/data/icons/rounded-black-basic-ui/139/Photo_Add-RoundedBlack-512.png" alt="Add_Image" />
+                <p>Add Image</p>
+              </div>
+              
+            </div>
+            <button>POST</button>
+          </div>
+        </div>
         {allPost?.map((post: any) => (
           <Foro_card 
             key={post._id}

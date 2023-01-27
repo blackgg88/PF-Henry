@@ -1,6 +1,7 @@
 import { API_URL } from '../../config'
 
 export const postPost = async (body: any) => {
+    console.log(body)
     return await fetch(`${API_URL}/posts`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -10,7 +11,7 @@ export const postPost = async (body: any) => {
   
   /*
     {
-        "author":"63c6f0c6f46e034dfcbeeae2"
+        "email":"63c6f0c6f46e034dfcbeeae2"
         "title":"El primer Post de Kevincito!",
         "content":"Imaginemos que aqui hay una descripcion",
         "image"??:"https://m.media-amazon.png", 

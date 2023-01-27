@@ -10,7 +10,7 @@ export const putPost = async (body: any, id: string) => {
 
 /*
   {
-      "author":"63c6f0c6f46e034dfcbeeae2"
+      "email":"63c6f0c6f46e034dfcbeeae2"
       "title":"El primer Post de Kevincito!",
       "content":"Imaginemos que aqui hay una descripcion",
       "image"??:"https://m.media-amazon.png", 

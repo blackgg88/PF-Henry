@@ -5,6 +5,10 @@ import editLogo from '../../../assets/foro/edit.png'
 import trashlogo from '../../../assets/foro/trash.png'
 import { useAuth0 } from '@auth0/auth0-react';
 import { likePosts } from '../../../../helpers/foro/likePosts'
+import { deletePosts } from '../../../../helpers/foro/deletePosts'
+import { useForoHome } from "../hooks/useForoHome";
+import {getPosts} from "../../../../helpers/foro/getPosts"
+import {useEffect} from "react"
 
 interface Foro_Card{
     id: string;
@@ -15,20 +19,18 @@ interface Foro_Card{
     likes: string;
     author: string;
     onDeletePost: any;
-    userId:string
-    comments: string
+    userId:string;
+    comments: string;
+    
+    onLikePost: any;
+    
 }
 // : React.FC
-export function Foro_card ({id, title, content, likes, img, author, comments, userId, post, onDeletePost}: Foro_Card) {
+export function Foro_card ({id, title, content, likes, img, author, comments, userId, post, onDeletePost,likeHandler, onLikePost}: Foro_Card) {
 
   const {user} = useAuth0()
 
-  const likeHandler = (post: string) => {
-    likePosts({
-      email: user?.email,
-      post
-    })
-  }
+
 
 
   return (
@@ -49,9 +51,9 @@ export function Foro_card ({id, title, content, likes, img, author, comments, us
 
       {
         img&&<div className='foro_card_imagenSide'>
-            <img src={img} alt={title} />
-          </div>
-        }
+          <img src={img} alt={title} />
+        </div>
+      }
       
       <div className='foro_card_socialContainer'>
         <div className='foro_card_social_Left'>
@@ -61,7 +63,7 @@ export function Foro_card ({id, title, content, likes, img, author, comments, us
 
         <div className='foro_card_social_Right'>
           <p>{likes}</p>
-          <img onClick={()=> likeHandler(id)} className='foro_card_buttonLike' src={likeLogo} alt="like" />
+          <img onClick={()=> onLikePost(id)} className='foro_card_buttonLike' src={likeLogo} alt="like" />
           <p>{comments}</p>
           <img className='foro_card_buttonComment' src={commentLogo} alt='comment' />
           

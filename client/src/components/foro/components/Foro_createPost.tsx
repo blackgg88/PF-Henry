@@ -13,7 +13,7 @@ export default function Foro_createPost(){
     <div className='foro_create_overlay'>
       <div className='foro_create_containere'>
         
-     
+
         <form onSubmit={submitPost}>
         <label htmlFor="author">Author</label>
         <input

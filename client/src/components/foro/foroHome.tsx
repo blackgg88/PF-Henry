@@ -21,10 +21,12 @@ export default function ForoHome() {
   const [
     form,
     allPost,
-    { handlerLike, handlerChangePost, submitPost, onDeletePost }
+    { likeHandler, handlerSubmit, handlerLike, handlerChangePost, submitPost, onDeletePost }
   ]: any = useForoHome()
 
-  console.log(user)
+  // console.log(form)
+
+  
 
   return (
     <div className="foro_home_container">
@@ -34,12 +36,12 @@ export default function ForoHome() {
         <div className="foro_posts_creator">
           <div className='foro_posts_inputsSide'>
             <img src={user?.picture} alt="profilePic" />
-            <input placeholder="Title" type="text" />
+            <input value={form.title}  onChange={handlerChangePost} name='title' placeholder="Title" type="text" />
           </div>
           <div className="foro_posts_secondInput">
-            <textarea className="foro_post_textAREA" placeholder="Description" /> 
+            <textarea value={form.content} onChange={handlerChangePost} name='content' className="foro_post_textAREA" placeholder="Description" /> 
             {
-              imageOpen&&<input placeholder="Image" type="text" />
+              imageOpen&&<input value={form.image} onChange={handlerChangePost} name='image' placeholder="Image" type="text" />
             }
           </div>
           <hr/>
@@ -51,7 +53,7 @@ export default function ForoHome() {
               </div>
               
             </div>
-            <button>POST</button>
+            <button onClick={handlerSubmit}>POST</button>
           </div>
         </div>
         {allPost?.map((post: any) => (
@@ -67,6 +69,7 @@ export default function ForoHome() {
             comments={post.comments.length}
             likes={post.likes.length}
             onDeletePost={onDeletePost}
+            onLikePost={likeHandler}
           />
       
         ))}

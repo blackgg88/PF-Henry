@@ -5,12 +5,12 @@ import { ACCESS_TOKEN } from '../../../config';
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
-enum State {
+enum state {
   SUCCESS = 'approved',
   all = 'all',
 }
 
-enum Currency {
+enum currency {
   ARS = 'ARS',
   BRL = 'BRL',
   CLP = 'CLP',
@@ -21,62 +21,35 @@ enum Currency {
   USD = 'USD',
 }
 
-interface Category {
-  _id: string;
-  name: string;
-}
-
-interface Item {
-  _id: string;
-  categories: Category;
+interface item {
+  id: string;
+  categories_id: string;
+  description: string;
   name: string;
   quantity: number;
   price: number;
-  images: string[];
-}
-
-interface ItemMP {
-  id: string;
-  category_id: string;
-  currency_id: Currency;
-  title: string;
-  unit_price: number;
-  picture_url: string;
-}
-
-interface Payer {
-  address: { street_name: string; street_number: number; zip_code: string };
-  email: string;
-  identification: { number: string; type: string };
-  name: string;
-  surname: string;
 }
 
 export const postPreference = async (req: Request, res: Response) => {
-  const payer: Payer = req.body.payer;
-  const products: Item[] = req.body.products;
+  const itemsBody: item[] = req.body;
   let preference = {
-    items: products.map((item) => {
+    items: itemsBody.map((item) => {
       return {
-        id: item._id,
-        category_id: item.categories._id,
-        currency_id: Currency.USD,
+        id: item.id,
+        category_id: item.categories_id,
+        currency_id: currency.USD,
+        description: item.description,
         title: item.name,
         quantity: item.quantity,
         unit_price: item.price,
-        picture_url: item.images[0],
-      } as ItemMP;
+      };
     }),
 
-    payer: {
-      email: payer.email,
-      name: payer.name,
-      surname: payer.surname,
-      identification: payer.identification,
-      address: payer.address,
-    },
+    payer: { email: 'arrascaetaefdev@gmail.com' },
+    // payer: { email: 'newuser12354@gmail.com' },
 
-    external_reference: payer.email,
+    external_reference: 'arrascaetaefdev@gmail.com',
+    // external_reference: 'newuser12354@gmail.com',
 
     back_urls: {
       success: 'http://localhost:5173',
@@ -93,7 +66,7 @@ export const postPreference = async (req: Request, res: Response) => {
     },
 
     binary_mode: true,
-    auto_return: State.SUCCESS,
+    auto_return: state.SUCCESS,
   };
 
   mercadopago.preferences

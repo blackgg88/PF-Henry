@@ -1,314 +1,13 @@
-// .container-render-card-v-beta {
-//     //Buenisimo
-//     // background-color: aqua;
-
-//     width: 80%;
-//     height: 80vh;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-
-//     @media only screen and (max-width: $medium-screen) {
-//         height: 80vh;
-//         position: relative;
-//         left: 5%;
-
-//     }
-
-//     .container-card-beta {
-//         width: 100%;
-//         height: 95%;
-//         padding-top: 30px;
-//         display: grid;
-//         grid: repeat(2, 300px) / auto-flow;
-//         gap: 0 0px;
-//         //justify-content: space-around;
-//         align-items: center;
-//         gap: 30px 0;
-//         border-radius: $standard-border-radius;
-//         //background-color: $standard-color-gray;
-
-//         @media only screen and (max-width: $medium-screen) {
-
-//             grid: repeat(2, 180px) / auto-flow;
-//             align-items: flex-start;
-//             padding-top: 30px;
-//             background-color: violet;
-//         }
-
-//         .product-card-beta {
-//             box-shadow: 4px 4px 20px 5px rgba(0, 0, 0, 0.2);
-//             height: 292px;
-//             width: 187px;
-//             background-color: $standard-color-white;
-//             border-radius: $standard-border-radius;
-//             display: flex;
-//             flex-direction: column;
-//             align-items: center;
-//             background-color: greenyellow;
-
-//             @media only screen and (max-width: $medium-screen) {
-//                 height: 126px;
-//                 width: 160px;
-//             }
-
-
-//             .header-card-beta {
-//                 position: relative;
-//                 top: 10px;
-//                 height: 40px;
-//                 width: 100%;
-//                 font-family: $standard-font-Poiret-One;
-//                 text-align: center;
-//                 background-color: aqua;
-
-//                 @media only screen and (max-width: $medium-screen) {
-//                     //background-color: aqua;
-//                     position: relative;
-//                     top: 0px;
-//                 }
-//             }
-
-//             .content-image-card-beta {
-//                 height: 110px;
-//                 width: 100%;
-//                 display: flex;
-//                 align-items: center;
-//                 justify-content: center;
-//                 background-color: red;
-
-//                 @media only screen and (max-width: $medium-screen) {
-//                     //background-color: antiquewhite;
-//                     height: 150px;
-//                     z-index: 1;
-//                     scale: 0.5;
-//                     position: relative;
-//                     right: 25%;
-//                     bottom: 15%;
-//                 }
-
-//                 .link-image-card {
-//                     height: 120px;
-//                     width: auto;
-//                     display: flex;
-//                     align-items: center;
-//                     justify-content: center;
-
-//                     background-color: blue;
-
-//                     @media only screen and (max-width: $medium-screen) {}
-//                 }
-
-//                 .image-card {
-//                     max-width: 85%;
-//                     max-height: 100%;
-//                     background-color: $standard-color-white;
-//                     background-color: $standard-color-red;
-//                     border-radius: $standard-border-radius;
-
-//                     @media only screen and (max-width: $medium-screen) {}
-//                 }
-//             }
-
-//             .content-title-description-card-beta {
-//                 height: 58px;
-//                 width: 100%;
-//                 display: flex;
-//                 flex-direction: column;
-//                 background-color: gray;
-
-//                 @media only screen and (max-width: $medium-screen) {
-//                     position: relative;
-//                     bottom: 30px;
-//                     align-items: center;
-//                 }
-
-//                 .content-title-card-beta {
-//                     //background-color: violet;
-//                     height: 30%;
-//                     width: 100%;
-//                     background-color: orange;
-
-//                     @media only screen and (max-width: $medium-screen) {
-//                         height: 100%;
-//                         width: 100%;
-
-//                     }
-
-
-//                     .product-name-card-beta {
-//                         margin-top: 0px;
-//                         margin-left: 5px;
-//                         font-family: $standard-font-Barlow;
-//                         font-weight: 600;
-//                         font-size: 10px;
-//                     }
-//                 }
-
-//                 .content-description-card-beta {
-//                     height: 70%;
-//                     width: 100%;
-//                     padding: 0 5px;
-//                     display: flex;
-//                     align-items: flex-start;
-//                     padding-top: 5px;
-//                     //background-color: maroon;
-
-//                     @media only screen and (max-width: $medium-screen) {
-//                         display: none;
-//                     }
-
-//                     p {
-//                         font-family: $standard-font-Barlow;
-//                         font-family: $standard-font-Quicksand;
-//                         font-weight: 400;
-//                         font-size: 11px;
-//                         position: relative;
-//                         z-index: 1;
-//                         line-height: 85%;
-
-//                         @media only screen and (max-width: $medium-screen) {
-//                             display: none;
-//                         }
-//                     }
-//                 }
-
-
-//             }
-
-//             .content-value-rating-card-beta {
-//                 //background-color: yellowgreen;
-//                 height: 32px;
-//                 width: 100%;
-//                 display: flex;
-//                 flex-direction: row;
-//                 align-items: center;
-
-//                 @media only screen and (max-width: $medium-screen) {
-//                     width: 50%;
-//                     position: relative;
-//                     bottom: 80%;
-//                     left: 25%;
-//                     background-color: blue;
-//                 }
-
-//                 .content-rating-card-beta {
-//                     height: 100%;
-//                     width: 50%;
-//                     display: flex;
-//                     align-items: flex-start;
-//                     justify-content: center;
-//                     gap: 3px;
-//                     margin-left: 5px;
-//                     background-color: green;
-
-//                     @media only screen and (max-width: $medium-screen) {
-//                         scale: 0.9;
-//                         width: 100%;
-//                         position: relative;
-//                         bottom: 100%;
-//                         right: 50%;
-//                         z-index: 1;
-//                     }
-
-//                     img {
-//                         //background-color: red;
-//                         height: 16px;
-//                     }
-//                 }
-
-//                 .content-value-card-beta {
-//                     background-color: aliceblue;
-//                     height: 100%;
-//                     width: 50%;
-//                     display: flex;
-//                     align-items: flex-end;
-//                     justify-content: center;
-
-//                     @media only screen and (max-width: $medium-screen) {
-//                         align-items: center;
-//                         justify-content: flex-start;
-//                         scale: 1;
-//                         width: 100%;
-//                         position: relative;
-//                         right: 50%;
-//                         top: 10px;
-//                         //background-color: aqua;   
-//                     }
-
-//                     h4 {
-//                         font-family:
-//                             $standard-font-Urbanis-sans-serif;
-//                         font-size: 18px;
-//                         font-weight: 600;
-//                         scale: 1.3;
-
-//                         @media only screen and (max-width: $medium-screen) {
-//                             background-color: aqua;
-//                             width: 150%;
-//                         }
-//                     }
-//                 }
-//             }
-
-//             .content-add-car-card-beta {
-//                 //background-color: green;
-//                 height: 49px;
-//                 width: 100%;
-//                 display: flex;
-//                 justify-content: center;
-//                 align-items: center;
-//                 position: relative;
-
-//                 @media only screen and (max-width: $medium-screen) {
-//                     bottom: 20%;
-//                 }
-
-//                 .add-car-card-beta {
-
-//                     padding: 5px 25px;
-//                     border-radius: 20px;
-//                     background-color: $standard-color-blue;
-//                     font-family: $standard-font-Urbanis-sans-serif;
-//                     font-weight: 500;
-//                     color: $standard-color-white;
-//                     transition: background-color 0.3s;
-//                     cursor: pointer;
-
-//                     &:hover {
-
-//                         background-color: $standard-color-blue-green;
-
-//                     }
-
-//                     @media only screen and (max-width: $medium-screen) {
-//                         width: 100%;
-
-//                         border-radius: 0px 0px 15px 15px;
-//                     }
-//                 }
-
-//             }
-
-//         }
-//     }
-
-//     .pagination2 {
-//         //background-color: red;
-//         height: 80px;
-//         width: 100%;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-
-//     }
-// }
 
 .container-render-card-v-beta {
-    width: 80%;
-    height: 100%;
-    margin-right: 20px;
-    //background-color: red;
+    width: 97%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    // background-color: red;
+    background-color: $standard-color-blue-light;
 
     @media only screen and (max-width: $medium-screen) {
         width: 84%;
@@ -321,15 +20,21 @@
 
     .container-card-beta {
         padding: 20px;
-        width: 100%;
+        width: 90%;
         height: 100%;
+        // align-items: center;
+        // justify-content: flex-start;
+        // display: flex;
+        // flex-wrap: wrap;
+        // padding-left: 6%;
+        // gap: 100px;
+        // border-radius: $standard-border-radius;
+
+        //background-color: $standard-color-blue-light;
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
         align-items: center;
-        justify-content: flex-start;
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: 6%;
-        gap: 100px;
-        border-radius: $standard-border-radius;
+        justify-items: center;
        // background-color: $standard-color-blue-light;
 
         //background-color: blue;

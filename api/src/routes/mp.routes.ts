@@ -1,13 +1,14 @@
 import { Router } from 'express';
 
 import { postPreference } from '../controllers/mercadopago/postPreference';
-import { getPayment } from '../controllers/mercadopago/getPayment';
+import { getPreferences } from '../controllers/mercadopago/getPreferences';
+import { getPreference } from '../controllers/mercadopago/getPreference';
 
 const mercadopago = Router();
 
-mercadopago.get('/', getPayment);
+mercadopago.get('/', getPreferences);
 
-mercadopago.get('/:email', getPayment);
+mercadopago.get('/:email', getPreference);
 
 mercadopago.post('/', postPreference);
 

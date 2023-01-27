@@ -11,6 +11,9 @@ import iconFilter from "../assets/images/icons/iconFilter.png"
 import desplegarFiltro from "../assets/images/buttons/desplegarFiltro.png"
 import replegarFiltro from "../assets/images/buttons/replegarFiltro.png"
 
+
+import filterName from "../assets/images/icons/filter/filterName.png"
+
 interface Filter {
   properties: string[];
   order: string[];
@@ -110,8 +113,8 @@ const FiltersPanel: React.FC<{}> = () => {
             }));
           }
         });
-      } 
-      
+      }
+
       else if (
         value === "Connectivity & Control" ||
         value === "Home Entertainment" ||
@@ -152,61 +155,72 @@ const FiltersPanel: React.FC<{}> = () => {
   };
 
 
- 
-  
+
+
 
   return (
-    <div className="contain-FilterPanel" id="idFilterPanel">
+    <div className="new-contain-FilterPanel" id="idFilterPanel">
+      <div className="filter-section">
+        <img src={filterName} alt="" />
+        <div className="block-filter">
+          <h3 className="tile-filet"> title filter</h3>
+        </div>
+      </div>
       
-      <div className="filter-filt">
-        <h3 className="title">search:</h3>
-        <FilterBy
-          type={filter.properties[1]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title-filter">filters: </h3>
-
-        <div className="title">price: </div>
-        <FilterBy
-          type={filter.properties[3]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title">category: </h3>
-        <FilterBy
-          type={filter.properties[4]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title">rating: </h3>
-        <FilterBy
-          type={filter.properties[6]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title">order by: </h3>
-        <FilterBy
-          type={filter.properties[5]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-
-        {/* <FilterByPrice
-          type={filter.properties[7]}
-          switchSelect={switchSelect}
-          filter={filter}
-        /> */}
-      </div>
-      <div className="list-filter" id="list-filter">
-        <h3 className="title-filter">filter list: </h3>
-        <ItemFilterList
-          filterList={filter.filterList}
-          onCloseListHandler={onCloseListHandler}
-        />
-      </div>
     </div>
-  );
+    
+  ) 
 };
 
-export default FiltersPanel;
+      export default FiltersPanel;
+
+
+  //     <div className="filter-filt">
+  //       <h3 className="title">search:</h3>
+  //       <FilterBy
+  //         type={filter.properties[1]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title-filter">filters: </h3>
+
+  //       <div className="title">price: </div>
+  //       <FilterBy
+  //         type={filter.properties[3]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title">category: </h3>
+  //       <FilterBy
+  //         type={filter.properties[4]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title">rating: </h3>
+  //       <FilterBy
+  //         type={filter.properties[6]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title">order by: </h3>
+  //       <FilterBy
+  //         type={filter.properties[5]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+
+  //       {/* <FilterByPrice
+  //         type={filter.properties[7]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       /> */}
+  //     </div>
+  //     <div className="list-filter" id="list-filter">
+  //       <h3 className="title-filter">filter list: </h3>
+  //       <ItemFilterList
+  //         filterList={filter.filterList}
+  //         onCloseListHandler={onCloseListHandler}
+  //       />
+  //     </div>
+  //   </div>
+  // );

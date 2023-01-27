@@ -6,7 +6,8 @@ import replegarFiltro from "../assets/images/buttons/replegarFiltro.png"
 import desplegarFiltro from "../assets/images/buttons/desplegarFiltro.png"
 
 
-import FiltersPanel from "../Filters/FiltersPanel";
+// import FiltersPanel from "../Filters/FiltersPanel";
+import FiltersPanel from "../Filters/NewFilters/Filters/FiltersPanel";
 //import RenderCards from "../RenderCard/RenderCard";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../components/BreadCrumb";
@@ -37,15 +38,13 @@ const Shop: React.FC<{}> = () => {
         </Link> */}
       {/* <div>content-navbar</div> */}
       {/* </div> */}
-      <button className="filter-btn-out" onClick={spanFilter} title="btn-filter" id="idButtonSpan"
+      {/* <button className="filter-btn-out" onClick={spanFilter} title="btn-filter" id="idButtonSpan"
        style={{
         backgroundImage: `url(${desplegarFiltro})`,
         
       }}
-      ></button>
-      <div className="filter-unblock" id="background-filter" onClick={spanFilter}>
-        <img className="logoforFilter" src={logoforFilter} alt="" />
-      </div>
+      ></button> */}
+      
       
       <div className="breadcrumb">
         <div className="base">

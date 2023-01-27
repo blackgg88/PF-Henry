@@ -29,3 +29,160 @@
 //   justify-content: center;
 //   gap: 15px;
 // }
+.new-contain-FilterPanel {
+
+    user-select: none;
+    /* Non-prefixed version, currently supported by any browser but < IE9 */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    -moz-user-select: none;
+    /* Firefox */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+
+    font-family: $standard-font-Poiret-One;
+    font-family: $standard-font-Barlow;
+    position: fixed;
+    font-size: 1rem;
+    height: 80.5%;
+    width: 60px;
+    top: 20;
+    left: 0%;
+    z-index: 1;
+    padding-top: 20px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: $standard-color-blue;
+    transition: all 0.3s cubic-bezier(0.785, 0.635, 0.15, 0.3);
+    border-right: 5px solid $standard-color-blue;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+    @media only screen and (max-width: $medium-screen) {
+        gap: 0px;
+        font-size: 0.5rem;
+
+    }
+
+    &:hover {
+
+        border-right: 0px solid $standard-color-blue;
+        background-color: $standard-color-blue;
+        width: 25vw;
+        transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+        .sectrion-filter {
+
+            .block-filter {
+                display: flex;
+            }
+        }
+
+    }
+
+    .separator {
+        height: 1px;
+        width: 100%;
+        background-color: $standard-color-blue-green;
+        border-radius: 10px;
+    }
+
+    .sectrion-filter {
+        height: 15%;
+        width: 100%;
+        //position: absolute;
+        align-items: center;
+        padding-left: 4px;
+        display: flex;
+        gap: 10px;
+        overflow: hidden;
+        //background-color: gray;
+        transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+        &:hover {
+            background-color: $standard-color-black-ligth;
+            transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+            .hovr-selector {
+                width: 3px;
+                height: 80%;
+                background-color: $standard-color-blue-green;
+                transition: all 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+            }
+
+            .img {
+                
+                scale: 1.1;
+                left: 2%;
+                bottom: 10%;
+                transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+            }
+
+            ;
+            //option 
+            // .block-filter{
+            //     display: flex;
+            // }
+
+        }
+
+        .hovr-selector {
+            position: relative;
+            width: 1px;
+            height: 100%;
+            background-color: $standard-color-transparent;
+            transition: all 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+
+
+        .img {
+            border-radius: 4px;
+            position: relative;
+            background-color: $standard-color-transparent;
+            height: 35px;
+            width: 35px;
+            z-index: 3;
+            left: 0%;
+            bottom: 0%;
+            transition: all 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+
+        .block-filter {
+            position: relative;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 15px;
+            padding-top: 15px;
+            height: 100%;
+            width: 100%;
+            gap: 15px;
+
+            //background-color: blueviolet;
+            .title-filter {
+                color: $standard-color-blue-green;
+                //background-color: $standard-color-red;
+                width: 100%;
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+.btn-selector-filter {
+    width: 90%;
+    height: 70%;
+    color: $standard-color-white;
+    font-family: $standard-font-Barlow;
+    font-weight: 100;
+    background-color: $standard-color-blue-glass;
+    border: 1px solid $standard-color-white;
+    border-radius: 5px;
+    cursor: pointer;
+}

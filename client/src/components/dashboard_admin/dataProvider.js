@@ -1,7 +1,8 @@
 import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
+import { API_URL } from '../../../config';
+import orderData from './orderData';
 
-const apiUrl = 'http://localhost:3001';
 const httpClient = fetchUtils.fetchJson;
 
 const handleFormatedDate = (date_created) => {
@@ -18,24 +19,28 @@ const handleFormatedDate = (date_created) => {
 const dataProvider = {
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
+    const { field, order } = params.sort;
     let url;
-
+    console.log(field, order);
+    console.log(resource);
     if (resource === 'purchases') {
-      url = `${apiUrl}/checkout`;
+      url = `${API_URL}/checkout`;
     } else {
-      url = `${apiUrl}/${resource}`;
+      url = `${API_URL}/${resource}`;
     }
 
     const response = await fetch(url);
 
     let data = await response.json();
 
+    data = orderData(data, resource, order, field);
+
     const total = data.length;
 
     data = data.slice((page - 1) * perPage, page * perPage);
 
     if (resource === 'purchases') {
-      console.log(data);
+      // console.log(data);
       data = data.map((purchase) => {
         return {
           id: purchase.id,
@@ -73,7 +78,7 @@ const dataProvider = {
   },
 
   getOne: async (resource, params) => {
-    const response = await fetch(`${apiUrl}/${resource}/${params.id}`);
+    const response = await fetch(`${API_URL}/${resource}/${params.id}`);
     let data = await response.json();
 
     data = {
@@ -89,7 +94,7 @@ const dataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    const url = `${API_URL}/${resource}?${stringify(query)}`;
     return httpClient(url).then(({ json }) => ({ data: json }));
   },
 
@@ -104,7 +109,7 @@ const dataProvider = {
         [params.target]: params.id,
       }),
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    const url = `${API_URL}/${resource}?${stringify(query)}`;
 
     return httpClient(url).then(({ headers, json }) => ({
       data: json,
@@ -113,7 +118,7 @@ const dataProvider = {
   },
 
   update: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
+    httpClient(`${API_URL}/${resource}/${params.id}`, {
       method: 'PUT',
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({ data: json })),
@@ -122,14 +127,14 @@ const dataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
+    return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
       method: 'PUT',
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({ data: json }));
   },
 
   create: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}`, {
+    httpClient(`${API_URL}/${resource}`, {
       method: 'POST',
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({
@@ -137,7 +142,7 @@ const dataProvider = {
     })),
 
   delete: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
+    httpClient(`${API_URL}/${resource}/${params.id}`, {
       method: 'DELETE',
     }).then(({ json }) => ({ data: json })),
 
@@ -145,7 +150,7 @@ const dataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
+    return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
       method: 'DELETE',
     }).then(({ json }) => ({ data: json }));
   },

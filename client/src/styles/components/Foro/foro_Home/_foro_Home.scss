@@ -1,0 +1,33 @@
+.foro_home_container {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100vh;
+    background-color: rgb(207, 199, 199);
+    padding-top: 20px;
+
+    .foro_posts_container {
+        //background-color: red;
+        padding: 20px;
+        width: 700px;
+        height: 100vh;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        //justify-content: center;
+        align-items: center;
+        img {
+            width: 200px;
+            cursor: pointer;
+        }
+
+        &::-webkit-scrollbar {
+            width: 1px;
+        }
+    }
+
+    .foro_menuTags_container {
+        min-width: 300px;
+        height: 350px;
+        background-color: green;
+    }
+}

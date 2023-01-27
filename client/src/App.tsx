@@ -11,15 +11,28 @@ import Footer from './components/Footer';
 import NavBar from './components/navbar/Navbar';
 import ShoppingCart from './components/checkout/ShoppingCart';
 import Form from './components/checkout/FormComponent';
+import ForoHome from './components/foro/foroHome';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch } from './Redux/hook';
+import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
 
 function App() {
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const productsInLS = JSON.parse(localStorage.getItem('shopingCart') as string) ?? [];
+
+    if (productsInLS.length) {
+      dispatch(addProduct(productsInLS));
+    }
+  }, []);
 
   return (
-    <div>
-      {!location.pathname.includes('/admin') && <NavBar />}
+    <>
+      {!['/admin', '/foro'].includes(location.pathname) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />
@@ -30,9 +43,10 @@ function App() {
         <Route path='/admin/*' element={<AppAdmin />} />
         <Route path='/shopping_cart' element={<ShoppingCart />} />
         <Route path='/checkout' element={<Form />} />
+        <Route path='/foro' element={<ForoHome />} />
       </Routes>
-      <Footer />
-    </div>
+      {!['/admin', '/foro'].includes(location.pathname) && <Footer />}
+    </>
   );
 }
 

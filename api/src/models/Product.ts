@@ -1,5 +1,5 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Category } from "./Category";
+import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { Category } from './Category';
 
 export class Product {
   @prop({ type: String, required: true, trim: true })

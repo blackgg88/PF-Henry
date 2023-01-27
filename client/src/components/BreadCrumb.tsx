@@ -1,88 +1,67 @@
-// import React, { useEffect } from "react";
-// import { useState } from "react";
-// import { Breadcrumbs, Link } from "@mui/material";
-// import { useLocation } from "react-router-dom";
+import React from 'react';
+import { useState } from 'react';
+import { Breadcrumbs, Link } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
-// import { useAppDispatch, useAppSelector } from "../Redux/hook";
-// import { addPath, popPath } from "../Redux/slice/breadcrumb/breadcrumb.slice";
+interface BreadcrumbLink {
+  label: string;
+  path: string;
+}
 
-// // interface BreadcrumbLink {
-// //   label: string;
-// //   path: string;
-// // }
+const Breadcrumb: React.FC<{}> = () => {
+  const location = useLocation();
+  const [prevPaths, setPrevPaths] = useState<string[]>(['/', location.pathname]);
 
-// const Breadcrumb: React.FC<{}> = () => {
-//   const prevPaths = useAppSelector(
-//     (state) => state.breadcrumbReducer.prevPaths
-//   );
+  const links = [
+    { label: 'Home', path: '/' },
+    { label: 'Register', path: '/register' },
+    { label: 'Test', path: '/test' },
+    { label: 'News', path: '/news' },
+    { label: 'Shop', path: '/shop' },
+    { label: 'Profile', path: '/profile' },
+    { label: 'Detail', path: '/product/:id' },
+  ];
 
-//   const dispatch = useAppDispatch();
+  // const prevLinks = links.filter(
+  //   (link) => link.path === prevPath || link.path === location.pathname
+  // );
+  // const handleNavigation = (path: string) => {
+  //   setPrevPaths([...prevPaths, path]);
+  // };
 
-//   const location = useLocation();
-//   // const [prevPaths, setPrevPaths] = useState<string[]>([
-//   //   "/",
-//   //   location.pathname,
-//   // ]);
+  //   const handleNavigation = (path: string) => {
+  //     setPrevPaths([...prevPaths, path]);
+  // };
 
-//   const links = [
-//     { label: "Home", path: "/" },
-//     { label: "Register", path: "/register" },
-//     { label: "News", path: "/news" },
-//     { label: "Shop", path: "/shop" },
-//     { label: "Profile", path: "/profile" },
-//     { label: "Detail", path: "/product/:id" },
-//     { lable: "Shopping Cart", path: "/shopping_cart" },
-//   ];
+  const handleNavigation = (path: string) => {
+    if (!prevPaths.some((prevPath) => prevPath === path)) {
+      setPrevPaths([...prevPaths, path]);
+    }
+  };
+  return (
+    <div>
+      <Breadcrumbs aria-label='breadcrumb'>
+        {prevPaths?.slice(-2).map((path, index) => {
+          const link = links.find((link) => link.path === path);
+          if (!link) return null;
 
-//   useEffect(() => {
-//     const currentPath = location.pathname;
-//     const prevPath = prevPaths[prevPaths.length - 1];
+          const { label } = link;
+          const isActive = path === location.pathname;
+          return (
+            <Link
+              key={label}
+              color='inherit'
+              href={path}
+              onClick={() => handleNavigation(path)}
+              className={`${isActive ? 'active' : ''}`}
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </Breadcrumbs>
+    </div>
+  );
+};
 
-//     if (currentPath === prevPath);
-//     else if (!prevPaths.includes(currentPath)) dispatch(addPath(currentPath));
-//     else dispatch(popPath());
-//   }, [location, prevPaths, dispatch]);
-
-//   // const prevLinks = links.filter(
-//   //   (link) => link.path === prevPath || link.path === location.pathname
-//   // );
-//   // const handleNavigation = (path: string) => {
-//   //   setPrevPaths([...prevPaths, path]);
-//   // };
-
-//   //   const handleNavigation = (path: string) => {
-//   //     setPrevPaths([...prevPaths, path]);
-//   // };
-
-//   // const handleNavigation = (path: string) => {
-//   //   if (!prevPaths.some((prevPath) => prevPath === path)) {
-//   //     setPrevPaths([...prevPaths, path]);
-//   //   }
-//   // };
-//   return (
-//     <div>
-//       <Breadcrumbs aria-label="breadcrumb">
-//         {prevPaths?.slice(-2).map((path, index) => {
-//           const link = links.find((link) => link.path === path);
-//           if (!link) return null;
-
-//           const { label } = link;
-//           const isActive = path === location.pathname;
-//           return (
-//             <Link
-//               key={label}
-//               color="inherit"
-//               href={path}
-//               onClick={() => dispatch(path.path)}
-//               className={`${isActive ? "active" : ""}`}
-//             >
-//               {label}
-//             </Link>
-//           );
-//         })}
-//       </Breadcrumbs>
-//     </div>
-//   );
-// };
-
-// export default Breadcrumb;
+export default Breadcrumb;

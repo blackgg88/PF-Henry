@@ -1,5 +1,5 @@
 .Nav_topLanding {
-  height: 70px;
+  height: $navbar-height;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,31 +8,29 @@
   margin-left: 30px;
   margin-top: 10px;
   margin-bottom: 12px;
-  
-    
-  
+
+  @media (max-width: 900px) {
+    justify-content: center;
+    // padding-top: 10px;
+  }
+
+  @media (max-width: 610px) {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+
+  .Nav_container_logo {
+    width: 50%;
+    cursor: pointer;
     @media (max-width: 900px) {
-      justify-content: center;
-      padding-top: 10px;
+      display: none;
     }
 
-    @media (max-width: 610px) {
-      padding: 0;
-      margin: 0;
-      border: none;
+    .nav_toplogo {
+      width: 200px;
     }
-
-    .Nav_container_logo {
-      width: 50%;
-      cursor: pointer;
-      @media (max-width: 900px) {
-        display: none;
-      }
-
-      .nav_toplogo {
-        width: 200px;
-      }
-    }
+  }
   //}
 
   .Nav_container_navbar {
@@ -74,6 +72,29 @@
     border-radius: 0;
   }
 
+  .Nav_ShoppinCartContainer {
+    position: relative;
+    .nav_cart_pop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 20px;
+      right: -5px;
+      background-color: red;
+      border-radius: 100%;
+      width: 20px;
+      height: 20px;
+      h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 12.5px;
+        color: white;
+        font-family: 'Barlow', sans-serif;
+      }
+    }
+  }
+
   .Nav_responsive_LogoMenu {
     display: none;
     cursor: pointer;
@@ -93,8 +114,8 @@
 
   .nav_middle_button {
     border-right: 1px solid $white;
-    @media (max-width:900px) {
-      border: none
+    @media (max-width: 900px) {
+      border: none;
     }
   }
 
@@ -143,18 +164,17 @@
     right: 10px;
     top: 80px;
     width: 140px;
-    height: 70px;
+    height: auto;
     z-index: 2;
     background-color: $standard-color-blue;
     border-radius: 10px;
     align-items: center;
     padding: 9px 20px;
-    
-    
+
     .nav_middle_button {
       border-right: 1px solid $standard-color-blue-green;
     }
-    
+
     .nav_modalWindow_Link {
       margin: 0;
     }
@@ -242,7 +262,7 @@
 }
 
 .nav_responsive_MENU {
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -254,7 +274,7 @@
   z-index: 3;
   bottom: 0%;
   display: none;
-  
+  padding-top: 25px;
 
   @media (max-width: 610px) {
     display: flex;
@@ -278,7 +298,7 @@
 }
 
 .nav_responsive_MENUClosed {
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
   display: flex;
   flex-direction: column;
   justify-content: center;

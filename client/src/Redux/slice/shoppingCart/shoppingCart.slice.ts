@@ -21,20 +21,23 @@ const initialState: {
 } = {
   Products: [],
 };
+
+const handleSaveLS = (product: ProductCart[] | ProductCart) => {
+  localStorage.setItem('shopingCart', JSON.stringify(product));
+};
+
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<ProductCart>) => {
-      if (state.Products.some((product) => product._id === action.payload._id)) {
-        state.Products = state.Products.map((product) => {
-          if (product._id === action.payload._id)
-            return { ...product, quantity: product.quantity + 1 };
-          return product;
-        });
+      if (Array.isArray(action.payload)) {
+        state.Products = action.payload;
       } else {
         state.Products = [...state.Products, action.payload];
       }
+
+      handleSaveLS(state.Products);
     },
 
     changeQuantity: (state, action: PayloadAction<{ id: string; quantity: number }>) => {
@@ -43,13 +46,24 @@ export const shoppingCartSlice = createSlice({
           return { ...product, quantity: action.payload.quantity };
         return product;
       });
+
+      handleSaveLS(state.Products);
     },
+
     deleteProduct: (state, action: PayloadAction<string>) => {
       state.Products = state.Products.filter(
         (product: ProductCart) => product._id !== action.payload,
       );
+
+      handleSaveLS(state.Products);
+    },
+
+    emptyCar: (state) => {
+      state.Products = [];
+
+      handleSaveLS(state.Products);
     },
   },
 });
 
-export const { addProduct, deleteProduct, changeQuantity } = shoppingCartSlice.actions;
+export const { addProduct, deleteProduct, changeQuantity, emptyCar } = shoppingCartSlice.actions;

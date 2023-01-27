@@ -31,6 +31,8 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
     if (inputRef.current) {
       console.log(inputRef.current.value);
       switchSelect(inputRef.current.value);
+      inputRef.current.value = "";
+
     }
   };
 
@@ -58,10 +60,11 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
     }
   }, [Allproduct]);
 
+
   //----------------------------------------------------------
 
   return (
-    <div className='container-FilterBy'>
+    <div key={type + Math.random()} className='container-FilterBy' >
       {/* <img src={icon} alt="icon" /> */}
 
       {type === 'Name' && (
@@ -91,9 +94,9 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
               .slice(0, 5)
               .map((prod) => (
                 <div
+                  key={"name"+prod.name}
                   onClick={() => switchSelect(prod.name)}
                   className='dropdown-row'
-                  key={prod.name}
                 >
                   {prod.name}
                   {/* <div className="separator">separator</div> */}
@@ -125,6 +128,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
           {stars.map((star) => {
             return (
               <button
+                key={"star" + star}
                 className='btn-start'
                 value={star}
                 onClick={(e: any) => {
@@ -168,7 +172,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
             >
               {filter.categories?.map((property, index) => {
                 return (
-                  <option className='option' key={property + index} value={property}>
+                  <option key={"category" + property + index} className='option' value={property}>
                     {property}
                   </option>
                 );
@@ -190,7 +194,7 @@ const FilterBy: React.FC<FilterByProps> = ({ switchSelect, filter, type }) => {
             >
               {filter.order?.map((property, index) => {
                 return (
-                  <option className='option' key={property + index} value={property}>
+                  <option key={"option" + property + index} className='option' value={property}>
                     {property}
                   </option>
                 );

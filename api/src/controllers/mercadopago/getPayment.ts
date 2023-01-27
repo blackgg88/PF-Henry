@@ -39,22 +39,25 @@ interface Additional_info {
 }
 
 interface PurchaseByMP {
+  id: string;
   status: string;
   status_detail: string;
   date_created: string;
   order: Order;
   transaction_details: Transaction_details;
   additional_info: Additional_info;
+  statement_descriptor: string;
 }
 
 interface Purchase {
-  id: any;
+  id: string;
   payer: Payer;
   items: Item[];
   date_created: string;
   status: string;
   status_detail: string;
   total_paid_amount: number;
+  statement_descriptor: string;
 }
 
 export const getPayment = async (req: Request, res: Response) => {
@@ -77,13 +80,14 @@ export const getPayment = async (req: Request, res: Response) => {
 
     const payments = response.data.results.map((purchase: PurchaseByMP) => {
       const payment: Purchase = {
-        id: purchase.order.id,
+        id: purchase.id,
         payer: purchase.additional_info.payer,
         items: purchase.additional_info.items,
         date_created: purchase.date_created,
         status: purchase.status,
         status_detail: purchase.status_detail,
         total_paid_amount: purchase.transaction_details.total_paid_amount,
+        statement_descriptor: purchase.statement_descriptor,
       };
 
       return payment;

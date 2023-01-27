@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import mercadopago from 'mercadopago';
-
-import { ACCESS_TOKEN } from '../../../config';
+import { CLIENT_URL, ACCESS_TOKEN } from '../../../config';
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
@@ -30,9 +29,11 @@ interface Item {
   _id: string;
   categories: Category;
   name: string;
+  stock: number;
   quantity: number;
   price: number;
   images: string[];
+  brand: string;
 }
 
 interface ItemMP {
@@ -55,11 +56,12 @@ interface Payer {
 export const postPreference = async (req: Request, res: Response) => {
   const payer: Payer = req.body.payer;
   const products: Item[] = req.body.products;
+
   let preference = {
     items: products.map((item) => {
       return {
         id: item._id,
-        category_id: item.categories._id,
+        category_id: item.categories.name,
         currency_id: Currency.USD,
         title: item.name,
         quantity: item.quantity,
@@ -67,6 +69,9 @@ export const postPreference = async (req: Request, res: Response) => {
         picture_url: item.images[0],
       } as ItemMP;
     }),
+
+    marketplace: 'SmartNest',
+    statement_descriptor: 'SmartNest',
 
     payer: {
       email: payer.email,
@@ -79,9 +84,15 @@ export const postPreference = async (req: Request, res: Response) => {
     external_reference: payer.email,
 
     back_urls: {
-      success: 'http://localhost:5173',
-      failure: 'http://localhost:5173',
-      pending: 'http://localhost:5173',
+      success: CLIENT_URL,
+      failure: CLIENT_URL,
+      pending: CLIENT_URL,
+    },
+
+    redirect_urls: {
+      failure: CLIENT_URL,
+      pending: CLIENT_URL,
+      success: CLIENT_URL,
     },
 
     payment_methods: {
@@ -100,9 +111,10 @@ export const postPreference = async (req: Request, res: Response) => {
     .create(preference)
     .then(function (response) {
       // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
-      res.status(201).json(response.body);
+      res.status(201).json(response.body.init_point);
     })
     .catch(function (error) {
       res.status(500).json(error);
+      console.log(error);
     });
 };

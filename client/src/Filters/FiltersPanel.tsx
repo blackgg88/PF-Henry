@@ -6,6 +6,13 @@ import FilterBy from "./FilterBy/FilterBy";
 import FilterByPrice from "./FilterByPriceRange/FilterByPrice";
 // import FilterByRating from "./FilterByRating/FilterByRating";
 import ItemFilterList from "./ItemFilterList/ItemFilterList";
+import logoforFilter from "../assets/images/logos/logoforFilter.png"
+import iconFilter from "../assets/images/icons/iconFilter.png"
+import desplegarFiltro from "../assets/images/buttons/desplegarFiltro.png"
+import replegarFiltro from "../assets/images/buttons/replegarFiltro.png"
+
+
+import filterName from "../assets/images/icons/filter/filterName.png"
 
 interface Filter {
   properties: string[];
@@ -50,26 +57,13 @@ const FiltersPanel: React.FC<{}> = () => {
     span: false,
   });
 
-  // const span = () => {
-  //   const filterPanel = document.getElementById("idFilterPanel");
-  //   const buttonSpan = document.getElementById("idButtonSpan");
-  //   if (filter.span === true) {
-  //     filterPanel.className += " animationSpan";
-  //     buttonSpan.innerHTML = "D";
-  //     setFilter({ ...filter, span: !filter.span });
-  //   } else {
-  //     filterPanel.className += " contain-FilterPanel";
-  //     buttonSpan.innerHTML = "R";
-  //   }
-  //   //document.querySelector(".contain-FilterPanel").style.backgroundColor ="green";
-  //   //filterPanel.classList.add("animationspan");
-  // };
+
 
   //span();
 
   const switchSelect = (value: string) => {
     if (value !== "---") {
-      console.log(filter.filterList);
+      //onsole.log(filter.filterList);
       let focus = [value, ...filter.filterList];
       focus = [...new Set(focus)];
       //check if the selected filter is a price filter
@@ -119,7 +113,33 @@ const FiltersPanel: React.FC<{}> = () => {
             }));
           }
         });
-      } else {
+      }
+
+      else if (
+        value === "Connectivity & Control" ||
+        value === "Home Entertainment" ||
+        value === "Energy Management" ||
+        value === "Safety & Security" ||
+        value === "Comfort & Ease" ||
+        value === "LifeStyle & Health"
+      ) {
+        filter.categories.map((ordr) => {
+          if (value === ordr) {
+            const focal = filter.categories.filter(
+              (excepcion) => excepcion !== value
+            );
+            focal.map((filterOrder) => {
+              focus = focus.filter((filt) => filt !== filterOrder);
+            });
+            setFilter((prevFilter) => ({
+              ...prevFilter,
+              filterList: focus,
+            }));
+          }
+        });
+      }
+
+      else {
         setFilter((prevFilter) => ({
           ...prevFilter,
           filterList: focus,
@@ -134,62 +154,73 @@ const FiltersPanel: React.FC<{}> = () => {
     setFilter((prevFilter) => ({ ...prevFilter, filterList: newList }));
   };
 
+
+
+
+
   return (
-    <div className="contain-FilterPanel" id="idFilterPanel">
-      <div className="filter-filt">
-        <div className="content-btn-span">
-          <button className="btn-span" id="idButtonSpan">
-            {"<"}
-          </button>
+    <div className="new-contain-FilterPanel" id="idFilterPanel">
+      <div className="filter-section">
+        <img src={filterName} alt="" />
+        <div className="block-filter">
+          <h3 className="tile-filet"> title filter</h3>
         </div>
-        <h3 className="title">search:</h3>
-        <FilterBy
-          type={filter.properties[1]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title-filter">filters: </h3>
-
-        <div className="title">price: </div>
-        <FilterBy
-          type={filter.properties[3]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title">category: </h3>
-        <FilterBy
-          type={filter.properties[4]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title">rating: </h3>
-        <FilterBy
-          type={filter.properties[6]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-        <h3 className="title">order by: </h3>
-        <FilterBy
-          type={filter.properties[5]}
-          switchSelect={switchSelect}
-          filter={filter}
-        />
-
-        {/* <FilterByPrice
-          type={filter.properties[7]}
-          switchSelect={switchSelect}
-          filter={filter}
-        /> */}
       </div>
-      <div className="list-filter">
-        <h3 className="title-filter">filters: </h3>
-        <ItemFilterList
-          filterList={filter.filterList}
-          onCloseListHandler={onCloseListHandler}
-        />
-      </div>
+      
     </div>
-  );
+    
+  ) 
 };
 
-export default FiltersPanel;
+      export default FiltersPanel;
+
+
+  //     <div className="filter-filt">
+  //       <h3 className="title">search:</h3>
+  //       <FilterBy
+  //         type={filter.properties[1]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title-filter">filters: </h3>
+
+  //       <div className="title">price: </div>
+  //       <FilterBy
+  //         type={filter.properties[3]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title">category: </h3>
+  //       <FilterBy
+  //         type={filter.properties[4]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title">rating: </h3>
+  //       <FilterBy
+  //         type={filter.properties[6]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+  //       <h3 className="title">order by: </h3>
+  //       <FilterBy
+  //         type={filter.properties[5]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       />
+
+  //       {/* <FilterByPrice
+  //         type={filter.properties[7]}
+  //         switchSelect={switchSelect}
+  //         filter={filter}
+  //       /> */}
+  //     </div>
+  //     <div className="list-filter" id="list-filter">
+  //       <h3 className="title-filter">filter list: </h3>
+  //       <ItemFilterList
+  //         filterList={filter.filterList}
+  //         onCloseListHandler={onCloseListHandler}
+  //       />
+  //     </div>
+  //   </div>
+  // );

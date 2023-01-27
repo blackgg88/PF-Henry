@@ -1,3 +1,3 @@
-export { productSlice } from "./product/product.slice";
-export { shoppingCartSlice } from "./shoppingCart/shoppingCart.slice";
-// export { breadcrumbSlice } from "./breadcrumb//breadcrumb.slice";
+export { productSlice } from './product/product.slice';
+export { shoppingCartSlice } from './shoppingCart/shoppingCart.slice';
+export { userSlice } from './user/user.slice';

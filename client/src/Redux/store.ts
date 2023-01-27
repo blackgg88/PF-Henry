@@ -1,13 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { productSlice } from "./slice";
-import { shoppingCartSlice } from "./slice";
-// import { breadcrumbSlice } from "./slice";
+import { configureStore } from '@reduxjs/toolkit';
+import { productSlice } from './slice';
+import { shoppingCartSlice } from './slice';
+import { userSlice } from './slice';
 
 export const store = configureStore({
   reducer: {
     productReducer: productSlice.reducer,
     cartReducer: shoppingCartSlice.reducer,
-    // breadcrumbReducer: breadcrumbSlice.reducer,
+    userReducer: userSlice.reducer,
   },
 });
 

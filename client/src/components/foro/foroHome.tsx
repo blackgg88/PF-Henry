@@ -5,11 +5,6 @@ import Foro_createPost from "./components/Foro_createPost";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 //---------------
-interface ForoInterface {
-  form: object;
-  allPost: [];
-  functions: object;
-}
 
 interface editPost {
   content: string;

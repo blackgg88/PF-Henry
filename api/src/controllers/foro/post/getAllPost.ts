@@ -10,8 +10,8 @@ export const getAllPost = async (req: Request, res: Response) => {
     const { deleted } = req.query;
     try {
         const Allposts = await PostModel.find()
-        .populate("author", "userName")
-        .populate("likes","userName")
+        .populate("author")
+        .populate("likes")
         .populate({
             path: "comments",
             select: "content author likes",

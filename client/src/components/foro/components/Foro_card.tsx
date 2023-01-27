@@ -3,6 +3,8 @@ import likeLogo from '../../../assets/foro/like-red.png'
 import commentLogo from '../../../assets/foro/comment.png'
 import editLogo from '../../../assets/foro/edit.png'
 import trashlogo from '../../../assets/foro/trash.png'
+import { useAuth0 } from '@auth0/auth0-react';
+import { likePosts } from '../../../../helpers/foro/likePosts'
 
 interface Foro_Card{
     id: string;
@@ -18,6 +20,17 @@ interface Foro_Card{
 }
 // : React.FC
 export function Foro_card ({id, title, content, likes, img, author, comments, userId, post, onDeletePost}: Foro_Card) {
+
+  const {user} = useAuth0()
+
+  const likeHandler = (post: string) => {
+    likePosts({
+      email: user?.email,
+      post
+    })
+  }
+
+
   return (
     <div className='foro_card_Container' key={id}>
       <div className='foro_card_authorSide'>
@@ -48,7 +61,7 @@ export function Foro_card ({id, title, content, likes, img, author, comments, us
 
         <div className='foro_card_social_Right'>
           <p>{likes}</p>
-          <img className='foro_card_buttonLike' src={likeLogo} alt="like" />
+          <img onClick={()=> likeHandler(id)} className='foro_card_buttonLike' src={likeLogo} alt="like" />
           <p>{comments}</p>
           <img className='foro_card_buttonComment' src={commentLogo} alt='comment' />
           

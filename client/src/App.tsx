@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      {!['/admin', '/foro'].includes(location.pathname) && <NavBar />}
+      {!['/admin'].includes(location.pathname) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

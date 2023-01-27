@@ -9,7 +9,7 @@ const UserModel = getModelForClass(User)
 export const deletePost = async (req: Request, res: Response) => {
     try {
         
-        const {userId, idPost} = req.body
+        const {email, idPost} = req.body
 
         //BUSCAMOS Y ELIMINAMOS EL POST POR SU ID
         const postDeleted = await PostModel.findById(idPost)
@@ -19,7 +19,7 @@ export const deletePost = async (req: Request, res: Response) => {
         }
         
         //BUSCAMOS EL USUARIO QUE TENIA EL POST
-        const userWithPost = await UserModel.findById(userId)
+        const userWithPost = await UserModel.findOne({ email }).select('-__v');
 
         if (userWithPost==null) {
             res.status(404).json({error: `Ningun usuario posee este post`})

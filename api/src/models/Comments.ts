@@ -16,8 +16,8 @@ export class Comment {
   @prop({ ref: "User", required: true })
   author: Ref<User>
 
-  @prop({ ref: "User", required: false})
-  likes: Ref<User>[]
+  @prop({ type: String, required: false})
+  likes: string[]
 
 }
 

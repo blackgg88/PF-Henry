@@ -25,8 +25,8 @@ author: Ref<User>
 @prop({ ref: () => Comment })
 comments: Ref<Comment>[]
 
-@prop({ ref: "User", required: false})
-likes: Ref<User>[]
+@prop({ type: String, required: false})
+likes: string[]
 }
 
 

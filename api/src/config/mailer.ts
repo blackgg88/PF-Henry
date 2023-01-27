@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+import { Response } from "express";
+import nodemailer from "nodemailer";
+import { ADMIN_EMAIL, GMAIL_API } from "../../config";
+import { Payment } from "../controllers/mercadopago/feedback";
+=======
 import { Response } from 'express';
 import nodemailer from 'nodemailer';
 import { ADMIN_EMAIL, GMAIL_API } from '../../config';
 import { Payment } from '../controllers/mercadopago/feedback';
 import { Products } from '../controllers/mercadopago/feedback';
+>>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
 
 // export const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
@@ -23,7 +30,7 @@ const formatDate = (date: string) => {
   const day = date_time_obj.getDate();
   const month = date_time_obj.getMonth() + 1;
   const year = date_time_obj.getFullYear();
-  const formatted_date = day + '/' + month + '/' + year;
+  const formatted_date = day + "/" + month + "/" + year;
 
   return formatted_date;
 };
@@ -31,7 +38,7 @@ const formatDate = (date: string) => {
 export const sendMailPayment = (payment: Payment) => {
   let res: Response;
   let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: "smtp.gmail.com",
     port: 465,
     auth: {
       user: `${ADMIN_EMAIL}`, // generated ethereal user
@@ -1056,7 +1063,7 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                             <table cellpadding="0" cellspacing="0" width="100%">
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href><img src="https://tlr.stripocdn.email/content/guids/CABINET_455a2507bd277c27cf7436f66c6b427c/images/52161620291665094.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
+                                                                                                        <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href><img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674828268/SmartNest/logo_smart_b_xxdxi8.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -1140,7 +1147,7 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                               payment.id
                                                                                             }</h2>
                                                                                             <p style="line-height: 150%;">${formatDate(
-                                                                                              payment.date,
+                                                                                              payment.date
                                                                                             )}</p>
                                                                                         </td>
                                                                                     </tr>
@@ -1234,8 +1241,13 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                                     <tr>
                                                                                                         <td align="right" class="esd-block-text">
                                                                                                             <p><strong>$${payment.total_amount.toFixed(
+<<<<<<< HEAD
+                                                                                                              2
+                                                                                                            )}.</strong></p>
+=======
                                                                                                               2,
                                                                                                             )}</strong></p>
+>>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 </tbody>
@@ -1387,8 +1399,9 @@ export const sendMailPayment = (payment: Payment) => {
                                                                         <td width="560" class="esd-container-frame" align="center" valign="top">
                                                                             <table cellpadding="0" cellspacing="0" width="100%">
                                                                                 <tbody>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://viewstripo.email/?utm_source=templates&utm_medium=email&utm_campaign=gadget_11&utm_content=order_is_on_its_way"><img src="https://tlr.stripocdn.email/content/guids/CABINET_09023af45624943febfa123c229a060b/images/7911561025989373.png" alt width="125" style="display: block;"></a></td>
+                                                                                    <tr>/
+                                                                                    
+                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png"><img src="https://dev--henry-pf-smartnest.netlify.app" alt width="125" style="display: block;"></a></td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
@@ -1419,7 +1432,7 @@ export const sendMailPayment = (payment: Payment) => {
       console.log(error);
       res?.status(500).send(error?.message);
     } else {
-      res?.status(200).send('Email sent');
+      res?.status(200).send("Email sent");
     }
   });
 };

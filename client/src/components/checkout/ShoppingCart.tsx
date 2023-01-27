@@ -21,10 +21,8 @@ const ShoppingCart = () => {
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
-  console.log(userByBd);
 
   const { user, isAuthenticated } = useAuth0();
-  console.log(user);
 
   const dispatch = useAppDispatch();
 
@@ -73,9 +71,7 @@ const ShoppingCart = () => {
                   </div>
                   <div className='ShoppingCart_description'>
                     <p className='ShoppingCart_name'>{ele.name}</p>
-                    <p className='ShoppingCart_category'>
-                      Category: {ele.categories.name}
-                    </p>
+                    <p className='ShoppingCart_category'>Category: {ele.categories.name}</p>
                     <p className='ShoppingCart_brand'>Brand: {ele.brand}</p>
                   </div>
                   <div className='ShoppingCart_quantity-container'>
@@ -134,9 +130,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      {((!user?.email_verified && !userByBd?.email_verified) || !isAuthenticated) && (
-        <ModalCart />
-      )}
+      {((!user?.email_verified && !userByBd?.email_verified) || !isAuthenticated) && <ModalCart />}
     </div>
   );
 };

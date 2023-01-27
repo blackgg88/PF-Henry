@@ -1,10 +1,12 @@
-import { useAppSelector } from '../../Redux/hook';
+import { useAppSelector, useAppDispatch } from '../../Redux/hook';
+import { emptyCar } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 import { TextField } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { fetchMP, Values, Payer } from '../../../helpers/index';
 
 const FormComponent: React.FC = () => {
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: Values) => {
     const payer: Payer = {
@@ -23,7 +25,9 @@ const FormComponent: React.FC = () => {
 
     const data = await fetchMP(preference);
 
-    window.location.href = data.sandbox_init_point;
+    dispatch(emptyCar());
+
+    window.location.href = data;
   };
   return (
     <div className='form_container'>
@@ -46,11 +50,9 @@ const FormComponent: React.FC = () => {
 
             if (!values.name) errors.name = 'El campo nombre es obligatorio';
 
-            if (!values.surname)
-              errors.surname = 'El campo Nombre Completo es obligatorio';
+            if (!values.surname) errors.surname = 'El campo Nombre Completo es obligatorio';
 
-            if (!values.street_name)
-              errors.street_name = 'El campo street name es obligatorio';
+            if (!values.street_name) errors.street_name = 'El campo street name es obligatorio';
 
             if (!values.street_number)
               errors.street_number = 'El campo street number es obligatorio';

@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../../assets/logo_smart_b.png";
 
 export default function Foro_navbar() {

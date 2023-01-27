@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import NavBar from './components/navbar/Navbar';
 import ShoppingCart from './components/checkout/ShoppingCart';
 import Form from './components/checkout/FormComponent';
-import ForoHome from './components/foro/foroHome';
+import ForoHome from './components/foro/components/ForoHome/foroHome';
 import { useLocation } from 'react-router-dom';
 
 function App() {

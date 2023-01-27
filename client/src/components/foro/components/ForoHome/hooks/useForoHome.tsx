@@ -1,32 +1,32 @@
-import { getPosts } from "../../../../helpers/foro/getPosts";
-import { postPost } from "../../../../helpers/foro/postPost";
-import { likePosts } from "../../../../helpers/foro/likePosts";
+import { getPosts } from "../../../../../../helpers/foro/getPosts";
+import { postPost } from "../../../../../../helpers/foro/postPost";
+import { likePosts } from "../../../../../../helpers/foro/likePosts";
 import { useEffect, useState } from "react";
 
-import { putPost } from "../../../../helpers/foro/putPost";
-import { deletePosts } from "../../../../helpers/foro/deletePosts";
+import { putPost } from "../../../../../../helpers/foro/putPost";
+import { deletePosts } from "../../../../../../helpers/foro/deletePosts";
 import Swal from "sweetalert2";
 //------- USUARIO HELPER ----------
 import { useAuth0 } from "@auth0/auth0-react";
 //---------------
 
-interface iForm {
-  email: string;
-  title: string;
+interface editPost {
   content: string;
-  image: string;
+  id: string;
 }
 
 export function useForoHome() {
-  const [edit, setEdit] = useState<boolean>(false);
+  const { user } = useAuth0();
+
   const [allPost, setAllPost] = useState([]);
-  const [editMode, setEditMode] = useState<boolean>(false);
   const [addLike, setAddLike] = useState<boolean>(false);
   const [addPost, setAddPost] = useState<boolean>(false);
   const [addEdit, setAddEdit] = useState<boolean>(false);
-
-  const { user } = useAuth0();
-
+  const [editOpen, setEditOpen] = useState<boolean>(false);
+  const [editPost, setEditPost] = useState<editPost>({
+    content: "",
+    id: "",
+  });
   const [form, setForm] = useState({
     email: user?.email,
     title: "",
@@ -39,6 +39,15 @@ export function useForoHome() {
       .then(res => res.json())
       .then(res => setAllPost(res));
   }, [addLike, addPost, addEdit]);
+
+  const editHandlerModal = (id: string, content: string) => {
+    setEditOpen(!editOpen);
+    setEditPost({
+      ...editPost,
+      id,
+      content,
+    });
+  };
 
   const likeHandler = (post: string) => {
     likePosts({
@@ -129,15 +138,20 @@ export function useForoHome() {
   return [
     form,
     allPost,
+    editOpen,
+    editPost,
     {
       likeHandler,
-      handlerSubmit,
       handlerLike,
+      handlerSubmit,
+      handlerSubmitEdit,
       handlerChangePost,
       submitPost,
       onDeletePost,
       setAllPost,
-      handlerSubmitEdit,
+      editHandlerModal,
+      setEditOpen,
+      setEditPost,
     },
   ];
 }

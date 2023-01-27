@@ -1,59 +1,58 @@
-import close from "../../../assets/foro/cancel.svg";
+//------- USUARIO HELPER ----------
+import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-import { putPost } from "../../../../helpers/foro/putPost";
-import { getPosts } from "../../../../helpers/foro/getPosts";
+//---------------
 
-interface CreatePost {
-  id: string;
-  content: string;
-  onClose: any;
-  onSave: any;
-}
+export default function Foro_createPost({ form, handlerChangePost, handlerSubmit }: any) {
 
-export default function Foro_createPost({
-  onSave,
-  id,
-  content,
-  onClose,
-}: CreatePost) {
-  const [formEdit, setFormEdit] = useState({
-    content,
-    id,
-  });
-
-  const closeModal = () => onClose(false);
-
-  const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormEdit({
-      ...formEdit,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const saveModal = async () => {
-    onSave(formEdit.content, formEdit.id);
-    onClose(false);
-  };
+  const { user } = useAuth0();
+  const [imageOpen, setImageOpen] = useState<boolean>(false);
 
   return (
-    <div className='foro_create_overlay'>
-      <div className='foro_create_containere'>
-        <div className='foro_create_header'>
-          <p>Edit Content</p>
-          <img onClick={closeModal} src={close} alt='closeIcon' />
-        </div>
-        <div className='foro_create_content'>
-          <textarea
-            onChange={e => changeHandler(e)}
-            name='content'
-            value={formEdit.content}
-            className='foro_create_EditTextArea'
-            placeholder='content'
+    <div className='foro_posts_creator'>
+      <div className='foro_posts_inputsSide'>
+        <img src={user?.picture} alt='profilePic' />
+        <input
+          value={form.title}
+          onChange={handlerChangePost}
+          name='title'
+          placeholder='Title'
+          type='text'
+        />
+      </div>
+      <div className='foro_posts_secondInput'>
+        <textarea
+          value={form.content}
+          onChange={handlerChangePost}
+          name='content'
+          className='foro_post_textAREA'
+          placeholder='Description'
+        />
+        {imageOpen && (
+          <input
+            value={form.image}
+            onChange={handlerChangePost}
+            name='image'
+            placeholder='Image'
+            type='text'
           />
+        )}
+      </div>
+      <hr />
+      <div className='foro_posts_buttonSide'>
+        <div className='foro_posts_AddImagen_Container'>
+          <div
+            onClick={() => setImageOpen(!imageOpen)}
+            className='foro_post_ImageDiv'
+          >
+            <img
+              src='https://cdn1.iconfinder.com/data/icons/rounded-black-basic-ui/139/Photo_Add-RoundedBlack-512.png'
+              alt='Add_Image'
+            />
+            <p>Add Image</p>
+          </div>
         </div>
-        <div className='foro_create_submit'>
-          <button onClick={saveModal}>Save</button>
-        </div>
+        <button onClick={handlerSubmit}>POST</button>
       </div>
     </div>
   );

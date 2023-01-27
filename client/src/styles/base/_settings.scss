@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 $main: #7000b1;
@@ -30,16 +31,18 @@ $standard-color-black-ligth: rgba(20, 20, 20, 0.8);
 $standard-color-beige: #a0937d;
 $standard-color-blue: rgba(20, 33, 66, 1);
 $standard-color-blue-solid-grad: rgba(68, 195, 231, 0.13);
-$standard-color-blue-light: rgba(137, 171, 202, 0.4);
+$standard-color-blue-light: rgba(137, 171, 202, 0.15);
 $standard-color-blue-glass: rgba(20, 33, 66, 0.6);
 $standard-color-blue-green: rgba(23, 195, 178, 1);
 $standard-color-blue-secundary: rgba(48, 79, 104, 1);
 $standard-color-gray: rgba(229, 229, 229, 1);
 $standard-color-red: rgba(254, 109, 115, 1);
+$standard-color-red-ligth: rgba(254, 109, 115, 0.5);
 $standard-color-transparent: rgba(0, 0, 0, 0);
 $standard-color-white: rgba(255, 255, 255, 1);
 $standard-color-white-background: rgba(254, 249, 239, 1);
 $standard-color-yellow: rgba(252, 163, 17, 1);
+$standard-color-yellow-ligth: rgba(252, 163, 17, 0.7);
 
 //TODO dimensions (px)
 $standard-with-full-hd: 1920px;
@@ -51,6 +54,8 @@ $standard-border-radius: 10px;
 $standard-space-between-elements: 19px;
 
 $standard-basic-heith-home: 1080px;
+
+// transition: all 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
 //===============================
 

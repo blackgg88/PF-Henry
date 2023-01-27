@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import iconStarB from '../../assets/images/icons/iconStartB.png';
 import iconStarW from '../../assets/images/icons/iconStartW.png';
 import iconStarM from '../../assets/images/icons/iconStartM.png';
+import { Rating } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 
@@ -102,7 +103,8 @@ const CardBeta: React.FC<{}> = () => {
               </div>
               <div className='content-value-rating-card-beta'>
                 <div className='content-rating-card-beta'>
-                  {stars.map((star) => {
+                <Rating size='small'  value={product.rating} precision={0.01} readOnly/>
+                  {/* {stars.map((star) => {
                     if (star < product.rating && star + 1 > product.rating) {
                       return <img key={productIdFetch+iconStarM+product.rating} src={iconStarM} />;
                     } else if (star < product.rating) {
@@ -110,7 +112,7 @@ const CardBeta: React.FC<{}> = () => {
                     } else {
                       return <img key={productIdFetch+iconStarW+product.rating} src={iconStarW} />;
                     }
-                  })}
+                  })} */}
                 </div>
                 <div className='content-value-card-beta'>
                   <h4 className='price2'>$ {priceFormat(product.price)}</h4>

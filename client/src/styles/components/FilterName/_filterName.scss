@@ -1,0 +1,109 @@
+.new-container-filterBy-c {
+    width: 85%;
+    height: 4.5vh;
+    background-color: $standard-color-blue-light;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 30px;
+    //background-color: blue;
+    position: relative;
+
+    .input {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5%;
+        position: relative;
+        top: 10%;
+        //background-color: green;
+
+        .input-filterByName {
+            width: 80%;
+            height: 80%;
+            border: 0px;
+            font-weight: 300;
+            font-size: 0.9vw;
+            font-family: $standard-font-Outfit-sans-serif;
+            color: $standard-color-gray;
+            background-color: $standard-color-transparent;
+            text-decoration: none;
+            // position: absolute;
+            // top: 0%;
+            //background-color: green;
+
+            &:focus {
+                border: 0px;
+                outline: none;
+                text-decoration: none;
+                color: $standard-color-blue-green;
+                width: 80%;
+            height: 80%;
+
+                .suggestions-dropdown {
+                   
+                    top: 100%;
+                    width: 85%;
+                    height: auto;
+                    z-index: 1;
+                    padding: 5px;
+                    //background-color: purple;
+                    background-color: $standard-color-blue-light;
+            
+                    .link {
+                        //color: red;
+                        max-width: 90%;
+            
+                    }
+                }
+            }
+
+            &:active {
+                border: 0px;
+                outline: none;
+                text-decoration: none;
+                width: 80%;
+            height: 80%;
+            }
+
+
+        }
+
+
+
+
+
+        .🔍 {
+            height: 2vh;
+            width: 2vh;
+            position: relative;
+            z-index: 2;
+            background-color: $standard-color-transparent;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+            .img-btn {
+                height: 100%;
+                width: 100%;
+            }
+
+            &:hover {
+                scale: 1.2;
+                transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+            }
+        }
+    }
+
+    
+}
+
+.suggestions-dropdown {
+    
+    z-index: -1;
+}

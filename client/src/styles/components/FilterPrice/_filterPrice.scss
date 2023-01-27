@@ -1,0 +1,13 @@
+.container-inputFilterByPrice{
+    //background-color: aqua;
+    width: 85%;
+    height: 4.5vh;
+    border-radius: 10vw;
+    background-color: $standard-color-blue-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .price{
+        width: 80%;
+    }
+}

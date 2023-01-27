@@ -1,0 +1,25 @@
+.new-container-FilterBy {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap: 60px;
+    .section-filter{
+        width: 100%;
+        height: auto;
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        //background-color: aqua;
+        .title-filter{
+            font-family: $standard-font-Poiret-One;
+            color: $standard-color-blue-green;
+            position: relative;
+            left: 5%;
+        }
+    }
+    //background-color: purple;
+   
+}

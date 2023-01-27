@@ -1,38 +1,37 @@
 .Nav_topLanding {
-  height: $navbar-height;
+  height: calc($navbar-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: $standard-font-Poiret-One;
   margin-right: 30px;
   margin-left: 30px;
-  margin-top: 10px;
-  margin-bottom: 12px;
-  
-    
-  
+  margin-top: $navbar-height-maring-top;
+  margin-bottom: $navbar-height-maring-button;
+  box-sizing: border-box;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+    // padding-top: 10px;
+  }
+
+  @media (max-width: 610px) {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+
+  .Nav_container_logo {
+    width: 50%;
+    cursor: pointer;
     @media (max-width: 900px) {
-      justify-content: center;
-      // padding-top: 10px;
+      display: none;
     }
 
-    @media (max-width: 610px) {
-      padding: 0;
-      margin: 0;
-      border: none;
+    .nav_toplogo {
+      width: 200px;
     }
-
-    .Nav_container_logo {
-      width: 50%;
-      cursor: pointer;
-      @media (max-width: 900px) {
-        display: none;
-      }
-
-      .nav_toplogo {
-        width: 200px;
-      }
-    }
+  }
   //}
 
   .Nav_container_navbar {
@@ -93,7 +92,6 @@
         font-size: 12.5px;
         color: white;
         font-family: "Barlow", sans-serif;
-
       }
     }
   }
@@ -117,8 +115,8 @@
 
   .nav_middle_button {
     border-right: 1px solid $white;
-    @media (max-width:900px) {
-      border: none
+    @media (max-width: 900px) {
+      border: none;
     }
   }
 
@@ -173,12 +171,11 @@
     border-radius: 10px;
     align-items: center;
     padding: 9px 20px;
-    
-    
+
     .nav_middle_button {
       border-right: 1px solid $standard-color-blue-green;
     }
-    
+
     .nav_modalWindow_Link {
       margin: 0;
     }
@@ -266,7 +263,7 @@
 }
 
 .nav_responsive_MENU {
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -279,7 +276,6 @@
   bottom: 0%;
   display: none;
   padding-top: 25px;
-  
 
   @media (max-width: 610px) {
     display: flex;
@@ -303,7 +299,7 @@
 }
 
 .nav_responsive_MENUClosed {
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
   display: flex;
   flex-direction: column;
   justify-content: center;

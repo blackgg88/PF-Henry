@@ -56,9 +56,8 @@
 
 // export const { getProduct, getProductId } = productSlice.actions;
 
-
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface Categories {
   _id: string;
@@ -73,7 +72,7 @@ export interface ProductState {
   brand: string;
   images: string[];
   rating: number;
-  categories: Categories[];
+  categories: Categories;
   stock: number;
 }
 export interface FilterState {
@@ -92,42 +91,41 @@ const initialState: {
 } = {
   Products: [],
   ProductDetail: {
-    _id: "",
-    name: "",
+    _id: '',
+    name: '',
     price: 0,
-    description: "",
-    brand: "",
+    description: '',
+    brand: '',
     images: [],
     rating: 0,
-    categories: [],
+    categories: { _id: '', name: '' },
     stock: 0,
   },
   Filters: {
-    categories: "",
+    categories: '',
     pricemin: 0,
     pricemax: 3000,
     rating: 0,
-    order: "all",
+    order: 'all',
   },
 };
 
 export const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState,
   reducers: {
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
-      state.Products = [...action.payload ];
+      state.Products = [...action.payload];
     },
     getProductId: (state, action: PayloadAction<ProductState>) => {
       state.ProductDetail = { ...action.payload };
     },
     getProductName: (state, action: PayloadAction<ProductState[]>) => {
-      state.Products = [ ...action.payload ];
+      state.Products = [...action.payload];
     },
     getProductFilter: (state, action: PayloadAction<ProductState[]>) => {
       state.Products = [...action.payload];
     },
-
 
     updateCategoryFilter: (state, action) => {
       state.Filters.categories = action.payload;
@@ -145,13 +143,9 @@ export const productSlice = createSlice({
       state.Filters.order = action.payload;
     },
 
-
-
     // Beta
-},
-
-})
-
+  },
+});
 
 export const {
   getProduct,

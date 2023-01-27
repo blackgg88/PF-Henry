@@ -13,10 +13,22 @@ import ShoppingCart from './components/checkout/ShoppingCart';
 import Form from './components/checkout/FormComponent';
 import ForoHome from './components/foro/foroHome';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch } from './Redux/hook';
+import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
 
 function App() {
   const location = useLocation();
   // console.log(location.pathname);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const productsInLS = JSON.parse(localStorage.getItem('shopingCart') as string) ?? [];
+
+    if (productsInLS.length) {
+      dispatch(addProduct(productsInLS));
+    }
+  }, []);
 
   return (
     <>

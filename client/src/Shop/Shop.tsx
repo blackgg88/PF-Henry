@@ -1,5 +1,6 @@
 import React from "react";
 //import "./Shop.css";
+import { Drawer } from "@mui/material";
 
 import FiltersPanel from "../Filters/FiltersPanel";
 import { Link } from "react-router-dom";

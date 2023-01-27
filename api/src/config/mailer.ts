@@ -127,7 +127,7 @@ export const sendMailPayment = (payment: Payment) => {
                                                           <p class="p_price">$${(
                                                             Number(item.unit_price) *
                                                             Number(item.quantity)
-                                                          ).toFixed(2)}</p>
+                                                          ).toFixed(2)} USD</p>
                                                       </td>
                                                   </tr>
                                               </tbody>
@@ -142,6 +142,7 @@ export const sendMailPayment = (payment: Payment) => {
           </table>
       </td>
   </tr>
+  <br>
         `;
     }
     return html;

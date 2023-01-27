@@ -17,7 +17,6 @@ export const getAllPost = async (req: Request, res: Response) => {
             select: "content author likes",
             populate: {
                 path: "author",
-                select: "userName"
             }
         })
         .select('-__v');

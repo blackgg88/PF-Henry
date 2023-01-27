@@ -22,7 +22,7 @@
     border-radius: 5px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 20px;
-    font-family: $standard-font-Poiret-One;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     z-index: 6;
 
     .foro_create_header {
@@ -30,7 +30,8 @@
       justify-content: space-between;
 
       img {
-        width: 25px
+        width: 25px;
+        cursor: pointer;
       }
     }
 
@@ -63,6 +64,7 @@
         border: none;
         border-radius: 10px;
         margin-top: 10px;
+        cursor: pointer;
       }
     }
   }

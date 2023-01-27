@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-import { Response } from "express";
-import nodemailer from "nodemailer";
-import { ADMIN_EMAIL, GMAIL_API } from "../../config";
-import { Payment } from "../controllers/mercadopago/feedback";
-=======
 import { Response } from 'express';
 import nodemailer from 'nodemailer';
 import { ADMIN_EMAIL, GMAIL_API } from '../../config';
 import { Payment } from '../controllers/mercadopago/feedback';
 import { Products } from '../controllers/mercadopago/feedback';
->>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
 
 // export const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
@@ -30,7 +23,7 @@ const formatDate = (date: string) => {
   const day = date_time_obj.getDate();
   const month = date_time_obj.getMonth() + 1;
   const year = date_time_obj.getFullYear();
-  const formatted_date = day + "/" + month + "/" + year;
+  const formatted_date = day + '/' + month + '/' + year;
 
   return formatted_date;
 };
@@ -38,7 +31,7 @@ const formatDate = (date: string) => {
 export const sendMailPayment = (payment: Payment) => {
   let res: Response;
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: 'smtp.gmail.com',
     port: 465,
     auth: {
       user: `${ADMIN_EMAIL}`, // generated ethereal user
@@ -1147,7 +1140,7 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                               payment.id
                                                                                             }</h2>
                                                                                             <p style="line-height: 150%;">${formatDate(
-                                                                                              payment.date
+                                                                                              payment.date,
                                                                                             )}</p>
                                                                                         </td>
                                                                                     </tr>
@@ -1241,13 +1234,8 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                                     <tr>
                                                                                                         <td align="right" class="esd-block-text">
                                                                                                             <p><strong>$${payment.total_amount.toFixed(
-<<<<<<< HEAD
-                                                                                                              2
-                                                                                                            )}.</strong></p>
-=======
                                                                                                               2,
-                                                                                                            )}</strong></p>
->>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
+                                                                                                            )}.</strong></p>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 </tbody>
@@ -1432,7 +1420,7 @@ export const sendMailPayment = (payment: Payment) => {
       console.log(error);
       res?.status(500).send(error?.message);
     } else {
-      res?.status(200).send("Email sent");
+      res?.status(200).send('Email sent');
     }
   });
 };

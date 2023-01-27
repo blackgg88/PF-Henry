@@ -6,9 +6,9 @@ import { feedback } from '../controllers/mercadopago/feedback';
 
 const mercadopago = Router();
 
-mercadopago.get('/', getPreferences);
+mercadopago.get('/', getPayment);
 
-mercadopago.get('/:email', getPreference);
+mercadopago.get('/:email', getPayment);
 
 mercadopago.post('/', postPreference);
 

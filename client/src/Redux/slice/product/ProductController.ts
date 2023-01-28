@@ -23,7 +23,7 @@ export function productIdFetch(id: string) {
 }
 
 export function productName(name: string) {
-  return fetch(`h${API_URL}/products?name=${name}`).then((res) => res.json());
+  return fetch(`${API_URL}/products?name=${name}`).then((res) => res.json());
 }
 
 export function productsFilter(filters: FilterState) {

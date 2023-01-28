@@ -14,6 +14,7 @@ interface Comment{
   content: string;
   likes: [];
   deleted: boolean
+  created: Date
 }
 
 interface User{
@@ -62,29 +63,14 @@ export function Foro_card({
 }: Foro_Card) {
   const { user } = useAuth0();
   
-  /*
-  const [commentary, setCommentary] = useState({
-    content: "",
-    post: id,
-    email: email
-  })
-  */
-  
-  console.log(commentary)
-
-  /*
-  const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentary({
-      ...commentary,
-      [e.target.name] : e.target.value
-    })
+  const openComment = (id:string)=> {
+    var x = document.getElementById(`comment-${id}`);
+    if (x && x?.style.display!='none') {
+      x.style.display = 'none';
+    } else if (x) {
+      x.style.display='block'
+    }
   }
-    */
-
-  
- 
-  
-
 
   return (
     <div className='foro_card_Container' key={id}>
@@ -92,17 +78,6 @@ export function Foro_card({
         <div className='foro_card_authorSide'>
           <h3>{author}</h3>
           <h5>{moment(created).fromNow()}</h5>
-          {
-            /* 
-            <img
-              className='foro_card_buttonEdit'
-              src={
-                "https://cdn.iconscout.com/icon/free/png-256/more-horizontal-3114524-2598156.png"
-              }
-              alt='edit'
-            />
-            */
-          }
         </div>
         <div className='foro_card_titleSide'>
           <h3>{title}</h3>
@@ -140,17 +115,19 @@ export function Foro_card({
               src={likeLogo}
               alt='like'
             />
-            <p>{comments.length}</p>
+            <p>{comments.filter(e=> e.deleted==false).length}</p>
             <img
+              onClick={()=> openComment(id)}
               className='foro_card_buttonComment'
               src={commentLogo}
               alt='comment'
             />
           </div>
         </div>
-          <hr/>
+          
       </div>
       <div className='foro_card_infoCOMMENT'>
+        <div id={`comment-${id}`} className='foro_card_ALL'>
         <div className='foro_card_CommentPostSide'>
           <img src={user?.picture} alt="" />
           <textarea onChange={handlerChangeComment} name="content" placeholder="Post a commentary..." value={commentary.content} className="foro_card_CommentArea" />
@@ -158,16 +135,19 @@ export function Foro_card({
         <div className="foro_card_SubmitCommentSide">
           <button onClick={()=> submitComment(id, email)}>Comment</button>
         </div>
-        {comments?.filter(e=> e.deleted!=true).map((comment, index) =>
-          <Foro_comments
-          author={comment.author.username}
-          email={comment.author.email}
-          likes={comment.likes} 
-          _id={comment._id} 
-          content={comment.content}
-          onDeleteComment={onDeleteComment}
-          />
-        )}
+          {comments?.filter(e=> e.deleted!=true).map((comment, index) =>
+            <Foro_comments
+            author={comment.author.username}
+            email={comment.author.email}
+            likes={comment.likes} 
+            _id={comment._id} 
+            content={comment.content}
+            onDeleteComment={onDeleteComment}
+            created={comment.created}
+            />
+          )}
+        </div>
+
       </div>
 
     </div>

@@ -14,7 +14,7 @@ export const getAllPost = async (req: Request, res: Response) => {
         .populate("likes")
         .populate({
             path: "comments",
-            select: "content author likes deleted",
+            select: "content author likes deleted created",
             populate: {
                 path: "author",
             }

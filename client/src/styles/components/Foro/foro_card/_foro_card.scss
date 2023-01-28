@@ -20,6 +20,10 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
         margin-top: 10px;
         //background-color: blue;
 
+        .foro_card_ALL {
+            display: none;
+        }
+
         .foro_card_CommentPostSide{
             display: flex;
             align-items: center;
@@ -32,7 +36,8 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
 
             textarea {
                 width: 100%;
-                //background-color:red;
+                resize: none;
+                padding: 10px;
             }
         }
 
@@ -43,7 +48,13 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
             justify-content: flex-end;
 
             button {
-
+                color: white;
+                background-color: $standard-color-blue;
+                padding: 5px 15px;
+                border-radius: none;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
             }
         }
     }
@@ -95,6 +106,7 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
         align-items: center;
         margin: 5px 0px;
         margin-bottom: 10px;
+        
 
         .foro_card_social_Left {
             display: flex;

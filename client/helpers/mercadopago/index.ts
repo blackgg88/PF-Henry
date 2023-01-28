@@ -1,5 +1,5 @@
-import { API_URL } from '../config';
-import { ProductCart } from '../src/Redux/slice/shoppingCart/shoppingCart.slice';
+import { API_URL } from '../../config';
+import { ProductCart } from '../../src/Redux/slice/shoppingCart/shoppingCart.slice';
 
 export interface Values {
   email: string;

@@ -1,4 +1,4 @@
-import { API_URL } from '../../config'
+import { API_URL } from '../../../config'
 
 export const putPost = async (body: any, id: string) => {
   return await fetch(`${API_URL}/posts/${id}`, {

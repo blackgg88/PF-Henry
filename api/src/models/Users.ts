@@ -1,6 +1,7 @@
 import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
 import { Role, RoleEnum } from './Role';
 import { Post } from './Post';
+import { Comment } from './Comments';
 
 export class User {
   @prop({ type: String })
@@ -26,6 +27,9 @@ export class User {
 
   @prop({ ref: () => Post })
   posts: Ref<Post>[];
+
+  @prop({ ref: () => Comment })
+  comments: Ref<Comment>[];
 
   //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles
 

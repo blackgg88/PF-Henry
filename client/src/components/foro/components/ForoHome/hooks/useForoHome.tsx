@@ -1,10 +1,15 @@
-import { getPosts } from "../../../../../../helpers/foro/getPosts";
-import { postPost } from "../../../../../../helpers/foro/postPost";
-import { likePosts } from "../../../../../../helpers/foro/likePosts";
 import { useEffect, useState } from "react";
+// import { getPosts } from "../../../../../../helpers/foro/posts/getPosts";
+// import { postPost } from "../../../../../../helpers/foro/posts/postPost";
+// import { likePosts } from "../../../../../../helpers/foro/posts/likePosts";
+// import { putPost } from "../../../../../../helpers/foro/posts/putPost";
+// import { deletePosts } from "../../../../../../helpers/foro/posts/deletePosts";
+import { getCommentsPosts } from '../../../../../../helpers/foro/getCommentsPosts'
+import { postCommentsPosts } from "../../../../../../helpers/foro/postCommentsPosts";
+import { putCommentsPosts } from "../../../../../../helpers/foro/putCommentsPosts";
+import { deleteCommentsPosts } from "../../../../../../helpers/foro/deleteCommentsPosts";
+import { getLikes } from "../../../../../../helpers/foro/getLikes";
 
-import { putPost } from "../../../../../../helpers/foro/putPost";
-import { deletePosts } from "../../../../../../helpers/foro/deletePosts";
 import Swal from "sweetalert2";
 //------- USUARIO HELPER ----------
 import { useAuth0 } from "@auth0/auth0-react";
@@ -35,7 +40,7 @@ export function useForoHome() {
   });
 
   useEffect(() => {
-    getPosts()
+    getCommentsPosts("posts")
       .then(res => res.json())
       .then(res => setAllPost(res));
   }, [addLike, addPost, addEdit]);
@@ -50,10 +55,10 @@ export function useForoHome() {
   };
 
   const likeHandler = (post: string) => {
-    likePosts({
+    getLikes({
       email: user?.email,
       post,
-    }).then(() => {
+    }, 'posts').then(() => {
       setAddLike(!addLike);
     });
   };
@@ -64,7 +69,7 @@ export function useForoHome() {
         ...form,
         email: user?.email,
       });
-      postPost(form).then(() => {
+      postCommentsPosts(form, 'posts').then(() => {
         setAddPost(!addPost);
         setForm({
           ...form,
@@ -84,10 +89,10 @@ export function useForoHome() {
   };
 
   const handlerLike = () => {
-    likePosts({
+    getLikes({
       id: "63c6f11bf46e034dfcbeeae6",
       post: "63d1f32e866456f173d36227",
-    })
+    }, 'posts')
       .then(res => res.json())
       .then(res => alert(res));
   };
@@ -104,8 +109,8 @@ export function useForoHome() {
 
   const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postPost(form).then(response =>
-      getPosts()
+    postCommentsPosts(form, "posts").then(response =>
+      getCommentsPosts("posts")
         .then(res => res.json())
         .then(res => setAllPost(res))
     );
@@ -119,18 +124,18 @@ export function useForoHome() {
   };
 
   const onDeletePost = (id: string) => {
-    deletePosts({
+    deleteCommentsPosts({
       email: form.email,
       idPost: id,
-    }).then(res =>
-      getPosts()
+    }, 'posts').then(res =>
+      getCommentsPosts('posts')
         .then(res => res.json())
         .then(res => setAllPost(res))
     );
   };
 
   const handlerSubmitEdit = async (content: string, id: string) => {
-    await putPost({ content }, id).then(res => {
+    await putCommentsPosts({ content }, id, 'posts').then(res => {
       setAddEdit(!addEdit);
     });
   };

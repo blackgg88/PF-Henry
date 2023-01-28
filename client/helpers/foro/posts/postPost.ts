@@ -1,4 +1,4 @@
-import { API_URL } from '../../config'
+import { API_URL } from '../../../config'
 
 export const postPost = async (body: any) => {
     console.log(body)

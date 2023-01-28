@@ -1,4 +1,4 @@
-import { API_URL } from '../../config'
+import { API_URL } from '../../../config'
 
 export const postComments = async (body: any) => {
     return await fetch(`${API_URL}/comments`, {

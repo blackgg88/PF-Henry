@@ -2,7 +2,6 @@ interface filterPanel {
   searchInput: string;
   onChangeSearch: any;
   handleFilterByTitle: any;
-
 }
 
 interface filterPanel {
@@ -12,14 +11,25 @@ interface filterPanel {
   resetFilter: any;
 }
 
-export default function FilterPanel({searchInput,onChangeSearch,handleFilterByTitle,resetFilter}: filterPanel) {
-
+export default function FilterPanel({
+  searchInput,
+  onChangeSearch,
+  handleFilterByTitle,
+  resetFilter,
+}: filterPanel) {
   return (
     <div className='foro_menuTags_container'>
-      <input name="title" value={searchInput} onChange={onChangeSearch} type='text' placeholder='Search' />
-      <button onClick={handleFilterByTitle}>Search</button>
+      <form onSubmit={handleFilterByTitle}>
+        <input
+          name='title'
+          value={searchInput}
+          onChange={onChangeSearch}
+          type='text'
+          placeholder='Search'
+        />
+        <button>Search</button>
+      </form>
       <button onClick={resetFilter}>Reset</button>
-
     </div>
   );
 }

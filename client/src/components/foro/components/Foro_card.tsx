@@ -1,14 +1,20 @@
 import likeLogo from "../../../assets/foro/like-red.png";
-import commentLogo from "../../../assets/foro/comment.png";
+//import commentLogo from "../../../assets/foro/comment.png";
 import editLogo from "../../../assets/foro/edit.png";
 import trashlogo from "../../../assets/foro/trash.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import Foro_comments from "./Foro_comments";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { postCommentsPosts } from "../../../../helpers/foro/postCommentsPosts";
 
-interface Comment{
+import likeNo from '../../../assets/foro/heart-svgrepo-com.svg';
+import likeYes from '../../../assets/foro/heart-svgrepo-com (1).svg';
+import edit from '../../../assets/foro/edit-svgrepo-com.svg';
+import deleteIcon from '../../../assets/foro/trash-delete-remove-clean-svgrepo-com.svg';
+import commentLogo from '../../../assets/foro/comment-svgrepo-com.svg';
+
+interface Comment {
   _id: string;
   author: any;
   content: string;
@@ -30,7 +36,7 @@ interface Foro_Card {
   post: string;
   content: string;
   img: string;
-  likes: string;
+  likes: string[];
   author: string;
   email: string
   onDeletePost: any;
@@ -40,6 +46,7 @@ interface Foro_Card {
   onLikePost: any;
   created: Date
   onDeleteComment: any
+  likeCommentHandler: any
 }
 // : React.FC
 export function Foro_card({
@@ -59,7 +66,8 @@ export function Foro_card({
   onLikePost,
   onEdit,
   created,
-  onDeleteComment
+  onDeleteComment,
+  likeCommentHandler
 }: Foro_Card) {
   const { user } = useAuth0();
   
@@ -71,6 +79,11 @@ export function Foro_card({
       x.style.display='block'
     }
   }
+  
+  useEffect(()=>{
+    openComment(id)
+  }, [])
+
 
   return (
     <div className='foro_card_Container' key={id}>
@@ -95,24 +108,30 @@ export function Foro_card({
 
         <div className='foro_card_socialContainer'>
           <div className='foro_card_social_Left'>
-            <img
-              className='foro_card_button_Delete'
-              src={trashlogo}
-              onClick={() => onDeletePost(id, userId)}
-            />
-            <img
+            {
+              user?.email===email&&
+              <img
+                className='foro_card_button_Delete'
+                src={deleteIcon}
+                onClick={() => onDeletePost(id, userId)}
+              />
+            }
+            {
+              user?.email===email&&
+              <img
               onClick={() => onEdit(id, content)}
               className='foro_card_button_Edit'
-              src={editLogo}
+              src={edit}
             />
+            }
           </div>
 
           <div className='foro_card_social_Right'>
-            <p>{likes}</p>
+            <p>{likes.length}</p>
             <img
               onClick={() => onLikePost(id)}
               className='foro_card_buttonLike'
-              src={likeLogo}
+              src={likes.includes(email)?likeYes:likeNo}
               alt='like'
             />
             <p>{comments.filter(e=> e.deleted==false).length}</p>
@@ -144,6 +163,7 @@ export function Foro_card({
             content={comment.content}
             onDeleteComment={onDeleteComment}
             created={comment.created}
+            likeCommentHandler={likeCommentHandler}
             />
           )}
         </div>

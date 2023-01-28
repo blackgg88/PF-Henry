@@ -2,6 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 //---------------
+import addIMage from '../../../assets/foro/addImage.svg'
 
 export default function Foro_createPost({ form, handlerChangePost, handlerSubmit }: any) {
 
@@ -46,7 +47,7 @@ export default function Foro_createPost({ form, handlerChangePost, handlerSubmit
             className='foro_post_ImageDiv'
           >
             <img
-              src='https://cdn1.iconfinder.com/data/icons/rounded-black-basic-ui/139/Photo_Add-RoundedBlack-512.png'
+              src={addIMage}
               alt='Add_Image'
             />
             <p>Add Image</p>

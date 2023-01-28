@@ -24,7 +24,8 @@ export default function ForoHome() {
       editHandlerModal,
       setEditOpen,
       handlerChangeComment,
-      submitComment
+      submitComment,
+      likeCommentHandler
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
@@ -61,12 +62,13 @@ export default function ForoHome() {
             email={post.author.email}
             userId={post.author._id}
             comments={post.comments}
-            likes={post.likes.length}
+            likes={post.likes}
             onDeletePost={onDeletePost}
             onLikePost={likeHandler}
             onEdit={editHandlerModal}
             created={post.created}
             onDeleteComment={onDeleteComment}
+            likeCommentHandler={likeCommentHandler}
           />
         ))}
       </div>

@@ -63,6 +63,17 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
     .foro_card_authorSide {
         display: flex;
         justify-content: space-between;
+
+        h3 {
+            background-color: #141b42ff;
+            color: white;
+            padding: 0px 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            position: relative;
+            right: 15px;
+        }
+        
         //border: 1px solid green;
         .foro_card_buttonEdit {
             width: 20px;
@@ -75,28 +86,29 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
         margin-top: 10px;
         margin-bottom: 10px;
         font-size: 20px;
+        
     }
 
     .foro_card_contentSide {
         display: flex;
         width: 100%;
-        //border: 1px solid green;
         margin: 5px 0px;
         flex-wrap: wrap;
         p {
-            word-break: break-all;
+            text-align: justify;
+            word-break: keep-all;
           }
     }
 
     .foro_card_imagenSide {
         display: flex;
         //border: 1px solid green;
-        height: 250px;
+        height: 300px;
         margin: 15px 0px;
         overflow: hidden;
         img {
             width: 100%;
-            min-height: 350px;
+            //min-height: 350px;
         }
     }
 
@@ -110,6 +122,8 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
 
         .foro_card_social_Left {
             display: flex;
+            width: 50%;
+            //background-color: red;
             
             .foro_card_button_Delete {
                 width: 28px;
@@ -120,14 +134,19 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
             .foro_card_button_Edit {
                 width: 28px;
                 cursor: pointer;
-
+                
             }
 
         }
 
+        
+
         .foro_card_social_Right {
             display: flex;
-            //border:1px solid red;
+            justify-content: flex-end;
+            width: 50%;
+            //background-color: blue;
+            //background-color: yellow;
 
             .foro_card_buttonLike {
                 width: 28px;
@@ -137,10 +156,12 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
 
             }
             .foro_card_buttonComment {
-                width: 25px;
+                width: 30px;
                 margin-right: 5px;
                 margin-left: 5px;
                 cursor: pointer;
+                position: relative;
+                //bottom: 1px;
 
             }
         }

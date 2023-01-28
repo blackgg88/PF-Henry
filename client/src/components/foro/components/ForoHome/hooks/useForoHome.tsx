@@ -89,6 +89,15 @@ export function useForoHome() {
     });
   };
 
+  const likeCommentHandler = (idComment: string, email: string) => {
+    getLikes({
+      comment: idComment,
+      email: email
+    }, 'comments').then(() => {
+      setAddLike(!addLike);
+    });
+  }
+
   const handlerSubmit = () => {
     if (user?.email) {
       setForm({
@@ -197,7 +206,8 @@ export function useForoHome() {
       setEditOpen,
       setEditPost,
       handlerChangeComment,
-      submitComment
+      submitComment,
+      likeCommentHandler
     },
   ];
 }

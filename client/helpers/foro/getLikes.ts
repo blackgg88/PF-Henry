@@ -1,7 +1,8 @@
 import { API_URL } from "../../config";
 
 export const getLikes = async (body: any, path: string) => {
-  return await fetch(`${API_URL}/${path}/likes`, {
+  console.log(body)
+  return await fetch(`${API_URL}/${path}/like`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),

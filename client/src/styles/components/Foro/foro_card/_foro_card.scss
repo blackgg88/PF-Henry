@@ -7,10 +7,10 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
 .foro_card_Container {
     background-color: white;
     width: 100%;
-    margin: 10px;
+    margin: 15px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     font-family: $standard-font-Outfit-sans-serif;
     
@@ -81,10 +81,11 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
         display: flex;
         //border: 1px solid green;
         height: 250px;
+        margin: 15px 0px;
         overflow: hidden;
         img {
             width: 100%;
-            min-height: 250px;
+            min-height: 350px;
         }
     }
 

@@ -10,6 +10,7 @@ export default function ForoHome() {
   //-------CUSTOM HOOK-------
   const [
     form,
+    commentary,
     allPost,
     editOpen,
     editPost,
@@ -19,8 +20,11 @@ export default function ForoHome() {
       handlerSubmitEdit,
       handlerChangePost,
       onDeletePost,
+      onDeleteComment,
       editHandlerModal,
       setEditOpen,
+      handlerChangeComment,
+      submitComment
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
@@ -44,6 +48,9 @@ export default function ForoHome() {
 
         {allPost?.map((post: any) => (
           <Foro_card
+            commentary={commentary}
+            handlerChangeComment={handlerChangeComment}
+            submitComment={submitComment}
             key={post._id}
             id={post._id}
             title={post.title}
@@ -51,12 +58,15 @@ export default function ForoHome() {
             img={post.image}
             post={post}
             author={post.author.userName || post.author.username}
+            email={post.author.email}
             userId={post.author._id}
             comments={post.comments}
             likes={post.likes.length}
             onDeletePost={onDeletePost}
             onLikePost={likeHandler}
             onEdit={editHandlerModal}
+            created={post.created}
+            onDeleteComment={onDeleteComment}
           />
         ))}
       </div>

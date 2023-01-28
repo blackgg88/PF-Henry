@@ -4,12 +4,16 @@ import editLogo from "../../../assets/foro/edit.png";
 import trashlogo from "../../../assets/foro/trash.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import Foro_comments from "./Foro_comments";
+import moment from "moment";
+import { useState } from "react";
+import { postCommentsPosts } from "../../../../helpers/foro/postCommentsPosts";
 
 interface Comment{
   _id: string;
   author: any;
   content: string;
   likes: [];
+  deleted: boolean
 }
 
 interface User{
@@ -17,6 +21,9 @@ interface User{
   userName: string;
 }
 interface Foro_Card {
+  commentary: any
+  handlerChangeComment: any
+  submitComment: any
   id: string;
   title: string;
   post: string;
@@ -24,41 +31,78 @@ interface Foro_Card {
   img: string;
   likes: string;
   author: string;
+  email: string
   onDeletePost: any;
   userId: string;
   comments: Comment[];
   onEdit: any;
   onLikePost: any;
+  created: Date
+  onDeleteComment: any
 }
 // : React.FC
 export function Foro_card({
+  commentary,
+  handlerChangeComment,
+  submitComment,
   id,
   title,
   content,
   likes,
   img,
   author,
+  email,
   comments,
   userId,
   onDeletePost,
   onLikePost,
   onEdit,
+  created,
+  onDeleteComment
 }: Foro_Card) {
   const { user } = useAuth0();
-  console.log(user)
+  
+  /*
+  const [commentary, setCommentary] = useState({
+    content: "",
+    post: id,
+    email: email
+  })
+  */
+  
+  console.log(commentary)
+
+  /*
+  const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentary({
+      ...commentary,
+      [e.target.name] : e.target.value
+    })
+  }
+    */
+
+  
+ 
+  
+
 
   return (
     <div className='foro_card_Container' key={id}>
       <div className='foro_card_InfoPOST'>
         <div className='foro_card_authorSide'>
-          <p>{author}</p>
-          <img
-            className='foro_card_buttonEdit'
-            src={
-              "https://cdn.iconscout.com/icon/free/png-256/more-horizontal-3114524-2598156.png"
-            }
-            alt='edit'
-          />
+          <h3>{author}</h3>
+          <h5>{moment(created).fromNow()}</h5>
+          {
+            /* 
+            <img
+              className='foro_card_buttonEdit'
+              src={
+                "https://cdn.iconscout.com/icon/free/png-256/more-horizontal-3114524-2598156.png"
+              }
+              alt='edit'
+            />
+            */
+          }
         </div>
         <div className='foro_card_titleSide'>
           <h3>{title}</h3>
@@ -109,17 +153,19 @@ export function Foro_card({
       <div className='foro_card_infoCOMMENT'>
         <div className='foro_card_CommentPostSide'>
           <img src={user?.picture} alt="" />
-          <textarea className="foro_card_CommentArea" />
+          <textarea onChange={handlerChangeComment} name="content" placeholder="Post a commentary..." value={commentary.content} className="foro_card_CommentArea" />
         </div>
         <div className="foro_card_SubmitCommentSide">
-          <button>Comment</button>
+          <button onClick={()=> submitComment(id, email)}>Comment</button>
         </div>
-        {comments?.map((comment, index) =>
+        {comments?.filter(e=> e.deleted!=true).map((comment, index) =>
           <Foro_comments
-          author={comment.author.username} 
+          author={comment.author.username}
+          email={comment.author.email}
           likes={comment.likes} 
           _id={comment._id} 
           content={comment.content}
+          onDeleteComment={onDeleteComment}
           />
         )}
       </div>

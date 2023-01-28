@@ -27,6 +27,7 @@ export function useForoHome() {
   const [addLike, setAddLike] = useState<boolean>(false);
   const [addPost, setAddPost] = useState<boolean>(false);
   const [addEdit, setAddEdit] = useState<boolean>(false);
+  const [addComment, setAddComment] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [editPost, setEditPost] = useState<editPost>({
     content: "",
@@ -38,12 +39,37 @@ export function useForoHome() {
     content: "",
     image: "",
   });
+  const [commentary, setCommentary] = useState({
+    content: "",
+  })
 
   useEffect(() => {
     getCommentsPosts("posts")
       .then(res => res.json())
       .then(res => setAllPost(res));
-  }, [addLike, addPost, addEdit]);
+  }, [addLike, addPost, addEdit, addComment]);
+
+  const handlerChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setCommentary({
+        content : e.target.value
+      })
+  }
+
+  const submitComment = (idPost: string, email: string) => {
+    if (commentary.content) {
+      postCommentsPosts({
+        content: commentary.content,
+        post: idPost,
+        email: email
+      }, 'comments')
+      .then(res=> {
+        setAddComment(!addComment)
+        setCommentary({
+          content: ""
+        })
+      })
+    }
+  }
 
   const editHandlerModal = (id: string, content: string) => {
     setEditOpen(!editOpen);
@@ -134,6 +160,17 @@ export function useForoHome() {
     );
   };
 
+  const onDeleteComment = (id: string, email: string) => {
+    deleteCommentsPosts({
+      email: email,
+      idComment: id,
+    }, 'comments', id).then(res =>
+      getCommentsPosts('posts')
+        .then(res => res.json())
+        .then(res => setAllPost(res))
+    );
+  };
+
   const handlerSubmitEdit = async (content: string, id: string) => {
     await putCommentsPosts({ content }, id, 'posts').then(res => {
       setAddEdit(!addEdit);
@@ -142,6 +179,7 @@ export function useForoHome() {
 
   return [
     form,
+    commentary,
     allPost,
     editOpen,
     editPost,
@@ -153,10 +191,13 @@ export function useForoHome() {
       handlerChangePost,
       submitPost,
       onDeletePost,
+      onDeleteComment,
       setAllPost,
       editHandlerModal,
       setEditOpen,
       setEditPost,
+      handlerChangeComment,
+      submitComment
     },
   ];
 }

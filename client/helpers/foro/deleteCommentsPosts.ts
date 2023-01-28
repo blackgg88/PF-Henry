@@ -10,9 +10,10 @@ export const deleteCommentsPosts = async (body: any, path: string, id?:string) =
   }
 
   if (path == "comments") {
-    return await fetch(`${API_URL}/comments/${id}`, {
+    return await fetch(`${API_URL}/comments`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
     });
   }
 };

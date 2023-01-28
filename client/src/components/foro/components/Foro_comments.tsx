@@ -1,5 +1,7 @@
-import React from 'react'
-import like from '../../../assets/foro/like-red.png'
+import React, { useState } from 'react'
+import like from '../../../assets/foro/like-red.png';
+import icondelete from '../../../assets/foro/trash-delete-remove-clean-svgrepo-com.svg'
+
 
 interface User{
   username: string;
@@ -11,10 +13,14 @@ interface Comment{
   author: string;
   content: string;
   likes: [];
+  onDeleteComment: any;
+  email: string;
 }
 
-export default function Foro_comments({author, likes, _id, content}: Comment){
+export default function Foro_comments({author, likes, _id, content, onDeleteComment, email}: Comment){
   console.log(author);
+
+  
   
   return (
     <div className='comments_Container'>
@@ -24,9 +30,13 @@ export default function Foro_comments({author, likes, _id, content}: Comment){
       <div className='comments_contentDiv'>
         <p>{content}</p>
       </div>
+      <hr/>
       <div className='comments_buttonsDiv'>
-        <p>{likes.length}</p>
-        <img src={like} alt="like" />
+        <img onClick={()=> onDeleteComment(_id, email)} className='icondelete' src={icondelete} alt="delete" />
+        <div className='comments_likesIDE'>
+          <img src={like} alt="like" />
+          <p>{likes.length}</p>
+        </div>
       </div>
     </div>
   )

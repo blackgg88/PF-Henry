@@ -3,6 +3,7 @@ import { Product } from "../../models/Product";
 import { filterRange, filterPrice } from "./filterRange.js";
 import { allProductsCategories } from "./allProductsCategories.js";
 import { orderProducts } from "../order/orderProducts.js";
+import { nameProduct } from "../../helpers/filter/nameProduct.js";
 
 const ProductModel = getModelForClass(Product);
 
@@ -12,18 +13,19 @@ export const allFilters = async (query: any) => {
 
   if (filter) {
     if (filter.categories && filter.categories.length) {
-      console.log(filter.categories.length)
-      products = await ProductModel
-        .find({
-          categories: filter.categories,
-        })
-        .populate({
-          path: "categories",
-          select: "-__v",
-        });
-    } else products = await allProductsCategories()
+      console.log(filter.categories.length);
+      products = await ProductModel.find({
+        categories: filter.categories,
+      }).populate({
+        path: "categories",
+        select: "-__v",
+      });
+    } else products = await allProductsCategories();
 
-    if (filter.rating && products && filter.rating !== '')
+    if (filter.name && filter.name !== "") 
+      products = nameProduct(products, filter.name);
+
+    if (filter.rating && products && filter.rating !== "")
       products = filterRange(products, filter.rating, "rating");
     if (
       (filter.pricemin && products && filter.pricemin != 0) ||
@@ -35,8 +37,8 @@ export const allFilters = async (query: any) => {
         filter.pricemax,
         "price"
       );
-    if (filter.stock && products && filter.stock.length) products = filterRange(products, filter.stock, "stock");
-
+    if (filter.stock && products && filter.stock.length)
+      products = filterRange(products, filter.stock, "stock");
   } else products = await allProductsCategories()
 
   if (order && products) {

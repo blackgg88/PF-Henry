@@ -27,10 +27,10 @@ export function productName(name: string) {
 }
 
 export function productsFilter(filters: FilterState) {
-  const { categories, pricemin, pricemax, rating, order } = filters;
+  const { name, categories, pricemin, pricemax, rating, order } = filters;
   try {
     return fetch(
-      `${API_URL}/products/?filter[categories]=${categories}&filter[pricemin]=${pricemin}&filter[pricemax]=${pricemax}&filter[rating]=${rating}&order${order}`,
+      `${API_URL}/products/?filter[name]=${name}&filter[categories]=${categories}&filter[pricemin]=${pricemin}&filter[pricemax]=${pricemax}&filter[rating]=${rating}&order${order}`,
     ).then((res) => {
       if (!res.ok) {
         // Aqui deberemos renderizar algo al momento de no encuentre respuestas!!! a los filtrados

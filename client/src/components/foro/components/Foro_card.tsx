@@ -89,7 +89,7 @@ export function Foro_card({
     <div className='foro_card_Container' key={id}>
       <div className='foro_card_InfoPOST'>
         <div className='foro_card_authorSide'>
-          <h3>{author}</h3>
+          <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
           <h5>{moment(created).fromNow()}</h5>
         </div>
         <div className='foro_card_titleSide'>

@@ -14,6 +14,8 @@ export default function ForoHome() {
     allPost,
     editOpen,
     editPost,
+    allPostRespaldo,
+    searchInput,
     {
       likeHandler,
       handlerSubmit,
@@ -25,7 +27,11 @@ export default function ForoHome() {
       setEditOpen,
       handlerChangeComment,
       submitComment,
-      likeCommentHandler
+      likeCommentHandler,
+      setallPostRespaldo,
+      onChangeSearch,
+      handleFilterByTitle,
+      resetFilter
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
@@ -73,7 +79,7 @@ export default function ForoHome() {
         ))}
       </div>
 
-      <FilterPanel />
+      <FilterPanel resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />
     </div>
   );
 }

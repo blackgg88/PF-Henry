@@ -25,14 +25,13 @@ interface Comment{
 }
 
 export default function Foro_comments({author, likes, _id, content, onDeleteComment, email, created, likeCommentHandler}: Comment){
-  console.log(author);
 
   const { user } = useAuth0()
   
   return (
     <div className='comments_Container'>
       <div className='comments_headerDiv'>
-        <h3>{author}</h3>
+        <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
         <h5>{moment(created).fromNow()}</h5>
       </div>
       <div className='comments_contentDiv'>

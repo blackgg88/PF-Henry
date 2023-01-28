@@ -20,10 +20,29 @@ interface editPost {
   id: string;
 }
 
+interface searchPost {
+  title: string;
+}
+
+interface allPost {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  email: string;
+  likes: number;
+  comments: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+
 export function useForoHome() {
   const { user } = useAuth0();
 
-  const [allPost, setAllPost] = useState([]);
+  const [allPost, setAllPost] = useState<allPost[]>([]);
+  const [allPostRespaldo, setallPostRespaldo] = useState<allPost[]>([]);
+  const [searchInput, setSearchInput] = useState<string> ("");
   const [addLike, setAddLike] = useState<boolean>(false);
   const [addPost, setAddPost] = useState<boolean>(false);
   const [addEdit, setAddEdit] = useState<boolean>(false);
@@ -43,11 +62,21 @@ export function useForoHome() {
     content: "",
   })
 
+const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(
+ 
+       e.target.value
+    );
+  };
+
   useEffect(() => {
     getCommentsPosts("posts")
       .then(res => res.json())
-      .then(res => setAllPost(res));
+      .then(res => {
+        setAllPost(res)
+        setallPostRespaldo(res)});
   }, [addLike, addPost, addEdit, addComment]);
+
 
   const handlerChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setCommentary({
@@ -186,12 +215,35 @@ export function useForoHome() {
     });
   };
 
+  const handleFilterByTitle = (e: React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+    const filterPost= allPost.filter( post => {
+     if (post.title.toLowerCase().includes(searchInput.toLowerCase())) {
+      return post
+     }
+    })
+    console.log(filterPost)
+
+    if (filterPost.length) {
+      setAllPost(filterPost)
+    } else {
+      setAllPost(allPostRespaldo)
+      return alert('Ningun post encontrado')
+    }
+  }
+  const resetFilter = () => {
+    setAllPost(allPostRespaldo)
+  }
+
+
   return [
     form,
     commentary,
     allPost,
     editOpen,
     editPost,
+    allPostRespaldo,
+    searchInput,
     {
       likeHandler,
       handlerLike,
@@ -207,7 +259,11 @@ export function useForoHome() {
       setEditPost,
       handlerChangeComment,
       submitComment,
-      likeCommentHandler
+      likeCommentHandler,
+      setallPostRespaldo,
+      onChangeSearch,
+      handleFilterByTitle,
+      resetFilter
     },
   ];
 }

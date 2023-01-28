@@ -35,8 +35,8 @@ export const Dashboard_user = () => {
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
 
-  const email = user?.email;
-  const verified = userByBd?.email ? userByBd?.email_verified : user?.email_verified;
+  const email = userByBd.email;
+  const verified = userByBd.email_verified;
 
   useEffect(() => {
     const handleGetItems = async () => {
@@ -49,7 +49,6 @@ export const Dashboard_user = () => {
   }, [isAuthenticated]);
 
   console.log(userByBd);
-  console.log(user);
   const handleFormatedDate = (date_created: string) => {
     const dateString = date_created;
     const date = new Date(dateString);
@@ -89,19 +88,17 @@ export const Dashboard_user = () => {
         </div>
       </div>
 
-      {userByBd?.email_verified && (
-        <div onClick={() => setOpenModal(!openModal)} className='dash_infouser_container'>
-          <div className='dash_infouser_title'>
-            <img
-              className='dash_infouser_imageMenu'
-              src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
-              alt='profileInfo'
-            />
-            <h2>My Information</h2>
-          </div>
-          <p>Manage your personal data</p>
+      <div onClick={() => setOpenModal(!openModal)} className='dash_infouser_container'>
+        <div className='dash_infouser_title'>
+          <img
+            className='dash_infouser_imageMenu'
+            src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
+            alt='profileInfo'
+          />
+          <h2>My Information</h2>
         </div>
-      )}
+        <p>Manage your personal data</p>
+      </div>
 
       <div className='dash_purchaseDiv'>
         <div className='dash_purchaseTitleContainer'>
@@ -130,10 +127,9 @@ export const Dashboard_user = () => {
                     <div className='dash_onePurchase_infoItems'>
                       <ol>
                         {payment.items.map((item, index) => (
-                          <li key={item.title + index}>{`${item.title.slice(
-                            0,
-                            45,
-                          )}   \nQuantity: ${item.quantity}`}</li>
+                          <li key={item.title + index}>{`${item.title.slice(0, 45)}   \nQuantity: ${
+                            item.quantity
+                          }`}</li>
                         ))}
                       </ol>
                     </div>

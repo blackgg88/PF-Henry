@@ -16,6 +16,8 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from './Redux/hook';
 import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
+import { getUserLogin } from './Redux/slice/user/user.slice';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
   const location = useLocation();
@@ -23,10 +25,16 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const productsInLS = JSON.parse(localStorage.getItem('shopingCart') as string) ?? [];
+    const productsInLS = JSON.parse(localStorage.getItem('shoppingCart') as string) ?? [];
 
     if (productsInLS.length) {
       dispatch(addProduct(productsInLS));
+    }
+
+    const userInLS = JSON.parse(localStorage.getItem('userByBd') as string) ?? {};
+
+    if (userInLS.email) {
+      dispatch(getUserLogin(userInLS));
     }
   }, []);
 

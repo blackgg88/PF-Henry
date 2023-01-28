@@ -4,8 +4,13 @@ import iconStarB from '../../assets/images/icons/iconStartB.png';
 import iconStarW from '../../assets/images/icons/iconStartW.png';
 import iconStarM from '../../assets/images/icons/iconStartM.png';
 import { Rating } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'; //corazon vacio como el de ella
+import FavoriteIcon from '@mui/icons-material/Favorite'; //corazon lleno como nadie en mi vida UwU
 
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { addFavoriteFetch } from '../../Redux/slice/user/userController';
+import { addFavorite } from '../../Redux/slice/user/user.slice';
+import { userInterface } from '../../Redux/slice/user/user.slice';
 
 import { ProductState } from '../../Redux/slice/product/product.slice';
 import { getProduct } from '../../Redux/slice/product/product.slice';
@@ -18,6 +23,8 @@ import { ProductCart } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 
 const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
+
+  const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
 
   //console.log(Allproduct)
   const dispatch = useAppDispatch();
@@ -42,6 +49,24 @@ const CardBeta: React.FC<{}> = () => {
       quantity: 1,
     };
     dispatch(addProduct(productCart));
+  };
+
+  const handleAddFavorite = async (product: ProductState) => {
+    const favorite: ProductState = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      brand: product.brand,
+      images: product.images,
+      rating: product.rating,
+      categories: product.categories,
+      stock: product.stock,
+    };
+
+    const favorites: ProductState[] = await addFavoriteFetch(userByBd._id, favorite);
+
+    dispatch(addFavorite(favorites));
   };
 
   //-----------------------> Helper Functions <----------------------
@@ -124,6 +149,9 @@ const CardBeta: React.FC<{}> = () => {
               <div className='content-add-car-card-beta'>
                 <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
                   <p>add to Cart</p>
+                </div>
+                <div onClick={() => handleAddFavorite(product)}>
+                  <FavoriteBorderIcon />
                 </div>
               </div>
             </div>

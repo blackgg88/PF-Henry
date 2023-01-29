@@ -2,6 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 //---------------
+import addIMage from '../../../assets/foro/addImage.svg'
 
 export default function Foro_createPost({ form, handlerChangePost, handlerSubmit }: any) {
 
@@ -10,33 +11,38 @@ export default function Foro_createPost({ form, handlerChangePost, handlerSubmit
 
   return (
     <div className='foro_posts_creator'>
-      <div className='foro_posts_inputsSide'>
-        <img src={user?.picture} alt='profilePic' />
-        <input
-          value={form.title}
-          onChange={handlerChangePost}
-          name='title'
-          placeholder='Title'
-          type='text'
-        />
-      </div>
-      <div className='foro_posts_secondInput'>
-        <textarea
-          value={form.content}
-          onChange={handlerChangePost}
-          name='content'
-          className='foro_post_textAREA'
-          placeholder='Description'
-        />
-        {imageOpen && (
+      <div className="foro_post_inputsAndImage">
+        
+        <div className='foro_posts_inputsSide'>
+          <img src={user?.picture} alt='profilePic' />
+        </div>
+
+
+        <div className='foro_posts_secondInput'>
           <input
-            value={form.image}
+            value={form.title}
             onChange={handlerChangePost}
-            name='image'
-            placeholder='Image'
+            name='title'
+            placeholder='Title'
             type='text'
           />
-        )}
+          <textarea
+            value={form.content}
+            onChange={handlerChangePost}
+            name='content'
+            className='foro_post_textAREA'
+            placeholder='Description'
+          />
+          {imageOpen && (
+            <input
+              value={form.image}
+              onChange={handlerChangePost}
+              name='image'
+              placeholder='Image'
+              type='text'
+            />
+          )}
+        </div>
       </div>
       <hr />
       <div className='foro_posts_buttonSide'>
@@ -46,7 +52,7 @@ export default function Foro_createPost({ form, handlerChangePost, handlerSubmit
             className='foro_post_ImageDiv'
           >
             <img
-              src='https://cdn1.iconfinder.com/data/icons/rounded-black-basic-ui/139/Photo_Add-RoundedBlack-512.png'
+              src={addIMage}
               alt='Add_Image'
             />
             <p>Add Image</p>

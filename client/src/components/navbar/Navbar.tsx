@@ -55,6 +55,12 @@ const NavBar = () => {
           <NavLink className='link-style' to='/'>
             <p className='nav_middle_button'>Home</p>
           </NavLink>
+          {
+            isAuthenticated&&
+            <NavLink className='link-style' to='/foro'>
+              <p className='nav_middle_button'>Foro</p>
+            </NavLink>
+          }
           <NavLink className='link-style' to='/shop'>
             <p className='nav_middle_button'>Shop</p>
           </NavLink>

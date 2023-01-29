@@ -20,7 +20,8 @@ export const postCommentsPosts = async (body: any, path: string) => {
   comment = {
     "content": "Me encanto tu post!",
     "post": "63d1f32e866456f173d36227",
-    "author": "63c7f94c070c6669b34da446",
+    "email": "hola@gmail.com",
   }
+  
 
 */

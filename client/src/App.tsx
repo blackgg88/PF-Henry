@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       <ToastContainer />
-      {!['/admin', '/foro'].some((path) => location.pathname.startsWith(path)) && <NavBar />}
+      {!['/admin'].some((path) => location.pathname.startsWith(path)) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

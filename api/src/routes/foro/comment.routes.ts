@@ -11,7 +11,7 @@ const comment = Router()
 
 comment.get('/', getAllComment) // <--- controlador
 
-comment.post('/like', likeComment)
+comment.post('/likes', likeComment)
 
 comment.get('/:id', getCommentById)
 

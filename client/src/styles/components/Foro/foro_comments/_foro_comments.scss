@@ -1,25 +1,54 @@
 .comments_Container {
-    background-color: yellow;
+    background-color: rgb(237, 240, 243);
+    border: 1px solid rgb(209, 204, 204);
     margin: 5px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    padding: 10px 30px;
+    box-shadow: 1px 1px 1px 1px rgba(211, 208, 208, 0.3);
 
     .comments_headerDiv {
-
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .comments_contentDiv {
         word-break: break-all;
+        padding-bottom: 10px;
     }
 
     .comments_buttonsDiv {
         display: flex;
-        justify-content: flex-end;
+        
         align-items: center;
-        img {
-            width: 20px;
-            margin-left: 5px;
-            cursor: pointer;
+        margin-top: 10px;
+        //background-color: blue;
+
+        .comments_Button_left {
+            //background-color: green;
+            width: 50%;
+            img {
+                width: 25px;
+                cursor: pointer;
+            }
+        }
+
+        .comments_Button_right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 50%;
+            //background-color: black;
+            img {
+                width: 25px;
+                cursor: pointer;
+                margin-right: 10px;
+            }
         }
     }
 }

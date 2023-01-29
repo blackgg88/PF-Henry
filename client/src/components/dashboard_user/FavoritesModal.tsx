@@ -101,8 +101,8 @@ const favoritesModal: React.FC<Props> = ({ closeModal, favorites, user_id }) => 
         <div className='ModalFavorite_Container'>
           <div className='ModalFavorite_H2_and_x'>
             <h2>My Favorites</h2>
-            <Button onClick={() => closeModal(false)}>
-              <CloseIcon />
+            <Button size='large' onClick={() => closeModal(false)}>
+              <CloseIcon fontSize='large' />
             </Button>
           </div>
 

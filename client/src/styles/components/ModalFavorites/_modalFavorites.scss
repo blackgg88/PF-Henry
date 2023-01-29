@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
     width: 60%;
+    height: 80%;
     min-height: 100px;
     background: #fff;
     position: relative;
@@ -22,6 +23,7 @@
     padding: 40px;
     font-family: $standard-font-Poiret-One;
     z-index: 6;
+    overflow-y: scroll;
     @media (max-width: 900px) {
       width: 70%;
     }
@@ -42,10 +44,11 @@
     }
 
     .ModelFavorite_Item-Container {
-      border-bottom: 1px solid black;
+      border-bottom: 2px solid $standard-color-blue-glass-other;
 
       .ModalFavorite_TitleContainer {
         margin-top: 20px;
+        font-weight: 700;
         text-align: center;
       }
 
@@ -57,11 +60,17 @@
 
         .ModalFavorite_Image {
           width: 40%;
-          height: 100%;
+          height: 100px;
 
           img {
             width: 100%;
-            height: 100%;
+            max-height: 100%;
+          }
+        }
+
+        .ModalFavorite_info {
+          p {
+            font-weight: 700;
           }
         }
       }

@@ -4,6 +4,7 @@ import Foro_editPost from "../EditPost/Foro_editPost";
 //------- USUARIO HELPER ----------
 import FilterPanel from "../FIlter_panel";
 import Foro_createPost from "../Foro_createPost";
+import { useAuth0 } from '@auth0/auth0-react';
 //---------------
 
 export default function ForoHome() {
@@ -36,6 +37,8 @@ export default function ForoHome() {
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
 
+  const {user, isAuthenticated} = useAuth0()
+
   return (
     <div className='foro_home_container'>
       {editOpen && (
@@ -47,11 +50,15 @@ export default function ForoHome() {
         />
       )}
       <div className='foro_posts_container'>
-        <Foro_createPost
+        {
+          isAuthenticated&&
+          <Foro_createPost
           form={form}
           handlerChangePost={handlerChangePost}
           handlerSubmit={handlerSubmit}
         />
+        }
+        
 
         {allPost?.map((post: any) => (
           <Foro_card

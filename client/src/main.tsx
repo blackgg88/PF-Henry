@@ -5,6 +5,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID } from '../config';
 import { Provider } from 'react-redux';
 import './styles/styles.scss';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from './App';
 import { store } from './Redux/store';

@@ -18,6 +18,8 @@
     "@splidejs/react-splide": "^0.7.12",
     "auth0-js": "^9.20.1",
     "axios": "^1.2.2",
+    "bootstrap": "^5.2.3",
+    "bootstrap-sweetalert": "^1.0.1",
     "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
     "formik": "^2.2.9",

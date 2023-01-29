@@ -4,8 +4,6 @@ import iconStarB from '../../assets/images/icons/iconStartB.png';
 import iconStarW from '../../assets/images/icons/iconStartW.png';
 import iconStarM from '../../assets/images/icons/iconStartM.png';
 import { Rating } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'; //corazon vacio como el de ella
-import FavoriteIcon from '@mui/icons-material/Favorite'; //corazon lleno como nadie en mi vida UwU
 import { toast, Zoom } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
@@ -33,6 +31,7 @@ const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+  const [getFavorites, setGetFavorites] = useState<ProductState[]>([]);
 
   // const user = useAppSelector((state) => state.userReducer.userState);
 
@@ -71,7 +70,9 @@ const CardBeta: React.FC<{}> = () => {
       inCart: true,
     };
 
-    toast.success('Product added', {
+    dispatch(addProduct(productCart));
+
+    toast.success('Product added to Cart', {
       position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
@@ -79,15 +80,25 @@ const CardBeta: React.FC<{}> = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'light',
+      theme: 'colored',
       transition: Zoom,
     });
-
-    dispatch(addProduct(productCart));
   };
 
   const handleRemoveCart = (product: ProductState) => {
     dispatch(deleteProduct(product._id));
+
+    toast.error('Product removed from Cart', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Zoom,
+    });
   };
 
   // const product = state.Products.find
@@ -142,13 +153,38 @@ const CardBeta: React.FC<{}> = () => {
 
         if (findFavo?._id) {
           actualFavorites = actualFavorites.filter((favorite) => favorite._id !== newFavorite._id);
+
+          toast.error('Product removed from favorites', {
+            position: 'top-center',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+            transition: Zoom,
+          });
         } else {
           actualFavorites = [...actualFavorites, newFavorite];
+
+          toast.success('Product added to favorites', {
+            position: 'top-center',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+            transition: Zoom,
+          });
         }
       }
 
       const userUpdate = await addFavoriteFetch(userByBd._id, newFavorite, actualFavorites);
       dispatch(addFavorite(userUpdate.favorites));
+      setGetFavorites(userUpdate.favorites);
     } else {
       setModalOpen(true);
     }
@@ -186,13 +222,21 @@ const CardBeta: React.FC<{}> = () => {
 
   //-----------------------> QUICKLOOK MODAL  <-------------------------------
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      setGetFavorites(userByBd.favorites);
+    } else {
+      setGetFavorites([]);
+    }
+  }, [isAuthenticated]);
+
   return (
     <div className='container-render-card-v-beta'>
       <div className='container-card-beta'>
         {currentItems?.map((product) => {
           let iconFavorite = favoriteUnset_w;
 
-          userByBd.favorites.map((favorite) => {
+          getFavorites.map((favorite) => {
             if (favorite._id === product._id) {
               iconFavorite = favoriteSet_w;
             }

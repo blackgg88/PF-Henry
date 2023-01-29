@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface Category {
   _id: string;
@@ -14,6 +14,8 @@ export interface ProductCart {
   categories: Category;
   stock: number;
   quantity: number;
+  // remove and add to cart button
+  inCart: boolean;
 }
 
 const initialState: {
@@ -23,24 +25,30 @@ const initialState: {
 };
 
 const handleSaveLS = (product: ProductCart[] | ProductCart) => {
-  localStorage.setItem('shoppingCart', JSON.stringify(product));
+  localStorage.setItem("shoppingCart", JSON.stringify(product));
 };
 
 export const shoppingCartSlice = createSlice({
-  name: 'shoppingCart',
+  name: "shoppingCart",
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<ProductCart>) => {
       if (Array.isArray(action.payload)) {
         state.Products = action.payload;
       } else {
-        state.Products = [...state.Products, action.payload];
+        state.Products = [
+          ...state.Products,
+          { ...action.payload, inCart: true },
+        ];
       }
 
       handleSaveLS(state.Products);
     },
 
-    changeQuantity: (state, action: PayloadAction<{ id: string; quantity: number }>) => {
+    changeQuantity: (
+      state,
+      action: PayloadAction<{ id: string; quantity: number }>
+    ) => {
       state.Products = state.Products.map((product) => {
         if (product._id === action.payload.id)
           return { ...product, quantity: action.payload.quantity };
@@ -52,7 +60,7 @@ export const shoppingCartSlice = createSlice({
 
     deleteProduct: (state, action: PayloadAction<string>) => {
       state.Products = state.Products.filter(
-        (product: ProductCart) => product._id !== action.payload,
+        (product: ProductCart) => product._id !== action.payload
       );
 
       handleSaveLS(state.Products);
@@ -66,4 +74,5 @@ export const shoppingCartSlice = createSlice({
   },
 });
 
-export const { addProduct, deleteProduct, changeQuantity, emptyCar } = shoppingCartSlice.actions;
+export const { addProduct, deleteProduct, changeQuantity, emptyCar } =
+  shoppingCartSlice.actions;

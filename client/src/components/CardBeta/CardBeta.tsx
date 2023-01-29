@@ -9,9 +9,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite'; //corazon lleno como na
 import { toast, Zoom } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
-import { addFavoriteFetch } from '../../Redux/slice/user/userController';
+import { addFavoriteFetch, removeFavoriteFetch } from '../../Redux/slice/user/userController';
 import { addFavorite } from '../../Redux/slice/user/user.slice';
-import { userInterface } from '../../Redux/slice/user/user.slice';
+import { userInterface, getUserLogin } from '../../Redux/slice/user/user.slice';
 
 import { ProductState } from '../../Redux/slice/product/product.slice';
 import { getProduct } from '../../Redux/slice/product/product.slice';
@@ -22,15 +22,30 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { addProduct, deleteProduct } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 import { ProductCart } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
+import { Favorite } from '@mui/icons-material';
+import { any, object } from 'prop-types';
+
+import favoriteUnset_w from '../../assets/images/icons/favorite/favorite_w.png';
+import favoriteSet_w from '../../assets/images/icons/favorite/favorite_b.png';
 import AddFavoritesModal from './AddFavoritesModal';
 
 const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
-
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
 
-  //console.log(Allproduct)
+  // const user = useAppSelector((state) => state.userReducer.userState);
+
+  // if (userByBd.favorites) {
+  //   getFavorites = userByBd.favorites;
+  //   console.log('GET', getFavorites);
+  // } else if (userByBd.favorites) {
+  //   userByBd.favorites.map((favorite: ProductState) => {
+  //     getFavorites.push(favorite);
+  //   });
+  //   console.log('GET', getFavorites);
+  // }
+
   const dispatch = useAppDispatch();
   const stars = [1, 2, 3, 4, 5];
   useEffect(() => {
@@ -82,9 +97,10 @@ const CardBeta: React.FC<{}> = () => {
 
   const { user, isAuthenticated } = useAuth0();
 
-  const handleAddFavorite = async (product: ProductState, e: any) => {
+  //!--------------------------------------------------------------------------------------
+  const handleToggleFavorite = async (product: ProductState) => {
     if (isAuthenticated && user?.email_verified) {
-      const favorite: ProductState = {
+      const newFavorite: ProductState = {
         _id: product._id,
         name: product.name,
         price: product.price,
@@ -96,35 +112,51 @@ const CardBeta: React.FC<{}> = () => {
         stock: product.stock,
       };
 
-      const favorites: ProductState[] = await addFavoriteFetch(userByBd._id, favorite);
+      let actualFavorites: ProductState[] = userByBd.favorites;
 
-      dispatch(addFavorite(favorites));
+      // if (userByBd.favorites) {
+      //   actualFavorites = userByBd.favorites;
+      // } else if (userByBd.favorites) {
+      //   actualFavorites = userByBd.favorites;
+      // }
+      //console.log("user",user)
+      //console.log("user.favorites",user.favorites)
+
+      // let newFavorites: ProductState[] = [];
+      // let add = true;
+      //console.log("actualFavorites:___A", actualFavorites, product);
+      if (!actualFavorites.length) {
+        actualFavorites = [newFavorite];
+      } else {
+        // actualFavorites.map((favorite) => {
+        //   if (favorite._id !== newFavorite._id) {
+        //     actualFavorites = [...actualFavorites, newFavorite];
+        //   } else {
+        //     actualFavorites = actualFavorites.filter(
+        //       (favorite) => favorite._id !== newFavorite._id,
+        //     );
+        //   }
+        // });
+
+        const findFavo = actualFavorites.find((favorite) => favorite._id === newFavorite._id);
+
+        if (findFavo?._id) {
+          actualFavorites = actualFavorites.filter((favorite) => favorite._id !== newFavorite._id);
+        } else {
+          actualFavorites = [...actualFavorites, newFavorite];
+        }
+      }
+
+      const userUpdate = await addFavoriteFetch(userByBd._id, newFavorite, actualFavorites);
+      dispatch(addFavorite(userUpdate.favorites));
     } else {
       setModalOpen(true);
     }
   };
 
-  // const handleAddFavorite = async (product: ProductState) => {
-  //   const favorite: ProductState = {
-  //     _id: product._id,
-  //     name: product.name,
-  //     price: product.price,
-  //     description: product.description,
-  //     brand: product.brand,
-  //     images: product.images,
-  //     rating: product.rating,
-  //     categories: product.categories,
-  //     stock: product.stock,
-  //   };
-
-  //   const favorites: ProductState[] = await addFavoriteFetch(
-  //     userByBd._id,
-  //     favorite
-  //   );
-
-  //   dispatch(addFavorite(favorites));
-  // };
-
+  //!--------------------------------------------------------------------------------------
+  //!--------------------------------------------------------------------------------------
+  //handleToggleFavorite({});
   //-----------------------> Helper Functions <----------------------
 
   const priceFormat = (productPrice: number) => {
@@ -158,14 +190,26 @@ const CardBeta: React.FC<{}> = () => {
     <div className='container-render-card-v-beta'>
       <div className='container-card-beta'>
         {currentItems?.map((product) => {
+          let iconFavorite = favoriteUnset_w;
+
+          userByBd.favorites.map((favorite) => {
+            if (favorite._id === product._id) {
+              iconFavorite = favoriteSet_w;
+            }
+          });
+
           return (
             <div key={product._id} className='product-card-beta'>
               <div className='header-card-beta'>
-                n e w
+                <div className='container-favorite' onClick={() => handleToggleFavorite(product)}>
+                  <img src={iconFavorite} alt={iconFavorite} />
+                </div>
+
                 <QuickLookModal
                   product={product}
                   handleAddCart={handleAddCart}
                   priceFormat={priceFormat}
+
                   // handleCloseModal={handleCloseModal}
                   // showModal={showModal}
                 />
@@ -218,25 +262,12 @@ const CardBeta: React.FC<{}> = () => {
                     <button disabled>out of Stock</button>
                   </div>
                 )}
-
-                {/* <div className="content-add-car-card-beta"> */}
-                {/* <div
-                  className="add-car-card-beta"
-                  onClick={() => handleAddCart(product)}
-                >
-                  <p>add to Cart</p>
-                </div> */}
-
-                <button onClick={(e) => handleAddFavorite(product, e)}>
-                  {modalOpen && <AddFavoritesModal />}
-
-                  <FavoriteBorderIcon />
-                </button>
               </div>
             </div>
           );
         })}
       </div>
+      {modalOpen && <AddFavoritesModal />}
       <div className='pagination2'>
         <PaginationComp
           itemsPerPage={itemsPerPage}

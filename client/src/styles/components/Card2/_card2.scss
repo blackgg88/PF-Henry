@@ -87,14 +87,40 @@
 
       .header-card-beta {
         width: 100%;
-        height: 10%;
+        height: 8%;
         //background-color: green;
-
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
         @media only screen and (max-width: $medium-screen) {
-          height: 15%;
+          height: 8%;
         }
         @media only screen and (max-width: $small-screen) {
         }
+
+        .container-favorite{
+          height: 100%;
+          width: 25%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          &:hover{
+            scale: 1.1;
+          }
+
+          //background-color: aqua;
+          img{
+            height: 100%;
+          }
+        }
+
+        .quickLook{
+          background-color: red;
+        }
+
       }
 
       .content-image-card-beta {
@@ -265,9 +291,9 @@
             align-items: center;
             width: 100%;
             position: relative;
-            right: 50%;
-            bottom: 10%;
-            scale: 1.2;
+            right: 60%;
+            bottom: -5%;
+            scale: 0.8;
             //background-color: aqua;
           }
           @media only screen and (max-width: $small-screen) {

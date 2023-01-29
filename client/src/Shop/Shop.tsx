@@ -41,11 +41,7 @@ const Shop: React.FC<{}> = () => {
       }}
       ></button> */}
 
-      <div className='breadcrumb'>
-        <div className='base'>
-          <Breadcrumb />
-        </div>
-      </div>
+      
       <div className='shop-contain'>
         <FiltersPanel />
         <Card2 />
@@ -53,6 +49,11 @@ const Shop: React.FC<{}> = () => {
       {/* <div className="content-footer">
         <div>content footer</div>
       </div> */}
+      <div className='breadcrumb'>
+        <div className='base'>
+          <Breadcrumb />
+        </div>
+      </div>
     </div>
   );
 };

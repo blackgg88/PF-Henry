@@ -155,6 +155,8 @@ export const Dashboard_user = () => {
         )}
       </div>
       {openModal && <ModalUser close={setOpenModal} userByBd={userByBd} />}
+      {/* Aqui */}
+      <div className='dash_purchaseDiv_Favorities'> favoritos</div>
     </div>
   );
 };

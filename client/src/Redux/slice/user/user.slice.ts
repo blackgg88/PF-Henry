@@ -65,7 +65,15 @@ export const userSlice = createSlice({
 
       handleSaveLS(state.userState);
     },
+
+    removeFavorite: (state, action: PayloadAction<string>) => {
+      state.userState.favorites = state.userState.favorites.filter(
+        (product: ProductState) => product._id !== action.payload,
+      );
+
+      handleSaveLS(state.userState);
+    },
   },
 });
 
-export const { getUserLogin, kevinPapitoMiAmor, addFavorite } = userSlice.actions;
+export const { getUserLogin, kevinPapitoMiAmor, addFavorite, removeFavorite } = userSlice.actions;

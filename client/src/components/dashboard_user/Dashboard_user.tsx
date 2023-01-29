@@ -60,7 +60,7 @@ export const Dashboard_user = () => {
   };
 
   return (
-    <div className='all'>
+    <div className='all' style={!purchase.length ? { height: '85vh' } : {}}>
       <div className='dash_profileContainer'>
         <div className='dash_profile_ImgSide'>
           <img src={user?.picture} alt='picture-profile' />
@@ -156,7 +156,7 @@ export const Dashboard_user = () => {
       </div>
       {openModal && <ModalUser close={setOpenModal} userByBd={userByBd} />}
       {/* Aqui */}
-      <div className='dash_purchaseDiv_Favorities'> favoritos</div>
+      {/* <div className='dash_purchaseDiv_Favorities'> favoritos</div> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { ProductState } from '../product/product.slice';
 
 export interface userInterface {
   email: string;
@@ -11,6 +12,7 @@ export interface userInterface {
   picture: string;
   username: string;
   connection: string;
+  favorites: ProductState[];
 }
 
 export interface userChange {
@@ -31,7 +33,12 @@ const initialState: {
     email_verified: false,
     picture: '',
     username: '',
+    favorites: [],
   },
+};
+
+const handleSaveLS = (user: userInterface) => {
+  localStorage.setItem('userByBd', JSON.stringify(user));
 };
 
 export const userSlice = createSlice({
@@ -40,12 +47,25 @@ export const userSlice = createSlice({
   reducers: {
     getUserLogin: (state, action: PayloadAction<userInterface>) => {
       state.userState = action.payload;
+
+      handleSaveLS(state.userState);
     },
 
     kevinPapitoMiAmor: (state, action: PayloadAction<userChange>) => {
       state.userState = { ...state.userState, ...action.payload };
+
+      handleSaveLS(state.userState);
+    },
+
+    addFavorite: (state, action: PayloadAction<ProductState[]>) => {
+      state.userState = {
+        ...state.userState,
+        favorites: action.payload,
+      };
+
+      handleSaveLS(state.userState);
     },
   },
 });
 
-export const { getUserLogin, kevinPapitoMiAmor } = userSlice.actions;
+export const { getUserLogin, kevinPapitoMiAmor, addFavorite } = userSlice.actions;

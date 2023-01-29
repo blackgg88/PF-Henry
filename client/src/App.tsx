@@ -16,6 +16,9 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from './Redux/hook';
 import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
+import { getUserLogin } from './Redux/slice/user/user.slice';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const location = useLocation();
@@ -23,16 +26,23 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const productsInLS = JSON.parse(localStorage.getItem('shopingCart') as string) ?? [];
+    const productsInLS = JSON.parse(localStorage.getItem('shoppingCart') as string) ?? [];
 
     if (productsInLS.length) {
       dispatch(addProduct(productsInLS));
+    }
+
+    const userInLS = JSON.parse(localStorage.getItem('userByBd') as string) ?? {};
+
+    if (userInLS.email) {
+      dispatch(getUserLogin(userInLS));
     }
   }, []);
 
   return (
     <>
-      {!['/admin', '/foro'].includes(location.pathname) && <NavBar />}
+      <ToastContainer />
+      {!['/admin', '/foro'].some((path) => location.pathname.startsWith(path)) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

@@ -12,8 +12,7 @@ const NavBar = () => {
   const [profileWindow, setProfileWindow] = useState<boolean>(false);
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
-
-  const role = 'admin'; //! CAMBIAR EN EL FUTURO CUANDO MANEJEMOS ROLES
+  const userByBd = useAppSelector((state) => state.userReducer.userState);
 
   useEffect(() => {
     if (responsiveMenu) {
@@ -60,9 +59,9 @@ const NavBar = () => {
             <p className='nav_middle_button'>Shop</p>
           </NavLink>
           <NavLink className='link-style' to='/news'>
-            <p className={role == 'admin' ? 'nav_middle_button' : ''}>News</p>
+            <p className={userByBd.role == 'admin' ? 'nav_middle_button' : ''}>News</p>
           </NavLink>
-          {role == 'admin' && (
+          {userByBd.role == 'admin' && (
             <NavLink className='link-style' to='/admin'>
               <p>Admin</p>
             </NavLink>
@@ -112,7 +111,7 @@ const NavBar = () => {
         >
           <p>News</p>
         </NavLink>
-        {role == 'admin' && (
+        {userByBd.role == 'admin' && (
           <NavLink
             onClick={() => setResponsiveMenu(!responsiveMenu)}
             className='link-style'

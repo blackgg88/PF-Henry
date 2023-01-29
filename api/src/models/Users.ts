@@ -1,6 +1,8 @@
 import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
 import { Role, RoleEnum } from './Role';
 import { Post } from './Post';
+import { Product } from './Product';
+import { boolean } from 'webidl-conversions';
 
 export class User {
   @prop({ type: String })
@@ -18,7 +20,7 @@ export class User {
   @prop({ type: String, required: true, trim: true, unique: true })
   email: string;
 
-  @prop({ type: String, required: true, minlength: 8 })
+  @prop({ type: String, minlength: 8 })
   password: string;
 
   @prop({ type: String, trim: true })
@@ -27,6 +29,9 @@ export class User {
   @prop({ type: Boolean, default: true })
   isActive: boolean;
 
+  @prop({ type: Boolean })
+  email_verified: boolean;
+
   @prop({ ref: () => Post })
   posts: Ref<Post>[];
 
@@ -34,6 +39,9 @@ export class User {
 
   @prop({ ref: () => Role, default: RoleEnum.USER, type: String })
   role: Ref<Role>;
+
+  @prop({ ref: () => Product })
+  favorites: Ref<Product>[];
 }
 
 const UserModel = getModelForClass(User);

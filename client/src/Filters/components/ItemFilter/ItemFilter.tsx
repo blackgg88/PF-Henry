@@ -1,9 +1,4 @@
 import React from "react";
-// import "./ItemFilter.css";
-// import { FilterState } from "../../Redux/slice/product.slice";
-import { FilterState } from "../../../../Redux/slice/product/product.slice";
-
-
 interface FilterByProps {
   closeItem: (e: string) => void;
   filter: string;

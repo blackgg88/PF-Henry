@@ -14,6 +14,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ModalCart from './ModalCart';
+import { toast, Zoom } from 'react-toastify';
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
@@ -36,6 +37,18 @@ const ShoppingCart = () => {
   };
 
   const handleRemoveProduct = (id: string) => {
+    toast.success('Product removed', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      transition: Zoom,
+    });
+
     dispatch(deleteProduct(id));
   };
 

@@ -23,7 +23,7 @@ const initialState: {
 };
 
 const handleSaveLS = (product: ProductCart[] | ProductCart) => {
-  localStorage.setItem('shopingCart', JSON.stringify(product));
+  localStorage.setItem('shoppingCart', JSON.stringify(product));
 };
 
 export const shoppingCartSlice = createSlice({

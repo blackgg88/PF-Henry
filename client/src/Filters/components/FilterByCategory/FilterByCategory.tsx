@@ -1,15 +1,7 @@
-import { useAppDispatch } from "../../../../Redux/hook";
-
-import { updateCategoryFilter } from "../../../../Redux/slice/product/product.slice";
+import useFilterByCategory from "./hook/useFilterByCategory";
 
 const FilterByCategory: React.FC<{}> = () => {
-  const dispatch = useAppDispatch();
-
-  //hecho por yeral!!!! todos los tipados los hize yoooooooooooo!
-  //TQM SAUL!!!!!
-  const handlerChange = (event:React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(updateCategoryFilter(event.target.value));
-  };
+  const { handlerChange } = useFilterByCategory()
 
   return (
       <div className='new-container-category'>

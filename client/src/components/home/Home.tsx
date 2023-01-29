@@ -20,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     const getUserByBd = async () => {
       if (isAuthenticated) {
-        const userByBd = await userFetch(user?.email as string);
+        const userByBd = await userFetch(user as any);
         dispatch(getUserLogin(userByBd));
       }
     };

@@ -27,6 +27,11 @@ import favoriteUnset_w from '../../assets/images/icons/favorite/favorite_w.png';
 import favoriteSet_w from '../../assets/images/icons/favorite/favorite_b.png';
 import AddFavoritesModal from './AddFavoritesModal';
 
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { IconButton } from '@mui/material';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+
 const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);

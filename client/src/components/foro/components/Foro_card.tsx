@@ -70,6 +70,7 @@ export function Foro_card({
   likeCommentHandler
 }: Foro_Card) {
   const { user } = useAuth0();
+  const [emailLoged, setEmailLoged] = useState<string>('')
   
   const openComment = (id:string)=> {
     var x = document.getElementById(`comment-${id}`);
@@ -131,7 +132,7 @@ export function Foro_card({
             <img
               onClick={() => onLikePost(id)}
               className='foro_card_buttonLike'
-              src={likes.includes(email)?likeYes:likeNo}
+              src={likes.includes(user!.email!)?likeYes:likeNo}
               alt='like'
             />
             <p>{comments.filter(e=> e.deleted==false).length}</p>

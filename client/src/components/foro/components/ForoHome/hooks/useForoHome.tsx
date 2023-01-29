@@ -64,7 +64,6 @@ export function useForoHome() {
 
 const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(
- 
        e.target.value
     );
   };
@@ -230,7 +229,10 @@ const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
       setAllPost(allPostRespaldo)
       return alert('Ningun post encontrado')
     }
+    setSearchInput('')
   }
+
+
   const resetFilter = () => {
     setAllPost(allPostRespaldo)
   }

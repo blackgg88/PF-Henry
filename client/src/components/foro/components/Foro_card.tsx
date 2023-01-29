@@ -152,7 +152,7 @@ export function Foro_card({
           <textarea onChange={handlerChangeComment} name="content" placeholder="Post a commentary..." value={commentary.content} className="foro_card_CommentArea" />
         </div>
         <div className="foro_card_SubmitCommentSide">
-          <button onClick={()=> submitComment(id, email)}>Comment</button>
+          <button onClick={()=> submitComment(id, user?.email)}>Comment</button>
         </div>
           {comments?.filter(e=> e.deleted!=true).map((comment, index) =>
             <Foro_comments

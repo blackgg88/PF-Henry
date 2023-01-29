@@ -17,7 +17,8 @@ import { useEffect } from 'react';
 import { useAppDispatch } from './Redux/hook';
 import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
 import { getUserLogin } from './Redux/slice/user/user.slice';
-import { useAuth0 } from '@auth0/auth0-react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const location = useLocation();
@@ -40,7 +41,8 @@ function App() {
 
   return (
     <>
-      {!['/admin', '/foro'].includes(location.pathname) && <NavBar />}
+      <ToastContainer />
+      {!['/admin', '/foro'].some((path) => location.pathname.startsWith(path)) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

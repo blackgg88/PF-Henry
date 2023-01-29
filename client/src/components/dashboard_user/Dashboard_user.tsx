@@ -48,7 +48,6 @@ export const Dashboard_user = () => {
     }
   }, [isAuthenticated]);
 
-  console.log(userByBd);
   const handleFormatedDate = (date_created: string) => {
     const dateString = date_created;
     const date = new Date(dateString);

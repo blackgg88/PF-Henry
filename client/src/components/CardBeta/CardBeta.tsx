@@ -6,6 +6,7 @@ import iconStarM from '../../assets/images/icons/iconStartM.png';
 import { Rating } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'; //corazon vacio como el de ella
 import FavoriteIcon from '@mui/icons-material/Favorite'; //corazon lleno como nadie en mi vida UwU
+import { toast, Zoom } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { addFavoriteFetch } from '../../Redux/slice/user/userController';
@@ -48,6 +49,19 @@ const CardBeta: React.FC<{}> = () => {
       stock: product.stock,
       quantity: 1,
     };
+
+    toast.success('Product added', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      transition: Zoom,
+    });
+
     dispatch(addProduct(productCart));
   };
 
@@ -99,40 +113,41 @@ const CardBeta: React.FC<{}> = () => {
   //-----------------------> QUICKLOOK MODAL  <-------------------------------
 
   return (
-    <div className='container-render-card-v-beta'>
-      <div className='container-card-beta'>
-        {currentItems?.map((product) => {
-          return (
-            <div key={product._id} className='product-card-beta'>
-              <div className='header-card-beta'>
-                n e w
-                <QuickLookModal
-                  product={product}
-                  handleAddCart={handleAddCart}
-                  priceFormat={priceFormat}
-                  // handleCloseModal={handleCloseModal}
-                  // showModal={showModal}
-                />
-              </div>
-              <div className='content-image-card-beta'>
-                <Link className='link-image-card' to={`/product/${product._id}`}>
-                  <img className='image-card' src={product.images[0]} alt='image' />
-                </Link>
-              </div>
-              <div className='content-title-description-card-beta'>
-                <div className='content-title-card-beta'>
-                  <h3 className='product-name-card-beta'>{product.name.substring(0, 25)}...</h3>
+    <>
+      <div className='container-render-card-v-beta'>
+        <div className='container-card-beta'>
+          {currentItems?.map((product) => {
+            return (
+              <div key={product._id} className='product-card-beta'>
+                <div className='header-card-beta'>
+                  n e w
+                  <QuickLookModal
+                    product={product}
+                    handleAddCart={handleAddCart}
+                    priceFormat={priceFormat}
+                    // handleCloseModal={handleCloseModal}
+                    // showModal={showModal}
+                  />
                 </div>
-                <div className='content-description-card-beta'>
-                  <p className='product-description-card-beta'>
-                    {product.description.substring(0, 57)}...
-                  </p>
+                <div className='content-image-card-beta'>
+                  <Link className='link-image-card' to={`/product/${product._id}`}>
+                    <img className='image-card' src={product.images[0]} alt='image' />
+                  </Link>
                 </div>
-              </div>
-              <div className='content-value-rating-card-beta'>
-                <div className='content-rating-card-beta'>
-                  <Rating size='small' value={product.rating} precision={0.01} readOnly />
-                  {/* {stars.map((star) => {
+                <div className='content-title-description-card-beta'>
+                  <div className='content-title-card-beta'>
+                    <h3 className='product-name-card-beta'>{product.name.substring(0, 25)}...</h3>
+                  </div>
+                  <div className='content-description-card-beta'>
+                    <p className='product-description-card-beta'>
+                      {product.description.substring(0, 57)}...
+                    </p>
+                  </div>
+                </div>
+                <div className='content-value-rating-card-beta'>
+                  <div className='content-rating-card-beta'>
+                    <Rating size='small' value={product.rating} precision={0.01} readOnly />
+                    {/* {stars.map((star) => {
                     if (star < product.rating && star + 1 > product.rating) {
                       return <img key={productIdFetch+iconStarM+product.rating} src={iconStarM} />;
                     } else if (star < product.rating) {
@@ -141,32 +156,33 @@ const CardBeta: React.FC<{}> = () => {
                       return <img key={productIdFetch+iconStarW+product.rating} src={iconStarW} />;
                     }
                   })} */}
+                  </div>
+                  <div className='content-value-card-beta'>
+                    <h4 className='price2'>$ {priceFormat(product.price)}</h4>
+                  </div>
                 </div>
-                <div className='content-value-card-beta'>
-                  <h4 className='price2'>$ {priceFormat(product.price)}</h4>
+                <div className='content-add-car-card-beta'>
+                  <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
+                    <p>add to Cart</p>
+                  </div>
+                  <div onClick={() => handleAddFavorite(product)}>
+                    <FavoriteBorderIcon />
+                  </div>
                 </div>
               </div>
-              <div className='content-add-car-card-beta'>
-                <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
-                  <p>add to Cart</p>
-                </div>
-                <div onClick={() => handleAddFavorite(product)}>
-                  <FavoriteBorderIcon />
-                </div>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+        <div className='pagination2'>
+          <PaginationComp
+            itemsPerPage={itemsPerPage}
+            totalItems={Allproduct.length}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </div>
       </div>
-      <div className='pagination2'>
-        <PaginationComp
-          itemsPerPage={itemsPerPage}
-          totalItems={Allproduct.length}
-          currentPage={currentPage}
-          handlePageChange={handlePageChange}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 

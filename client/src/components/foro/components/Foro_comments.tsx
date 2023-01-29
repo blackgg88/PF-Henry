@@ -45,7 +45,11 @@ export default function Foro_comments({author, likes, _id, content, onDeleteComm
           }
         </div>
         <div className='comments_Button_right'>
-          <img onClick={()=> likeCommentHandler(_id, user?.email)} src={likes.includes(user!.email!)?likeYes:likeNo} alt="like" />
+          {
+            user?.email?
+              <img onClick={()=> likeCommentHandler(_id, user?.email)} src={likes.includes(user!.email!)?likeYes:likeNo} alt="like" />:
+              <img onClick={()=> alert('Only users can like this post')} src={likeNo} alt="like" />
+          }
           <p>{likes.length}</p>
         </div>
       </div>

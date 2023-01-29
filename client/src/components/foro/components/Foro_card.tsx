@@ -129,12 +129,21 @@ export function Foro_card({
 
           <div className='foro_card_social_Right'>
             <p>{likes.length}</p>
-            <img
+            {
+              user?.email?
+              <img
               onClick={() => onLikePost(id)}
               className='foro_card_buttonLike'
-              src={likes.includes(user!.email!)?likeYes:likeNo}
+              src={likes.includes(user.email)?likeYes:likeNo}
               alt='like'
-            />
+            />:<img
+            onClick={() => alert('Only users can like this post')}
+            className='foro_card_buttonLike'
+            src={likeNo}
+            alt='like'
+          />
+            }
+            
             <p>{comments.filter(e=> e.deleted==false).length}</p>
             <img
               onClick={()=> openComment(id)}

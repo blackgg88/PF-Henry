@@ -276,7 +276,10 @@ export function useForoHome() {
         ).then((res) =>
           getCommentsPosts("posts")
             .then((res) => res.json())
-            .then((res) => setAllPost(res))
+            .then((res) => {
+              setAllPost(res)
+              setallPostRespaldo(res);
+            })
         )
         .then(() => {
           Toast.fire({
@@ -396,12 +399,12 @@ export function useForoHome() {
 
   const handleFilterByTitle = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const filterPost = allPost.filter((post) => {
+    const filterPost = allPostRespaldo.filter((post) => {
       if (post.title.toLowerCase().includes(searchInput.toLowerCase())) {
         return post;
       }
     });
-    console.log(filterPost);
+    
 
     if (filterPost.length) {
       setAllPost(filterPost);
@@ -410,6 +413,7 @@ export function useForoHome() {
       return alert("Ningun post encontrado");
     }
   };
+
   const resetFilter = () => {
     setAllPost(allPostRespaldo);
   };

@@ -304,7 +304,7 @@ const CardBeta: React.FC<{}> = () => {
                   </div>
                 ) : product.stock > 0 && productsInCart.find((el) => el._id === product._id) ? (
                   <div className='add-car-card-beta' onClick={() => handleRemoveCart(product)}>
-                    <p>Remove from Cart</p>
+                    <p>Remove</p>
                   </div>
                 ) : (
                   <div className='add-car-card-beta'>

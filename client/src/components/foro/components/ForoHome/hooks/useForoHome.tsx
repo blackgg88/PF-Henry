@@ -410,7 +410,10 @@ export function useForoHome() {
       setAllPost(filterPost);
     } else {
       setAllPost(allPostRespaldo);
-      return alert("Ningun post encontrado");
+      Swal.fire({
+        title: "No result",
+        icon: "error"
+      })
     }
   };
 

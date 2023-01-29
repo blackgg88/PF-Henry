@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      {!['/admin'].includes(location.pathname) && <NavBar />}
+      {!location.pathname.match(/^\/admin/) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' />

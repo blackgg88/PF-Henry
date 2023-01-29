@@ -38,17 +38,17 @@ const orderData = (data, resource, order, field) => {
     }
   }
 
-  //-------------Tabla PURCHASES (por id y apellido-nombre. Por los otros no anda :( )
+  //-------------Tabla PURCHASES (por id(se rompio) y apellido-nombre. Por los otros no anda :( )
   if(resource === 'purchases'){
-    if(field === 'id'){
-      if(order === 'ASC'){
-        data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
-      }
-      else{
-        data.sort((a, b) => b[field]?.localeCompare(a[field]));
-      }
-    }
-    else if(field === 'Payer'){
+    // if(field === 'id'){
+    //   if(order === 'ASC'){
+    //     data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
+    //   }
+    //   else{
+    //     data.sort((a, b) => b[field]?.localeCompare(a[field]));
+    //   }
+    // }
+    if(field === 'Payer'){
       if(order === 'ASC'){
         data = data.sort((a, b) => {
           let aName = a.payer?.last_name + " " + a.payer?.first_name;
@@ -62,6 +62,36 @@ const orderData = (data, resource, order, field) => {
           let bName = b.payer?.last_name + " " + b.payer?.first_name;
           return bName.localeCompare(aName);
         });
+      }
+    }
+  }
+
+
+  //------------Tabla POSTS (no funca con id ni con deleted)
+  if(resource === 'posts'){
+    if(field === 'title'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
+      }
+      else{
+        data.sort((a, b) => b[field]?.localeCompare(a[field]));
+      }
+      
+    }
+    else if(field === 'author'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a.author.userName?.localeCompare(b.author.userName));
+      }
+      else{
+        data.sort((a, b) => b.author.userName?.localeCompare(a.author.userName));
+      }
+    }
+    else if(field === 'likes'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a[field].length - b[field].length);
+      }
+      else{
+        data.sort((a, b) => b[field].length - a[field].length);
       }
     }
   }

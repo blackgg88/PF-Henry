@@ -61,9 +61,11 @@ export const putUser = async (req: Request, res: Response) => {
 
     const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-    });
-    console.log('RETURNNNNNNN_____________', user);
-    res.json(user?.favorites);
+    })
+      .populate({ path: 'favorites', select: '-__v' })
+      .select('-__v');
+
+    res.json(user);
   } catch (error) {
     res.status(400).json({ message: `Error updating the user ${req.params.id}`, error });
   }

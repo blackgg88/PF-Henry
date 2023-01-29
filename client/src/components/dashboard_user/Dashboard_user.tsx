@@ -8,6 +8,7 @@ import { userInterface } from '../../Redux/slice/user/user.slice';
 import verified_true from '../../assets/verified/verified_true.png';
 import verified_false from '../../assets/verified/verified_false.png';
 import ModalUser from '../modalUser/ModalUser';
+import FavoritesModal from './FavoritesModal';
 
 // creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface Items {
@@ -32,11 +33,12 @@ export const Dashboard_user = () => {
   const { user, isAuthenticated } = useAuth0();
   const [purchase, setPurchase] = useState<Payments[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openFavo, setOpenFavo] = useState<boolean>(false);
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
 
-  const email = user?.email;
-  const verified = userByBd?.email ? userByBd?.email_verified : user?.email_verified;
+  const email = userByBd.email;
+  const verified = userByBd.email_verified;
 
   useEffect(() => {
     const handleGetItems = async () => {
@@ -48,8 +50,6 @@ export const Dashboard_user = () => {
     }
   }, [isAuthenticated]);
 
-  console.log(userByBd);
-  console.log(user);
   const handleFormatedDate = (date_created: string) => {
     const dateString = date_created;
     const date = new Date(dateString);
@@ -62,7 +62,7 @@ export const Dashboard_user = () => {
   };
 
   return (
-    <div className='all'>
+    <div className='all' style={!purchase.length ? { height: '85vh' } : {}}>
       <div className='dash_profileContainer'>
         <div className='dash_profile_ImgSide'>
           <img src={user?.picture} alt='picture-profile' />
@@ -89,19 +89,29 @@ export const Dashboard_user = () => {
         </div>
       </div>
 
-      {userByBd?.email_verified && (
-        <div onClick={() => setOpenModal(!openModal)} className='dash_infouser_container'>
-          <div className='dash_infouser_title'>
-            <img
-              className='dash_infouser_imageMenu'
-              src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
-              alt='profileInfo'
-            />
-            <h2>My Information</h2>
-          </div>
-          <p>Manage your personal data</p>
+      <div onClick={() => setOpenModal(!openModal)} className='dash_infouser_container'>
+        <div className='dash_infouser_title'>
+          <img
+            className='dash_infouser_imageMenu'
+            src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
+            alt='profileInfo'
+          />
+          <h2>My Information</h2>
         </div>
-      )}
+        <p>Manage your personal data</p>
+      </div>
+
+      <div onClick={() => setOpenFavo(!openFavo)} className='dash_infouser_container'>
+        <div className='dash_infouser_title'>
+          <img
+            className='dash_infouser_imageMenu'
+            src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
+            alt='profileInfo'
+          />
+          <h2>My Favorites</h2>
+        </div>
+        <p>Manage your products favorites</p>
+      </div>
 
       <div className='dash_purchaseDiv'>
         <div className='dash_purchaseTitleContainer'>
@@ -130,10 +140,9 @@ export const Dashboard_user = () => {
                     <div className='dash_onePurchase_infoItems'>
                       <ol>
                         {payment.items.map((item, index) => (
-                          <li key={item.title + index}>{`${item.title.slice(
-                            0,
-                            45,
-                          )}   \nQuantity: ${item.quantity}`}</li>
+                          <li key={item.title + index}>{`${item.title.slice(0, 45)}   \nQuantity: ${
+                            item.quantity
+                          }`}</li>
                         ))}
                       </ol>
                     </div>
@@ -160,6 +169,15 @@ export const Dashboard_user = () => {
         )}
       </div>
       {openModal && <ModalUser close={setOpenModal} userByBd={userByBd} />}
+      {openFavo && (
+        <FavoritesModal
+          user_id={userByBd._id}
+          closeModal={setOpenFavo}
+          favorites={userByBd.favorites}
+        />
+      )}
+      {/* Aqui */}
+      {/* <div className='dash_purchaseDiv_Favorities'> favoritos</div> */}
     </div>
   );
 };

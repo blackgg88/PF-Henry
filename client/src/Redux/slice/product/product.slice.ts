@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface Category {
+export interface Categories {
   _id: string;
   name: string;
 }
@@ -14,14 +14,23 @@ export interface ProductState {
   brand: string;
   images: string[];
   rating: number;
-  categories: Category;
+  categories: Categories;
   stock: number;
+}
+export interface FilterState {
+  name: string;
+  categories: string;
+  pricemin: number;
+  pricemax: number;
+  rating: number;
+  order: string;
 }
 
 // Define the initial state using that type
 const initialState: {
   Products: ProductState[];
   ProductDetail: ProductState;
+  Filters: FilterState;
 } = {
   Products: [],
   ProductDetail: {
@@ -35,23 +44,60 @@ const initialState: {
     categories: { _id: '', name: '' },
     stock: 0,
   },
+  Filters: {
+    name: '',
+    categories: '',
+    pricemin: 0,
+    pricemax: 3000,
+    rating: 0,
+    order: 'all',
+  },
 };
 
 export const productSlice = createSlice({
-  name: 'product',
+  name: "product",
   initialState,
   reducers: {
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
-      if (!state.Products.length) {
-        action.payload.forEach((product) => {
-          state.Products.push(product);
-        });
-      }
+      state.Products = [...action.payload];
     },
     getProductId: (state, action: PayloadAction<ProductState>) => {
-      state.ProductDetail = action.payload;
+      state.ProductDetail = { ...action.payload };
     },
+
+    getProductFilter: (state, action: PayloadAction<ProductState[]>) => {
+      state.Products = [...action.payload];
+    },
+    getProductName: (state, action) => {
+      state.Filters.name = action.payload;
+    },
+
+    updateCategoryFilter: (state, action) => {
+      state.Filters.categories = action.payload;
+    },
+    updatePriceMinFilter: (state, action) => {
+      state.Filters.pricemin = action.payload;
+    },
+    updatePriceMaxFilter: (state, action) => {
+      state.Filters.pricemax = action.payload;
+    },
+    updateRatingFilter: (state, action) => {
+      state.Filters.rating = action.payload;
+    },
+    updateOrderFilter: (state, action) => {
+      state.Filters.order = action.payload;
+    },
+
   },
 });
 
-export const { getProduct, getProductId } = productSlice.actions;
+export const {
+  getProduct,
+  getProductId,
+  getProductName,
+  getProductFilter,
+  updateCategoryFilter,
+  updateRatingFilter,
+  updatePriceMinFilter,
+  updatePriceMaxFilter,
+} = productSlice.actions;

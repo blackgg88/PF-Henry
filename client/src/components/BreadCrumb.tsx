@@ -1,7 +1,7 @@
-import React from "react";
-import { useState } from "react";
-import { Breadcrumbs, Link } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { useState } from 'react';
+import { Breadcrumbs, Link } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 interface BreadcrumbLink {
   label: string;
@@ -10,19 +10,16 @@ interface BreadcrumbLink {
 
 const Breadcrumb: React.FC<{}> = () => {
   const location = useLocation();
-  const [prevPaths, setPrevPaths] = useState<string[]>([
-    "/",
-    location.pathname,
-  ]);
+  const [prevPaths, setPrevPaths] = useState<string[]>(['/', location.pathname]);
 
   const links = [
-    { label: "Home", path: "/" },
-    { label: "Register", path: "/register" },
-    { label: "Test", path: "/test" },
-    { label: "News", path: "/news" },
-    { label: "Shop", path: "/shop" },
-    { label: "Profile", path: "/profile"},
-    { label: "Detail", path: "/product/:id"}
+    { label: 'Home', path: '/' },
+    { label: 'Register', path: '/register' },
+    { label: 'Test', path: '/test' },
+    { label: 'News', path: '/news' },
+    { label: 'Shop', path: '/shop' },
+    { label: 'Profile', path: '/profile' },
+    { label: 'Detail', path: '/product/:id' },
   ];
 
   // const prevLinks = links.filter(
@@ -32,10 +29,9 @@ const Breadcrumb: React.FC<{}> = () => {
   //   setPrevPaths([...prevPaths, path]);
   // };
 
-//   const handleNavigation = (path: string) => {
-//     setPrevPaths([...prevPaths, path]);
-// };
-
+  //   const handleNavigation = (path: string) => {
+  //     setPrevPaths([...prevPaths, path]);
+  // };
 
   const handleNavigation = (path: string) => {
     if (!prevPaths.some((prevPath) => prevPath === path)) {
@@ -44,20 +40,20 @@ const Breadcrumb: React.FC<{}> = () => {
   };
   return (
     <div>
-      <Breadcrumbs aria-label="breadcrumb">
+      <Breadcrumbs aria-label='breadcrumb'>
         {prevPaths?.slice(-2).map((path, index) => {
           const link = links.find((link) => link.path === path);
-          if (!link)return null;
-          
+          if (!link) return null;
+
           const { label } = link;
           const isActive = path === location.pathname;
           return (
             <Link
               key={label}
-              color="inherit"
+              color='inherit'
               href={path}
               onClick={() => handleNavigation(path)}
-              className={`${isActive ? "active" : ""}`}
+              className={`${isActive ? 'active' : ''}`}
             >
               {label}
             </Link>

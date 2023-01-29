@@ -14,6 +14,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ModalCart from './ModalCart';
+import { toast, Zoom } from 'react-toastify';
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
@@ -21,10 +22,8 @@ const ShoppingCart = () => {
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
-  console.log(userByBd);
 
   const { user, isAuthenticated } = useAuth0();
-  console.log(user);
 
   const dispatch = useAppDispatch();
 
@@ -38,6 +37,18 @@ const ShoppingCart = () => {
   };
 
   const handleRemoveProduct = (id: string) => {
+    toast.success('Product removed', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      transition: Zoom,
+    });
+
     dispatch(deleteProduct(id));
   };
 
@@ -73,9 +84,7 @@ const ShoppingCart = () => {
                   </div>
                   <div className='ShoppingCart_description'>
                     <p className='ShoppingCart_name'>{ele.name}</p>
-                    <p className='ShoppingCart_category'>
-                      Category: {ele.categories.name}
-                    </p>
+                    <p className='ShoppingCart_category'>Category: {ele.categories.name}</p>
                     <p className='ShoppingCart_brand'>Brand: {ele.brand}</p>
                   </div>
                   <div className='ShoppingCart_quantity-container'>
@@ -134,9 +143,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      {((!user?.email_verified && !userByBd?.email_verified) || !isAuthenticated) && (
-        <ModalCart />
-      )}
+      {((!user?.email_verified && !userByBd?.email_verified) || !isAuthenticated) && <ModalCart />}
     </div>
   );
 };

@@ -6,9 +6,8 @@
   font-family: $standard-font-Poiret-One;
   margin-right: 30px;
   margin-left: 30px;
-  margin-top: $navbar-height-maring-top;
-  margin-bottom: $navbar-height-maring-button;
-  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 12px;
 
   @media (max-width: 900px) {
     justify-content: center;
@@ -91,7 +90,7 @@
         padding: 0;
         font-size: 12.5px;
         color: white;
-        font-family: "Barlow", sans-serif;
+        font-family: 'Barlow', sans-serif;
       }
     }
   }

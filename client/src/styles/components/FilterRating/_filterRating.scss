@@ -1,0 +1,16 @@
+.container{
+    width: 85%;
+    height: 4.5vh;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $standard-color-blue-light;
+    //background-color: blue;
+    .component-rating{
+        align-items: center;
+        justify-content: center;
+        //background-color: red;
+        
+    }
+}

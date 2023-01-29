@@ -64,9 +64,7 @@ export const productSlice = createSlice({
     getProductId: (state, action: PayloadAction<ProductState>) => {
       state.ProductDetail = { ...action.payload };
     },
-    // getProductName: (state, action: PayloadAction<ProductState[]>) => {
-    //   state.Products = [...action.payload];
-    // },
+
     getProductFilter: (state, action: PayloadAction<ProductState[]>) => {
       state.Products = [...action.payload];
     },
@@ -90,7 +88,6 @@ export const productSlice = createSlice({
       state.Filters.order = action.payload;
     },
 
-    // Beta
   },
 });
 

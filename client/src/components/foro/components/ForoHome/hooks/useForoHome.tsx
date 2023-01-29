@@ -107,7 +107,7 @@ export function useForoHome() {
         .then(() => {
           const Toast = Swal.mixin({
             toast: true,
-            position: "top-end",
+            position: "bottom-right",
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
@@ -119,7 +119,7 @@ export function useForoHome() {
 
           Toast.fire({
             icon: "success",
-            title: "Comentario agregado",
+            title: "Your comment was published",
           });
         });
     }
@@ -158,7 +158,7 @@ export function useForoHome() {
     });
   };
 
-  const handlerSubmit = () => {
+  const handlerSubmit = () => { // POST a post
     if (user?.email) {
       setForm({
         ...form,
@@ -177,7 +177,7 @@ export function useForoHome() {
         .then(() => {
           const Toast = Swal.mixin({
             toast: true,
-            position: "top-end",
+            position: "bottom-right",
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
@@ -189,7 +189,7 @@ export function useForoHome() {
 
           Toast.fire({
             icon: "success",
-            title: "Su post fue agregado con éxito",
+            title: "Your post has been published successfully",
           });
         });
     } else {
@@ -202,7 +202,7 @@ export function useForoHome() {
     }
   };
 
-  const handlerLike = () => {
+  const handlerLike = () => { // Like post
     getLikes(
       {
         id: "63c6f11bf46e034dfcbeeae6",
@@ -241,22 +241,65 @@ export function useForoHome() {
   };
 
   const onDeletePost = (id: string) => {
-    deleteCommentsPosts(
-      {
-        email: form.email,
-        idPost: id,
-      },
-      "posts"
-    ).then((res) =>
-      getCommentsPosts("posts")
-        .then((res) => res.json())
-        .then((res) => setAllPost(res))
-    );
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    })
+    .then( (result)=> {
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      if (result.isConfirmed) {
+
+        deleteCommentsPosts(
+          {
+            email: form.email,
+            idPost: id,
+          },
+          "posts"
+        ).then((res) =>
+          getCommentsPosts("posts")
+            .then((res) => res.json())
+            .then((res) => setAllPost(res))
+        )
+        .then(() => {
+          Toast.fire({
+            icon: "success",
+            title: "Post deleted",
+          });
+        })
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Toast.fire({
+          icon: "error",
+          title: "Operation cancelled",
+        });
+      }
+    })
+
+    
   };
 
   const onDeleteComment = (id: string, email: string) => {
-    swalWithBootstrapButtons
-      .fire({
+    
+      Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
@@ -281,17 +324,31 @@ export function useForoHome() {
                 .then((res) => setAllPost(res))
             )
             .then(() => {
-              swalWithBootstrapButtons.fire(
-                "Deleted!",
-                "Your file has been deleted.",
-                "success"
-              );
+
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: "success",
+                title: "Comment deleted",
+              });
+
+              
             });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
         ) {
-          swalWithBootstrapButtons.fire(
+          Swal.fire(
             "Cancelled",
             "Your imaginary file is safe :)",
             "error"
@@ -314,9 +371,27 @@ export function useForoHome() {
   };
 
   const handlerSubmitEdit = async (content: string, id: string) => {
-    await putCommentsPosts({ content }, id, "posts").then((res) => {
+    putCommentsPosts({ content }, id, "posts")
+    .then( res => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      })
+      Toast.fire({
+        icon: "success",
+        title: "Post Edited",
+      });
+    })
+    .then((res) => {
       setAddEdit(!addEdit);
-    });
+    })
   };
 
   const handleFilterByTitle = (e: React.FormEvent<HTMLFormElement>) => {

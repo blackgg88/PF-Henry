@@ -41,6 +41,7 @@ export default function Foro_comments({author, likes, _id, content, onDeleteComm
       <div className='comments_buttonsDiv'>
         <div className='comments_Button_left'>
           {
+            email==user?.email&&
             <img onClick={()=> onDeleteComment(_id, email)} className='icondelete' src={icondelete} alt="delete" />
           }
         </div>

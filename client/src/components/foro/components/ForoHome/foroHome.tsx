@@ -60,7 +60,10 @@ export default function ForoHome() {
         }
         
 
-        {allPost?.map((post: any) => (
+        {
+        
+        allPost.length?
+        allPost?.map((post: any) => (
           <Foro_card
             commentary={commentary}
             handlerChangeComment={handlerChangeComment}
@@ -83,7 +86,9 @@ export default function ForoHome() {
             onDeleteComment={onDeleteComment}
             likeCommentHandler={likeCommentHandler}
           />
-        ))}
+        )):
+        <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
+      }
       </div>
 
       <FilterPanel resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />

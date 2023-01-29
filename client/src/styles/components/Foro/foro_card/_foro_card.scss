@@ -63,15 +63,17 @@ $standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
     .foro_card_authorSide {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         h3 {
             background-color: #141b42ff;
             color: white;
-            padding: 0px 15px;
+            padding: 2px 15px;
             border-top-right-radius: 15px;
             border-bottom-right-radius: 15px;
             position: relative;
             right: 15px;
+            cursor: pointer;
         }
         
         //border: 1px solid green;

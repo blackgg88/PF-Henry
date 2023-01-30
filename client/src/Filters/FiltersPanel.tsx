@@ -21,7 +21,7 @@ const FiltersPanel: React.FC<{}> = () => {
       <div className='sectrion-filter'>
         <img className='img' src={filterSpace} alt='' />
         <div className='block-filter'>
-          <h1 className='title-filter'> filters Home:</h1>
+          <h1 className='title-filter'>Filters Home:</h1>
           <div className='separator'></div>
         </div>
       </div>
@@ -30,7 +30,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className='hovr-selector'></div>
         <img className='img' src={filterName} alt='' />
         <div className='block-filter'>
-          <h2 className='title-filter'> filter by Name:</h2>
+          <h2 className='title-filter'>Filter by Name:</h2>
           <FilterByName />
         </div>
       </div>
@@ -39,7 +39,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className='hovr-selector'></div>
         <img className='img' src={filterRating} alt='' />
         <div className='block-filter'>
-          <h2 className='title-filter'>filter by Rating</h2>
+          <h2 className='title-filter'>Filter by Rating</h2>
           <FilterByRating />
         </div>
       </div>
@@ -48,7 +48,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className='hovr-selector'></div>
         <img className='img' src={filterPrice} alt='' />
         <div className='block-filter'>
-          <h2 className='title-filter'>filter by Price</h2>
+          <h2 className='title-filter'>Filter by Price</h2>
           <FilterByPrice />
         </div>
       </div>
@@ -57,7 +57,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className='hovr-selector'></div>
         <img className='img' src={filterCategory} alt='' />
         <div className='block-filter'>
-          <h2 className='title-filter'>filter by Categoru</h2>
+          <h2 className='title-filter'>Filter by Categoru</h2>
           <FilterByCategory />
         </div>
       </div>
@@ -66,7 +66,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className='hovr-selector'></div>
         <img className='img' src={filterCategory} alt='' />
         <div className='block-filter'>
-          <h2 className='title-filter'>order</h2>
+          <h2 className='title-filter'>Order</h2>
           <FilterOrder />
         </div>
       </div>

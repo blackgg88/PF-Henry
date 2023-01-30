@@ -14,6 +14,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ModalCart from './ModalCart';
+import { toast, Zoom } from 'react-toastify';
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
@@ -36,6 +37,18 @@ const ShoppingCart = () => {
   };
 
   const handleRemoveProduct = (id: string) => {
+    toast.success('Product removed', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      transition: Zoom,
+    });
+
     dispatch(deleteProduct(id));
   };
 
@@ -45,6 +58,22 @@ const ShoppingCart = () => {
       .toFixed(2);
 
     setTotal(Number(total));
+  };
+
+  const renderStock = (stock: number) => {
+    const items = [];
+
+    if (stock > 5) stock = 5;
+
+    for (let i = 1; i <= stock; i++) {
+      items.push(
+        <MenuItem key={i} value={i}>
+          {i}
+        </MenuItem>,
+      );
+    }
+
+    return items;
   };
 
   return (
@@ -84,11 +113,7 @@ const ShoppingCart = () => {
                         label='Quantity'
                         onChange={(e) => handleSetQuantity(e, ele._id)}
                       >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
+                        {renderStock(ele.stock)}
                       </Select>
                     </FormControl>
                   </div>

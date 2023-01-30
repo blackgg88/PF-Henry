@@ -1,17 +1,20 @@
-import { Request, Response } from 'express';
-import { getModelForClass } from '@typegoose/typegoose';
-import { Product } from '../../models/Product';
-
-const ProductModel = getModelForClass(Product);
+import { Request, Response } from "express";
+import { allFilters } from "../../helpers/filter/allFilters";
+import { allProductsCategories } from "../../helpers/filter/allProductsCategories.js";
 
 export const getAllProduct = async (req: Request, res: Response) => {
   try {
-    const products = await ProductModel.find()
-      .select('-__v')
-      .populate({ path: 'categories', select: '-__v' });
+    if (req.query) {
+      const products = await allFilters(req.query);
+      return products?.length
+        ? res.json(products)
+        : res.status(404).json({ error: "product not found" });
+    }
+    
+    let products = await allProductsCategories();
+    return res.status(200).json(products);
 
-    res.json(products);
   } catch (error) {
-    res.status(400).json({ message: 'Error getting product', error });
+    return res.status(400).json({ message: "Error getting product", error });
   }
 };

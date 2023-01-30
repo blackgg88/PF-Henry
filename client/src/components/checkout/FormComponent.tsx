@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from '../../Redux/hook';
 import { emptyCar } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 import { TextField } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
-import { fetchMP, Values, Payer } from '../../../helpers/index';
+import { fetchMP, Values, Payer } from '../../../helpers/mercadopago/index';
 
 const FormComponent: React.FC = () => {
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
@@ -180,7 +180,7 @@ const FormComponent: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <button type='submit'>Submit</button>
+              <button type='submit'>Confirm</button>
             </Form>
           )}
         </Formik>

@@ -16,13 +16,21 @@
 @import './components/modalCart/modalCart';
 @import './components/Foro/foro_Home/foro_Home';
 @import './components/Foro/foro_card/foro_card';
+@import './components/Foro/foro_createCard/foro_createCard';
+@import './components/Foro/foro_comments/foro_comments';
+@import './components/ModalFavorites/modalFavorites';
+@import './components/Foro/foro_panelfilter/foro_panelFilter';
 
 //! Detail
 @import './components/Detail/detail';
 //! FilterPanel
 @import './components/FilterPanel/filterPanel';
+//! NewFilterPanel
+@import './components/FilterPanel/filterPanel2';
 //! FilterBy
 @import './components/FilterBy/filterBy';
+//! NewFilterBy
+@import './components/FilterBy/newFilterBy';
 //! FilterList
 @import './components/FilterList/filterList';
 //! ItemFilter
@@ -37,3 +45,11 @@
 @import './components//breadCrumb'; // screens
 //! Shop
 @import './components/Shop/shop';
+//! FilterByRating
+@import './components/FilterRating/filterRating';
+//! FilterPrice
+@import './components/FilterPrice/filterPrice';
+//! NewFilterName
+@import './components/FilterName/filterName';
+//! NewFilterCategory
+@import './components/FilterCategory/filterCategory';

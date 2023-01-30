@@ -1,0 +1,82 @@
+.ModalFavorite_Overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+
+  .ModalFavorite_Container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    max-height: 600px;
+    background: #fff;
+    position: relative;
+    border-radius: 5px;
+    padding: 40px;
+    font-family: $standard-font-Poiret-One;
+    z-index: 6;
+    overflow-y: scroll;
+    @media (max-width: 900px) {
+      width: 70%;
+    }
+    @media (max-width: 610px) {
+      width: 100%;
+    }
+
+    .ModalFavorite_H2_and_x {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .ModalFavorite_info_buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .ModelFavorite_Item-Container {
+      border-bottom: 2px solid $standard-color-blue-glass-other;
+
+      .ModalFavorite_TitleContainer {
+        margin-top: 20px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .ModalFavorite-Grid {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .ModalFavorite_Image {
+          width: 40%;
+          height: 100px;
+
+          img {
+            width: 100%;
+            max-height: 100%;
+          }
+        }
+
+        .ModalFavorite_info {
+          p {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .ModelFavorite_Item-Container:last-child {
+      border: none;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { prop, getModelForClass, Ref } from '@typegoose/typegoose'
 import { User } from './Users'
 import { Comment } from './Comments'
+import moment from 'moment';
 
 
 export class Post {
@@ -25,8 +26,11 @@ author: Ref<User>
 @prop({ ref: () => Comment })
 comments: Ref<Comment>[]
 
-@prop({ ref: "User", required: false})
-likes: Ref<User>[]
+@prop({ type: String, required: false})
+likes: string[]
+
+@prop({ type: Date, default: () => moment().toDate()})
+  created: Date
 }
 
 

@@ -20,6 +20,7 @@
     "dotenv": "^16.0.3",
     "nodemon": "2.0.20",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mercadopago": "^1.5.14",
+    "moment": "^2.29.4",
     "mongoose": "^6.8.3",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.0",

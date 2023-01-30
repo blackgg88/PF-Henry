@@ -7,7 +7,10 @@ const CommentModel = getModelForClass(Comment);
 export const getAllComment = async (req: Request, res: Response) => {
     const { deleted } = req.query;
     try {
-        const Allcomments = await CommentModel.find().select('-__v');
+        const Allcomments = await CommentModel.find()
+        .populate("author")
+        .populate("likes")
+        .select('-__v');
         if(deleted){
             return res.json(Allcomments.filter(e => e.deleted === false));
         } else{

@@ -1,53 +1,26 @@
 .content-shop {
-  height: calc(100vh - $navbar-height - $footer-height);
+  height: 86.59vh;
+  width: 99vw;
   background-color: $standard-color-white;
   display: flex;
-  gap: 10px;
-  flex-direction: row;
-  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0px;
+  flex-direction: column;
+  // background-color: aqua;
 
-
-  .content-navbar {
-    height: 8%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $standard-color-blue-light;
-    font-family: $standard-font-Barlow;
-    font-size: 20px;
-    font-weight: 100;
-    text-decoration: none;
-  }
-  .shop-contain {
-    padding: 10px;
-    height: 100%;
-    width: 100%;
-    background-color: $standard-color-white;
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-  }
   .breadcrumb {
     width: 100%;
-    height: 2%;
-    display: flex;
-    justify-content: start;
-    padding-left: 30px;
-    //background-color: aqua;
-    display: none;
+    height: auto;
+    padding: 10px;
+    // background-color: aquamarine;
   }
-  .content-footer {
-    height: 5%;
-    width: 100%;
+  .shop-contain {
+    width: 99%;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: $standard-font-Barlow;
-    font-size: 20px;
-    text-decoration: none;
-    font-weight: 100;
-    color: $standard-color-blue;
-    background-color: $standard-color-blue-light;
+    justify-content: end;
+    //background-color: violet;
   }
 }

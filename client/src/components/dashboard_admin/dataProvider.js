@@ -23,6 +23,7 @@ const dataProvider = {
     let url;
     console.log(field, order);
     console.log(resource);
+    
     if (resource === 'purchases') {
       url = `${API_URL}/checkout`;
     } else {
@@ -38,9 +39,7 @@ const dataProvider = {
     const total = data.length;
 
     data = data.slice((page - 1) * perPage, page * perPage);
-
     if (resource === 'purchases') {
-      // console.log(data);
       data = data.map((purchase) => {
         return {
           id: purchase.id,
@@ -62,7 +61,18 @@ const dataProvider = {
           categories: d.categories.name,
         };
       });
-    } else {
+    } 
+      else if(resource === 'posts'){
+        data = data.map((d) => {
+          return{
+            ...d,
+            id: d._id,
+            author: d.author.username,
+            likes: d.likes.length,
+          }
+        })
+    } 
+    else {
       data = data.map((d) => {
         return {
           ...d,

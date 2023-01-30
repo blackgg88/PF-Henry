@@ -75,9 +75,11 @@
         .Modal_ProfilePic {
             display: flex;
             justify-content: center;
+            
 
             img {
                 border-radius: 100%;
+                width: 200px;
             }
         }
 

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Auth0 from 'auth0-js';
 import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from '../../../config';
-import { useAppDispatch } from '../../Redux/hook';
+import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { kevinPapitoMiAmor } from '../../Redux/slice/user/user.slice';
 import { putUserFetch } from '../../Redux/slice/user/userController';
 import { userInterface } from '../../Redux/slice/user/user.slice';
+import { putProfilePicture } from '../../../helpers/user/putProfilePicture';
+import { changePicture } from '../../Redux/slice/user/user.slice';
+
 
 interface Form {
   username: string;
@@ -13,7 +16,44 @@ interface Form {
 }
 
 const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterface }) => {
+  
+  const [imageUpload, setImageUpload] = useState<string>('')
+  //const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
   const { user } = useAuth0();
+  
+
+const uploadImage = async (e:any) => {
+  try {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("tags", "SmartNest");
+    formData.append("upload_preset", "db1xdljk");
+  
+    const response = await fetch("https://api.cloudinary.com/v1_1/dg1roy34p/image/upload", {
+      method: "POST",
+      body: formData
+    });
+    const data = await response.json();
+    setImageUpload(data.secure_url)
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+console.log(imageUpload)
+
+useEffect(()=> {
+  if (imageUpload && user?.email) {
+    putProfilePicture(user.email, imageUpload)
+    .then(res => res.json())
+    .then(res => alert(res))
+
+    dispatch(changePicture({picture: imageUpload}))
+  }
+}, [imageUpload])
+
 
   const info: { username: string; picture: string } = {
     username: userByBd?.username,
@@ -60,7 +100,6 @@ const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterfa
     );
 
     dispatch(kevinPapitoMiAmor(userUpdated));
-
     close(false);
   };
 
@@ -68,7 +107,7 @@ const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterfa
     <div className='Modal_Overlay'>
       <div className='Modal_Container'>
         <div className='Modal_ProfilePic'>
-          <img src={user?.picture} alt='profilePic' />
+          <img src={userByBd.picture} alt='profilePic' />
         </div>
         <div className='Modal_TitleContainer'>
           <h1>Edit Profile</h1>
@@ -93,7 +132,7 @@ const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterfa
               value={form.username}
             />
             <p>Change Image</p>
-            <input name='picture' type='file' placeholder='picture' />
+            <input onChange={uploadImage} name='file' type='file' placeholder='upload picture' />
           </div>
         </div>
         <div className='Modal_SubmitContainer'>

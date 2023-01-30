@@ -20,6 +20,7 @@
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "bootstrap-sweetalert": "^1.0.1",
+    "cloudinary": "^1.33.0",
     "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
     "formik": "^2.2.9",
@@ -33,9 +34,9 @@
     "react-redux": "^8.0.5",
     "react-router": "^6.6.2",
     "react-router-dom": "^6.6.2",
-    "sweetalert2": "^11.7.1",
     "react-slick": "^0.29.0",
-    "react-toastify": "^9.1.1"
+    "react-toastify": "^9.1.1",
+    "sweetalert2": "^11.7.1"
   },
   "devDependencies": {
     "@types/auth0-js": "^9.14.7",

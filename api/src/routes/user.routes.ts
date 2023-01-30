@@ -5,6 +5,7 @@ import { getUserByEmail } from '../controllers/users/getUserByEmail';
 import { postUser } from '../controllers/users/postUser';
 import { deleteUser } from '../controllers/users/deleteUser';
 import { putUser } from '../controllers/users/putUser';
+import { putImgUser } from '../controllers/users/putImageUser';
 
 const user = Router();
 
@@ -12,6 +13,7 @@ const user = Router();
 
 user.get('/', getAllUsers);
 
+user.put('/img', putImgUser);
 //find by ID // devuelve el usuario buscado por ID
 user.get('/:email', getUserByEmail);
 
@@ -23,5 +25,6 @@ user.delete('/:id', deleteUser);
 
 ///UPDATE USER // updateamos usuarios
 user.put('/:id', putUser);
+
 
 export default user;

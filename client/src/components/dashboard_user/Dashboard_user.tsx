@@ -40,6 +40,8 @@ export const Dashboard_user = () => {
   const email = userByBd.email;
   const verified = userByBd.email_verified;
 
+  console.log(userByBd)
+
   useEffect(() => {
     const handleGetItems = async () => {
       const response = await controllerUser(email);
@@ -65,7 +67,7 @@ export const Dashboard_user = () => {
     <div className='all' style={!purchase.length ? { height: '85vh' } : {}}>
       <div className='dash_profileContainer'>
         <div className='dash_profile_ImgSide'>
-          <img src={user?.picture} alt='picture-profile' />
+          <img src={userByBd.picture} alt='picture-profile' />
         </div>
         <div className='dash_profile_InfoSide'>
           <h2>{user?.name}</h2>

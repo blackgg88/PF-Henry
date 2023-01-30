@@ -20,6 +20,10 @@ export interface userChange {
   password: string;
 }
 
+export interface userChangeIMG {
+  picture: string;
+}
+
 const initialState: {
   userState: userInterface;
 } = {
@@ -57,6 +61,10 @@ export const userSlice = createSlice({
       handleSaveLS(state.userState);
     },
 
+    changePicture: (state, action: PayloadAction<userChangeIMG>) => {
+      state.userState = { ...state.userState, ...action.payload}
+    },
+
     addFavorite: (state, action: PayloadAction<ProductState[]>) => {
       state.userState = {
         ...state.userState,
@@ -68,4 +76,4 @@ export const userSlice = createSlice({
   },
 });
 
-export const { getUserLogin, kevinPapitoMiAmor, addFavorite } = userSlice.actions;
+export const { getUserLogin, kevinPapitoMiAmor, addFavorite, changePicture } = userSlice.actions;

@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 import { Response } from "express";
 import nodemailer from "nodemailer";
 import { ADMIN_EMAIL, GMAIL_API } from "../../config";
 import { Payment } from "../controllers/mercadopago/feedback";
-=======
-import { Response } from 'express';
-import nodemailer from 'nodemailer';
-import { ADMIN_EMAIL, GMAIL_API } from '../../config';
-import { Payment } from '../controllers/mercadopago/feedback';
-import { Products } from '../controllers/mercadopago/feedback';
->>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
+import { Products } from "../controllers/mercadopago/feedback";
 
 // export const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
@@ -47,7 +40,7 @@ export const sendMailPayment = (payment: Payment) => {
   });
 
   function renderItems(items: Products[]) {
-    let html = '';
+    let html = "";
     for (const item of items) {
       html += `
       <tr>
@@ -132,8 +125,12 @@ export const sendMailPayment = (payment: Payment) => {
                                                   <tr>
                                                       <td align="right" class="esd-block-text es-p20t es-p20b es-m-p0t es-m-p0b">
                                                           <p class="p_price">$${(
-                                                            Number(item.unit_price) *
-                                                            Number(item.quantity)
+                                                            Number(
+                                                              item.unit_price
+                                                            ) *
+                                                            Number(
+                                                              item.quantity
+                                                            )
                                                           ).toFixed(2)} USD</p>
                                                       </td>
                                                   </tr>
@@ -1063,7 +1060,7 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                             <table cellpadding="0" cellspacing="0" width="100%">
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href><img src=https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
+                                                                                                        <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href="href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app"><img src=https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -1177,7 +1174,9 @@ export const sendMailPayment = (payment: Payment) => {
                                                     </tr>
                                                     <br>
 
-                                                        ${renderItems(payment.products)}
+                                                        ${renderItems(
+                                                          payment.products
+                                                        )}
 
                                                     <tr>
                                                         <td class="esd-structure es-p20r es-p20l" align="left">
@@ -1241,13 +1240,8 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                                     <tr>
                                                                                                         <td align="right" class="esd-block-text">
                                                                                                             <p><strong>$${payment.total_amount.toFixed(
-<<<<<<< HEAD
                                                                                                               2
-                                                                                                            )}.</strong></p>
-=======
-                                                                                                              2,
                                                                                                             )}</strong></p>
->>>>>>> fce3fb12f29c08c34dd4b0d4a6b7438537b76726
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 </tbody>
@@ -1369,10 +1363,10 @@ export const sendMailPayment = (payment: Payment) => {
                                                                                             <table cellpadding="0" cellspacing="0" width="100%" class="es-menu">
                                                                                                 <tbody>
                                                                                                     <tr class="links">
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">About us</a></td>
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">News</a></td>
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">Forum</a></td>
-                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;">The shops</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/about" >About us</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/news" >News</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/foro" >Forum</a></td>
+                                                                                                        <td align="center" valign="top" width="25%" class="es-p10t es-p10b es-p5r es-p5l" style="padding-bottom: 10px;"><a target="_blank" style="color: #666666;" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop">The shops</a></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>

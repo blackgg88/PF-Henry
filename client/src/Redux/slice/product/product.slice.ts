@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface Categories {
   _id: string;
@@ -34,23 +34,23 @@ const initialState: {
 } = {
   Products: [],
   ProductDetail: {
-    _id: '',
-    name: '',
+    _id: "",
+    name: "",
     price: 0,
-    description: '',
-    brand: '',
+    description: "",
+    brand: "",
     images: [],
     rating: 0,
-    categories: { _id: '', name: '' },
+    categories: { _id: "", name: "" },
     stock: 0,
   },
   Filters: {
-    name: '',
-    categories: '',
+    name: "",
+    categories: "",
     pricemin: 0,
     pricemax: 3000,
     rating: 0,
-    order: 'all',
+    order: "A-Z",
   },
 };
 
@@ -87,7 +87,37 @@ export const productSlice = createSlice({
     updateOrderFilter: (state, action) => {
       state.Filters.order = action.payload;
     },
-
+    resetFilters: (state) => {
+      state.Filters = { ...initialState.Filters };
+    },
+    // updateSorFilter: (state, action) => {
+    //   state.Filters = action.payload;
+    //   if (state.Filters.order === "hiPrice") {
+    //     state.Products.sort((a, b) => a.price - b.price);
+    //   } else if (state.Filters.order === "loPrice") {
+    //     state.Products.sort((a, b) => b.price - a.price);
+    //   } else if (state.Filters.order === "maxRat") {
+    //     state.Products.sort((a, b) => a.rating - b.rating);
+    //   } else if (state.Filters.order === "minRat") {
+    //     state.Products.sort((a, b) => b.rating - a.rating);
+    //   } else if (state.Filters.order === "ascAlph") {
+    //     state.Products.sort((a, b) =>
+    //       a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()
+    //         ? -1
+    //         : a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()
+    //         ? 1
+    //         : 0
+    //     );
+    //   } else if (state.Filters.order === "descAlph") {
+    //     state.Products.sort((a, b) =>
+    //       a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()
+    //         ? -1
+    //         : a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()
+    //         ? 1
+    //         : 0
+    //     );
+    //   }
+    // },
   },
 });
 
@@ -100,4 +130,6 @@ export const {
   updateRatingFilter,
   updatePriceMinFilter,
   updatePriceMaxFilter,
+  resetFilters,
+  updateSorFilter,
 } = productSlice.actions;

@@ -1,42 +1,55 @@
-import React, { useEffect, useState, ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
-import iconStarB from '../../assets/images/icons/iconStartB.png';
-import iconStarW from '../../assets/images/icons/iconStartW.png';
-import iconStarM from '../../assets/images/icons/iconStartM.png';
-import { Rating } from '@mui/material';
-import { toast, Zoom } from 'react-toastify';
+import React, { useEffect, useState, ChangeEvent } from "react";
+import { Link } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from '../../Redux/hook';
-import { addFavoriteFetch, removeFavoriteFetch } from '../../Redux/slice/user/userController';
-import { addFavorite } from '../../Redux/slice/user/user.slice';
-import { userInterface, getUserLogin } from '../../Redux/slice/user/user.slice';
+import { Rating } from "@mui/material";
+import { toast, Zoom } from "react-toastify";
 
-import { ProductState } from '../../Redux/slice/product/product.slice';
-import { getProduct } from '../../Redux/slice/product/product.slice';
-import { productFetch, productIdFetch } from '../../Redux/slice/product/ProductController';
-import PaginationComp from '../Pagination';
-import QuickLookModal from './QuickLookModal';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAppDispatch, useAppSelector } from "../../Redux/hook";
+import { addFavoriteFetch } from "../../Redux/slice/user/userController";
+import { addFavorite } from "../../Redux/slice/user/user.slice";
+import { userInterface, getUserLogin } from "../../Redux/slice/user/user.slice";
 
-import { addProduct, deleteProduct } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
-import { ProductCart } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
-import { Favorite } from '@mui/icons-material';
-import { any, object } from 'prop-types';
+import { getProduct } from "../../Redux/slice/product/product.slice";
+import { productFetch } from "../../Redux/slice/product/ProductController";
+import PaginationComp from "../Pagination";
+import QuickLookModal from "./QuickLookModal";
+import { useAuth0 } from "@auth0/auth0-react";
 
-import favoriteUnset_w from '../../assets/images/icons/favorite/favorite_w.png';
-import favoriteSet_w from '../../assets/images/icons/favorite/favorite_b.png';
-import AddFavoritesModal from './AddFavoritesModal';
+import {
+  addProduct,
+  deleteProduct,
+} from "../../Redux/slice/shoppingCart/shoppingCart.slice";
+import { ProductCart } from "../../Redux/slice/shoppingCart/shoppingCart.slice";
 
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { IconButton } from '@mui/material';
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import favoriteUnset_w from "../../assets/images/icons/favorite/favorite_w.png";
+import favoriteSet_w from "../../assets/images/icons/favorite/favorite_b.png";
+import AddFavoritesModal from "./AddFavoritesModal";
 
 const CardBeta: React.FC<{}> = () => {
-  const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
+  const Allproduct: ProductState[] = useAppSelector(
+    (state) => state.productReducer.Products
+  );
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
-  const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+  const SRT = useAppSelector((state) => state.productReducer.Filters.order);
+  const userByBd: userInterface = useAppSelector(
+    (state) => state.userReducer.userState
+  );
+
+  interface ProductState {
+    _id: string;
+    name: string;
+    price: number;
+    description: string;
+    brand: string;
+    images: string[];
+    rating: number;
+    categories: Categories;
+    stock: number;
+  }
+
   const [getFavorites, setGetFavorites] = useState<ProductState[]>([]);
+
+  const [orderProducts, setOrderProductos] = useState<ProductState[]>([]);
 
   // const user = useAppSelector((state) => state.userReducer.userState);
 
@@ -77,15 +90,15 @@ const CardBeta: React.FC<{}> = () => {
 
     dispatch(addProduct(productCart));
 
-    toast.success('Product added to Cart', {
-      position: 'top-center',
+    toast.success("Product added to Cart", {
+      position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+      theme: "colored",
       transition: Zoom,
     });
   };
@@ -93,15 +106,15 @@ const CardBeta: React.FC<{}> = () => {
   const handleRemoveCart = (product: ProductState) => {
     dispatch(deleteProduct(product._id));
 
-    toast.error('Product removed from Cart', {
-      position: 'top-center',
+    toast.error("Product removed from Cart", {
+      position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+      theme: "colored",
       transition: Zoom,
     });
   };
@@ -154,40 +167,48 @@ const CardBeta: React.FC<{}> = () => {
         //   }
         // });
 
-        const findFavo = actualFavorites.find((favorite) => favorite._id === newFavorite._id);
+        const findFavo = actualFavorites.find(
+          (favorite) => favorite._id === newFavorite._id
+        );
 
         if (findFavo?._id) {
-          actualFavorites = actualFavorites.filter((favorite) => favorite._id !== newFavorite._id);
+          actualFavorites = actualFavorites.filter(
+            (favorite) => favorite._id !== newFavorite._id
+          );
 
-          toast.error('Product removed from favorites', {
-            position: 'top-center',
+          toast.error("Product removed from favorites", {
+            position: "top-center",
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: 'colored',
+            theme: "colored",
             transition: Zoom,
           });
         } else {
           actualFavorites = [...actualFavorites, newFavorite];
 
-          toast.success('Product added to favorites', {
-            position: 'top-center',
+          toast.success("Product added to favorites", {
+            position: "top-center",
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: 'colored',
+            theme: "colored",
             transition: Zoom,
           });
         }
       }
 
-      const userUpdate = await addFavoriteFetch(userByBd._id, newFavorite, actualFavorites);
+      const userUpdate = await addFavoriteFetch(
+        userByBd._id,
+        newFavorite,
+        actualFavorites
+      );
       dispatch(addFavorite(userUpdate.favorites));
       setGetFavorites(userUpdate.favorites);
     } else {
@@ -224,6 +245,15 @@ const CardBeta: React.FC<{}> = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = Allproduct.slice(indexOfFirstItem, indexOfLastItem);
+  //console.log("GGa", SRT, Allproduct);
+  //console.log("GGa", SRT, Allproduct[20].brand);
+  //  Allproduct.sort((a, b) => {
+  //   if (a.name < b.name) return -1;
+  //   if (a.name > b.name) return 1;
+  //   //return 0;
+  // });
+
+  //filterSort(Allproduct, SRT);
 
   //-----------------------> QUICKLOOK MODAL  <-------------------------------
 
@@ -236,8 +266,8 @@ const CardBeta: React.FC<{}> = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className='container-render-card-v-beta'>
-      <div className='container-card-beta'>
+    <div className="container-render-card-v-beta">
+      <div className="container-card-beta">
         {currentItems?.map((product) => {
           let iconFavorite = favoriteUnset_w;
 
@@ -248,39 +278,57 @@ const CardBeta: React.FC<{}> = () => {
           });
 
           return (
-            <div key={product._id} className='product-card-beta'>
-              <div className='header-card-beta'>
-                <div className='container-favorite' onClick={() => handleToggleFavorite(product)}>
+            <div key={product._id} className="product-card-beta">
+              <div className="header-card-beta">
+                <div
+                  className="container-favorite"
+                  onClick={() => handleToggleFavorite(product)}
+                >
                   <img src={iconFavorite} alt={iconFavorite} />
                 </div>
 
                 <QuickLookModal
                   product={product}
                   handleAddCart={handleAddCart}
+                  // handleRemoveCart={handleRemoveCart}
                   priceFormat={priceFormat}
 
                   // handleCloseModal={handleCloseModal}
                   // showModal={showModal}
                 />
               </div>
-              <div className='content-image-card-beta'>
-                <Link className='link-image-card' to={`/product/${product._id}`}>
-                  <img className='image-card' src={product.images[0]} alt='image' />
+              <div className="content-image-card-beta">
+                <Link
+                  className="link-image-card"
+                  to={`/product/${product._id}`}
+                >
+                  <img
+                    className="image-card"
+                    src={product.images[0]}
+                    alt="image"
+                  />
                 </Link>
               </div>
-              <div className='content-title-description-card-beta'>
-                <div className='content-title-card-beta'>
-                  <h3 className='product-name-card-beta'>{product.name.substring(0, 25)}...</h3>
+              <div className="content-title-description-card-beta">
+                <div className="content-title-card-beta">
+                  <h3 className="product-name-card-beta">
+                    {product.name.substring(0, 25)}...
+                  </h3>
                 </div>
-                <div className='content-description-card-beta'>
-                  <p className='product-description-card-beta'>
+                <div className="content-description-card-beta">
+                  <p className="product-description-card-beta">
                     {product.description.substring(0, 57)}...
                   </p>
                 </div>
               </div>
-              <div className='content-value-rating-card-beta'>
-                <div className='content-rating-card-beta'>
-                  <Rating size='small' value={product.rating} precision={0.5} readOnly />
+              <div className="content-value-rating-card-beta">
+                <div className="content-rating-card-beta">
+                  <Rating
+                    size="small"
+                    value={product.rating}
+                    precision={0.5}
+                    readOnly
+                  />
 
                   {/* {stars.map((star) => {
                     if (star < product.rating && star + 1 > product.rating) {
@@ -292,22 +340,30 @@ const CardBeta: React.FC<{}> = () => {
                     }
                   })} */}
                 </div>
-                <div className='content-value-card-beta'>
-                  <h4 className='price2'>$ {priceFormat(product.price)}</h4>
+                <div className="content-value-card-beta">
+                  <h4 className="price2">$ {priceFormat(product.price)}</h4>
                 </div>
               </div>
 
-              <div className='content-add-car-card-beta'>
-                {product.stock > 0 && !productsInCart.find((el) => el._id === product._id) ? (
-                  <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
+              <div className="content-add-car-card-beta">
+                {product.stock > 0 &&
+                !productsInCart.find((el) => el._id === product._id) ? (
+                  <div
+                    className="add-car-card-beta"
+                    onClick={() => handleAddCart(product)}
+                  >
                     <p>add to Cart</p>
                   </div>
-                ) : product.stock > 0 && productsInCart.find((el) => el._id === product._id) ? (
-                  <div className='add-car-card-beta' onClick={() => handleRemoveCart(product)}>
+                ) : product.stock > 0 &&
+                  productsInCart.find((el) => el._id === product._id) ? (
+                  <div
+                    className="add-car-card-beta"
+                    onClick={() => handleRemoveCart(product)}
+                  >
                     <p>Remove</p>
                   </div>
                 ) : (
-                  <div className='add-car-card-beta'>
+                  <div className="add-car-card-beta">
                     <button disabled>out of Stock</button>
                   </div>
                 )}
@@ -317,7 +373,7 @@ const CardBeta: React.FC<{}> = () => {
         })}
       </div>
       {modalOpen && <AddFavoritesModal />}
-      <div className='pagination2'>
+      <div className="pagination2">
         <PaginationComp
           itemsPerPage={itemsPerPage}
           totalItems={Allproduct.length}

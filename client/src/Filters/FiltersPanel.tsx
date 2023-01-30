@@ -57,7 +57,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className='hovr-selector'></div>
         <img className='img' src={filterCategory} alt='' />
         <div className='block-filter'>
-          <h2 className='title-filter'>Filter by Categoru</h2>
+          <h2 className='title-filter'>Filter by Category</h2>
           <FilterByCategory />
         </div>
       </div>

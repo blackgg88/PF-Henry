@@ -100,4 +100,5 @@ export const {
   updateRatingFilter,
   updatePriceMinFilter,
   updatePriceMaxFilter,
+  updateOrderFilter,
 } = productSlice.actions;

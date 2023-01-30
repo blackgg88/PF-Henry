@@ -49,7 +49,7 @@ export default function FilterPanel({
         
         <div onClick={resetFilter} className='foro_panel_refreshContainer'>
           <img src={refreshIcon} alt="refresh" />
-          <p>Actualizar</p>
+          <p>Reset</p>
         </div>
 
 

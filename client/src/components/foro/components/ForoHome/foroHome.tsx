@@ -39,6 +39,8 @@ export default function ForoHome() {
 
   const {user, isAuthenticated} = useAuth0()
 
+  console.log(searchInput)
+
   return (
     <div className='foro_home_container'>
       {editOpen && (

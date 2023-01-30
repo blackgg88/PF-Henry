@@ -2,15 +2,11 @@ import axios from 'axios';
 import { Request, Response } from 'express';
 import { sendMailPayment } from '../../config/mailer';
 
-import mercadopago from 'mercadopago';
 import { ACCESS_TOKEN } from '../../../config';
-
 import { getModelForClass } from '@typegoose/typegoose';
 import { Product } from '../../models/Product';
 
 const ProductModel = getModelForClass(Product);
-
-mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
 export interface Payment {
   id: string;
@@ -49,6 +45,8 @@ export const feedback = async (req: Request, res: Response) => {
   });
 
   const data = response.data;
+
+  console.log(data);
 
   const payment: Payment = {
     id: data.id,

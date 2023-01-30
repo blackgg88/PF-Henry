@@ -1,6 +1,6 @@
 const orderData = (data, resource, order, field) => {
 
-  //------------Tabla USERS (por _id, userName, email)
+  //------------Tabla USERS (funcionan todos)
   if(resource === 'users'){
     if(order === 'ASC'){
       data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
@@ -10,7 +10,7 @@ const orderData = (data, resource, order, field) => {
     }
   }
 
-  //-------------Tabla PRODUCTS
+  //-------------Tabla PRODUCTS (funcionan todos)
   if(resource === 'products'){
     if(field === 'name'){
       if(order === 'ASC'){
@@ -38,16 +38,8 @@ const orderData = (data, resource, order, field) => {
     }
   }
 
-  //-------------Tabla PURCHASES (por id(se rompio) y apellido-nombre. Por los otros no anda :( )
+  //-------------Tabla PURCHASES (solo por apellido-nombre)
   if(resource === 'purchases'){
-    // if(field === 'id'){
-    //   if(order === 'ASC'){
-    //     data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
-    //   }
-    //   else{
-    //     data.sort((a, b) => b[field]?.localeCompare(a[field]));
-    //   }
-    // }
     if(field === 'Payer'){
       if(order === 'ASC'){
         data = data.sort((a, b) => {
@@ -63,11 +55,11 @@ const orderData = (data, resource, order, field) => {
           return bName.localeCompare(aName);
         });
       }
-    }
+    } 
   }
+  console.log(data);
 
-
-  //------------Tabla POSTS (no funca con id ni con deleted)
+  //------------Tabla POSTS (todos menos por id)
   if(resource === 'posts'){
     if(field === 'title'){
       if(order === 'ASC'){
@@ -94,6 +86,15 @@ const orderData = (data, resource, order, field) => {
         data.sort((a, b) => b[field].length - a[field].length);
       }
     }
+    else if(field=== 'deleted'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => b[field] - a[field]);
+      }
+      else{
+        data.sort((a, b) => a[field] - b[field]);
+      }
+    }
+    
   }
 
 

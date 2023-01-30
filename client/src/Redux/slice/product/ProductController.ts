@@ -30,12 +30,13 @@ export function productsFilter(filters: FilterState) {
   const { name, categories, pricemin, pricemax, rating, order } = filters;
   try {
     return fetch(
-      `${API_URL}/products/?filter[categories]=${categories}&filter[pricemin]=${pricemin}&filter[pricemax]=${pricemax}&filter[rating]=${rating}&order${order}`,
-    ).then((res) => {
+      // `${API_URL}/products/?filter[categories]=${categories}&filter[pricemin]=${pricemin}&filter[pricemax]=${pricemax}&filter[rating]=${rating}&order${order}`,
+      `${API_URL}/products/?filter[name]=${name}&filter[categories]=${categories}&filter[pricemin]=${pricemin}&filter[pricemax]=${pricemax}&filter[rating]=${rating}&order${order}`
+    ).then(res => {
       if (!res.ok) {
         // Aqui deberemos renderizar algo al momento de no encuentre respuestas!!! a los filtrados
-        console.log({ error: res.statusText, message: 'Los prod....' });
-        alert('No capo, fiuuuuuuuuuuummmba');
+        console.log({ error: res.statusText, message: "Los prod...." });
+        alert("Product not found");
       }
       return res.json();
     });

@@ -18,8 +18,8 @@ export async function userFetch(user: any) {
   return data;
 }
 
-export async function putUserFetch(username: string, picture: string, _id: string) {
-  const changes = { username, picture };
+export async function putUserFetch(username: string, _id: string) {
+  const changes = { username };
   const response = await fetch(`${API_URL}/users/${_id}`, {
     method: 'PUT',
     body: JSON.stringify(changes),

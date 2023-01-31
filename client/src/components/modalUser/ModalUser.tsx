@@ -8,6 +8,10 @@ import { putUserFetch } from '../../Redux/slice/user/userController';
 import { userInterface } from '../../Redux/slice/user/user.slice';
 import { putProfilePicture } from '../../../helpers/user/putProfilePicture';
 import { changePicture } from '../../Redux/slice/user/user.slice';
+import closeWindows from '../../assets/close.svg'
+import changePic from '../../assets/changePicture.svg'
+import Swal from "sweetalert2";
+
 
 
 interface Form {
@@ -18,7 +22,7 @@ interface Form {
 const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterface }) => {
   
   const [imageUpload, setImageUpload] = useState<string>('')
-  //const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+  const [changingIMG, setChangingIMG] = useState<boolean>(false)
   const { user } = useAuth0();
   
 
@@ -46,10 +50,27 @@ console.log(imageUpload)
 
 useEffect(()=> {
   if (imageUpload && user?.email) {
+    setChangingIMG(true)
     putProfilePicture(user.email, imageUpload)
     .then(res => res.json())
-    .then(res => alert(res))
-
+    .then(res => {
+      setChangingIMG(false)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "You have changed your profile picture",
+      });
+    })
     dispatch(changePicture({picture: imageUpload}))
   }
 }, [imageUpload])
@@ -95,11 +116,11 @@ useEffect(()=> {
   const handleSaveChange = async () => {
     const userUpdated = await putUserFetch(
       form.username,
-      form.picture && '',
       userByBd?._id,
     );
 
     dispatch(kevinPapitoMiAmor(userUpdated));
+    setImageUpload('')
     close(false);
   };
 
@@ -107,7 +128,19 @@ useEffect(()=> {
     <div className='Modal_Overlay'>
       <div className='Modal_Container'>
         <div className='Modal_ProfilePic'>
-          <img src={userByBd.picture} alt='profilePic' />
+          <div className='Modal_PicContainer'>
+            <img src={userByBd.picture} alt='profilePic' />
+            {
+              /*<input id="file-input" onChange={uploadImage} name='file' type='file'/>*/
+            }
+              
+              <label htmlFor="file-input" className="Modal_custom-file-upload">
+               <img className='modal_ChangePicICON' src={changePic} alt="changePic" />
+              </label>
+              <input onChange={uploadImage} className='modal_pic_input' id="file-input" type="file"></input>
+            
+           
+          </div>
         </div>
         <div className='Modal_TitleContainer'>
           <h1>Edit Profile</h1>
@@ -131,19 +164,17 @@ useEffect(()=> {
               placeholder='username'
               value={form.username}
             />
-            <p>Change Image</p>
-            <input onChange={uploadImage} name='file' type='file' placeholder='upload picture' />
+            
+            
           </div>
         </div>
         <div className='Modal_SubmitContainer'>
-          <button onClick={handleChangePassword}>Reset Password</button>
-          <button className='Modal_buttonSave' onClick={handleSaveChange}>
+          <button className='Modal_resetButton' onClick={handleChangePassword}>Reset Password</button>
+          <button disabled={changingIMG?true:false} className='Modal_buttonSave' onClick={handleSaveChange}>
             Save
           </button>
-          <button className='Modal_buttonCancel' onClick={() => close(false)}>
-            Cancel
-          </button>
         </div>
+          <img className='Modal_buttonCancel' onClick={() => close(false)} src={closeWindows} alt="closeWindows" />
       </div>
     </div>
   );

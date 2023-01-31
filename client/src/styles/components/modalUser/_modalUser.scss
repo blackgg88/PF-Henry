@@ -14,7 +14,7 @@
     z-index: 6;
 
     .Modal_Container {
-
+        
         display: flex;
         flex-direction: column;
         width: 60%;
@@ -47,39 +47,83 @@
         .Modal_SubmitContainer {
             display: flex;
             justify-content: center;
+            
 
             .Modal_buttonSave {
                 background-color: $standard-color-blue;
                 padding: 5px;
                 width: 70px;
                 border: none;
-                border-radius: 10px;
+                border-radius: 15px;
                 cursor: pointer;
                 color: #fff;
                 margin-right: 5px;
                 font-family: $standard-font-Barlow;
             }
-            .Modal_buttonCancel {
-                background-color: #0a9396;
-                padding: 5px;
-                width: 70px;
-                height: 30px;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                color: #fff;  
+
+            .Modal_resetButton {
                 font-family: $standard-font-Barlow;
+                background-color: #ef233c;
+                border-radius: 15px;
+                border: none;
+                color: white;
+                padding: 10px 5px;
+                margin-right: 5px;
+                cursor: pointer;
             }
+        }
+
+        .Modal_buttonCancel {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            border: none;
+            width: 35px;
+            cursor: pointer;
         }
         
         .Modal_ProfilePic {
             display: flex;
             justify-content: center;
+            //background-color: blue;
             
 
-            img {
-                border-radius: 100%;
-                width: 200px;
+            .Modal_PicContainer {
+                display: flex;
+                position: relative;
+                
+
+                img {
+                    border-radius: 100%;
+                    width: 200px;
+                    height: 200px;
+                    //border: 4px solid rgb(222, 225, 238);
+                }
+                
+                .modal_ChangePicICON {
+                    width: 50px;
+                    height: 50px;
+                    position: absolute;
+                    padding: 0;
+                    bottom: 0;
+                    
+                    border-radius: 0;
+                    right: 10px;
+                    cursor: pointer;
+                    background-color: rgb(222, 225, 238);
+                    border-radius: 100%;
+                    
+                }
+
+                input[type="file"] {
+                    position: absolute;
+                    bottom: 1000px;
+                  }
+
+                input[type="file"]::-webkit-file-upload-button {
+                   display: none;
+                   width: 1px;
+                }
             }
         }
 

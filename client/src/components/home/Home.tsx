@@ -12,6 +12,7 @@ import { useAppDispatch } from '../../Redux/hook';
 import { userFetch } from '../../Redux/slice/user/userController';
 import { getUserLogin } from '../../Redux/slice/user/user.slice';
 import { productNews } from './productNews';
+import { ProductState } from '../../Redux/slice/product/product.slice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -58,15 +59,8 @@ const Home = () => {
         </div>
         <div className='home_carrousel_ContainerDiv'>
           <Carrousel>
-            {productNews.map((e, i) => (
-              <Card
-                description={e.description}
-                key={e._id}
-                name={e.name}
-                images={e.images[0]}
-                rating={e.rating}
-                price={e.price}
-              />
+            {productNews.map((e: ProductState, i) => (
+              <Card key={i} product={e} />
             ))}
           </Carrousel>
         </div>

@@ -51,6 +51,7 @@ const CardBeta: React.FC<{}> = () => {
   // }
 
   const dispatch = useAppDispatch();
+
   const stars = [1, 2, 3, 4, 5];
   useEffect(() => {
     if (!Allproduct.length) {
@@ -126,6 +127,7 @@ const CardBeta: React.FC<{}> = () => {
         rating: product.rating,
         categories: product.categories,
         stock: product.stock,
+        isActive: product.isActive,
       };
 
       let actualFavorites: ProductState[] = userByBd.favorites;

@@ -2,41 +2,109 @@ import React from 'react';
 import iconStarB from '../../assets/images/icons/iconStartB.png';
 import iconStarW from '../../assets/images/icons/iconStartW.png';
 import iconStarM from '../../assets/images/icons/iconStartM.png';
+import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { ProductState } from '../../Redux/slice/product/product.slice';
+import {
+  addProduct,
+  deleteProduct,
+  ProductCart,
+} from '../../Redux/slice/shoppingCart/shoppingCart.slice';
+import { toast, Zoom } from 'react-toastify';
 
-interface cards {
-  name: string;
-  images: string;
-  description: string;
-  rating: number;
-  price: number;
+interface Props {
+  product: ProductState;
 }
 
-const Card = ({ name, images, description, rating, price }: cards) => {
+const Card: React.FC<Props> = ({ product }) => {
+  const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+
+  const dispatch = useAppDispatch();
+
+  const handleAddCart = (product: ProductState) => {
+    const productCart: ProductCart = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      brand: product.brand,
+      images: product.images,
+      categories: product.categories,
+      stock: product.stock,
+      quantity: 1,
+      inCart: true,
+    };
+
+    dispatch(addProduct(productCart));
+
+    toast.success('Product added to Cart', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Zoom,
+    });
+  };
+
+  const handleRemoveCart = (product: ProductState) => {
+    dispatch(deleteProduct(product._id));
+
+    toast.error('Product removed from Cart', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Zoom,
+    });
+  };
+
   return (
     <div className='cardCarrousel'>
       <div className='HomeCard_HeaderContainer'>
         <p>new</p>
       </div>
       <div className='HomeCard_ImageContainer'>
-        <img src={images} alt='image_product' />
+        <img src={product.images[0]} alt='image_product' />
       </div>
       <div className='HomeCard_NameContainer'>
-        <h1>{name}...</h1>
+        <h1>{product.name}...</h1>
       </div>
       <div className='HomeCard_DescriptionContainer'>
-        <p>{description.substring(0, 50).toLowerCase()}...</p>
+        <p>{product.description.substring(0, 50).toLowerCase()}...</p>
       </div>
       <div className='HomeCard_RatingContainer'>
-        {[...new Array(Math.floor(rating))].map((e) => {
+        {[...new Array(Math.floor(product.rating))].map((e) => {
           return <img src={iconStarB} alt='' />;
         })}
         <img src={iconStarM} alt='' />
       </div>
       <div className='HomeCard_PriceContainer'>
-        <h1>$ {price}</h1>
+        <h1>$ {product.price}</h1>
       </div>
       <div className='HomeCard_AddCartButtonContainer'>
-        <button className='Home_add-car-card-beta'>add to Cart</button>
+        {product.stock && !productsInCart.find((el) => el._id === product._id) ? (
+          <button className='Home_add-car-card-beta' onClick={() => handleAddCart(product)}>
+            add to Cart
+          </button>
+        ) : product.stock && productsInCart.find((el) => el._id === product._id) ? (
+          <button className='Home_add-car-card-beta' onClick={() => handleRemoveCart(product)}>
+            Remove
+          </button>
+        ) : (
+          <button
+            className='Home_add-car-card-beta'
+            disabled={true}
+            style={{ cursor: 'not-allowed' }}
+          >
+            out of Stock
+          </button>
+        )}
       </div>
     </div>
   );

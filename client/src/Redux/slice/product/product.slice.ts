@@ -16,6 +16,7 @@ export interface ProductState {
   rating: number;
   categories: Categories;
   stock: number;
+  isActive: boolean;
 }
 export interface FilterState {
   name: string;
@@ -43,6 +44,7 @@ const initialState: {
     rating: 0,
     categories: { _id: '', name: '' },
     stock: 0,
+    isActive: true,
   },
   Filters: {
     name: '',
@@ -55,7 +57,7 @@ const initialState: {
 };
 
 export const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState,
   reducers: {
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
@@ -87,7 +89,6 @@ export const productSlice = createSlice({
     updateOrderFilter: (state, action) => {
       state.Filters.order = action.payload;
     },
-
   },
 });
 

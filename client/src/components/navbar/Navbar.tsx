@@ -58,7 +58,7 @@ const NavBar = () => {
           </NavLink>
           {isAuthenticated && (
             <NavLink className='link-style' to='/foro'>
-              <p className='nav_middle_button'>Foro</p>
+              <p className='nav_middle_button'>Forum</p>
             </NavLink>
           )}
           <NavLink className='link-style' to='/shop'>

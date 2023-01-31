@@ -19,6 +19,7 @@ import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
 import { getUserLogin } from './Redux/slice/user/user.slice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Page404 from './components/page404/page404';
 
 function App() {
   const location = useLocation();
@@ -54,6 +55,7 @@ function App() {
         <Route path='/shopping_cart' element={<ShoppingCart />} />
         <Route path='/checkout' element={<Form />} />
         <Route path='/foro' element={<ForoHome />} />
+        <Route path='*' element={<Page404 />} />
       </Routes>
       {!['/admin', '/foro'].includes(location.pathname) && <Footer />}
     </>

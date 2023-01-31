@@ -17,6 +17,8 @@ import Swal from "sweetalert2";
 interface Form {
   username: string;
   picture: string;
+  firstName: string;
+  lastName: string;
 }
 
 const ModalUser = ({ close, userByBd }: { close: Function; userByBd: userInterface }) => {
@@ -76,9 +78,11 @@ useEffect(()=> {
 }, [imageUpload])
 
 
-  const info: { username: string; picture: string } = {
+  const info: { username: string; picture: string; firstName: string; lastName: string } = {
     username: userByBd?.username,
     picture: userByBd?.picture,
+    firstName: userByBd?.firstName,
+    lastName: userByBd?.lastName
   };
 
   const [form, setForm] = useState<Form>(info);
@@ -115,7 +119,11 @@ useEffect(()=> {
 
   const handleSaveChange = async () => {
     const userUpdated = await putUserFetch(
-      form.username,
+      {
+        username: form.username,
+        firstName: form.firstName,
+        lastName: form.lastName
+      },
       userByBd?._id,
     );
 
@@ -164,7 +172,22 @@ useEffect(()=> {
               placeholder='username'
               value={form.username}
             />
-            
+            <p>First name</p>
+            <input
+              onChange={handlerChange}
+              name='firstName'
+              type='text'
+              placeholder='username'
+              value={form.firstName}
+            />
+            <p>Last name</p>
+            <input
+              onChange={handlerChange}
+              name='lastName'
+              type='text'
+              placeholder='username'
+              value={form.lastName}
+            />
             
           </div>
         </div>

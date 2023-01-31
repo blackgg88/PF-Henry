@@ -18,8 +18,8 @@ export async function userFetch(user: any) {
   return data;
 }
 
-export async function putUserFetch(username: string, _id: string) {
-  const changes = { username };
+export async function putUserFetch(objeto: {username: string, firstName: string, lastName: string}, _id: string) {
+  const changes = objeto;
   const response = await fetch(`${API_URL}/users/${_id}`, {
     method: 'PUT',
     body: JSON.stringify(changes),

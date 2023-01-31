@@ -43,3 +43,15 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .form_container {
+    height: 100vh;
+
+    form {
+      .input {
+        grid-column: span 2;
+      }
+    }
+  }
+}

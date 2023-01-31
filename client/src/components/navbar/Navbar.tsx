@@ -23,6 +23,7 @@ const NavBar = () => {
   }, [responsiveMenu]);
 
   const logoutUser = () => {
+    localStorage.removeItem('userByBd');
     logout();
     setProfileWindow(false);
   };
@@ -55,12 +56,11 @@ const NavBar = () => {
           <NavLink className='link-style' to='/'>
             <p className='nav_middle_button'>Home</p>
           </NavLink>
-          {
-            isAuthenticated&&
+          {isAuthenticated && (
             <NavLink className='link-style' to='/foro'>
               <p className='nav_middle_button'>Foro</p>
             </NavLink>
-          }
+          )}
           <NavLink className='link-style' to='/shop'>
             <p className='nav_middle_button'>Shop</p>
           </NavLink>

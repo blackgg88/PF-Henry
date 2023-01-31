@@ -26,8 +26,8 @@ const Page404: React.FC<Props> = () => {
       <Lottie options={{ animationData: img404, ...defaultOption }} width={400} height={300} />
 
       <div className='page404_textContainer'>
-        <h3>Thes page you are looking for might have been removed</h3>
-        <h3>had its name changed or is temporanly unavaliable</h3>
+        <h3>The page you are looking for does not exist</h3>
+        <h3>it might have been moved or deleted</h3>
       </div>
     </div>
   );

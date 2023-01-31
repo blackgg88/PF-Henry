@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(
+  min-height: calc(
     100vh - $navbar-height - $footer-height - $navbar-height-maring-top -
-      $navbar-height-maring-button - 60px
+      $navbar-height-maring-button
   );
-  margin: 30px;
+
   .form_wrapper {
     border-radius: 20px;
     text-align: center;
@@ -46,7 +46,8 @@
 
 @media (max-width: 425px) {
   .form_container {
-    height: 100vh;
+    // width: 100vw;
+    margin: auto;
 
     form {
       .input {

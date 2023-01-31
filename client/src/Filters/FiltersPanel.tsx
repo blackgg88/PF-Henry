@@ -71,6 +71,14 @@ const FiltersPanel: React.FC<{}> = () => {
           <FilterByCategory />
         </div>
       </div>
+      <div className="sectrion-filter">
+        <div className="hovr-selector"></div>
+        <img className="img" src={filterCategory} alt="" />
+        <div className="block-filter">
+          <h2 className="title-filter">Sort by</h2>
+          <Sorters />
+        </div>
+      </div>
 
       <div className="sectrion-filter">
         <img className="img" src={filterSpace} alt="" />

@@ -2,31 +2,57 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  height: 100vh;
+  min-height: calc(
+    100vh - $navbar-height - $footer-height - $navbar-height-maring-top -
+      $navbar-height-maring-button
+  );
 
   .form_wrapper {
-    border: 1px solid red;
+    border-radius: 20px;
+    text-align: center;
 
-    .form_name,
-    .form_street-zip,
-    .form_email-DNI {
+    form {
       display: grid;
-      grid-template-columns: 50% 50%;
-      padding: 20px;
-    }
+      grid-template-columns: 1fr 1fr;
+      flex-direction: column;
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      gap: 10px;
 
-    .form_email,
-    .form_DNI,
-    .form_firstname,
-    .form_lastname,
-    .form_street-number,
-    .form_street-zip-code {
-      padding: 15px;
-    }
+      h1 {
+        color: rgba(20, 33, 66, 1);
+      }
+      .input {
+        border: 2.2px solid #eee;
+        border-radius: 10px;
+        padding: 5px 20px;
+      }
+      .span2 {
+        grid-column: span 2;
+      }
 
-    .form_street-name {
-      padding: 35px;
+      button {
+        color: white;
+        border-radius: 10px;
+        background: rgba(20, 33, 66, 1);
+        padding: 0.6rem 1.5rem;
+        grid-column: span 2;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .form_container {
+    // width: 100vw;
+    margin: auto;
+
+    form {
+      .input {
+        grid-column: span 2;
+      }
     }
   }
 }

@@ -50,7 +50,7 @@ const initialState: {
     pricemin: 0,
     pricemax: 3000,
     rating: 0,
-    order: "A-Z",
+    order: "",
   },
 };
 
@@ -88,36 +88,16 @@ export const productSlice = createSlice({
       state.Filters.order = action.payload;
     },
     resetFilters: (state) => {
-      state.Filters = { ...initialState.Filters };
+      state.Filters = {
+        ...state,
+        name: "",
+        categories: "",
+        pricemin: 0,
+        pricemax: 3000,
+        rating: 0,
+        order: "all",
+      };
     },
-    // updateSorFilter: (state, action) => {
-    //   state.Filters = action.payload;
-    //   if (state.Filters.order === "hiPrice") {
-    //     state.Products.sort((a, b) => a.price - b.price);
-    //   } else if (state.Filters.order === "loPrice") {
-    //     state.Products.sort((a, b) => b.price - a.price);
-    //   } else if (state.Filters.order === "maxRat") {
-    //     state.Products.sort((a, b) => a.rating - b.rating);
-    //   } else if (state.Filters.order === "minRat") {
-    //     state.Products.sort((a, b) => b.rating - a.rating);
-    //   } else if (state.Filters.order === "ascAlph") {
-    //     state.Products.sort((a, b) =>
-    //       a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()
-    //         ? -1
-    //         : a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()
-    //         ? 1
-    //         : 0
-    //     );
-    //   } else if (state.Filters.order === "descAlph") {
-    //     state.Products.sort((a, b) =>
-    //       a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()
-    //         ? -1
-    //         : a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()
-    //         ? 1
-    //         : 0
-    //     );
-    //   }
-    // },
   },
 });
 
@@ -131,5 +111,4 @@ export const {
   updatePriceMinFilter,
   updatePriceMaxFilter,
   resetFilters,
-  updateSorFilter,
 } = productSlice.actions;

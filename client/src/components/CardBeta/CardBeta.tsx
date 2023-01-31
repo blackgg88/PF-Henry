@@ -14,6 +14,7 @@ import { productFetch } from "../../Redux/slice/product/ProductController";
 import PaginationComp from "../Pagination";
 import QuickLookModal from "./QuickLookModal";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Categories } from "../../Redux/slice/product/product.slice";
 
 import {
   addProduct,

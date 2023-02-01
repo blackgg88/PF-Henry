@@ -39,7 +39,7 @@
   &:hover {
     border-right: 0px solid $standard-color-blue;
     background-color: $standard-color-blue;
-    width: 500px;
+    width: 300px;
     transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
     .section-filter {
@@ -121,10 +121,11 @@
 
 .btn-selector-filter {
   width: 90%;
-  height: 70%;
+  // height: 70%;
   color: $standard-color-white;
   font-family: $standard-font-Barlow;
   font-weight: 100;
+  padding: 5px;
   background-color: $standard-color-blue-glass;
   border: 1px solid $standard-color-white;
   border-radius: 5px;

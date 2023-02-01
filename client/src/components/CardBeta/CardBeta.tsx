@@ -347,7 +347,7 @@ const CardBeta: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className='add-car-card-beta'>
-                    <button disabled>out of Stock</button>
+                    <button disabled>Out of Stock</button>
                   </div>
                 )}
               </div>

@@ -20,6 +20,7 @@ import { getUserLogin } from './Redux/slice/user/user.slice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Page404 from './components/page404/page404';
+import About from './components/about/About';
 
 function App() {
   const location = useLocation();
@@ -46,6 +47,7 @@ function App() {
       {!['/admin'].some((path) => location.pathname.startsWith(path)) && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
         <Route path='/register' />
         <Route path='/shop' element={<Shop />} />
         <Route path='/news' element={<News />} />

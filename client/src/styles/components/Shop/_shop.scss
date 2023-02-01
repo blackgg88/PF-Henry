@@ -1,9 +1,14 @@
 .content-shop {
-  height: calc(100vh - $navbar-height - $footer-height);
+  height: calc(100vh - $navbar-height - $footer-height - $navbar-height-maring-top -  $navbar-height-maring-button);
   width: 100%;
   background-color: $standard-color-white;
   display: flex;
   overflow: hidden;
+
+  @media (max-width: 610px) {
+    height: calc(100vh - $navbar-height - $footer-height);
+
+  }
 
   .shop-contain {
     width: 100%;

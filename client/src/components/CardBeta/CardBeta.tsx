@@ -335,7 +335,7 @@ const CardBeta: React.FC<{}> = () => {
                     className='add-car-card-beta'
                     onClick={() => handleAddCart(product)}
                   >
-                    <p>add to Cart</p>
+                    <p>Add to Cart</p>
                   </div>
                 ) : product.stock > 0 &&
                   productsInCart.find(el => el._id === product._id) ? (

@@ -1,13 +1,14 @@
 .Nav_topLanding {
-  height: calc($navbar-height);
+  // height: calc($navbar-height - $navbar-height-maring-button - $navbar-height-maring-top);
+  height: $navbar-height;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: $standard-font-Poiret-One;
   margin-right: 30px;
   margin-left: 30px;
-  margin-top: 10px;
-  margin-bottom: 12px;
+  margin-top: $navbar-height-maring-top;
+  margin-bottom: $navbar-height-maring-button;
 
   @media (max-width: 900px) {
     justify-content: center;
@@ -186,8 +187,6 @@
 
       p {
         margin: 0;
-        //padding-left: 20px;
-        //padding-right: 20px;
 
         &:hover {
           color: $standard-color-blue-green;

@@ -18,15 +18,15 @@ const FiltersPanel: React.FC<{}> = () => {
 
   return (
     <div className='new-contain-FilterPanel' id='idFilterPanel'>
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <img className='img' src={filterSpace} alt='' />
         <div className='block-filter'>
           <h1 className='title-filter'>Filters Home:</h1>
-          <div className='separator'></div>
+          <hr />
         </div>
       </div>
 
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <div className='hovr-selector'></div>
         <img className='img' src={filterName} alt='' />
         <div className='block-filter'>
@@ -35,7 +35,7 @@ const FiltersPanel: React.FC<{}> = () => {
         </div>
       </div>
 
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <div className='hovr-selector'></div>
         <img className='img' src={filterRating} alt='' />
         <div className='block-filter'>
@@ -44,7 +44,7 @@ const FiltersPanel: React.FC<{}> = () => {
         </div>
       </div>
 
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <div className='hovr-selector'></div>
         <img className='img' src={filterPrice} alt='' />
         <div className='block-filter'>
@@ -53,7 +53,7 @@ const FiltersPanel: React.FC<{}> = () => {
         </div>
       </div>
 
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <div className='hovr-selector'></div>
         <img className='img' src={filterCategory} alt='' />
         <div className='block-filter'>
@@ -62,7 +62,7 @@ const FiltersPanel: React.FC<{}> = () => {
         </div>
       </div>
 
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <div className='hovr-selector'></div>
         <img className='img' src={filterCategory} alt='' />
         <div className='block-filter'>
@@ -71,7 +71,7 @@ const FiltersPanel: React.FC<{}> = () => {
         </div>
       </div>
 
-      <div className='sectrion-filter'>
+      <div className='section-filter'>
         <img className='img' src={filterSpace} alt='' />
         <div className='block-filter'>
           <button className='btn-selector-filter' onClick={handleFilter}>

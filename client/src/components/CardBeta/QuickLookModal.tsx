@@ -39,7 +39,7 @@ const QuickLookModal: React.FC<Props> = ({
   };
 
   return (
-    <div>
+    <div className="quick-modal">
       <Button onClick={handleOpenModal}>
         <VisibilityIcon />
       </Button>

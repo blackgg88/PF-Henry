@@ -9,7 +9,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   background-color: $standard-color-blue;
-  border-radius: 10px;
+  // border-radius: 10px;
 }
 //--------------------------
 
@@ -36,11 +36,6 @@ body::-webkit-scrollbar-thumb {
         width: 50%;
         z-index: 2;
         
-
-
-        
-
-
         .home_text_1 {
           position: relative;
           font-family: $standard-font-Poiret-One;

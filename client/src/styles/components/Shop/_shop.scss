@@ -1,26 +1,28 @@
 .content-shop {
-  height: 86.59vh;
-  width: 99vw;
+  height: calc(100vh - $navbar-height - $footer-height);
+  width: 100%;
   background-color: $standard-color-white;
   display: flex;
-  align-items: stretch;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0px;
-  flex-direction: column;
-  // background-color: aqua;
+  overflow: hidden;
+
+  .shop-contain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
   .breadcrumb {
+    display: none;
     width: 100%;
     height: auto;
     padding: 10px;
-    // background-color: aquamarine;
   }
-  .shop-contain {
-    width: 99%;
-    height: 100%;
-    display: flex;
-    justify-content: end;
-    //background-color: violet;
-  }
+  
 }
+
+
+
+
+

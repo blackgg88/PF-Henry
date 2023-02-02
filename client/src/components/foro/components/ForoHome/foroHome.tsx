@@ -17,6 +17,7 @@ export default function ForoHome() {
     editPost,
     allPostRespaldo,
     searchInput,
+    selectedTag,
     {
       likeHandler,
       handlerSubmit,
@@ -57,6 +58,7 @@ export default function ForoHome() {
         {
           isAuthenticated&&
           <Foro_createPost
+          selectedTag={selectedTag}
           handleTags={handleTags}
           form={form}
           handlerChangePost={handlerChangePost}

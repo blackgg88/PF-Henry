@@ -45,6 +45,10 @@ interface allPost {
   category: string;
 }
 
+interface selectedTag {
+  [key: string]: boolean;
+}
+
 export function useForoHome() {
   const { user } = useAuth0();
 
@@ -70,6 +74,13 @@ export function useForoHome() {
   const [commentary, setCommentary] = useState({
     content: "",
   });
+  const [selectedTag, setSelectedTag] = useState<selectedTag>({
+    
+   
+  });
+
+
+
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
@@ -95,6 +106,20 @@ export function useForoHome() {
       ...form,
       category:e.target.value
     })
+    if(!selectedTag[e.target.value]){
+
+    setSelectedTag({
+      
+      [e.target.value]:true
+      
+      
+    })
+  }else{
+    setSelectedTag({
+      
+    })
+    
+  }
   }
 
 
@@ -169,6 +194,14 @@ export function useForoHome() {
   };
 
   const handlerSubmit = () => { // POST a post
+    if(!form.category){
+      swalWithBootstrapButtons.fire(
+        "Error",
+        "You must select a category",
+        "error"
+      );
+    }else{
+      
     if (user?.email) {
       setForm({
         ...form,
@@ -210,7 +243,7 @@ export function useForoHome() {
         footer: '<a href="">Why do I have this issue?</a>',
       });
     }
-  };
+  }}
 
   const handlerLike = () => { // Like post
     getLikes(
@@ -453,6 +486,7 @@ export function useForoHome() {
     editPost,
     allPostRespaldo,
     searchInput,
+    selectedTag,
     {
       likeHandler,
       handlerLike,
@@ -474,7 +508,8 @@ export function useForoHome() {
       handleFilterByTitle,
       resetFilter,
       handleTags,
-      handleFilterByCategory
+      handleFilterByCategory,
+      setSelectedTag
     },
   ];
 }

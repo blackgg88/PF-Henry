@@ -4,13 +4,15 @@ import { useState } from "react";
 //---------------
 import addIMage from '../../../assets/foro/addImage.svg'
 
-export default function Foro_createPost({ form, handlerChangePost, handlerSubmit,handleTags }: any) {
+export default function Foro_createPost({ form, handlerChangePost, handlerSubmit,handleTags,selectedTag }: any) {
 
   const { user } = useAuth0();
   const [imageOpen, setImageOpen] = useState<boolean>(false);
-  
-  console.log(form.category)
-  console.log(form)
+
+
+
+  // console.log(form.category)
+  console.log(selectedTag)
 
   return (
     <div className='foro_posts_creator'>
@@ -43,12 +45,12 @@ export default function Foro_createPost({ form, handlerChangePost, handlerSubmit
   Comfort = 'Comfort and Ease',
   Health = 'Lifestyle and Health', */}
           <div className='foro_post_tags'>
-            <input onClick={handleTags}name="category" value="Connectivity and Control"/>
-            <input onClick={handleTags}name="category" value="Home Entertainment"/>
-            <input onClick={handleTags}name="category" value="Energy Management"/>
-            <input onClick={handleTags}name="category" value="Safety and Security"/>
-            <input onClick={handleTags}name="category" value="Comfort and Ease"/>
-            <input onClick={handleTags}name="category" value="Lifestyle and Health"/>
+            <input className={selectedTag["Connectivity and Control"]?"foro_post_tag_selected":"foro_post_tag_normal"} readOnly onClick={handleTags}name="category" value="Connectivity and Control"/>
+            <input className={selectedTag["Home Entertainment"]?"foro_post_tag_selected":"foro_post_tag_normal"} readOnly onClick={handleTags}name="category" value="Home Entertainment"/>
+            <input className={selectedTag["Energy Management"]?"foro_post_tag_selected":"foro_post_tag_normal"} readOnly onClick={handleTags}name="category" value="Energy Management"/>
+            <input className={selectedTag["Safety and Security"]?"foro_post_tag_selected":"foro_post_tag_normal"} readOnly onClick={handleTags}name="category" value="Safety and Security"/>
+            <input className={selectedTag["Comfort and Ease"]?"foro_post_tag_selected":"foro_post_tag_normal"} readOnly onClick={handleTags}name="category" value="Comfort and Ease"/>
+            <input className={selectedTag["Lifestyle and Health"]?"foro_post_tag_selected":"foro_post_tag_normal"} readOnly onClick={handleTags}name="category" value="Lifestyle and Health"/>
           </div>
           {imageOpen && (
             <input

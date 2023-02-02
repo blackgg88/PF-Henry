@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    height: 150px;
+    filter: invert(100%);
+  }
+  
+  .dashboardAdmin_wrapper {
+    border: 1px solid burlywood;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 40px;
+
+    padding: 12px;
+
+    .dashboardAdmin_card {
+      border: 1px solid red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+
+      height: 140px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 1px #888888;
+      
+
+      .dashboardAdmin_icon {
+        border: 1px solid blue;
+      }
+
+      h2 {
+        border: 1px solid green;
+      }
+
+      p {
+        border: 1px solid orange;
+        font-size: 24px;
+      }
+    }
+  }
+}

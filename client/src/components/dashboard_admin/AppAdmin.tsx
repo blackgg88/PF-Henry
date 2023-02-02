@@ -21,6 +21,7 @@ import { MyAppBar } from './MyAppBar';
 //             @ts-ignore
 import dataProvider from './dataProvider';
 const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />;
+// console.log(dataProvider);
 
 const AppAdmin = () => {
   return (

@@ -8,7 +8,7 @@ const darkTheme = {
 };
 
 export const MyAppBar = (props: any) => (
-    <AppBar {...props}>
+    <AppBar {...props} style={{backgroundColor:` rgba(20, 33, 66, 1)` }}>
         <Typography flex="1" variant="h6" id="react-admin-title"></Typography>
         <NavLink to='/' style={{textDecoration: 'none'}}>
             <Button variant="text" style={{ color: '#fafafa'}}>home</Button>

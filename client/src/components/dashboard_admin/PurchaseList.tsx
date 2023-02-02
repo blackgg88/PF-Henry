@@ -22,7 +22,7 @@ const PurchaseList = () => {
         <TextField source='Total_Paid' />
         
         {/* para que no tire errores le ponemos resource en vez de basePath */}
-        <DeleteButton resource='/purchases' />
+        <DeleteButton resource='purchases' />
       </Datagrid>
     </List>
   );

@@ -57,7 +57,7 @@ const orderData = (data, resource, order, field) => {
       }
     } 
   }
-  console.log(data);
+  // console.log(data);
 
   //------------Tabla POSTS (todos menos por id)
   if(resource === 'posts'){

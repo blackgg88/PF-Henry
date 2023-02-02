@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import { getAllUsers } from '../controllers/users/getAllUsers';
 import { getUserByEmail } from '../controllers/users/getUserByEmail';
+import { getOneUser } from '../controllers/users/getOneUser';
 import { postUser } from '../controllers/users/postUser';
 import { deleteUser } from '../controllers/users/deleteUser';
 import { putUser } from '../controllers/users/putUser';
@@ -14,7 +15,8 @@ const user = Router();
 user.get('/', getAllUsers);
 
 user.put('/img', putImgUser);
-//find by ID // devuelve el usuario buscado por ID
+//find by ID and Email // devuelve el usuario buscado por ID y Email
+user.get('/id/:id', getOneUser);
 user.get('/:email', getUserByEmail);
 
 //post user // crea un nuevo usuario

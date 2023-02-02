@@ -2,6 +2,7 @@ import { prop, getModelForClass, Ref } from '@typegoose/typegoose'
 import { User } from './Users'
 import { Comment } from './Comments'
 import moment from 'moment';
+import { CategoryEnum } from './Category';
 
 
 export class Post {
@@ -31,8 +32,11 @@ likes: string[]
 
 @prop({ type: Date, default: () => moment().toDate()})
   created: Date
-}
 
+
+@prop({type: String ,enum:CategoryEnum ,required:true})
+category: string
+}
 
 const PostModel = getModelForClass(Post)
 export default PostModel

@@ -42,6 +42,7 @@ interface allPost {
   comments: number;
   createdAt: string;
   updatedAt: string;
+  category: string;
 }
 
 export function useForoHome() {
@@ -64,6 +65,7 @@ export function useForoHome() {
     title: "",
     content: "",
     image: "",
+    category:"",
   });
   const [commentary, setCommentary] = useState({
     content: "",
@@ -87,6 +89,14 @@ export function useForoHome() {
       content: e.target.value,
     });
   };
+
+  const handleTags= (e:any)=>{
+    setForm({
+      ...form,
+      category:e.target.value
+    })
+  }
+
 
   const submitComment = (idPost: string, email: string) => {
     if (commentary.content) {
@@ -417,6 +427,20 @@ export function useForoHome() {
     }
   };
 
+  const handleFilterByCategory = (category:string) => {
+    console.log("hola")
+    const filterPost = allPostRespaldo.filter((post) => {
+      if(post.category){
+
+        if (post.category.toLowerCase()===category.toLowerCase()) {
+          return post;
+        }
+      }
+    });
+    setAllPost(filterPost);
+  };
+
+
   const resetFilter = () => {
     setAllPost(allPostRespaldo);
   };
@@ -449,6 +473,8 @@ export function useForoHome() {
       onChangeSearch,
       handleFilterByTitle,
       resetFilter,
+      handleTags,
+      handleFilterByCategory
     },
   ];
 }

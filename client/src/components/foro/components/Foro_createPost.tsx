@@ -4,10 +4,13 @@ import { useState } from "react";
 //---------------
 import addIMage from '../../../assets/foro/addImage.svg'
 
-export default function Foro_createPost({ form, handlerChangePost, handlerSubmit }: any) {
+export default function Foro_createPost({ form, handlerChangePost, handlerSubmit,handleTags }: any) {
 
   const { user } = useAuth0();
   const [imageOpen, setImageOpen] = useState<boolean>(false);
+  
+  console.log(form.category)
+  console.log(form)
 
   return (
     <div className='foro_posts_creator'>
@@ -33,6 +36,20 @@ export default function Foro_createPost({ form, handlerChangePost, handlerSubmit
             className='foro_post_textAREA'
             placeholder='Description'
           />
+{/* Connectivity = 'Connectivity and Control',
+  Entertainment = 'Home Entertainment',
+  Energy = 'Energy Management',
+  Safety = 'Safety and Security',
+  Comfort = 'Comfort and Ease',
+  Health = 'Lifestyle and Health', */}
+          <div className='foro_post_tags'>
+            <input onClick={handleTags}name="category" value="Connectivity and Control"/>
+            <input onClick={handleTags}name="category" value="Home Entertainment"/>
+            <input onClick={handleTags}name="category" value="Energy Management"/>
+            <input onClick={handleTags}name="category" value="Safety and Security"/>
+            <input onClick={handleTags}name="category" value="Comfort and Ease"/>
+            <input onClick={handleTags}name="category" value="Lifestyle and Health"/>
+          </div>
           {imageOpen && (
             <input
               value={form.image}

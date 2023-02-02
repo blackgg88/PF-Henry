@@ -32,7 +32,9 @@ export default function ForoHome() {
       setallPostRespaldo,
       onChangeSearch,
       handleFilterByTitle,
-      resetFilter
+      resetFilter,
+      handleTags,
+      handleFilterByCategory
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
@@ -55,6 +57,7 @@ export default function ForoHome() {
         {
           isAuthenticated&&
           <Foro_createPost
+          handleTags={handleTags}
           form={form}
           handlerChangePost={handlerChangePost}
           handlerSubmit={handlerSubmit}
@@ -87,13 +90,16 @@ export default function ForoHome() {
             created={post.created}
             onDeleteComment={onDeleteComment}
             likeCommentHandler={likeCommentHandler}
+            category={post.category}
+            
           />
         )):
         <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
       }
       </div>
 
-      <FilterPanel resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />
+      <FilterPanel
+      handleFilterByCategory={handleFilterByCategory} resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />
     </div>
   );
 }

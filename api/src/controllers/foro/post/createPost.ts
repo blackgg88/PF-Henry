@@ -9,9 +9,9 @@ const UserModel = getModelForClass(User);
 
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { title, content, image, email } = req.body;
+    const { title, content, image, email,category } = req.body;
 
-    if ( !email || !content || !title) {
+    if ( !email || !content || !title|| !category) {
       return res.status(404).json({ err: "Faltan parametros" });
     }
 
@@ -27,7 +27,7 @@ export const createPost = async (req: Request, res: Response) => {
     }
     
     // CREAMOS EL POST
-    const post = new PostModel({ title, content, image });
+    const post = new PostModel({ title, content, image,category });
 
     if (post != null) {
       //AGREGAMOS EL POST AL USUARIO

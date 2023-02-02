@@ -47,6 +47,7 @@ interface Foro_Card {
   created: Date
   onDeleteComment: any
   likeCommentHandler: any
+  category: string
 }
 // : React.FC
 export function Foro_card({
@@ -67,7 +68,8 @@ export function Foro_card({
   onEdit,
   created,
   onDeleteComment,
-  likeCommentHandler
+  likeCommentHandler,
+  category
 }: Foro_Card) {
   const { user } = useAuth0();
   const [emailLoged, setEmailLoged] = useState<string>('')
@@ -99,6 +101,9 @@ export function Foro_card({
         {}
         <div className='foro_card_contentSide'>
           <p>{content}</p>
+        </div>
+        <div>
+          {category}
         </div>
 
         {img && (

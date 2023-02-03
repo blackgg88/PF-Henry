@@ -87,8 +87,11 @@
             height: 50px;
             font-family: $standard-font-Outfit-sans-serif;
             padding: 5px 15px;
-            margin-bottom: 15px;
-            border: 1px solid rgb(146, 140, 140);
+            margin-bottom: 0;
+            border: none;
+            border-top: 1px solid rgb(146, 140, 140);
+            border-left: 1px solid rgb(146, 140, 140);
+            border-right: 1px solid rgb(146, 140, 140);
             resize: none;
             &:focus {
               outline: none;
@@ -149,3 +152,105 @@
   width: 30px;
   margin-top: 50px;
 }
+
+.foro_post_tags{
+  display: flex;
+  font-size: 10px;
+  width: 100%;
+  border-left: 1px solid rgb(146, 140, 140);
+  border-right: 1px solid rgb(146, 140, 140);
+  border-bottom: 1px solid rgb(146, 140, 140);
+  margin-bottom: 10px;
+  padding: 10px;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+
+  .foro_post_tagP {
+    position: absolute;
+    font-family: $standard-font-Outfit-sans-serif;
+    font-size: 13px;
+    color: rgb(87, 82, 82);
+    margin-right: 100px;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+
+  .foro_post_tag_normal {
+    background-color: #8fa3ce;
+    background-color: $standard-color-blue;
+    display: flex;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    cursor: pointer;
+    margin: 0px 5px;
+    position: relative;
+    transition: all .2s ease-in;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 22px;
+    }
+    .previewOn {
+      position: absolute;
+      top: 40px;
+      background-color: $standard-color-blue;
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+      width: 150px;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .previewOff {
+      display: none;
+    }
+  }
+
+  .foro_post_tag_selected{
+    background-color: $standard-color-blue;
+    background-color: #8fa3ce;
+    display: flex;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    cursor: pointer;
+    margin: 0px 5px;
+    position: relative;
+    transition: all .2s ease-in;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 24px;
+    }
+    .previewOn {
+      position: absolute;
+      top: 40px;
+      background-color: $standard-color-blue;
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+      width: 150px;
+      text-align: center;
+      font-size: 15px;
+    }
+    
+    .previewOff {
+      display: none;
+    }
+  }
+}
+

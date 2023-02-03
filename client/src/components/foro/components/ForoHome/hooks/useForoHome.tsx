@@ -42,6 +42,11 @@ interface allPost {
   comments: number;
   createdAt: string;
   updatedAt: string;
+  category: string;
+}
+
+interface selectedTag {
+  [key: string]: boolean;
 }
 
 export function useForoHome() {
@@ -64,10 +69,16 @@ export function useForoHome() {
     title: "",
     content: "",
     image: "",
+    category:"",
   });
   const [commentary, setCommentary] = useState({
     content: "",
   });
+  const [selectedTag, setSelectedTag] = useState<selectedTag>({});
+  const [previewTag, setPreviewTag] = useState<selectedTag>({})
+
+
+
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
@@ -87,6 +98,34 @@ export function useForoHome() {
       content: e.target.value,
     });
   };
+
+  const handleTags= (e:any)=>{
+    
+    setForm({
+      ...form,
+      category: e.target.id
+    })
+
+    if (!selectedTag[e.target.id]) {
+
+      setSelectedTag({
+        [e.target.id]:true
+      }) 
+      
+    } else {
+      setSelectedTag({})
+    }
+  }
+
+  const HandlerpreviewTags = (e: any)=> {
+    setPreviewTag({
+      [e.target.id]: true
+    })
+  }
+
+  const handlerQuitPreview = ()=> {
+    setPreviewTag({})
+  }
 
   const submitComment = (idPost: string, email: string) => {
     if (commentary.content) {
@@ -159,6 +198,20 @@ export function useForoHome() {
   };
 
   const handlerSubmit = () => { // POST a post
+    if(!Object.keys(selectedTag).length){
+      swalWithBootstrapButtons.fire(
+        "Error",
+        "You must select a category",
+        "error"
+      );
+    }else if (form.title==='' || form.content==='') {
+      swalWithBootstrapButtons.fire(
+        "Error",
+        "Your post must have a title and description",
+        "error"
+      );
+    } else {
+      
     if (user?.email) {
       setForm({
         ...form,
@@ -200,7 +253,7 @@ export function useForoHome() {
         footer: '<a href="">Why do I have this issue?</a>',
       });
     }
-  };
+  }}
 
   const handlerLike = () => { // Like post
     getLikes(
@@ -417,6 +470,20 @@ export function useForoHome() {
     }
   };
 
+  const handleFilterByCategory = (category:string) => {
+    console.log("hola")
+    const filterPost = allPostRespaldo.filter((post) => {
+      if(post.category){
+
+        if (post.category.toLowerCase()===category.toLowerCase()) {
+          return post;
+        }
+      }
+    });
+    setAllPost(filterPost);
+  };
+
+
   const resetFilter = () => {
     setAllPost(allPostRespaldo);
   };
@@ -429,6 +496,8 @@ export function useForoHome() {
     editPost,
     allPostRespaldo,
     searchInput,
+    selectedTag,
+    previewTag,
     {
       likeHandler,
       handlerLike,
@@ -449,6 +518,11 @@ export function useForoHome() {
       onChangeSearch,
       handleFilterByTitle,
       resetFilter,
+      handleTags,
+      handleFilterByCategory,
+      setSelectedTag,
+      HandlerpreviewTags,
+      handlerQuitPreview
     },
   ];
 }

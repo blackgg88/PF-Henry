@@ -3,11 +3,13 @@ import refreshIcon from '../../../assets/foro/refresh.svg';
 import logoSmartW from '../../../assets/logo_smart_w.png';
 import profileIconW from '../../../assets/foro/profile-white.svg';
 import homeIcon from '../../../assets/foro/homeIconW.svg';
+
 import connectivityIconW from '../../../assets/foro/connectivityIconW.svg';
 import entertainmentW from '../../../assets/foro/EntertainmentW.svg';
 import energyW from '../../../assets/foro/energyW.svg';
 import securityW from '../../../assets/foro/securityW.svg'
 import healthW from '../../../assets/foro/health.svg'
+import confort from '../../../assets/foro/confortW.svg';
 
 
 
@@ -23,13 +25,13 @@ interface filterPanel {
   onChangeSearch: any;
   handleFilterByTitle: any;
   resetFilter: any;
+  handleFilterByCategory: any;
 }
-
 export default function FilterPanel({
   searchInput,
   onChangeSearch,
   handleFilterByTitle,
-  resetFilter,
+  resetFilter,handleFilterByCategory
 }: filterPanel) {
   return (
     <div className='foro_panelContainer'>
@@ -59,23 +61,27 @@ export default function FilterPanel({
           <div className='foro_panel_MenuContainer'>
             <div className='foro_panel_Menu_HomeContainer'>
               <img src={healthW} alt="profile_Icon" />
-              <p>Lifestyle and Health</p>
+              <p onClick={()=>handleFilterByCategory("Lifestyle and Health")}>Lifestyle and Health</p>
             </div>
             <div className='foro_panel_Menu_HomeContainer'>
               <img src={connectivityIconW} alt="connectivity" />
-              <p>Connectivity and Control</p>
+              <p onClick={()=>handleFilterByCategory("Connectivity and Control")}>Connectivity and Control</p>
             </div>
             <div className='foro_panel_Menu_HomeContainer'>
               <img src={entertainmentW} alt="entertainment" />
-              <p>Home Entertainment</p>
+              <p onClick={()=>handleFilterByCategory("Home Entertainment")}>Home Entertainment</p>
             </div>
             <div className='foro_panel_Menu_HomeContainer'>
               <img src={energyW} alt="energy" />
-              <p>Energy Management</p>
+              <p onClick={()=>handleFilterByCategory("Energy Management")} >Energy Management</p>
             </div>
             <div className='foro_panel_Menu_HomeContainer'>
               <img src={securityW} alt="security" />
-              <p>Safety and Security</p>
+              <p onClick={()=>handleFilterByCategory("Safety and Security")}>Safety and Security</p>
+            </div>
+            <div className='foro_panel_Menu_HomeContainer'>
+              <img src={confort} alt="comfort" />
+              <p onClick={()=>handleFilterByCategory("Comfort and Ease")}>Comfort and Ease</p>
             </div>
           </div>
           

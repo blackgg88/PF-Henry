@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Paper,
-  Box,
-} from "@mui/material";
+import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader } from "@mui/material";
 import UserIcon from "@mui/icons-material/Group";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import PaidIcon from "@mui/icons-material/Paid";
 import {
-  LineChart,
   Line,
   CartesianGrid,
   XAxis,
@@ -28,10 +20,10 @@ import {
 } from "recharts";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import dataProvider from "./dataProvider.js";
 import { useAppDispatch, useAppSelector } from "../../Redux/hook.js";
-import { ProductQuantityState, getCategoryQuantity } from  "../../Redux/slice/product/product.slice";
-import { productQuantity } from "../../Redux/slice/product/ProductController"
+import { ProductQuantityState, getCategoryQuantity } from "../../Redux/slice/product/product.slice";
+import { productQuantity } from "../../Redux/slice/product/ProductController";
+import { API_URL } from "../../../config";
 
 export const Dashboard = () => {
   const [usersCount, setUsersCount] = useState(0);
@@ -40,52 +32,57 @@ export const Dashboard = () => {
 
   const dispatch = useAppDispatch();
 
-  const CategoryQuantity : ProductQuantityState[] = useAppSelector(
+  const CategoryQuantity: ProductQuantityState[] = useAppSelector(
     state => state.productReducer.CategoryQuantity
   );
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataUsers = await fetch("http://localhost:3001/users").then((res) =>
+      const dataUsers = await fetch(`${API_URL}/users`).then(res =>
         res.json()
       );
-      const dataProducts = await fetch("http://localhost:3001/products").then(
-        (res) => res.json()
+      const dataProducts = await fetch(`${API_URL}/products`).then(
+        res => res.json()
       );
-      const dataPurchases = await fetch("http://localhost:3001/checkout").then(
-        (res) => res.json()
-      );
-      setUsersCount(dataUsers.length);
-      setProductsCount(dataProducts.length);
-      setPurchasesCount(dataPurchases.length);
-    };
-    fetchData()
+      const dataPurchases = await fetch(`${API_URL}/checkout`).then(
+        res => res.json()
+        );
+        setUsersCount(dataUsers.length);
+        setProductsCount(dataProducts.length);
+        setPurchasesCount(dataPurchases.length);
 
-    productQuantity()?.then(response => {
-      dispatch(getCategoryQuantity(response));
-    })
-  }, []);
+      };
+      fetchData();
+      
+      productQuantity()?.then(response => {
+        dispatch(getCategoryQuantity(response));
+      });
+    }, []);
+    
+    
+    useEffect(() => {
+      console.log( CategoryQuantity);
+    }, [CategoryQuantity])
 
-  console.log(CategoryQuantity)
-  
+
 
   const data = [
-    { name: '24-01-2023', pv: 2400 },
-    { name: '25-01-2023', pv: 1398 },
-    { name: '26-01-2023', pv: 9800 },
-    { name: '27-01-2023', pv: 3908 },
-    { name: '28-01-2023', pv: 4800 },
-    { name: '29-01-2023', pv: 3800 },
-    { name: '30-01-2023', pv: 4300 },
+    { name: "24-01-2023", pv: 2400 },
+    { name: "25-01-2023", pv: 1398 },
+    { name: "26-01-2023", pv: 9800 },
+    { name: "27-01-2023", pv: 3908 },
+    { name: "28-01-2023", pv: 4800 },
+    { name: "29-01-2023", pv: 3800 },
+    { name: "30-01-2023", pv: 4300 },
   ];
   const data2 = [
-    { name: '24-01-2023', uv: 4 },
-    { name: '25-01-2023', uv: 3 },
-    { name: '26-01-2023', uv: 2 },
-    { name: '27-01-2023', uv: 2 },
-    { name: '28-01-2023', uv: 1 },
-    { name: '29-01-2023', uv: 2 },
-    { name: '30-01-2023', uv: 3 },
+    { name: "24-01-2023", uv: 4 },
+    { name: "25-01-2023", uv: 3 },
+    { name: "26-01-2023", uv: 2 },
+    { name: "27-01-2023", uv: 2 },
+    { name: "28-01-2023", uv: 1 },
+    { name: "29-01-2023", uv: 2 },
+    { name: "30-01-2023", uv: 3 },
   ];
   const dataCategories = [
     { name: "Connectify and Control", value: 400 },
@@ -112,30 +109,29 @@ export const Dashboard = () => {
   ];
 
   return (
-    <Card className="main">
-      <CardHeader title="Welcome to the administration" />
+    <Card className='main'>
+      <CardHeader title='Welcome to the administration' />
 
-      <img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674830963/SmartNest/logo_smart_b130x90_k1idwg.png"></img>
-      <CardContent className="dashboardAdmin_wrapper">
-        
-        <Card variant="outlined" className="dashboardAdmin_card">
-          <div className="dashboardAdmin_icon">
+      <img src='https://res.cloudinary.com/dg1roy34p/image/upload/v1674830963/SmartNest/logo_smart_b130x90_k1idwg.png'></img>
+      <CardContent className='dashboardAdmin_wrapper'>
+        <Card variant='outlined' className='dashboardAdmin_card'>
+          <div className='dashboardAdmin_icon'>
             <UserIcon />
           </div>
           <h2>Users registered</h2>
           <p>{usersCount}</p>
         </Card>
 
-        <Card variant="outlined" className="dashboardAdmin_card">
-          <div className="dashboardAdmin_icon">
+        <Card variant='outlined' className='dashboardAdmin_card'>
+          <div className='dashboardAdmin_icon'>
             <LocalGroceryStoreIcon />
           </div>
           <h2>Products</h2>
           <p> {productsCount}</p>
         </Card>
 
-        <Card variant="outlined" className="dashboardAdmin_card">
-          <div className="dashboardAdmin_icon">
+        <Card variant='outlined' className='dashboardAdmin_card'>
+          <div className='dashboardAdmin_icon'>
             <PaidIcon />
           </div>
           <h2>Purchases</h2>
@@ -150,45 +146,45 @@ export const Dashboard = () => {
           cy={200}
           innerRadius={60}
           outerRadius={80}
-          fill="#8884d8"
-          dataKey="quantity"
+          fill='#8884d8'
+          dataKey='quantity'
         >
           {CategoryQuantity.map((entry, index) => (
             <Cell key={index} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
         <Tooltip />
-        <Legend align="right" layout="vertical" verticalAlign="middle" />
+        <Legend align='right' layout='vertical' verticalAlign='middle' />
       </PieChart>
 
-      <ComposedChart width={1000} height={400} data={data}>
-        <XAxis dataKey="name" />
+      <ComposedChart width={800} height={400} data={data}>
+        <XAxis dataKey='name' />
         <YAxis />
         <Tooltip />
         <Legend />
-        <CartesianGrid stroke="#f5f5f5" />
-        <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+        <CartesianGrid stroke='#f5f5f5' />
+        <Area type='monotone' dataKey='amt' fill='#8884d8' stroke='#8884d8' />
+        <Bar dataKey='pv' barSize={20} fill='#413ea0' />
+        <Line type='monotone' dataKey='uv' stroke='#ff7300' />
       </ComposedChart>
 
       <AreaChart
-          width={1000}
-          height={400}
-          data={data2}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
+        width={800}
+        height={400}
+        data={data2}
+        margin={{
+          top: 10,
+          right: 30,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='name' />
+        <YAxis />
+        <Tooltip />
+        <Area type='monotone' dataKey='uv' stroke='#8884d8' fill='#8884d8' />
+      </AreaChart>
     </Card>
   );
 };

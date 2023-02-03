@@ -21,7 +21,10 @@ import {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { useAppDispatch, useAppSelector } from "../../Redux/hook.js";
-import { ProductQuantityState, getCategoryQuantity } from "../../Redux/slice/product/product.slice";
+import {
+  ProductQuantityState,
+  getCategoryQuantity,
+} from "../../Redux/slice/product/product.slice";
 import { productQuantity } from "../../Redux/slice/product/ProductController";
 import { API_URL } from "../../../config";
 
@@ -38,33 +41,32 @@ export const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataUsers = await fetch(`${API_URL}/users`).then(res =>
-        res.json()
+      setUsersCount(
+        await fetch(`${API_URL}/users`).then(res =>
+          res.json().then(respon => respon.length)
+        )
       );
-      const dataProducts = await fetch(`${API_URL}/products`).then(
-        res => res.json()
+      setProductsCount(
+        await fetch(`${API_URL}/products`).then(res =>
+          res.json().then(respon => respon.length)
+        )
       );
-      const dataPurchases = await fetch(`${API_URL}/checkout`).then(
-        res => res.json()
-        );
-        setUsersCount(dataUsers.length);
-        setProductsCount(dataProducts.length);
-        setPurchasesCount(dataPurchases.length);
+      setPurchasesCount(
+        await fetch(`${API_URL}/checkout`).then(res =>
+          res.json().then(respon => respon.length)
+        )
+      );
+    };
+    fetchData();
 
-      };
-      fetchData();
-      
-      productQuantity()?.then(response => {
-        dispatch(getCategoryQuantity(response));
-      });
-    }, []);
-    
-    
-    useEffect(() => {
-      console.log( CategoryQuantity);
-    }, [CategoryQuantity])
+    productQuantity()?.then(response => {
+      dispatch(getCategoryQuantity(response));
+    });
+  }, []);
 
-
+  useEffect(() => {
+    console.log(CategoryQuantity);
+  }, [CategoryQuantity]);
 
   const data = [
     { name: "24-01-2023", pv: 2400 },

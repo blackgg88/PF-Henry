@@ -74,10 +74,8 @@ export function useForoHome() {
   const [commentary, setCommentary] = useState({
     content: "",
   });
-  const [selectedTag, setSelectedTag] = useState<selectedTag>({
-    
-   
-  });
+  const [selectedTag, setSelectedTag] = useState<selectedTag>({});
+  const [previewTag, setPreviewTag] = useState<selectedTag>({})
 
 
 
@@ -102,26 +100,32 @@ export function useForoHome() {
   };
 
   const handleTags= (e:any)=>{
+    
     setForm({
       ...form,
-      category:e.target.value
+      category: e.target.id
     })
-    if(!selectedTag[e.target.value]){
 
-    setSelectedTag({
+    if (!selectedTag[e.target.id]) {
+
+      setSelectedTag({
+        [e.target.id]:true
+      }) 
       
-      [e.target.value]:true
-      
-      
-    })
-  }else{
-    setSelectedTag({
-      
-    })
-    
-  }
+    } else {
+      setSelectedTag({})
+    }
   }
 
+  const HandlerpreviewTags = (e: any)=> {
+    setPreviewTag({
+      [e.target.id]: true
+    })
+  }
+
+  const handlerQuitPreview = ()=> {
+    setPreviewTag({})
+  }
 
   const submitComment = (idPost: string, email: string) => {
     if (commentary.content) {
@@ -194,13 +198,19 @@ export function useForoHome() {
   };
 
   const handlerSubmit = () => { // POST a post
-    if(!form.category){
+    if(!Object.keys(selectedTag).length){
       swalWithBootstrapButtons.fire(
         "Error",
         "You must select a category",
         "error"
       );
-    }else{
+    }else if (form.title==='' || form.content==='') {
+      swalWithBootstrapButtons.fire(
+        "Error",
+        "Your post must have a title and description",
+        "error"
+      );
+    } else {
       
     if (user?.email) {
       setForm({
@@ -487,6 +497,7 @@ export function useForoHome() {
     allPostRespaldo,
     searchInput,
     selectedTag,
+    previewTag,
     {
       likeHandler,
       handlerLike,
@@ -509,7 +520,9 @@ export function useForoHome() {
       resetFilter,
       handleTags,
       handleFilterByCategory,
-      setSelectedTag
+      setSelectedTag,
+      HandlerpreviewTags,
+      handlerQuitPreview
     },
   ];
 }

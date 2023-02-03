@@ -18,6 +18,7 @@ export default function ForoHome() {
     allPostRespaldo,
     searchInput,
     selectedTag,
+    previewTag,
     {
       likeHandler,
       handlerSubmit,
@@ -35,7 +36,9 @@ export default function ForoHome() {
       handleFilterByTitle,
       resetFilter,
       handleTags,
-      handleFilterByCategory
+      handleFilterByCategory,
+      HandlerpreviewTags,
+      handlerQuitPreview
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
@@ -63,6 +66,9 @@ export default function ForoHome() {
           form={form}
           handlerChangePost={handlerChangePost}
           handlerSubmit={handlerSubmit}
+          previewTag={previewTag}
+          HandlerpreviewTags={HandlerpreviewTags}
+          handlerQuitPreview={handlerQuitPreview}
         />
         }
         

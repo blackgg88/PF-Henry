@@ -3,11 +3,13 @@ import refreshIcon from '../../../assets/foro/refresh.svg';
 import logoSmartW from '../../../assets/logo_smart_w.png';
 import profileIconW from '../../../assets/foro/profile-white.svg';
 import homeIcon from '../../../assets/foro/homeIconW.svg';
+
 import connectivityIconW from '../../../assets/foro/connectivityIconW.svg';
 import entertainmentW from '../../../assets/foro/EntertainmentW.svg';
 import energyW from '../../../assets/foro/energyW.svg';
 import securityW from '../../../assets/foro/securityW.svg'
 import healthW from '../../../assets/foro/health.svg'
+import confort from '../../../assets/foro/confortW.svg';
 
 
 
@@ -76,6 +78,10 @@ export default function FilterPanel({
             <div className='foro_panel_Menu_HomeContainer'>
               <img src={securityW} alt="security" />
               <p onClick={()=>handleFilterByCategory("Safety and Security")}>Safety and Security</p>
+            </div>
+            <div className='foro_panel_Menu_HomeContainer'>
+              <img src={confort} alt="comfort" />
+              <p onClick={()=>handleFilterByCategory("Comfort and Ease")}>Comfort and Ease</p>
             </div>
           </div>
           

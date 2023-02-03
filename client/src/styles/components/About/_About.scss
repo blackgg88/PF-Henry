@@ -1,167 +1,164 @@
-
 .About_back {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  align-items: center;
+  //background-color: $standard-background;
+  width: 100%;
+  min-height: 80vh;
+  font-family: $standard-font-Poiret-One;
+
+  .About_AboutSide {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+
+    .About_About_header {
+      display: flex;
+      justify-content: center;
+      padding: 5px;
+    }
+    .About_About_Content {
+      display: flex;
+      margin-top: 15px;
+      justify-content: space-around;
+
+      .About_AboutIMG {
+        width: 500px;
+        height: 350px;
+      }
+      .About_AboutTextSide {
+        width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        p {
+          text-align: justify;
+          font-family: $standard-font-Hanken-Grotesk;
+        }
+      }
+    }
+  }
+
+  .About_OurTeam {
+    width: 80%;
+    min-height: 200px;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
-    align-items: center;
-    //background-color: $standard-background;
-    width: 100%;
-    min-height: 80vh;
-    font-family: $standard-font-Poiret-One;
+    justify-content: center;
+    align-self: center;
 
-    .About_AboutSide {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        margin: 20px;
-        
-        .About_About_header {
-            display: flex;
-            justify-content: center;
-            padding: 5px;
-        }
-        .About_About_Content {
-            display: flex;
-            margin-top: 15px;
-            justify-content: space-around;
-
-            .About_AboutIMG {
-                width: 500px;
-                height: 350px;
-            }
-            .About_AboutTextSide {
-                width: 500px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 30px;
-                p {
-                    text-align: justify;
-                    font-family: $standard-font-Hanken-Grotesk;
-                }
-            }
-        }
+    .About_OurTeam_header {
+      display: flex;
+      justify-content: center;
+      padding: 5px;
     }
 
-    .About_OurTeam {
-        width: 80%;
-        min-height: 200px;
-        background-color: white;
+    .About_OurContent {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+
+      .About_cardContainer {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-self: center;
-        
+        position: relative;
+        background-color: #141b42ff;
+        border-radius: 10px;
+        height: 280px;
+        width: 200px;
+        overflow: hidden;
+        margin: 15px;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px 3px rgba(29, 28, 28, 0.3);
+        transition: all 0.2s ease-in-out;
 
-        .About_OurTeam_header {
-            display: flex;
-            justify-content: center;
-            padding: 5px;    
+        &:hover {
+          transform: scale(1.05);
         }
-        
-        .About_OurContent {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        
-            .About_cardContainer {
-                display: flex;
-                flex-direction: column;
-                position: relative;
-                background-color: #141b42ff;
-                border-radius: 10px;
-                height: 280px;
-                width: 200px;
-                overflow: hidden;
-                margin: 15px;
-                cursor: pointer;
-                box-shadow: 2px 2px 5px 3px rgba(29, 28, 28, 0.3);
-                transition: all 0.2s ease-in-out;
 
-                &:hover {
-                    transform: scale(1.05);
-                }
-
-                .About_cardContainerReflex {
-                    position: absolute;
-                    width: 20px;
-                    height: 100%;
-                    background-color: white;
-                    opacity: .1;
-                    transform: rotate(-0.35turn);
-                    z-index: 1;
-                    bottom: 100px;
-                    left: 10px;
-                }
-                .About_cardContainerReflexMin {
-                    position: absolute;
-                    width: 4px;
-                    height: 100%;
-                    background-color: white;
-                    opacity: .1;
-                    transform: rotate(-0.35turn);
-                    bottom: 110px;
-                }
-                .About_cardContainerReflexBottom {
-                    position: absolute;
-                    width: 20px;
-                    height: 100%;
-                    background-color: white;
-                    opacity: .1;
-                    transform: rotate(-0.35turn);
-                    z-index: 1;
-                    top: 100px;
-                    right: 10px;
-                }
-                .About_cardContainerReflexMinBottom {
-                    position: absolute;
-                    width: 4px;
-                    height: 100%;
-                    background-color: white;
-                    opacity: .1;
-                    transform: rotate(-0.35turn);
-                    top: 120px;
-                    right: 10px;
-                }
-
-                .About_cardHeader {
-                    font-size: 8px;
-                    display: flex;
-                    justify-content: center;
-                    padding: 10px;
-                    color: white;
-                    margin-top: 10px;
-                    
-                }
-
-                .About_PictureSide {
-                    //background-color: grey;
-                    height: 150px;
-                    padding: 10px;
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 10px;
-                    img {
-                        border-radius: 100%;
-                        width: 150px;
-                        height: 150px;
-                        z-index: 2;
-                    }
-                }
-
-                .About_socialSide {
-                    display: flex;
-                    justify-content: space-evenly;
-                    padding: 20px;
-
-                    img {
-                        width: 30px;
-                        cursor: pointer;
-                    }
-                }
-            }
+        .About_cardContainerReflex {
+          position: absolute;
+          width: 20px;
+          height: 100%;
+          background-color: white;
+          opacity: 0.1;
+          transform: rotate(-0.35turn);
+          z-index: 1;
+          bottom: 100px;
+          left: 10px;
         }
+        .About_cardContainerReflexMin {
+          position: absolute;
+          width: 4px;
+          height: 100%;
+          background-color: white;
+          opacity: 0.1;
+          transform: rotate(-0.35turn);
+          bottom: 110px;
+        }
+        .About_cardContainerReflexBottom {
+          position: absolute;
+          width: 20px;
+          height: 100%;
+          background-color: white;
+          opacity: 0.1;
+          transform: rotate(-0.35turn);
+          z-index: 1;
+          top: 100px;
+          right: 10px;
+        }
+        .About_cardContainerReflexMinBottom {
+          position: absolute;
+          width: 4px;
+          height: 100%;
+          background-color: white;
+          opacity: 0.1;
+          transform: rotate(-0.35turn);
+          top: 120px;
+          right: 10px;
+        }
+
+        .About_cardHeader {
+          font-size: 8px;
+          display: flex;
+          justify-content: center;
+          padding: 10px;
+          color: white;
+          margin-top: 10px;
+        }
+
+        .About_PictureSide {
+          //background-color: grey;
+          height: 150px;
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+          img {
+            border-radius: 100%;
+            width: 150px;
+            height: 150px;
+            z-index: 2;
+          }
+        }
+
+        .About_socialSide {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 20px;
+
+          img {
+            width: 30px;
+            cursor: pointer;
+          }
+        }
+      }
     }
+  }
 }

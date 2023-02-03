@@ -17,7 +17,7 @@ interface Props {
   product: ProductState;
   handleAddCart: (product: ProductState) => void;
   // handleRemoveCart: (product: ProductState) => void;
-  priceFormat: (price: number) => void;
+  priceFormat: (price: number) => string;
 }
 
 const QuickLookModal: React.FC<Props> = ({

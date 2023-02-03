@@ -52,7 +52,7 @@ const initialState: {
     pricemin: 0,
     pricemax: 3000,
     rating: 0,
-    order: 'all',
+    order: '',
   },
 };
 
@@ -89,6 +89,17 @@ export const productSlice = createSlice({
     updateOrderFilter: (state, action) => {
       state.Filters.order = action.payload;
     },
+    resetFilters: (state) => {
+      state.Filters = {
+        ...state,
+        name: '',
+        categories: '',
+        pricemin: 0,
+        pricemax: 3000,
+        rating: 0,
+        order: 'all',
+      };
+    },
   },
 });
 
@@ -102,4 +113,5 @@ export const {
   updatePriceMinFilter,
   updatePriceMaxFilter,
   updateOrderFilter,
+  resetFilters,
 } = productSlice.actions;

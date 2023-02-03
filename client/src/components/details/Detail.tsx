@@ -6,6 +6,12 @@ import { getProductId } from "../../Redux/slice/product/product.slice";
 import { productIdFetch } from "../../Redux/slice/product/ProductController";
 import { Link } from "react-router-dom";
 
+import Ratingcomp from "./Ratingcomp";
+import ShareIcon from "@mui/icons-material/Share";
+import FacebookCom from "./FacebookCom";
+
+import ForumIcon from "@mui/icons-material/Forum";
+
 //.........
 import {
   addProduct,
@@ -15,17 +21,17 @@ import {
 import { toast, Zoom } from "react-toastify";
 
 import {
-  EmailShareButton,
   FacebookShareButton,
   TwitterShareButton,
   WhatsappShareButton,
+  InstapaperShareButton,
   FacebookIcon,
   TwitterIcon,
   WhatsappIcon,
-  EmailIcon,
+  InstapaperIcon,
 } from "react-share";
 
-import { Rating } from "@mui/material";
+import { IconButton, Rating } from "@mui/material";
 
 import star from "../../assets/images/icons/iconStartB.png";
 
@@ -46,8 +52,7 @@ const Detail: React.FC<{}> = () => {
 
   // const currentPageUrl = window.location.href;
   // const currentPageUrl = `https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`
-  const currentPageUrl =
-    "https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop";
+  const currentPageUrl = `https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop${productDetail._id}`;
 
   //-----------------------> ADD TO CART BUTTON <-------------------------
 
@@ -95,9 +100,9 @@ const Detail: React.FC<{}> = () => {
     });
   };
 
-  console.log("ssssssssssssssssssss", productDetail);
   const [principalImage, setPrincipalImage] = useState<string>("");
   const [relatedProduct, setRelatedProduct] = useState<ProductState[]>([]);
+  //console.log("ssssssssssssssssssss", relatedProduct);
 
   useEffect(() => {
     productIdFetch(id).then((res) => {
@@ -105,7 +110,7 @@ const Detail: React.FC<{}> = () => {
       handleFilter(res);
       setPrincipalImage(res.images[0]);
     });
-  }, [id]);
+  }, []);
 
   const handleSetImage = (image: string) => {
     setPrincipalImage(image);
@@ -133,6 +138,19 @@ const Detail: React.FC<{}> = () => {
   return (
     <div className="detail-contain">
       <div className="info-pincipal-detail">
+        {/* <div className="land-images">
+          {productDetail?.images?.map((image) => (
+            <div key={image.slice(5)} className="secondary-images">
+              <img
+                src={image}
+                onMouseOver={() => {
+                  handleSetImage(image);
+                }}
+              />
+            </div>
+          ))}
+        </div> */}
+
         <div className="land-images">
           {productDetail?.images?.map((image) => (
             <div key={image.slice(5)} className="secondary-images">
@@ -145,6 +163,9 @@ const Detail: React.FC<{}> = () => {
             </div>
           ))}
         </div>
+        <div>
+          <FacebookCom />
+        </div>
         <div className="imagen-principal-detail">
           <div className="principal-image">
             <img src={principalImage} alt={productDetail.name} />
@@ -152,24 +173,78 @@ const Detail: React.FC<{}> = () => {
         </div>
         <div className="principal-details">
           <div className="transaction-details">
-            Description:
-            <div>{productDetail.description}</div>
-            <div>{productDetail.name}</div>
-            <div className="rating">
-              <Rating
-                size="large"
-                value={productDetail.rating}
-                precision={0.01}
-                readOnly
-              />
-              <div className="product-rating">{productDetail.rating}</div>
+            <div className="name">{productDetail.name}</div>
+
+            <div className="description-rating-branding">
+              <div className="rating-brand">
+                <div className="rating">
+                  <Rating
+                    className="stars"
+                    size="large"
+                    value={productDetail.rating}
+                    precision={0.1}
+                    readOnly
+                  />
+                  <div className="product-rating">{productDetail.rating}</div>
+                  <div className="brand-nest">
+                    {/* <img src={logo} alt="logo smartNest" /> */}
+                  </div>
+                </div>
+                <div className="resumen">
+                  Brand:<div className="brand"> {productDetail.brand}</div>
+                </div>
+                <div className="resumen">
+                  stock:<div className="brand">{productDetail.stock}</div>
+                </div>
+              </div>
+              <div className="description">
+                Description:
+                <div className="text-description">
+                  {productDetail.description}
+                </div>
+              </div>
             </div>
-            <div className="product-rating">stock: {productDetail.stock}</div>
             <div className="price">
               <div className="transaction-price">
-                USD ${productDetail.price}
+                <div className="link-to-forum">
+                  <Link to="/foro">
+                    <IconButton>
+                      <ForumIcon />
+                    </IconButton>
+                  </Link>
+                </div>
+                <div className="value-price">${productDetail.price}</div>
+                USD
               </div>
+              {/* <button> add to cart</button> */}
               <div className="content-add-car-card-beta">
+                <div className="social-media-buttons-wrap">
+                  <span>
+                    Share <ShareIcon />
+                  </span>
+                  <div className="container-share">
+                    <FacebookShareButton url={currentPageUrl}>
+                      <i className="facebook">
+                        <FacebookIcon size={32} round={true} />
+                      </i>
+                    </FacebookShareButton>
+                    <TwitterShareButton url={currentPageUrl}>
+                      <i className="twitter">
+                        <TwitterIcon size={32} round={true} />
+                      </i>
+                    </TwitterShareButton>
+                    <WhatsappShareButton url={currentPageUrl}>
+                      <i className="whatsapp">
+                        <WhatsappIcon size={32} round={true} />
+                      </i>
+                    </WhatsappShareButton>
+                    <InstapaperShareButton url={currentPageUrl}>
+                      <i className="email">
+                        <InstapaperIcon size={32} round={true} />
+                      </i>
+                    </InstapaperShareButton>
+                  </div>
+                </div>
                 {productDetail?.stock > 0 &&
                 !productsInCart.find((el) => el._id === productDetail._id) ? (
                   <div
@@ -187,58 +262,52 @@ const Detail: React.FC<{}> = () => {
                     <p>Remove</p>
                   </div>
                 ) : (
-                  <div className="add-car-card-beta">
-                    <button disabled>out of Stock</button>
+                  <div
+                    className="add-car-card-beta"
+                    style={{
+                      color: "rgba(20, 20, 20, 0.8)",
+                      backgroundColor: "rgba(229, 229, 229, 1)",
+                      fontFamily: "'Urbanist', sans-serif",
+                      fontWeight: "500",
+                    }}
+                  >
+                    out of Stock
                   </div>
                 )}
-              </div>
-              <div className="social-media-buttons-wrap">
-                <span>Share</span>
-                <div className="container-share">
-                  <FacebookShareButton url={currentPageUrl}>
-                    <i className="facebook">
-                      <FacebookIcon size={32} round={true} />
-                    </i>
-                  </FacebookShareButton>
-                  <TwitterShareButton url={currentPageUrl}>
-                    <i className="twitter">
-                      <TwitterIcon size={32} round={true} />
-                    </i>
-                  </TwitterShareButton>
-                  <WhatsappShareButton url={currentPageUrl}>
-                    <i className="whatsapp">
-                      <WhatsappIcon size={32} round={true} />
-                    </i>
-                  </WhatsappShareButton>
-                  <EmailShareButton url={currentPageUrl}>
-                    <i className="email">
-                      <EmailIcon size={32} round={true} />
-                    </i>
-                  </EmailShareButton>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="text-related-product">Related products</div>
       <div className="section-description">
         <div className="detail-detail">
           {relatedProduct?.map((product) => (
-            <div className="releated-images">
+            <Link
+              className="releated-images"
+              to={`/product/${product._id}`}
+              style={{
+                backgroundImage: `url(${product.images[0]})`,
+                backgroundSize: "60%",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* 
+              <img src={product.images[0]} alt={product.name[0]} />
+            */}
               <p className="detail_product-name">{product.name}</p>
-              <Link to={`/product/${product._id}`}>
-                <img src={product.images[0]} alt={product.name[0]} />
-              </Link>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
+
       <div className="comments-section">
         <div className="comments-box">
           <div
             className="fb-comments"
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
-            data-width="50"
+            data-width="100%"
             data-numposts="5"
           ></div>
           <span
@@ -247,7 +316,10 @@ const Detail: React.FC<{}> = () => {
           ></span>
           comments
         </div>
-        <div className="other-box">other-box</div>
+        <div className="other-box">
+          <p>Rate this product</p>
+          <Ratingcomp id={productDetail._id} />
+        </div>
       </div>
     </div>
   );

@@ -353,8 +353,16 @@ const CardBeta: React.FC<{}> = () => {
                     <p>Remove</p>
                   </div>
                 ) : (
-                  <div className="add-car-card-beta">
-                    <button disabled>out of Stock</button>
+                  <div
+                    className="add-car-card-beta"
+                    style={{
+                      color: "rgba(20, 20, 20, 0.8)",
+                      backgroundColor: "rgba(229, 229, 229, 1)",
+                      fontFamily: "'Urbanist', sans-serif",
+                      fontWeight: "500",
+                    }}
+                  >
+                    out of Stock
                   </div>
                 )}
               </div>

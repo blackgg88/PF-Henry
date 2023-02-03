@@ -92,14 +92,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
+
         @media only screen and (max-width: $medium-screen) {
           height: 8%;
         }
         @media only screen and (max-width: $small-screen) {
         }
 
-        .container-favorite{
+        .container-favorite {
           height: 100%;
           width: 25%;
           display: flex;
@@ -107,20 +107,19 @@
           justify-content: center;
           cursor: pointer;
 
-          &:hover{
+          &:hover {
             scale: 1.1;
           }
 
           //background-color: aqua;
-          img{
+          img {
             height: 100%;
           }
         }
 
-        .quickLook{
+        .quickLook {
           background-color: red;
         }
-
       }
 
       .content-image-card-beta {

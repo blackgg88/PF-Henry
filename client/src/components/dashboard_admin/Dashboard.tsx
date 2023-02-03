@@ -69,13 +69,13 @@ export const Dashboard = () => {
   }, [CategoryQuantity]);
 
   const data = [
-    { name: "24-01-2023", pv: 2400 },
-    { name: "25-01-2023", pv: 1398 },
-    { name: "26-01-2023", pv: 9800 },
-    { name: "27-01-2023", pv: 3908 },
-    { name: "28-01-2023", pv: 4800 },
-    { name: "29-01-2023", pv: 3800 },
-    { name: "30-01-2023", pv: 4300 },
+    { fecha: "25-01-2023", price: 1398 },
+    { fecha: "24-01-2023", price: 2400 },
+    { fecha: "26-01-2023", price: 9800 },
+    { fecha: "27-01-2023", price: 3908 },
+    { fecha: "28-01-2023", price: 4800 },
+    { fecha: "29-01-2023", price: 3800 },
+    { fecha: "30-01-2023", price: 4300 },
   ];
   const data2 = [
     { name: "24-01-2023", uv: 4 },
@@ -100,7 +100,18 @@ export const Dashboard = () => {
     { total: "45.256", date: "26-01-2023" },
     { total: "45.256", date: "27-01-2023" },
     { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
+    { total: "45.256", date: "28-01-2023" },
   ];
+
+  console.log(new Date().toLocaleDateString());
   const COLORS = [
     "#0088FE",
     "#00C49F",
@@ -160,14 +171,12 @@ export const Dashboard = () => {
       </PieChart>
 
       <ComposedChart width={800} height={400} data={data}>
-        <XAxis dataKey='name' />
+        <XAxis dataKey='fecha' />
         <YAxis />
         <Tooltip />
         <Legend />
         <CartesianGrid stroke='#f5f5f5' />
-        <Area type='monotone' dataKey='amt' fill='#8884d8' stroke='#8884d8' />
-        <Bar dataKey='pv' barSize={20} fill='#413ea0' />
-        <Line type='monotone' dataKey='uv' stroke='#ff7300' />
+        <Bar dataKey='price' barSize={20} fill='#413ea0' />
       </ComposedChart>
 
       <AreaChart

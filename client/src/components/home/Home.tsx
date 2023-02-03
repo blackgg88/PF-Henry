@@ -8,15 +8,18 @@ import img_home3 from '../../assets/home_img_3.png';
 import { NewsHome } from '../home_news_fake/NewsHome';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch } from '../../Redux/hook';
+import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { userFetch } from '../../Redux/slice/user/userController';
 import { getUserLogin } from '../../Redux/slice/user/user.slice';
-import { productNews } from './productNews';
-import { ProductState } from '../../Redux/slice/product/product.slice';
+import { getProduct, ProductState } from '../../Redux/slice/product/product.slice';
+import { productFetch } from '../../Redux/slice/product/ProductController';
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
+  const productNews: ProductState[] = useAppSelector(
+    (state) => state.productReducer.Products,
+  ).slice(0, 8);
 
   useEffect(() => {
     const getUserByBd = async () => {
@@ -28,6 +31,14 @@ const Home = () => {
 
     getUserByBd();
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (!productNews.length) {
+      productFetch().then((res) => {
+        dispatch(getProduct(res));
+      });
+    }
+  }, [productNews]);
 
   return (
     <div className='home_wrapper'>
@@ -60,7 +71,7 @@ const Home = () => {
         <div className='home_carrousel_ContainerDiv'>
           <Carrousel>
             {productNews.map((e: ProductState, i) => (
-              <Card key={i} product={e} />
+              <Card key={e._id} product={e} />
             ))}
           </Carrousel>
         </div>

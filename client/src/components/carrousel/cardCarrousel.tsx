@@ -79,8 +79,8 @@ const Card: React.FC<Props> = ({ product }) => {
         <p>{product.description.substring(0, 50).toLowerCase()}...</p>
       </div>
       <div className='HomeCard_RatingContainer'>
-        {[...new Array(Math.floor(product.rating))].map((e) => {
-          return <img src={iconStarB} alt='' />;
+        {[...new Array(Math.floor(product.rating))].map((e, i) => {
+          return <img src={iconStarB} alt='' key={i} />;
         })}
         <img src={iconStarM} alt='' />
       </div>

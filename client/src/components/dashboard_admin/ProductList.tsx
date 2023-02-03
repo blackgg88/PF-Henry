@@ -23,9 +23,9 @@ const ProductList = (props: Props) => {
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
             @ts-ignore */}
             {/* para que no tire errores le ponemos resource en vez de basePath */}
-            <EditButton resource='/products' />
+            <EditButton resource='products' />
             
-            <DeleteButton resource='/products' />
+            <DeleteButton resource='products' />
         </Datagrid>
 
     </List>

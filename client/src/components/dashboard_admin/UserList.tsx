@@ -23,9 +23,9 @@ const UserList = (props: Props) => {
         <EmailField source='email' />
 
         {/* para que no tire errores le ponemos resource en vez de basePath */}
-        <EditButton resource='/users' />
+        <EditButton resource='users' />
 
-        <DeleteButton resource='/users' />
+        <DeleteButton resource='users' />
       </Datagrid>
     </List>
   );

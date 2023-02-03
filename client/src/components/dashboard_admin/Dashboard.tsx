@@ -24,25 +24,28 @@ import {
   ComposedChart,
   Area,
   Bar,
+  AreaChart,
 } from "recharts";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import dataProvider from "./dataProvider.js";
+import { useAppDispatch, useAppSelector } from "../../Redux/hook.js";
+import { ProductQuantityState, getCategoryQuantity } from  "../../Redux/slice/product/product.slice";
+import { productQuantity } from "../../Redux/slice/product/ProductController"
 
 export const Dashboard = () => {
   const [usersCount, setUsersCount] = useState(0);
   const [productsCount, setProductsCount] = useState(0);
   const [purchasesCount, setPurchasesCount] = useState(0);
 
+  const dispatch = useAppDispatch();
+
+  const CategoryQuantity : ProductQuantityState[] = useAppSelector(
+    state => state.productReducer.CategoryQuantity
+  );
+
   useEffect(() => {
     const fetchData = async () => {
-      // const usersResponse = await dataProvider.getList('users');
-      // const productsResponse = await dataProvider.getList('products');
-      // const purchasesResponse = await dataProvider.getList('purchases');
-
-      // setUsersCount(usersResponse.data.length);
-      // setProductsCount(productsResponse.data.length);
-      // setPurchasesCount(purchasesResponse.data.length);
       const dataUsers = await fetch("http://localhost:3001/users").then((res) =>
         res.json()
       );
@@ -52,24 +55,37 @@ export const Dashboard = () => {
       const dataPurchases = await fetch("http://localhost:3001/checkout").then(
         (res) => res.json()
       );
-
-      // console.log(data.length);
       setUsersCount(dataUsers.length);
       setProductsCount(dataProducts.length);
       setPurchasesCount(dataPurchases.length);
     };
+    fetchData()
 
-    fetchData();
+    productQuantity()?.then(response => {
+      dispatch(getCategoryQuantity(response));
+    })
   }, []);
 
+  console.log(CategoryQuantity)
+  
+
   const data = [
-    { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-    { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
+    { name: '24-01-2023', pv: 2400 },
+    { name: '25-01-2023', pv: 1398 },
+    { name: '26-01-2023', pv: 9800 },
+    { name: '27-01-2023', pv: 3908 },
+    { name: '28-01-2023', pv: 4800 },
+    { name: '29-01-2023', pv: 3800 },
+    { name: '30-01-2023', pv: 4300 },
+  ];
+  const data2 = [
+    { name: '24-01-2023', uv: 4 },
+    { name: '25-01-2023', uv: 3 },
+    { name: '26-01-2023', uv: 2 },
+    { name: '27-01-2023', uv: 2 },
+    { name: '28-01-2023', uv: 1 },
+    { name: '29-01-2023', uv: 2 },
+    { name: '30-01-2023', uv: 3 },
   ];
   const dataCategories = [
     { name: "Connectify and Control", value: 400 },
@@ -127,17 +143,17 @@ export const Dashboard = () => {
         </Card>
       </CardContent>
 
-      <PieChart width={400} height={400}>
+      <PieChart width={600} height={400}>
         <Pie
-          data={dataCategories}
+          data={CategoryQuantity}
           cx={200}
           cy={200}
           innerRadius={60}
           outerRadius={80}
           fill="#8884d8"
-          dataKey="value"
+          dataKey="quantity"
         >
-          {dataCategories.map((entry, index) => (
+          {CategoryQuantity.map((entry, index) => (
             <Cell key={index} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -145,16 +161,7 @@ export const Dashboard = () => {
         <Legend align="right" layout="vertical" verticalAlign="middle" />
       </PieChart>
 
-      <LineChart width={500} height={300} data={data}>
-        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-      </LineChart>
-
-      <ComposedChart width={730} height={250} data={data}>
+      <ComposedChart width={1000} height={400} data={data}>
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
@@ -164,6 +171,24 @@ export const Dashboard = () => {
         <Bar dataKey="pv" barSize={20} fill="#413ea0" />
         <Line type="monotone" dataKey="uv" stroke="#ff7300" />
       </ComposedChart>
+
+      <AreaChart
+          width={1000}
+          height={400}
+          data={data2}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+        </AreaChart>
     </Card>
   );
 };

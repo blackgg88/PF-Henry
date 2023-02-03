@@ -1,5 +1,5 @@
 import React from 'react';
-import { Admin, Resource, Layout  } from 'react-admin';
+import { Admin, Resource, Layout, useNotify } from "react-admin";
 import UserIcon from "@mui/icons-material/Group";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
@@ -18,8 +18,17 @@ import { Dashboard } from './Dashboard';
 import { MyAppBar } from './MyAppBar';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//             @ts-ignore
+// @ts-ignore
 import dataProvider from './dataProvider';
+
+// const NotifyButton = () => {
+//   const notify = useNotify();
+//   const handleClick = () => {
+//     notify(`Comment approved`, { type: "success" });
+//   };
+//   return <button onClick={handleClick}>Notify</button>;
+// };
+
 const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />;
 
 const AppAdmin = () => {
@@ -36,6 +45,7 @@ const AppAdmin = () => {
         />
         <Resource name='purchases' list={PurchaseList} icon={PaidIcon}/>
         <Resource name='posts' list={PostList} create={PostCreate} edit={PostEdit} icon={TextSnippetIcon} />
+        {/* <MyNotification /> */}
       </Admin>
     </div>
   );

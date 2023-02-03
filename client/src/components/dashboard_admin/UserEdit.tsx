@@ -8,6 +8,8 @@ interface Props {
 }
 
 const UserEdit = (props: Props) => {
+  console.log(props);
+  
   return (
     <Edit title='Edit User' {...props}>
         <SimpleForm>

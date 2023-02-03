@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   List,
   Datagrid,
@@ -6,12 +6,13 @@ import {
   EmailField,
   EditButton,
   DeleteButton,
-} from 'react-admin';
+} from "react-admin";
 
 interface Props {
   id: string;
   userName: string;
   email: string;
+  isActive: boolean;
 }
 
 const UserList = (props: Props) => {
@@ -21,11 +22,11 @@ const UserList = (props: Props) => {
         <TextField source='_id' />
         <TextField source='userName' />
         <EmailField source='email' />
-
-        {/* para que no tire errores le ponemos resource en vez de basePath */}
-        <EditButton resource='/users' />
-
-        <DeleteButton resource='/users' />
+        <TextField source='isActive' />
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        @ts-ignore */}
+        <EditButton basePath='users' />
+        <DeleteButton resource='users' />
       </Datagrid>
     </List>
   );

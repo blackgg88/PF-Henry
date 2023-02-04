@@ -83,6 +83,11 @@
       box-shadow: 3px 2px 1px lightgray;
       margin-top: 9px;
       margin-bottom: 9px;
+
+      display: flex;
+      flex-direction: column;
+      // justify-content: space-around;
+      align-items: center;
     }
 
     .primerDiv{

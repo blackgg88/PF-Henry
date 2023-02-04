@@ -32,6 +32,44 @@ export const Dashboard = () => {
     payments,
   ]: any = useDashboard();
 
+  const data = [
+    {
+      "date": "21-1-2023",
+      "TotalSales": 254395.63,
+      "TotalCount": 3
+    },
+    {
+      "date": "25-1-2023",
+      "TotalSales": 109859.70,
+      "TotalCount": 7
+    },
+    {
+      "date": "26-1-2023",
+      "TotalSales": 549847.6,
+      "TotalCount": 15
+    },
+    {
+      "date": "30-1-2023",
+      "TotalSales": 78577.98,
+      "TotalCount": 5
+    },
+    {
+      "date": "31-1-2023",
+      "TotalSales": 549847.6,
+      "TotalCount": 10
+    },
+    {
+      "date": "01-2-2023",
+      "TotalSales": 949847.6,
+      "TotalCount": 16
+    },
+    {
+      "date": "02-2-2023",
+      "TotalSales": 1549847.6,
+      "TotalCount": 24
+    },
+  ]
+
   return (
     <Card className='main'>
       <CardHeader title='Welcome to the administration' />
@@ -66,27 +104,6 @@ export const Dashboard = () => {
       
       <div className='main_graphics'>
         <div className='primerDiv'>
-          <div className='PieChart'>
-            <h2>Products by category:</h2>
-            <PieChart width={500} height={330} >
-              <Pie
-                data={CategoryQuantity}
-                cx={200}
-                cy={200}
-                innerRadius={40}
-                outerRadius={80}
-                fill='#8884d8'
-                dataKey='quantity'
-              >
-                {CategoryQuantity.map((entry: any, index: any) => (
-                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend align='right' layout='vertical' verticalAlign='middle' />
-            </PieChart>
-          </div>
-
           <div className='ComposedChart'>
             <h2>Total sales per day:</h2>
             <ComposedChart
@@ -102,12 +119,34 @@ export const Dashboard = () => {
               <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
             </ComposedChart>
           </div>
+          <div className='PieChart'>
+            <h2>Products by category:</h2>
+            <PieChart width={500} height={330} className='PieChart_graphic'>
+              <Pie
+                data={CategoryQuantity}
+                cx={200}
+                cy={200}
+                innerRadius={40}
+                outerRadius={80}
+                fill='#8884d8'
+                dataKey='quantity'
+                className='pie'
+              >
+                {CategoryQuantity.map((entry: any, index: any) => (
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend align='right' layout='vertical' verticalAlign='middle' height={80} width={200} />
+            </PieChart>
+          </div>
+
         </div>
         
         <div className='segundoDiv'>
           <div className='AreaChart'>
             <h2>Products sold per day:</h2>
-            <AreaChart width={1000} height={400} data={payments} >
+            <AreaChart width={1500} height={400} data={payments} >
               <CartesianGrid strokeDasharray='8 8' />
               <XAxis dataKey='date' />
               <YAxis />

@@ -33,11 +33,9 @@ const Home = () => {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    if (!productNews.length) {
-      productFetch().then((res) => {
-        dispatch(getProduct(res));
-      });
-    }
+    productFetch().then((res) => {
+      dispatch(getProduct(res));
+    });
   }, [productNews]);
 
   return (

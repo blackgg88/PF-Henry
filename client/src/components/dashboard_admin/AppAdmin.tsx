@@ -14,7 +14,7 @@ import PurchaseList from './PurchaseList';
 import PostList from './foro/PostList';
 import PostCreate from './foro/PostCreate';
 import PostEdit from './foro/PostEdit';
-import { Dashboard } from './Dashboard';
+import { Dashboard } from './Dashboard/Dashboard';
 import { MyAppBar } from './MyAppBar';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

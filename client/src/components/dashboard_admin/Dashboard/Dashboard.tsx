@@ -57,57 +57,59 @@ export const Dashboard = () => {
         </Card>
       </CardContent>
       
-      <div className='PieChart'>
-      <h2>Products by category:</h2>
-      <PieChart width={500} height={300} >
-        <Pie
-          data={CategoryQuantity}
-          cx={200}
-          cy={200}
-          innerRadius={40}
-          outerRadius={80}
-          fill='#8884d8'
-          dataKey='quantity'
+      <div className='main_graphics'>
+        <div className='PieChart'>
+        <h2>Products by category:</h2>
+        <PieChart width={500} height={300} >
+          <Pie
+            data={CategoryQuantity}
+            cx={200}
+            cy={200}
+            innerRadius={40}
+            outerRadius={80}
+            fill='#8884d8'
+            dataKey='quantity'
+          >
+            {CategoryQuantity.map((entry: any, index: any) => (
+              <Cell key={index} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend align='right' layout='vertical' verticalAlign='middle' />
+        </PieChart>
+        </div>
+
+        <div className='ComposedChart'>
+        <h2>Total sales per day:</h2>
+        <ComposedChart
+          width={1200}
+          height={400}
+          data={payments}
         >
-          {CategoryQuantity.map((entry: any, index: any) => (
-            <Cell key={index} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-        <Legend align='right' layout='vertical' verticalAlign='middle' />
-      </PieChart>
-      </div>
+          <XAxis dataKey='date' />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <CartesianGrid stroke='#f5f5f5' />
+          <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
+        </ComposedChart>
+        </div>
 
-      <div className='ComposedChart'>
-      <h2>Total sales per day:</h2>
-      <ComposedChart
-        width={800}
-        height={400}
-        data={payments}
-      >
-        <XAxis dataKey='date' />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <CartesianGrid stroke='#f5f5f5' />
-        <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
-      </ComposedChart>
-      </div>
-
-      <div className='AreaChart'>
-      <h2>Products sold per day:</h2>
-      <AreaChart width={800} height={400} data={payments} >
-        <CartesianGrid strokeDasharray='8 8' />
-        <XAxis dataKey='date' />
-        <YAxis />
-        <Tooltip />
-        <Area
-          type='monotone'
-          dataKey='TotalCount'
-          stroke='#8884d8'
-          fill='#8884d8'
-        />
-      </AreaChart>
+        <div className='AreaChart'>
+        <h2>Products sold per day:</h2>
+        <AreaChart width={1500} height={400} data={payments} >
+          <CartesianGrid strokeDasharray='8 8' />
+          <XAxis dataKey='date' />
+          <YAxis />
+          <Tooltip />
+          <Area
+            type='monotone'
+            dataKey='TotalCount'
+            stroke='#8884d8'
+            fill='#8884d8'
+          />
+        </AreaChart>
+        </div>
       </div>
     </Card>
   );

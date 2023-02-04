@@ -20,7 +20,8 @@ import { MyAppBar } from './MyAppBar';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //             @ts-ignore
 import dataProvider from './dataProvider';
-const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />;
+
+const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} style={{backgroundColor:` #1aa996`}} />;
 // console.log(dataProvider);
 
 const AppAdmin = () => {

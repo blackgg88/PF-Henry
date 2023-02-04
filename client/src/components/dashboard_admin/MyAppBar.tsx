@@ -5,6 +5,10 @@ import { NavLink } from 'react-router-dom';
 
 const darkTheme = {
     palette: { mode: 'dark' as const },
+    // sidebar: {
+    //     width: 300, // The default value is 240
+    //     closedWidth: 70,// The default value is 55
+    // },
 };
 
 export const MyAppBar = (props: any) => (

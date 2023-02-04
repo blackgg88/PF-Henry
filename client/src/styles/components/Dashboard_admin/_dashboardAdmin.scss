@@ -61,11 +61,40 @@
       }
     }
   }
+  .main_graphics{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    width: 96%;
 
-  .PieChart,
-  .ComposedChart,
-  .AreaChart {
-  border: 1px solid darkred;
-    
+    .PieChart{
+      grid-column: 3 / 3;
+      grid-row: 1;
+      padding: 9px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      box-shadow: 3px 2px 1px lightgray;
+    }
+    .ComposedChart{
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      margin-bottom: 600px;
+      padding: 9px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      box-shadow: 3px 2px 1px lightgray;
+    }
+    .AreaChart {
+      grid-column: 1/4;
+      grid-row: 2;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding: 9px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      box-shadow: 3px 2px 1px lightgray;
+    }
   }
+  
 }

@@ -1035,142 +1035,142 @@ button.es-button {
             <v:fill type="tile" color="#ffffff"></v:fill>
           </v:background>
         <![endif]-->
-            <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
-                <tbody>
-                    <tr>
-                        <td class="esd-email-paddings" valign="top">
-                            <table cellpadding="0" cellspacing="0" class="esd-header-popover es-header" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" align="center">
-                                            <table bgcolor="#fff" class="es-header-body" align="center" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff;">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure esdev-adapt-off es-p20" align="left">
-                                                            <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="esdev-mso-td" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td width="415" class="es-m-p0r esd-container-frame" valign="top" align="center">
-                                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href="href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app"><img src=https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                        <td width="20"></td>
-                                                                        <td class="esdev-mso-td" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" align="right">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td width="125" align="left" class="esd-container-frame">
-                                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank" href="https://mercadopago.com"><img class="adapt-img" src="https://chida.tur.ar/wp-content/uploads/2020/01/MERCADOPAGO.png" alt="mercadopago-logo" style="display: block;" width="125" title="mercadopago-logo"></a></td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
-                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td width="560" class="esd-container-frame" align="center" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-text">
-                                                                                            <h1>Your order is on its way!</h1>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-text es-p5t es-p5b">
-                                                                                            <p>Your order has shipped. Here's some information on when to expect your package and how to track it along the way.</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table cellpadding="0" cellspacing="0" class="es-content" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td class="esd-stripe" align="center">
-                                            <table bgcolor="#ffffff" class="es-content-body" align="center" cellpadding="0" cellspacing="0" width="600">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
-                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td width="560" class="esd-container-frame" align="center" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-text">
-                                                                                            <h2 style="line-height: 150%;">ORDER # ${
-                                                                                              payment.id
-                                                                                            }</h2>
-                                                                                            <p style="line-height: 150%;">${formatDate(
-                                                                                              payment.date,
-                                                                                            )}</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td align="left" class="esd-block-text es-m-txt-c es-p20t">
-                                                                                            <p style="color: #a0937d;">ITEMS ORDERED</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-spacer es-p5t es-p5b" style="font-size:0">
-                                                                                            <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td style="border-bottom: 1px solid #a0937d; background: none; height: 1px; width: 100%; margin: 0px;"></td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                            </table>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    <br>
+        <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td class="esd-email-paddings" valign="top">
+                    <table cellpadding="0" cellspacing="0" class="esd-header-popover es-header" align="center">
+                        <tbody>
+                            <tr>
+                                <td class="esd-stripe" align="center">
+                                    <table bgcolor="#fff" class="es-header-body" align="center" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff;">
+                                        <tbody>
+                                            <tr>
+                                                <td class="esd-structure esdev-adapt-off es-p20" align="left">
+                                                    <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="esdev-mso-td" valign="top">
+                                                                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="415" class="es-m-p0r esd-container-frame" valign="top" align="center">
+                                                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href><img src=https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td width="20"></td>
+                                                                <td class="esdev-mso-td" valign="top">
+                                                                    <table cellpadding="0" cellspacing="0" align="right">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="125" align="left" class="esd-container-frame">
+                                                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank" href="https://mercadopago.com"><img class="adapt-img" src="https://chida.tur.ar/wp-content/uploads/2020/01/MERCADOPAGO.png" alt="mercadopago-logo" style="display: block;" width="125" title="mercadopago-logo"></a></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
+                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="560" class="esd-container-frame" align="center" valign="top">
+                                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" class="esd-block-text">
+                                                                                    <h1>Your order is on its way!</h1>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" class="esd-block-text es-p5t es-p5b">
+                                                                                    <p>Your order has shipped. Here's some information on when to expect your package and how to track it along the way.</p>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" class="es-content" align="center">
+                        <tbody>
+                            <tr>
+                                <td class="esd-stripe" align="center">
+                                    <table bgcolor="#ffffff" class="es-content-body" align="center" cellpadding="0" cellspacing="0" width="600">
+                                        <tbody>
+                                            <tr>
+                                                <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
+                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="560" class="esd-container-frame" align="center" valign="top">
+                                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" class="esd-block-text">
+                                                                                    <h2 style="line-height: 150%;">ORDER # ${
+                                                                                      payment.id
+                                                                                    }</h2>
+                                                                                    <p style="line-height: 150%;">${formatDate(
+                                                                                      payment.date,
+                                                                                    )}</p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="left" class="esd-block-text es-m-txt-c es-p20t">
+                                                                                    <p style="color: #a0937d;">ITEMS ORDERED</p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" class="esd-block-spacer es-p5t es-p5b" style="font-size:0">
+                                                                                    <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="border-bottom: 1px solid #a0937d; background: none; height: 1px; width: 100%; margin: 0px;"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <br>
 
                                                         ${renderItems(payment.products)}
 

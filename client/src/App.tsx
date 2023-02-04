@@ -21,6 +21,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Page404 from './components/page404/page404';
 import About from './components/about/About';
+import { Foro_Profile } from './components/foro/components/Foro_Profile/Foro_Profile';
 
 function App() {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
         <Route path='/checkout' element={<Form />} />
         <Route path='/foro' element={<ForoHome />} />
         <Route path='*' element={<Page404 />} />
+        <Route path='/foro/profile/:email' element={<Foro_Profile/>} />
       </Routes>
       {!['/admin', '/foro'].includes(location.pathname) && <Footer />}
     </>

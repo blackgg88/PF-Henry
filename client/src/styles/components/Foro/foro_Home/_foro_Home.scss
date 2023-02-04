@@ -1,6 +1,6 @@
 .foro_home_container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: calc(
     100vh - $navbar-height - $navbar-height-maring-top -
       $navbar-height-maring-button

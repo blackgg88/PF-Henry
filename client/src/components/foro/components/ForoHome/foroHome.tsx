@@ -5,6 +5,7 @@ import Foro_editPost from "../EditPost/Foro_editPost";
 import FilterPanel from "../FIlter_panel";
 import Foro_createPost from "../Foro_createPost";
 import { useAuth0 } from '@auth0/auth0-react';
+import { Foro_Menu } from "../Foro_Menu/Foro_Menu";
 //---------------
 
 export default function ForoHome() {
@@ -57,6 +58,9 @@ export default function ForoHome() {
           onClose={setEditOpen}
         />
       )}
+
+      <Foro_Menu />
+
       <div className='foro_posts_container'>
         {
           isAuthenticated&&

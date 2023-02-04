@@ -93,6 +93,8 @@ export function useForoHome() {
       });
   }, [addLike, addPost, addEdit, addComment]);
 
+  
+
   const handlerChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentary({
       content: e.target.value,

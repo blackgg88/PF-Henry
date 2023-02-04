@@ -40,7 +40,6 @@ export const Dashboard_user = () => {
   const email = userByBd.email;
   const verified = userByBd.email_verified;
 
-  console.log(userByBd)
 
   useEffect(() => {
     const handleGetItems = async () => {

@@ -50,6 +50,8 @@ export const Foro_Profile = () => {
     const [postByUser, setPostByUser] = useState([])
     const [bannerChange, setBannerChange] = useState<string>('')
     const [imageChange, setImageChange] = useState<string>('')
+    const [onLoadPost, setOnLoadPost] = useState<boolean>(false)
+    
     const emailProfile = useParams()
     const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
     const dispatch = useAppDispatch()
@@ -89,7 +91,8 @@ export const Foro_Profile = () => {
         },
       ]: any = useForoHome();
     
-    useEffect( ()=> {
+    // GET User information
+    useEffect( ()=> { 
         if (emailProfile.email) {
             getUserByEmail(emailProfile.email)
             .then( res => {
@@ -97,16 +100,19 @@ export const Foro_Profile = () => {
             })
         }
     }, [refresh, addLike, addPost, addEdit, addComment, imageChange])
-
+ 
+    // GET Post user
     useEffect( ()=> {
         if (emailProfile.email) {
             getAllPostUser(emailProfile.email)
             .then( res => {
                 setPostByUser(res)
+                setOnLoadPost(true)
             })
         }
     }, [refresh, addLike, addPost, addEdit, addComment])
     
+    // UPDATE BANNER
     useEffect( ()=> {
         if (bannerChange) {
             putProfileBanner(userByBd.email, bannerChange)
@@ -132,6 +138,7 @@ export const Foro_Profile = () => {
         }
     }, [bannerChange])
 
+    // UPDATE Profile Pic
     useEffect( ()=> {
         if (imageChange) {
             putProfilePicture(userByBd.email, imageChange)
@@ -199,7 +206,6 @@ export const Foro_Profile = () => {
                         {
                             !User.firstName&&<h1 className='Foro_Profile_NameDefault'>{User.username}</h1>
                         }
-                        
                     </div>
 
                     <div className='Foro_Profile_ContentSide'>
@@ -213,8 +219,6 @@ export const Foro_Profile = () => {
                         </div>
                     </div>
                 </div>
-
-
             {
                 postByUser.length?
                 postByUser?.map((post: any) => (
@@ -242,7 +246,12 @@ export const Foro_Profile = () => {
                         category={post.category}
                         
                     />
-                )):<img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
+                )):
+                !onLoadPost?
+                <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />:
+                <div className='foro_profile_NotPost'>
+                    <p>{User.username} has not published any post yet</p>
+                </div>
             }
             </div>
         </div>

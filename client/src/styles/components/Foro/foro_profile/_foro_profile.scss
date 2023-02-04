@@ -52,11 +52,55 @@
                         width: 100%;
                         height: 200px;
                         position: relative;
+
+                        .Foro_Baner_Input {
+                            display: none;
+                        }
+
+                        .editProfilePicButton {
+                            background-color: white;
+                            position: absolute;
+                            z-index: 3;
+                            width: 28px;
+                            height: 28px;
+                            left: 150px;
+                            bottom: 20px;
+                            border-radius: 100%;
+                            padding: 3px;
+                            opacity: .6;
+                            cursor: pointer;
+                            transition: all .2s ease-in;
+
+                            &:hover {
+                                opacity: .8;
+                            }
+                        }
+
+                        .editButton {
+                            background-color: white;
+                            position: absolute;
+                            z-index: 3;
+                            width: 28px;
+                            height: 28px;
+                            top: 10px;
+                            right: 10px;
+                            border-radius: 100%;
+                            padding: 3px;
+                            opacity: .6;
+                            cursor: pointer;
+                            transition: all .2s ease-in;
+
+                            &:hover {
+                                opacity: .8;
+                            }
+                        }
+
                         img {
                             width: 100%;
                             height: 100%;
                             border-top-left-radius: 5px;
                             border-top-right-radius: 5px;
+                            z-index: 2;
                         }
                         .profilePic {
                             border-radius: 100%;
@@ -67,6 +111,7 @@
                             left: 20px;
                             cursor: pointer;
                             background-color: $standard-color-blue;
+                            z-index: 2;
                         }
                         .profilePicDefault {
                             border-radius: 100%;
@@ -78,6 +123,7 @@
                             left: 20px;
                             cursor: pointer;
                             background-color: $standard-color-blue;
+                            z-index: 2;
                         }
                     }
     

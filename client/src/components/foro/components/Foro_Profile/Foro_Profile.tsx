@@ -2,14 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { Foro_Menu } from '../Foro_Menu/Foro_Menu'
 import defaultBanne from '../../../../assets/images/SmartBackground.jpg'
 import { useParams } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../../../Redux/hook';
+import { userInterface } from '../../../../Redux/slice/user/user.slice';
 import PostIcon from '../../../../assets/foro/postsIcon.svg'
+import edit from '../../../../assets/foro/edit.svg'
 import commentIcon from '../../../../assets/foro/commentsIcon.svg'
 import { useForoHome } from '../ForoHome/hooks/useForoHome';
 import { Foro_card } from '../Foro_card';
 import { getUserByEmail } from '../../../../../helpers/user/getUserByEmail';
 import { getAllPostUser } from '../../../../../helpers/user/getAllPostUser';
 import logoDiscord from '../../../../assets/discord.svg';
+import { changePicture } from '../../../../Redux/slice/user/user.slice';
 import Foro_editPost from '../EditPost/Foro_editPost';
+import { uploadImage } from '../../../../../helpers/foro/uploadImage';
+import { putProfileBanner } from '../../../../../helpers/user/putProfileBanner';
+import Swal from "sweetalert2";
+import { putProfilePicture } from '../../../../../helpers/user/putProfilePicture';
 
 interface UserProfile {
     _id: string
@@ -21,6 +29,7 @@ interface UserProfile {
     role: string
     posts: string[]
     comments: string[]
+    banner: string
 }
 
 
@@ -33,12 +42,17 @@ export const Foro_Profile = () => {
         email: '',
         comments: [],
         picture: '',
+        banner: '',
         posts: [],
         role: ''
     })
     const [refresh, setRefresh] = useState<boolean>(false)
     const [postByUser, setPostByUser] = useState([])
+    const [bannerChange, setBannerChange] = useState<string>('')
+    const [imageChange, setImageChange] = useState<string>('')
     const emailProfile = useParams()
+    const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+    const dispatch = useAppDispatch()
     
 
     const [
@@ -82,7 +96,7 @@ export const Foro_Profile = () => {
                 setUser(res)
             })
         }
-    }, [refresh, addLike, addPost, addEdit, addComment])
+    }, [refresh, addLike, addPost, addEdit, addComment, imageChange])
 
     useEffect( ()=> {
         if (emailProfile.email) {
@@ -93,7 +107,57 @@ export const Foro_Profile = () => {
         }
     }, [refresh, addLike, addPost, addEdit, addComment])
     
-    handlerConsole()
+    useEffect( ()=> {
+        if (bannerChange) {
+            putProfileBanner(userByBd.email, bannerChange)
+            .then( res => res.json)
+            .then( res => {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "bottom-right",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener("mouseenter", Swal.stopTimer);
+                      toast.addEventListener("mouseleave", Swal.resumeTimer);
+                    },
+                  });
+                Toast.fire({
+                    icon: "success",
+                    title: "You have changed your Banner picture",
+                  });
+                  setRefresh(!refresh)
+            })
+        }
+    }, [bannerChange])
+
+    useEffect( ()=> {
+        if (imageChange) {
+            putProfilePicture(userByBd.email, imageChange)
+            .then(res => res.json())
+            .then(res => {
+              
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+              Toast.fire({
+                icon: "success",
+                title: "You have changed your profile picture",
+              });
+            })
+            dispatch(changePicture({picture: imageChange}))
+            setRefresh(!refresh)
+          }
+    }, [imageChange])
     
   return (
     <div className='Foro_Profile_ALLContainer'>
@@ -106,7 +170,22 @@ export const Foro_Profile = () => {
             <div className='Foro_Profile_PostSide'>
                 <div className='Foro_Profile_Container'>
                     <div className='Foro_Profile_Banner_PicturesSide'>
-                        <img src={defaultBanne} alt="banner" />
+                        {
+                            userByBd.email==emailProfile.email&&
+                            <label htmlFor="file-input" className="Modal_custom-file-upload">
+                                <img className='editButton' src={edit} alt="edit" />
+                            </label>
+            
+                         }
+                            <input onChange={(e)=> uploadImage(e, setBannerChange)} className='Foro_Baner_Input' id="file-input" type="file"></input>
+                         {
+                            userByBd.email==emailProfile.email&&
+                            <label htmlFor="profile-input" className="Modal_custom-file-upload">
+                                <img className='editProfilePicButton' src={edit} alt="edit" />
+                            </label>
+                         }
+                            <input onChange={(e)=> uploadImage(e, setImageChange)} className='Foro_Baner_Input' id="profile-input" type="file"></input>
+                        <img src={User.banner?User.banner:defaultBanne} alt="banner" />
                         <img className={User.picture?'profilePic':'profilePicDefault'} src={User.picture?User.picture:logoDiscord} alt='profilePic' />
                     </div>
 
@@ -135,7 +214,7 @@ export const Foro_Profile = () => {
                     </div>
                 </div>
 
-                
+
             {
                 postByUser.length?
                 postByUser?.map((post: any) => (
@@ -166,20 +245,7 @@ export const Foro_Profile = () => {
                 )):<img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
             }
             </div>
-
-            <div className='foro_Profile_ProfileSide'>
-              
-            </div>
-
         </div>
-        {editOpen && (
-        <Foro_editPost
-          onSave={handlerSubmitEdit}
-          id={editPost.id}
-          content={editPost.content}
-          onClose={setEditOpen}
-        />
-      )}
     </div> 
   )
 }

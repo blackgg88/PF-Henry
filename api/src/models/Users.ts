@@ -27,6 +27,9 @@ export class User {
   @prop({ type: String, trim: true })
   picture: string;
 
+  @prop({type: String, required: false, default: ''})
+  banner: string
+
   @prop({ type: Boolean, default: true })
   isActive: boolean;
 

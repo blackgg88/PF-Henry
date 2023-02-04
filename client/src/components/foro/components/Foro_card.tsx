@@ -1,20 +1,17 @@
-import likeLogo from "../../../assets/foro/like-red.png";
-//import commentLogo from "../../../assets/foro/comment.png";
-import editLogo from "../../../assets/foro/edit.png";
-import trashlogo from "../../../assets/foro/trash.png";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import Foro_comments from "./Foro_comments";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { postCommentsPosts } from "../../../../helpers/foro/postCommentsPosts";
-import { useAppDispatch, useAppSelector } from '../../../Redux/hook';
 
+import { useAppSelector } from '../../../Redux/hook';
 import likeNo from '../../../assets/foro/heart-svgrepo-com.svg';
 import likeYes from '../../../assets/foro/heart-svgrepo-com (1).svg';
 import edit from '../../../assets/foro/edit-svgrepo-com.svg';
 import deleteIcon from '../../../assets/foro/trash-delete-remove-clean-svgrepo-com.svg';
 import commentLogo from '../../../assets/foro/comment-svgrepo-com.svg';
 import { NavLink } from "react-router-dom";
+import { notification } from '../../../../helpers/foro/notification'
 
 interface Comment {
   _id: string;
@@ -73,8 +70,7 @@ export function Foro_card({
   likeCommentHandler,
   category
 }: Foro_Card) {
-  const { user } = useAuth0();
-  const [emailLoged, setEmailLoged] = useState<string>('')
+  const { user, isAuthenticated } = useAuth0();
   const userByBd = useAppSelector((state) => state.userReducer.userState);
   
   const openComment = (id:string)=> {
@@ -89,6 +85,13 @@ export function Foro_card({
   useEffect(()=>{
     openComment(id)
   }, [])
+
+  const commentValidation = () => {
+      notification.fire({
+        icon: 'error',
+        text: 'Only users can comment this post'
+      })
+  }
 
 
   return (
@@ -147,7 +150,7 @@ export function Foro_card({
               src={likes.includes(user.email)?likeYes:likeNo}
               alt='like'
             />:<img
-            onClick={() => alert('Only users can like this post')}
+            onClick={() => notification.fire({ icon: 'error', text: 'Only users can like this post'})}
             className='foro_card_buttonLike'
             src={likeNo}
             alt='like'
@@ -156,7 +159,7 @@ export function Foro_card({
             
             <p>{comments.filter(e=> e.deleted==false).length}</p>
             <img
-              onClick={()=> openComment(id)}
+              onClick={isAuthenticated ? ()=> openComment(id):()=>commentValidation()}
               className='foro_card_buttonComment'
               src={commentLogo}
               alt='comment'

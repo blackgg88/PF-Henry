@@ -19,6 +19,7 @@ import { putProfileBanner } from '../../../../../helpers/user/putProfileBanner';
 import Swal from "sweetalert2";
 import { putProfilePicture } from '../../../../../helpers/user/putProfilePicture';
 import { UserByID } from '../../../../../helpers/user/getUserByID'
+import {notification} from '../../../../../helpers/foro/notification'
 
 interface UserProfile {
     _id: string
@@ -120,23 +121,15 @@ export const Foro_Profile = () => {
             putProfileBanner(userByBd.email, bannerChange)
             .then( res => res.json)
             .then( res => {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "bottom-right",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener("mouseenter", Swal.stopTimer);
-                      toast.addEventListener("mouseleave", Swal.resumeTimer);
-                    },
-                  });
-                Toast.fire({
+                notification.fire({
                     icon: "success",
                     title: "You have changed your Banner picture",
                   });
-                  setRefresh(!refresh)
+                  
             })
+            dispatch(changePicture({ banner: bannerChange }))
+            setRefresh(!refresh)
+            setBannerChange('')
         }
     }, [bannerChange])
 
@@ -145,26 +138,15 @@ export const Foro_Profile = () => {
         if (imageChange) {
             putProfilePicture(userByBd.email, imageChange)
             .then(res => res.json())
-            .then(res => {
-              
-              const Toast = Swal.mixin({
-                toast: true,
-                position: "bottom-right",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener("mouseenter", Swal.stopTimer);
-                  toast.addEventListener("mouseleave", Swal.resumeTimer);
-                },
-              });
-              Toast.fire({
+            .then(res => {         
+              notification.fire({
                 icon: "success",
                 title: "You have changed your profile picture",
               });
             })
             dispatch(changePicture({picture: imageChange}))
             setRefresh(!refresh)
+            setImageChange('')
           }
     }, [imageChange])
     

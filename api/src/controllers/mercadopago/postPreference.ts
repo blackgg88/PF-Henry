@@ -103,7 +103,7 @@ export const postPreference = async (req: Request, res: Response) => {
       ],
     },
 
-    // binary_mode: true,
+    binary_mode: true,
     auto_return: State.SUCCESS,
   };
 
@@ -111,7 +111,7 @@ export const postPreference = async (req: Request, res: Response) => {
     .create(preference)
     .then(function (response) {
       // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
-      res.status(201).json(response.body.sandbox_init_point);
+      res.status(201).json(response.body.init_point);
     })
     .catch(function (error) {
       res.status(500).json(error);

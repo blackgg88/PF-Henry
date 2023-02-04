@@ -1043,7 +1043,7 @@ button.es-button {
                         <tbody>
                             <tr>
                                 <td class="esd-stripe" align="center">
-                                    <table bgcolor="#fff" class="es-header-body" align="center" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff;">
+                                    <table bgcolor="#ffffff" class="es-header-body" align="center" cellpadding="0" cellspacing="0" width="600">
                                         <tbody>
                                             <tr>
                                                 <td class="esd-structure esdev-adapt-off es-p20" align="left">
@@ -1058,7 +1058,7 @@ button.es-button {
                                                                                     <table cellpadding="0" cellspacing="0" width="100%">
                                                                                         <tbody>
                                                                                             <tr>
-                                                                                                <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app"><img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
+                                                                                                <td align="left" class="esd-block-image" style="font-size: 0px;"><a target="_blank" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/"><img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674828268/SmartNest/logo_smart_b_xxdxi8.png" alt="Logo" style="display: block; font-size: 12px;" title="Logo" height="72"></a></td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
@@ -1076,7 +1076,7 @@ button.es-button {
                                                                                     <table cellpadding="0" cellspacing="0" width="100%">
                                                                                         <tbody>
                                                                                             <tr>
-                                                                                                <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank" href="https://mercadopago.com"><img class="adapt-img" src="https://chida.tur.ar/wp-content/uploads/2020/01/MERCADOPAGO.png" alt="mercadopago-logo" style="display: block;" width="125" title="mercadopago-logo"></a></td>
+                                                                                                <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="https://chida.tur.ar/wp-content/uploads/2020/01/MERCADOPAGO.png" alt style="display: block;" width="125"></a></td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
@@ -1137,40 +1137,40 @@ button.es-button {
                                                                     <table cellpadding="0" cellspacing="0" width="100%">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td align="center" class="esd-block-text">
-                                                                                    <h2 style="line-height: 150%;">ORDER # ${
-                                                                                      payment.id
-                                                                                    }</h2>
-                                                                                    <p style="line-height: 150%;">${formatDate(
-                                                                                      payment.date,
-                                                                                    )}</p>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td align="left" class="esd-block-text es-m-txt-c es-p20t">
-                                                                                    <p style="color: #a0937d;">ITEMS ORDERED</p>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td align="center" class="esd-block-spacer es-p5t es-p5b" style="font-size:0">
-                                                                                    <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td style="border-bottom: 1px solid #a0937d; background: none; height: 1px; width: 100%; margin: 0px;"></td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
+                                                <td align="center" class="esd-block-text">
+                                                <h2 style="line-height: 150%;">ORDER # ${
+                                                  payment.id
+                                                }</h2>
+                                                  <p style="line-height: 150%;">${formatDate(
+                                                    payment.date,
+                                                  )}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="esd-block-text es-m-txt-c es-p20t">
+                                                    <p style="color: #a0937d;">ITEMS ORDERED</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" class="esd-block-spacer es-p5t es-p5b" style="font-size:0">
+                                                    <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="border-bottom: 1px solid #a0937d; background: none; height: 1px; width: 100%; margin: 0px;"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </td>
                                             </tr>
-                                            <br>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <br>
 
                                                         ${renderItems(payment.products)}
 

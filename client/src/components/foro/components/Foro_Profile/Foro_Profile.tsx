@@ -104,6 +104,38 @@ export const Foro_Profile = () => {
 
         <div className='FORO_PROFILE'>
             <div className='Foro_Profile_PostSide'>
+                <div className='Foro_Profile_Container'>
+                    <div className='Foro_Profile_Banner_PicturesSide'>
+                        <img src={defaultBanne} alt="banner" />
+                        <img className={User.picture?'profilePic':'profilePicDefault'} src={User.picture?User.picture:logoDiscord} alt='profilePic' />
+                    </div>
+
+                    <div className='Foro_Profile_NameSide'>
+                        {
+                            User.firstName&&<h1>{`${User.firstName} ${User.lastName}`.length<=15?`${User.firstName} ${User.lastName}`:`${User.firstName} ${User.lastName[0]}.`}</h1>
+                        }
+                        {
+                            User.firstName&&<p>{User.username}</p>
+                        }
+                        {
+                            !User.firstName&&<h1 className='Foro_Profile_NameDefault'>{User.username}</h1>
+                        }
+                        
+                    </div>
+
+                    <div className='Foro_Profile_ContentSide'>
+                        <div className='Foro_Profile_StatContainer'>
+                            <img src={PostIcon} alt="Post" />
+                            <p>Post: {postByUser.length}</p>
+                        </div>
+                        <div className='Foro_Profile_StatContainer'>
+                            <img src={commentIcon} alt="comments" />
+                            <p>Comments: {User.comments.length}</p>
+                        </div>
+                    </div>
+                </div>
+
+                
             {
                 postByUser.length?
                 postByUser?.map((post: any) => (
@@ -136,36 +168,7 @@ export const Foro_Profile = () => {
             </div>
 
             <div className='foro_Profile_ProfileSide'>
-                <div className='Foro_Profile_Container'>
-                    <div className='Foro_Profile_Banner_PicturesSide'>
-                        <img src={defaultBanne} alt="banner" />
-                        <img className={User.picture?'profilePic':'profilePicDefault'} src={User.picture?User.picture:logoDiscord} alt='profilePic' />
-                    </div>
-
-                    <div className='Foro_Profile_NameSide'>
-                        {
-                            User.firstName&&<h1>{`${User.firstName} ${User.lastName}`.length<=15?`${User.firstName} ${User.lastName}`:`${User.firstName} ${User.lastName[0]}.`}</h1>
-                        }
-                        {
-                            User.firstName&&<p>{User.username}</p>
-                        }
-                        {
-                            !User.firstName&&<h1 className='Foro_Profile_NameDefault'>{User.username}</h1>
-                        }
-                        
-                    </div>
-
-                    <div className='Foro_Profile_ContentSide'>
-                        <div className='Foro_Profile_StatContainer'>
-                            <img src={PostIcon} alt="Post" />
-                            <p>Post: {postByUser.length}</p>
-                        </div>
-                        <div className='Foro_Profile_StatContainer'>
-                            <img src={commentIcon} alt="comments" />
-                            <p>Comments: {User.comments.length}</p>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
 
         </div>

@@ -58,7 +58,7 @@ interface Purchase {
 export const getForDate = async (req: Request, res: Response) => {
   try {
     const response = await axios.get(
-      `https://api.mercadopago.com/v1/payments/search?sort=date_approved&criteria=desc`,
+      `https://api.mercadopago.com/v1/payments/search?sort=date_approved&criteria=asc`,
       {
         headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
       }

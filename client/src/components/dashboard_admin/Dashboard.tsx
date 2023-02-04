@@ -4,7 +4,6 @@ import UserIcon from "@mui/icons-material/Group";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import PaidIcon from "@mui/icons-material/Paid";
 import {
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,
@@ -32,6 +31,7 @@ export const Dashboard = () => {
   const [usersCount, setUsersCount] = useState(0);
   const [productsCount, setProductsCount] = useState(0);
   const [purchasesCount, setPurchasesCount] = useState(0);
+  const [payments, setPayments] = useState([]);
 
   const dispatch = useAppDispatch();
 
@@ -55,6 +55,9 @@ export const Dashboard = () => {
         await fetch(`${API_URL}/checkout`).then(res =>
           res.json().then(respon => respon.length)
         )
+      );
+      setPayments(
+        await fetch(`${API_URL}/checkout/date`).then(res => res.json())
       );
     };
     fetchData();
@@ -170,13 +173,13 @@ export const Dashboard = () => {
         <Legend align='right' layout='vertical' verticalAlign='middle' />
       </PieChart>
 
-      <ComposedChart width={800} height={400} data={data}>
-        <XAxis dataKey='fecha' />
+      <ComposedChart width={800} height={400} data={payments}>
+        <XAxis dataKey='date' />
         <YAxis />
         <Tooltip />
         <Legend />
         <CartesianGrid stroke='#f5f5f5' />
-        <Bar dataKey='price' barSize={20} fill='#413ea0' />
+        <Bar dataKey='totalSales' barSize={20} fill='#413ea0' />
       </ComposedChart>
 
       <AreaChart

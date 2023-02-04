@@ -32,6 +32,7 @@ export const Dashboard = () => {
   const [productsCount, setProductsCount] = useState(0);
   const [purchasesCount, setPurchasesCount] = useState(0);
   const [payments, setPayments] = useState([]);
+  const [payment, setPayment] = useState([]);
 
   const dispatch = useAppDispatch();
 
@@ -59,6 +60,7 @@ export const Dashboard = () => {
       setPayments(
         await fetch(`${API_URL}/checkout/date`).then(res => res.json())
       );
+      
     };
     fetchData();
 
@@ -179,13 +181,13 @@ export const Dashboard = () => {
         <Tooltip />
         <Legend />
         <CartesianGrid stroke='#f5f5f5' />
-        <Bar dataKey='totalSales' barSize={20} fill='#413ea0' />
+        <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
       </ComposedChart>
 
       <AreaChart
         width={800}
         height={400}
-        data={data2}
+        data={payments}
         margin={{
           top: 10,
           right: 30,
@@ -194,10 +196,10 @@ export const Dashboard = () => {
         }}
       >
         <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='name' />
+        <XAxis dataKey='date' />
         <YAxis />
         <Tooltip />
-        <Area type='monotone' dataKey='uv' stroke='#8884d8' fill='#8884d8' />
+        <Area type='monotone' dataKey='TotalCount' stroke='#8884d8' fill='#8884d8' />
       </AreaChart>
     </Card>
   );

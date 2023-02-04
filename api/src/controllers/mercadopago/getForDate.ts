@@ -77,10 +77,10 @@ export const getForDate = async (req: Request, res: Response) => {
       const [day, month, year] = object.date_created.split("/");
       const key = `${day}-${month}-${year}`;
 
-      if (!result[key]) result[key] = { date: key, totalSales: 0, totalCount: 0 };
+      if (!result[key]) result[key] = { date: key, TotalSales: 0, TotalCount: 0 };
       
-      result[key].totalSales += object.total_paid_amount;
-      result[key].totalCount += 1;
+      result[key].TotalSales += object.total_paid_amount;
+      result[key].TotalCount += 1;
     });
 
     const tuRespuesta = Object.values(result);

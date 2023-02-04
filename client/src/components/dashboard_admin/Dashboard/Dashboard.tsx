@@ -19,7 +19,6 @@ import {
 import { useDashboard } from "./hook/useDashboard";
 
 export const Dashboard = () => {
-
   const [
     usersCount,
     productsCount,
@@ -27,14 +26,11 @@ export const Dashboard = () => {
     CategoryQuantity,
     COLORS,
     payments,
-  ]:any = useDashboard()
-  
+  ]: any = useDashboard();
 
   return (
     <Card className='main'>
       <CardHeader title='Welcome to the administration' />
-
-      <img src='https://res.cloudinary.com/dg1roy34p/image/upload/v1674830963/SmartNest/logo_smart_b130x90_k1idwg.png'></img>
       <CardContent className='dashboardAdmin_wrapper'>
         <Card variant='outlined' className='dashboardAdmin_card'>
           <div className='dashboardAdmin_icon'>
@@ -61,17 +57,18 @@ export const Dashboard = () => {
         </Card>
       </CardContent>
 
-      <PieChart width={600} height={400}>
+      <h2>Products by category:</h2>
+      <PieChart width={500} height={300} className='PieChart'>
         <Pie
           data={CategoryQuantity}
           cx={200}
           cy={200}
-          innerRadius={60}
+          innerRadius={40}
           outerRadius={80}
           fill='#8884d8'
           dataKey='quantity'
         >
-          {CategoryQuantity.map((entry:any, index:any) => (
+          {CategoryQuantity.map((entry: any, index: any) => (
             <Cell key={index} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -79,7 +76,13 @@ export const Dashboard = () => {
         <Legend align='right' layout='vertical' verticalAlign='middle' />
       </PieChart>
 
-      <ComposedChart width={800} height={400} data={payments}>
+      <h2>Total sales per day:</h2>
+      <ComposedChart
+        width={800}
+        height={400}
+        data={payments}
+        className='ComposedChart'
+      >
         <XAxis dataKey='date' />
         <YAxis />
         <Tooltip />
@@ -88,18 +91,18 @@ export const Dashboard = () => {
         <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
       </ComposedChart>
 
-      <AreaChart width={800} height={400} data={payments} margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 0,
-        }}
-      >
+      <h2>Products sold per day:</h2>
+      <AreaChart width={800} height={400} data={payments} className='AreaChart'>
         <CartesianGrid strokeDasharray='8 8' />
         <XAxis dataKey='date' />
         <YAxis />
         <Tooltip />
-        <Area type='monotone' dataKey='TotalCount' stroke='#8884d8' fill='#8884d8' />
+        <Area
+          type='monotone'
+          dataKey='TotalCount'
+          stroke='#8884d8'
+          fill='#8884d8'
+        />
       </AreaChart>
     </Card>
   );

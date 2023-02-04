@@ -4,10 +4,6 @@
   justify-content: center;
   flex-direction: column;
 
-  img {
-    display: none;
-  }
-  
   .dashboardAdmin_wrapper {
     border: 1px solid burlywood;
     display: flex;
@@ -45,5 +41,18 @@
         font-size: 24px;
       }
     }
+  }
+
+  .PieChart {
+    border: 1px solid darkred;
+    // height: 350px;
+    // width: 0px;
+    
+  }
+  .ComposedChart {
+    border: 1px solid darkred;
+  }
+  .AreaChart {
+    border: 1px solid darkred;
   }
 }

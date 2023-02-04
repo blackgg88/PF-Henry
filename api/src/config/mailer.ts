@@ -1370,46 +1370,27 @@ button.es-button {
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td align="center" class="esd-block-text es-p10t es-p10b" esd-links-color="#a0937d">
-                                                                                            <p style="font-size: 12px; color: #666666;">You are receiving this email because you have visited our site or asked us about the regular newsletter. Make sure our messages get to your Inbox (and not your bulk or junk folders).<br><a target="_blank" style="font-size: 12px; color: #a0937d;" href="https://viewstripo.email">Privacy policy</a> | <a target="_blank" style="font-size: 12px; color: #a0937d;">Unsubscribe</a></p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="esd-structure es-p20" align="left">
-                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td width="560" class="esd-container-frame" align="center" valign="top">
-                                                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://dev--henry-pf-smartnest.netlify.app"><img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt width="125" style="display: block;"></a></td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                                                                        <p style="font-size: 12px; color: #666666;">You are receiving this email because you have visited our site or asked us about the regular newsletter. Make sure our messages get to your Inbox (and not your bulk or junk folders).<br><a target="_blank" style="font-size: 12px; color: #a0937d;" href="https://viewstripo.email">Privacy policy</a> | <a target="_blank" style="font-size: 12px; color: #a0937d;">Unsubscribe</a></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         </div>
     </body>
     

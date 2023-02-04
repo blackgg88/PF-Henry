@@ -59,7 +59,7 @@ export const feedback = async (req: Request, res: Response) => {
 
   sendMailPayment(payment);
 
-  if (payment.status !== 'rejected ') {
+  if (data.status === 'approved ') {
     data.additional_info.items?.map(async (item: Products) => {
       await ProductModel.updateOne({ _id: item.id }, { $inc: { stock: -Number(item.quantity) } })
         .exec()

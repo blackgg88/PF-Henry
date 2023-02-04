@@ -21,7 +21,7 @@ import { MyAppBar } from './MyAppBar';
 //             @ts-ignore
 import dataProvider from './dataProvider';
 
-const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} style={{backgroundColor:` #1aa996`}} />;
+const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} style={{backgroundColor:` #2b4076`}} />;
 // console.log(dataProvider);
 
 const AppAdmin = () => {

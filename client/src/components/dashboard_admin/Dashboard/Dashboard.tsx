@@ -1,3 +1,6 @@
+import users from '../../../assets/dashboard_admin/users-young.png';
+import stock from '../../../assets/dashboard_admin/stock.png';
+import money from '../../../assets/dashboard_admin/money.png';
 import { Card, CardContent, CardHeader } from "@mui/material";
 import UserIcon from "@mui/icons-material/Group";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
@@ -34,7 +37,8 @@ export const Dashboard = () => {
       <CardContent className='dashboardAdmin_wrapper'>
         <Card variant='outlined' className='dashboardAdmin_card'>
           <div className='dashboardAdmin_icon'>
-            <UserIcon />
+            {/* <UserIcon /> */}
+            <img src={users} />
           </div>
           <h2>Users registered</h2>
           <p>{usersCount}</p>
@@ -42,7 +46,8 @@ export const Dashboard = () => {
 
         <Card variant='outlined' className='dashboardAdmin_card'>
           <div className='dashboardAdmin_icon'>
-            <LocalGroceryStoreIcon />
+            {/* <LocalGroceryStoreIcon /> */}
+            <img src={stock} />
           </div>
           <h2>Products</h2>
           <p> {productsCount}</p>
@@ -50,7 +55,8 @@ export const Dashboard = () => {
 
         <Card variant='outlined' className='dashboardAdmin_card'>
           <div className='dashboardAdmin_icon'>
-            <PaidIcon />
+            {/* <PaidIcon /> */}
+            <img src={money} />
           </div>
           <h2>Purchases</h2>
           <p>{purchasesCount}</p>
@@ -60,7 +66,7 @@ export const Dashboard = () => {
       <div className='main_graphics'>
         <div className='PieChart'>
         <h2>Products by category:</h2>
-        <PieChart width={500} height={300} >
+        <PieChart width={500} height={330} >
           <Pie
             data={CategoryQuantity}
             cx={200}
@@ -82,7 +88,7 @@ export const Dashboard = () => {
         <div className='ComposedChart'>
         <h2>Total sales per day:</h2>
         <ComposedChart
-          width={1200}
+          width={1100}
           height={400}
           data={payments}
         >
@@ -97,7 +103,7 @@ export const Dashboard = () => {
 
         <div className='AreaChart'>
         <h2>Products sold per day:</h2>
-        <AreaChart width={1500} height={400} data={payments} >
+        <AreaChart width={1000} height={400} data={payments} >
           <CartesianGrid strokeDasharray='8 8' />
           <XAxis dataKey='date' />
           <YAxis />

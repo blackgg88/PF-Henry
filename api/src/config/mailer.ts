@@ -1058,7 +1058,7 @@ button.es-button {
                                                                                     <table cellpadding="0" cellspacing="0" width="100%">
                                                                                         <tbody>
                                                                                             <tr>
-                                                                                                <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href><img src=https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
+                                                                                                <td align="left" class="esd-block-image es-p5" style="font-size: 0px;"><a target="_blank" href="https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app"><img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt="Logo" style="display: block; font-size: 12px;" width="185" title="Logo"></a></td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>

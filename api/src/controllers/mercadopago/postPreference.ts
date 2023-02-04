@@ -70,8 +70,8 @@ export const postPreference = async (req: Request, res: Response) => {
       } as ItemMP;
     }),
 
-    // marketplace: 'SmartNest',
-    // statement_descriptor: 'SmartNest',
+    marketplace: 'SmartNest',
+    statement_descriptor: 'SmartNest',
 
     payer: {
       email: payer.email,
@@ -103,7 +103,7 @@ export const postPreference = async (req: Request, res: Response) => {
       ],
     },
 
-    binary_mode: true,
+    // binary_mode: true,
     auto_return: State.SUCCESS,
   };
 

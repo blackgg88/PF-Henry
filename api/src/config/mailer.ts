@@ -1390,7 +1390,7 @@ button.es-button {
                                                                             <table cellpadding="0" cellspacing="0" width="100%">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png"><img src="https://dev--henry-pf-smartnest.netlify.app" alt width="125" style="display: block;"></a></td>
+                                                                                        <td align="center" class="esd-block-image es-infoblock made_with" style="font-size:0"><a target="_blank" href="https://dev--henry-pf-smartnest.netlify.app"><img src="https://res.cloudinary.com/dg1roy34p/image/upload/v1674829517/logo_smart_b130x90_eoojiq.png" alt width="125" style="display: block;"></a></td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>

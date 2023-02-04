@@ -6,6 +6,7 @@ import FilterPanel from "../FIlter_panel";
 import Foro_createPost from "../Foro_createPost";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Foro_Menu } from "../Foro_Menu/Foro_Menu";
+import { useState } from "react";
 //---------------
 
 export default function ForoHome() {
@@ -20,6 +21,10 @@ export default function ForoHome() {
     searchInput,
     selectedTag,
     previewTag,
+    addLike, 
+    addPost, 
+    addEdit, 
+    addComment,
     {
       likeHandler,
       handlerSubmit,
@@ -45,7 +50,7 @@ export default function ForoHome() {
   //-------CUSTOM HOOK-------
 
   const {user, isAuthenticated} = useAuth0()
-
+  const [refresh, setRefresh] = useState<boolean>(false)
   console.log(searchInput)
 
   return (
@@ -59,7 +64,7 @@ export default function ForoHome() {
         />
       )}
 
-      <Foro_Menu />
+      <Foro_Menu refresh={refresh} setRefresh={setRefresh} />
 
       <div className='foro_posts_container'>
         {

@@ -8,6 +8,7 @@ import { useForoHome } from '../ForoHome/hooks/useForoHome';
 import { Foro_card } from '../Foro_card';
 import { getUserByEmail } from '../../../../../helpers/user/getUserByEmail';
 import { getAllPostUser } from '../../../../../helpers/user/getAllPostUser';
+import logoDiscord from '../../../../assets/discord.svg';
 
 interface UserProfile {
     _id: string
@@ -34,40 +35,41 @@ export const Foro_Profile = () => {
         posts: [],
         role: ''
     })
+    const [refresh, setRefresh] = useState<boolean>(false)
     const [postByUser, setPostByUser] = useState([])
-
     const emailProfile = useParams()
 
     const [
         form,
-        commentary,
-        allPost,
-        editOpen,
-        editPost,
-        allPostRespaldo,
-        searchInput,
-        selectedTag,
-        previewTag,
+    commentary,
+    allPost,
+    editOpen,
+    editPost,
+    allPostRespaldo,
+    searchInput,
+    selectedTag,
+    previewTag,
+    addLike, 
+    addPost, 
+    addEdit, 
+    addComment,
         {
-          likeHandler,
-          handlerSubmit,
-          handlerSubmitEdit,
-          handlerChangePost,
-          onDeletePost,
-          onDeleteComment,
-          editHandlerModal,
-          setEditOpen,
-          handlerChangeComment,
-          submitComment,
-          likeCommentHandler,
-          setallPostRespaldo,
-          onChangeSearch,
-          handleFilterByTitle,
-          resetFilter,
-          handleTags,
-          handleFilterByCategory,
-          HandlerpreviewTags,
-          handlerQuitPreview
+            likeHandler,
+            handlerLike,
+            handlerSubmit,
+            handlerSubmitEdit,
+            handlerChangePost,
+            submitPost,
+            onDeletePost,
+            onDeleteComment,
+            setAllPost,
+            editHandlerModal,
+            setEditOpen,
+            setEditPost,
+            handlerChangeComment,
+            submitComment,
+            likeCommentHandler,
+            handlerConsole
         },
       ]: any = useForoHome();
     
@@ -78,7 +80,7 @@ export const Foro_Profile = () => {
                 setUser(res)
             })
         }
-    }, [])
+    }, [refresh])
 
     useEffect( ()=> {
         if (emailProfile.email) {
@@ -87,62 +89,68 @@ export const Foro_Profile = () => {
                 setPostByUser(res)
             })
         }
-    }, [])
+    }, [refresh, addLike, addPost, addEdit, addComment])
     
-    
+    handlerConsole()
     
   return (
     <div className='Foro_Profile_ALLContainer'>
 
         <div className='foro_Profile_MenuSide'>
-            <Foro_Menu />
+            <Foro_Menu refresh={refresh} setRefresh={setRefresh}/>
         </div>
 
         <div className='FORO_PROFILE'>
             <div className='Foro_Profile_PostSide'>
             {
-        
-        allPost.length?
-        postByUser?.map((post: any) => (
-          <Foro_card
-            commentary={commentary}
-            handlerChangeComment={handlerChangeComment}
-            submitComment={submitComment}
-            key={post._id}
-            id={post._id}
-            title={post.title}
-            content={post.content}
-            img={post.image}
-            post={post}
-            author={post.author.userName || post.author.username}
-            email={post.author.email}
-            userId={post.author._id}
-            comments={post.comments}
-            likes={post.likes}
-            onDeletePost={onDeletePost}
-            onLikePost={likeHandler}
-            onEdit={editHandlerModal}
-            created={post.created}
-            onDeleteComment={onDeleteComment}
-            likeCommentHandler={likeCommentHandler}
-            category={post.category}
-            
-          />
-        )):
-        <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
-      }
+                postByUser.length?
+                postByUser?.map((post: any) => (
+                    <Foro_card
+                        commentary={commentary}
+                        handlerChangeComment={handlerChangeComment}
+                        submitComment={submitComment}
+                        key={post._id}
+                        id={post._id}
+                        title={post.title}
+                        content={post.content}
+                        img={post.image}
+                        post={post}
+                        author={post.author.userName || post.author.username}
+                        email={post.author.email}
+                        userId={post.author._id}
+                        comments={post.comments}
+                        likes={post.likes}
+                        onDeletePost={onDeletePost}
+                        onLikePost={likeHandler}
+                        onEdit={editHandlerModal}
+                        created={post.created}
+                        onDeleteComment={onDeleteComment}
+                        likeCommentHandler={likeCommentHandler}
+                        category={post.category}
+                        
+                    />
+                )):<img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
+            }
             </div>
 
             <div className='foro_Profile_ProfileSide'>
                 <div className='Foro_Profile_Container'>
                     <div className='Foro_Profile_Banner_PicturesSide'>
                         <img src={defaultBanne} alt="banner" />
-                        <img className='profilePic' src={User.picture} alt='profilePic' />
+                        <img className={User.picture?'profilePic':'profilePicDefault'} src={User.picture?User.picture:logoDiscord} alt='profilePic' />
                     </div>
 
                     <div className='Foro_Profile_NameSide'>
-                        <h1>{`${User.firstName} ${User.lastName}`.length<=15?`${User.firstName} ${User.lastName}`:`${User.firstName} ${User.lastName}...`}</h1>
-                        <p>{User.username}</p>
+                        {
+                            User.firstName&&<h1>{`${User.firstName} ${User.lastName}`.length<=15?`${User.firstName} ${User.lastName}`:`${User.firstName} ${User.lastName}...`}</h1>
+                        }
+                        {
+                            User.firstName&&<p>{User.username}</p>
+                        }
+                        {
+                            !User.firstName&&<h1 className='Foro_Profile_NameDefault'>{User.username}</h1>
+                        }
+                        
                     </div>
 
                     <div className='Foro_Profile_ContentSide'>

@@ -13,6 +13,7 @@ import likeYes from '../../../assets/foro/heart-svgrepo-com (1).svg';
 import edit from '../../../assets/foro/edit-svgrepo-com.svg';
 import deleteIcon from '../../../assets/foro/trash-delete-remove-clean-svgrepo-com.svg';
 import commentLogo from '../../../assets/foro/comment-svgrepo-com.svg';
+import { NavLink } from "react-router-dom";
 
 interface Comment {
   _id: string;
@@ -92,7 +93,9 @@ export function Foro_card({
     <div className='foro_card_Container' key={id}>
       <div className='foro_card_InfoPOST'>
         <div className='foro_card_authorSide'>
-          <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
+          <NavLink to={`/foro/profile/${email}`}>
+            <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
+          </NavLink>
           <h5>{moment(created).fromNow()}</h5>
         </div>
         <div className='foro_card_titleSide'>

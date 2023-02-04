@@ -489,6 +489,10 @@ export function useForoHome() {
   const resetFilter = () => {
     setAllPost(allPostRespaldo);
   };
+  
+  const handlerConsole = ()=> {
+    console.log('conectado')
+  }
 
   return [
     form,
@@ -500,6 +504,10 @@ export function useForoHome() {
     searchInput,
     selectedTag,
     previewTag,
+    addLike, 
+    addPost, 
+    addEdit, 
+    addComment,
     {
       likeHandler,
       handlerLike,
@@ -524,7 +532,8 @@ export function useForoHome() {
       handleFilterByCategory,
       setSelectedTag,
       HandlerpreviewTags,
-      handlerQuitPreview
+      handlerQuitPreview,
+      handlerConsole
     },
   ];
 }

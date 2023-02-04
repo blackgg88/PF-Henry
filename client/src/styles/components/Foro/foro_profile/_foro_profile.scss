@@ -50,6 +50,18 @@
                         top: 60%;
                         left: 20px;
                         cursor: pointer;
+                        background-color: $standard-color-blue;
+                    }
+                    .profilePicDefault {
+                        border-radius: 100%;
+                        width: 150px;
+                        height: 150px;
+                        padding: 30px;
+                        position: absolute;
+                        top: 60%;
+                        left: 20px;
+                        cursor: pointer;
+                        background-color: $standard-color-blue;
                     }
                 }
 
@@ -60,11 +72,18 @@
                     flex-direction: column;
                     //background-color: red;
                     
-                    
+                    .Foro_Profile_NameDefault {
+                        margin-left: 200px;
+                        font-family: $standard-font-Outfit-sans-serif;
+                        color: rgb(37, 36, 36);
+                        font-size: 25px;
+                        padding: 15px 0px;
+                    }
                     h1 {
                         margin-left: 200px;
                         font-family: $standard-font-Outfit-sans-serif;
                         color: rgb(37, 36, 36);
+                        font-size: 25px;
                     }
                     p {
                         padding-left: 200px;

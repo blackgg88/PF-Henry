@@ -5,14 +5,19 @@ import profile from '../../../../assets/foro/profile-white.svg';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../Redux/hook';
 
-export const Foro_Menu = () => {
+interface props {
+    refresh: any
+    setRefresh: any
+}
+
+export const Foro_Menu = ({setRefresh, refresh}: props) => {
     const userByBd = useAppSelector((state) => state.userReducer.userState);
 
   
 
   return (
     <div className='Foro_Menu_Container'>
-        <NavLink to={`/foro/profile/${userByBd.email}`} className='Menu_ButtonContainer'>
+        <NavLink onClick={setRefresh?()=> setRefresh(!refresh):()=>{}} to={`/foro/profile/${userByBd.email}`} className='Menu_ButtonContainer'>
             <img src={profile} alt="profile" />
         </NavLink>
         <NavLink to={'/foro'} className='Menu_ButtonContainer'>

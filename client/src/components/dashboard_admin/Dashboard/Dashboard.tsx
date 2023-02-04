@@ -56,9 +56,10 @@ export const Dashboard = () => {
           <p>{purchasesCount}</p>
         </Card>
       </CardContent>
-
+      
+      <div className='PieChart'>
       <h2>Products by category:</h2>
-      <PieChart width={500} height={300} className='PieChart'>
+      <PieChart width={500} height={300} >
         <Pie
           data={CategoryQuantity}
           cx={200}
@@ -75,13 +76,14 @@ export const Dashboard = () => {
         <Tooltip />
         <Legend align='right' layout='vertical' verticalAlign='middle' />
       </PieChart>
+      </div>
 
+      <div className='ComposedChart'>
       <h2>Total sales per day:</h2>
       <ComposedChart
         width={800}
         height={400}
         data={payments}
-        className='ComposedChart'
       >
         <XAxis dataKey='date' />
         <YAxis />
@@ -90,9 +92,11 @@ export const Dashboard = () => {
         <CartesianGrid stroke='#f5f5f5' />
         <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
       </ComposedChart>
+      </div>
 
+      <div className='AreaChart'>
       <h2>Products sold per day:</h2>
-      <AreaChart width={800} height={400} data={payments} className='AreaChart'>
+      <AreaChart width={800} height={400} data={payments} >
         <CartesianGrid strokeDasharray='8 8' />
         <XAxis dataKey='date' />
         <YAxis />
@@ -104,6 +108,7 @@ export const Dashboard = () => {
           fill='#8884d8'
         />
       </AreaChart>
+      </div>
     </Card>
   );
 };

@@ -8,6 +8,7 @@
     .FORO_PROFILE {
         width: 100%;
         display: flex;
+        //flex-direction: column-reverse;
         justify-content: space-around;
 
         .Foro_Profile_PostSide {
@@ -19,6 +20,23 @@
             flex-direction: column;
             align-items: center;
             font-family: $standard-font-Outfit-sans-serif;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: $standard-background;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $standard-color-blue;
+                border-radius: 5px;
+            }
+
+            &::-webkit-scrollbar-button {
+                //background-color: red;
+                width: 2px;
+                height: 100%;
+            }
         }
 
         .foro_Profile_ProfileSide {
@@ -70,6 +88,7 @@
                     display: flex;
                     display: flex;
                     flex-direction: column;
+                    overflow: hidden;
                     //background-color: red;
                     
                     .Foro_Profile_NameDefault {
@@ -77,13 +96,18 @@
                         font-family: $standard-font-Outfit-sans-serif;
                         color: rgb(37, 36, 36);
                         font-size: 25px;
-                        padding: 15px 0px;
+                        padding: 15px 5px;
+                        overflow: hidden;
                     }
                     h1 {
                         margin-left: 200px;
                         font-family: $standard-font-Outfit-sans-serif;
                         color: rgb(37, 36, 36);
                         font-size: 25px;
+                        white-space: nowrap;
+                        //background-color: green;
+                        max-width: 80%;
+                        overflow: hidden;
                     }
                     p {
                         padding-left: 200px;
@@ -122,3 +146,5 @@
         }
     }
 }
+
+

@@ -334,6 +334,7 @@ export function useForoHome() {
             .then((res) => {
               setAllPost(res)
               setallPostRespaldo(res);
+              setAddEdit(!addEdit)
             })
         )
         .then(() => {
@@ -379,7 +380,11 @@ export function useForoHome() {
             .then((res) =>
               getCommentsPosts("posts")
                 .then((res) => res.json())
-                .then((res) => setAllPost(res))
+                .then((res) => {
+                  setAllPost(res)
+                  setallPostRespaldo(res)
+                  setAddEdit(!addEdit)
+                })
             )
             .then(() => {
 
@@ -508,6 +513,7 @@ export function useForoHome() {
     addPost, 
     addEdit, 
     addComment,
+    
     {
       likeHandler,
       handlerLike,

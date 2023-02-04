@@ -61,7 +61,12 @@ function App() {
         <Route path='*' element={<Page404 />} />
         <Route path='/foro/profile/:email' element={<Foro_Profile/>} />
       </Routes>
-      {!['/admin', '/foro'].includes(location.pathname) && <Footer />}
+      
+
+      {
+        (!location.pathname.includes('foro') && !location.pathname.includes('admin'))&&<Footer />
+      }
+
     </>
   );
 }

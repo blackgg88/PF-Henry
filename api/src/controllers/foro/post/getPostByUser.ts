@@ -32,7 +32,7 @@ export const getPostByUser = async (req: Request, res: Response) => {
                 if (!e.deleted && e.author._id==user._id.toString()) {
                     return e
                 }
-            }))
+            }).reverse())
         } else {
             return res.json({err: 'user no existe'})
         }

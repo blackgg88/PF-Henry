@@ -7,6 +7,7 @@ import Foro_comments from "./Foro_comments";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { postCommentsPosts } from "../../../../helpers/foro/postCommentsPosts";
+import { useAppDispatch, useAppSelector } from '../../../Redux/hook';
 
 import likeNo from '../../../assets/foro/heart-svgrepo-com.svg';
 import likeYes from '../../../assets/foro/heart-svgrepo-com (1).svg';
@@ -74,6 +75,7 @@ export function Foro_card({
 }: Foro_Card) {
   const { user } = useAuth0();
   const [emailLoged, setEmailLoged] = useState<string>('')
+  const userByBd = useAppSelector((state) => state.userReducer.userState);
   
   const openComment = (id:string)=> {
     var x = document.getElementById(`comment-${id}`);
@@ -166,7 +168,7 @@ export function Foro_card({
       <div className='foro_card_infoCOMMENT'>
         <div id={`comment-${id}`} className='foro_card_ALL'>
         <div className='foro_card_CommentPostSide'>
-          <img src={user?.picture} alt="" />
+          <img src={userByBd.picture} alt="" />
           <textarea onChange={handlerChangeComment} name="content" placeholder="Post a commentary..." value={commentary.content} className="foro_card_CommentArea" />
         </div>
         <div className="foro_card_SubmitCommentSide">

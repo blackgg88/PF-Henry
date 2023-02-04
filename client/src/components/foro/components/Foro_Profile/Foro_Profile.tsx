@@ -9,6 +9,7 @@ import { Foro_card } from '../Foro_card';
 import { getUserByEmail } from '../../../../../helpers/user/getUserByEmail';
 import { getAllPostUser } from '../../../../../helpers/user/getAllPostUser';
 import logoDiscord from '../../../../assets/discord.svg';
+import Foro_editPost from '../EditPost/Foro_editPost';
 
 interface UserProfile {
     _id: string
@@ -38,6 +39,7 @@ export const Foro_Profile = () => {
     const [refresh, setRefresh] = useState<boolean>(false)
     const [postByUser, setPostByUser] = useState([])
     const emailProfile = useParams()
+    
 
     const [
         form,
@@ -80,7 +82,7 @@ export const Foro_Profile = () => {
                 setUser(res)
             })
         }
-    }, [refresh])
+    }, [refresh, addLike, addPost, addEdit, addComment])
 
     useEffect( ()=> {
         if (emailProfile.email) {
@@ -142,7 +144,7 @@ export const Foro_Profile = () => {
 
                     <div className='Foro_Profile_NameSide'>
                         {
-                            User.firstName&&<h1>{`${User.firstName} ${User.lastName}`.length<=15?`${User.firstName} ${User.lastName}`:`${User.firstName} ${User.lastName}...`}</h1>
+                            User.firstName&&<h1>{`${User.firstName} ${User.lastName}`.length<=15?`${User.firstName} ${User.lastName}`:`${User.firstName} ${User.lastName[0]}.`}</h1>
                         }
                         {
                             User.firstName&&<p>{User.username}</p>
@@ -167,6 +169,14 @@ export const Foro_Profile = () => {
             </div>
 
         </div>
+        {editOpen && (
+        <Foro_editPost
+          onSave={handlerSubmitEdit}
+          id={editPost.id}
+          content={editPost.content}
+          onClose={setEditOpen}
+        />
+      )}
     </div> 
   )
 }

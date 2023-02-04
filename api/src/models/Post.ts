@@ -34,7 +34,7 @@ likes: string[]
   created: Date
 
 
-@prop({type: String ,enum:CategoryEnum ,required:true})
+@prop({type: String ,enum:CategoryEnum ,required:false})
 category: string
 }
 

@@ -18,6 +18,7 @@ import { uploadImage } from '../../../../../helpers/foro/uploadImage';
 import { putProfileBanner } from '../../../../../helpers/user/putProfileBanner';
 import Swal from "sweetalert2";
 import { putProfilePicture } from '../../../../../helpers/user/putProfilePicture';
+import { UserByID } from '../../../../../helpers/user/getUserByID'
 
 interface UserProfile {
     _id: string
@@ -52,7 +53,7 @@ export const Foro_Profile = () => {
     const [imageChange, setImageChange] = useState<string>('')
     const [onLoadPost, setOnLoadPost] = useState<boolean>(false)
     
-    const emailProfile = useParams()
+    const {id} = useParams()
     const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
     const dispatch = useAppDispatch()
     
@@ -93,8 +94,9 @@ export const Foro_Profile = () => {
     
     // GET User information
     useEffect( ()=> { 
-        if (emailProfile.email) {
-            getUserByEmail(emailProfile.email)
+        if (id) {
+            //getUserByEmail(emailProfile.email)
+            UserByID(id)
             .then( res => {
                 setUser(res)
             })
@@ -103,14 +105,14 @@ export const Foro_Profile = () => {
  
     // GET Post user
     useEffect( ()=> {
-        if (emailProfile.email) {
-            getAllPostUser(emailProfile.email)
+        if (User.email) {
+            getAllPostUser(User.email)
             .then( res => {
                 setPostByUser(res)
                 setOnLoadPost(true)
             })
         }
-    }, [refresh, addLike, addPost, addEdit, addComment])
+    }, [User, refresh, addLike, addPost, addEdit, addComment])
     
     // UPDATE BANNER
     useEffect( ()=> {
@@ -178,7 +180,7 @@ export const Foro_Profile = () => {
                 <div className='Foro_Profile_Container'>
                     <div className='Foro_Profile_Banner_PicturesSide'>
                         {
-                            userByBd.email==emailProfile.email&&
+                            userByBd._id==id&&
                             <label htmlFor="file-input" className="Modal_custom-file-upload">
                                 <img className='editButton' src={edit} alt="edit" />
                             </label>
@@ -186,7 +188,7 @@ export const Foro_Profile = () => {
                          }
                             <input onChange={(e)=> uploadImage(e, setBannerChange)} className='Foro_Baner_Input' id="file-input" type="file"></input>
                          {
-                            userByBd.email==emailProfile.email&&
+                            userByBd._id==id&&
                             <label htmlFor="profile-input" className="Modal_custom-file-upload">
                                 <img className='editProfilePicButton' src={edit} alt="edit" />
                             </label>
@@ -257,4 +259,8 @@ export const Foro_Profile = () => {
         </div>
     </div> 
   )
+}
+
+function getUserByID() {
+    throw new Error('Function not implemented.');
 }

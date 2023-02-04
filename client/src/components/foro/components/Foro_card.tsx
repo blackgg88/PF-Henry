@@ -98,7 +98,7 @@ export function Foro_card({
     <div className='foro_card_Container' key={id}>
       <div className='foro_card_InfoPOST'>
         <div className='foro_card_authorSide'>
-          <NavLink to={`/foro/profile/${email}`}>
+          <NavLink to={`/foro/profile/${userId}`}>
             <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
           </NavLink>
           <h5>{moment(created).fromNow()}</h5>

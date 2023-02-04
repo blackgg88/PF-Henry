@@ -21,7 +21,7 @@ export const Foro_Menu = ({setRefresh, refresh}: props) => {
     <div className='Foro_Menu_Container'>
         {
             isAuthenticated&&
-            <NavLink onClick={setRefresh?()=> setRefresh(!refresh):()=>{}} to={`/foro/profile/${userByBd.email}`} className='Menu_ButtonContainer'>
+            <NavLink onClick={setRefresh?()=> setRefresh(!refresh):()=>{}} to={`/foro/profile/${userByBd._id}`} className='Menu_ButtonContainer'>
                 <img src={profile} alt="profile" />
             </NavLink>
         }

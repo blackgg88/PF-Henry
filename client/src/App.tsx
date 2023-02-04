@@ -59,7 +59,7 @@ function App() {
         <Route path='/checkout' element={<Form />} />
         <Route path='/foro' element={<ForoHome />} />
         <Route path='*' element={<Page404 />} />
-        <Route path='/foro/profile/:email' element={<Foro_Profile/>} />
+        <Route path='/foro/profile/:id' element={<Foro_Profile/>} />
       </Routes>
       
 

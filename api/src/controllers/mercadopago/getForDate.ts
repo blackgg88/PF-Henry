@@ -77,7 +77,6 @@ export const getForDate = async (req: Request, res: Response) => {
     payments.forEach((object) => {
       const [day, month, year] = object.date_created.split('/');
       const key = `${day}-${month}-${year}`;
-      console.log(object);
 
       if (!result[key]) result[key] = { date: key, TotalSales: 0, TotalCount: 0 };
 

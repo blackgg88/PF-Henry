@@ -1,9 +1,6 @@
 import findIcon from '../../../assets/foro/findIcon.svg';
 import refreshIcon from '../../../assets/foro/refresh.svg';
 import logoSmartW from '../../../assets/logo_smart_w.png';
-import profileIconW from '../../../assets/foro/profile-white.svg';
-import homeIcon from '../../../assets/foro/homeIconW.svg';
-
 import connectivityIconW from '../../../assets/foro/connectivityIconW.svg';
 import entertainmentW from '../../../assets/foro/EntertainmentW.svg';
 import energyW from '../../../assets/foro/energyW.svg';
@@ -33,6 +30,8 @@ export default function FilterPanel({
   handleFilterByTitle,
   resetFilter,handleFilterByCategory
 }: filterPanel) {
+
+
   return (
     <div className='foro_panelContainer'>
       <div>
@@ -84,28 +83,7 @@ export default function FilterPanel({
               <p onClick={()=>handleFilterByCategory("Comfort and Ease")}>Comfort and Ease</p>
             </div>
           </div>
-          
-          
-          
         }
-        {
-          /* 
-          
-          <div className='foro_panel_tagsContainer'>
-            <fieldset>
-              <legend>Tags</legend>
-              <p>Connectivity and Control</p>
-              <p>Home Entertainment</p>
-              <p>Energy Management</p>
-              <p>Safety and Security</p>
-              <p>Comfort and Ease</p>
-              <p>Lifestyle and Health</p>
-            </fieldset>
-          </div>
-          
-          */
-        }
-
       </div>
       <div className='foro_panel_logoContainer'>
         <img src={logoSmartW} alt="logoSmartNEST" />

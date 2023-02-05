@@ -26,7 +26,7 @@ import { UserByID } from '../../../../../helpers/user/getUserByID';
 import {notification} from '../../../../../helpers/foro/notification';
 //---------------------
 
-interface UserProfile {
+export interface UserProfile {
     _id: string
     firstName: string
     lastName: string
@@ -66,37 +66,10 @@ export const Foro_Profile = () => {
     const [imageChange, setImageChange] = useState<string>('')
     const [onLoadPost, setOnLoadPost] = useState<boolean>(false)
     const [otherUsers, setOthersUsers] = useState<iOtherUser[]>([])
-    
     const {id} = useParams()
     const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
     const dispatch = useAppDispatch()
-    const changeUser = (e: any)=> {
-        setPostByUser([])
-        setUser({
-            _id: '',
-            firstName: '',
-            lastName: '',
-            username: '',
-            email: '',
-            comments: [],
-            picture: '',
-            banner: '',
-            posts: [],
-            role: ''
-        })
-        setOnLoadPost(false)
-        
-        getAllPostUser(e.target.id)
-            .then( res => {
-                setPostByUser(res)
-                setOnLoadPost(true)
-            })
-        getUserByEmail(e.target.id)
-        .then( res => {
-            setUser(res)
-        })
-    }
-    
+
     // Hook
     const [
         form,
@@ -195,12 +168,38 @@ export const Foro_Profile = () => {
         })
     }, [])
     
+    const changeUser = (e: any)=> {
+        setPostByUser([])
+        setUser({
+            _id: '',
+            firstName: '',
+            lastName: '',
+            username: '',
+            email: '',
+            comments: [],
+            picture: '',
+            banner: '',
+            posts: [],
+            role: ''
+        })
+        setOnLoadPost(false)
+        
+        getAllPostUser(e.target.id)
+            .then( res => {
+                setPostByUser(res)
+                setOnLoadPost(true)
+            })
+        getUserByEmail(e.target.id)
+        .then( res => {
+            setUser(res)
+        })
+    }
 
   return (
     <div className='Foro_Profile_ALLContainer'>
 
         <div className='foro_Profile_MenuSide'>
-            <Foro_Menu refresh={refresh} setRefresh={setRefresh}/>
+            <Foro_Menu refresh={refresh} setRefresh={setRefresh} setUser={setUser} setOnLoadPost={setOnLoadPost} setPostByUser={setPostByUser}/>
         </div>
 
         <div className='FORO_PROFILE'>
@@ -287,7 +286,7 @@ export const Foro_Profile = () => {
 
             <div className='foro_profile_UserListContainer'>
                 <div className='foro_profile_UserList_Header'>
-                    <h3>Other Users</h3>
+                    <h3>Most active users</h3>
                 </div>
                 <div className='foro_profile_UserList_Content'>
                     {
@@ -307,8 +306,4 @@ export const Foro_Profile = () => {
         </div>
     </div> 
   )
-}
-
-function getUserByID() {
-    throw new Error('Function not implemented.');
 }

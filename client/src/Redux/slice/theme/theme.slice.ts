@@ -13,6 +13,8 @@ export const themeSlice = createSlice({
   reducers: {
     changeTheme: (state, action: PayloadAction<boolean>) => {
       state.dark = action.payload;
+
+      document.body.classList.toggle('dark');
     },
   },
 });

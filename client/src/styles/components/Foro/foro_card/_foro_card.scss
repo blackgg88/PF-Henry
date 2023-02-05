@@ -1,172 +1,171 @@
 $standard-font-Hanken-Grotesk: 'Hanken Grotesk', sans-serif;
 $standard-font-IBM-Plex-Sans-Arabic: 'IBM Plex Sans Arabic', sans-serif;
 $standard-font-Lexend-Deca-sans-serif: 'Lexend Deca', sans-serif;
-$standard-font-Outfit-sans-serif :'Outfit', sans-serif;
-$standard-font-Urbanis-sans-serif:'Urbanist', sans-serif;
+$standard-font-Outfit-sans-serif: 'Outfit', sans-serif;
+$standard-font-Urbanis-sans-serif: 'Urbanist', sans-serif;
 
 .foro_card_Container {
-    background-color: white;
-    width: 100%;
-    margin: 15px;
+  background-color: white;
+  width: 100%;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 5px;
+  font-family: $standard-font-Outfit-sans-serif;
+
+  body.dark & {
+    background-color: rgba(45, 44, 44, 0.8);
+  }
+
+  .foro_card_infoCOMMENT {
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    border-radius: 5px;
-    font-family: $standard-font-Outfit-sans-serif;
-    
-    .foro_card_infoCOMMENT {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        //background-color: blue;
+    margin-top: 10px;
+    //background-color: blue;
 
-        .foro_card_ALL {
-            display: none;
-        }
-
-        .foro_card_CommentPostSide{
-            display: flex;
-            align-items: center;
-
-            img {
-                margin-right: 10px;
-                width: 35px;
-                border-radius: 100%;
-            }
-
-            textarea {
-                width: 100%;
-                resize: none;
-                padding: 10px;
-            }
-        }
-
-        .foro_card_SubmitCommentSide {
-            margin-top: 10px;
-            margin-right: 5px;
-            display: flex;
-            justify-content: flex-end;
-
-            button {
-                color: white;
-                background-color: $standard-color-blue;
-                padding: 5px 15px;
-                border-radius: none;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-            }
-        }
+    .foro_card_ALL {
+      display: none;
     }
 
+    .foro_card_CommentPostSide {
+      display: flex;
+      align-items: center;
 
-    .foro_card_authorSide {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      img {
+        margin-right: 10px;
+        width: 35px;
+        border-radius: 100%;
+      }
 
-        h3 {
-            background-color: #141b42ff;
-            color: white;
-            padding: 2px 15px;
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-            position: relative;
-            right: 15px;
-            cursor: pointer;
-        }
-        
-        //border: 1px solid green;
-        .foro_card_buttonEdit {
-            width: 20px;
-        }
-    }
-
-    .foro_card_titleSide {
-        display: flex;
-        //border: 1px solid green;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 20px;
-        
-    }
-
-    .foro_card_contentSide {
-        display: flex;
+      textarea {
         width: 100%;
-        margin: 5px 0px;
-        flex-wrap: wrap;
-        p {
-            text-align: justify;
-            word-break: keep-all;
-          }
+        resize: none;
+        padding: 10px;
+
+        body.dark & {
+          background-color: rgba(45, 44, 44, 0.8);
+          color: white;
+        }
+      }
     }
 
-    .foro_card_imagenSide {
-        display: flex;
-        //border: 1px solid green;
-        height: 300px;
-        margin: 15px 0px;
-        overflow: hidden;
-        img {
-            width: 100%;
-            //min-height: 350px;
-        }
+    .foro_card_SubmitCommentSide {
+      margin-top: 10px;
+      margin-right: 5px;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        color: white;
+        background-color: $standard-color-blue;
+        padding: 5px 15px;
+        border-radius: none;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .foro_card_authorSide {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      background-color: #141b42ff;
+      color: white;
+      padding: 2px 15px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      position: relative;
+      right: 15px;
+      cursor: pointer;
     }
 
-    .foro_card_socialContainer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 5px 0px;
-        margin-bottom: 10px;
-        
-
-        .foro_card_social_Left {
-            display: flex;
-            width: 50%;
-            //background-color: red;
-            
-            .foro_card_button_Delete {
-                width: 28px;
-                margin-right: 10px;
-                cursor: pointer;
-            }
-
-            .foro_card_button_Edit {
-                width: 28px;
-                cursor: pointer;
-                
-            }
-
-        }
-
-        
-
-        .foro_card_social_Right {
-            display: flex;
-            justify-content: flex-end;
-            width: 50%;
-            //background-color: blue;
-            //background-color: yellow;
-
-            .foro_card_buttonLike {
-                width: 28px;
-                margin-right: 5px;
-                margin-left: 5px;
-                cursor: pointer;
-
-            }
-            .foro_card_buttonComment {
-                width: 30px;
-                margin-right: 5px;
-                margin-left: 5px;
-                cursor: pointer;
-                position: relative;
-                //bottom: 1px;
-
-            }
-        }
-
+    //border: 1px solid green;
+    .foro_card_buttonEdit {
+      width: 20px;
     }
+  }
+
+  .foro_card_titleSide {
+    display: flex;
+    //border: 1px solid green;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .foro_card_contentSide {
+    display: flex;
+    width: 100%;
+    margin: 5px 0px;
+    flex-wrap: wrap;
+    p {
+      text-align: justify;
+      word-break: keep-all;
+    }
+  }
+
+  .foro_card_imagenSide {
+    display: flex;
+    //border: 1px solid green;
+    height: 300px;
+    margin: 15px 0px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      //min-height: 350px;
+    }
+  }
+
+  .foro_card_socialContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0px;
+    margin-bottom: 10px;
+
+    .foro_card_social_Left {
+      display: flex;
+      width: 50%;
+      //background-color: red;
+
+      .foro_card_button_Delete {
+        width: 28px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .foro_card_button_Edit {
+        width: 28px;
+        cursor: pointer;
+      }
+    }
+
+    .foro_card_social_Right {
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+      //background-color: blue;
+      //background-color: yellow;
+
+      .foro_card_buttonLike {
+        width: 28px;
+        margin-right: 5px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+      .foro_card_buttonComment {
+        width: 30px;
+        margin-right: 5px;
+        margin-left: 5px;
+        cursor: pointer;
+        position: relative;
+        //bottom: 1px;
+      }
+    }
+  }
 }

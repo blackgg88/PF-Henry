@@ -1,280 +1,296 @@
 .Foro_Profile_ALLContainer {
+  display: flex;
+  justify-content: space-between;
+  height: calc(100vh - $navbar-height - $navbar-height-maring-top - $navbar-height-maring-button);
+  background-color: #dae0e6;
+  overflow: hidden;
+
+  body.dark & {
+    background-color: $standard-color-black;
+  }
+
+  .FORO_PROFILE {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    height: calc(100vh - $navbar-height - $navbar-height-maring-top - $navbar-height-maring-button);
-    background-color: #DAE0E6;
-    overflow: hidden;
+    //flex-direction: column;
+    justify-content: center;
 
-    .FORO_PROFILE {
+    .Foro_Profile_PostSide {
+      padding: 20px;
+      padding-top: 0;
+      margin-top: 20px;
+      width: 700px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: $standard-font-Outfit-sans-serif;
+      overflow-x: hidden;
+      //border: 1px solid red;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $standard-background;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $standard-color-blue;
+        border-radius: 5px;
+      }
+
+      &::-webkit-scrollbar-button {
+        //background-color: red;
+        width: 2px;
+        height: 100%;
+      }
+
+      .Foro_Profile_Container {
         width: 100%;
-        display: flex;
-        //flex-direction: column;
-        justify-content: center;
+        height: 350px;
+        background-color: white;
+        //margin-top: 20px;
+        border-radius: 5px;
 
-        .Foro_Profile_PostSide {
-            padding: 20px;
-            padding-top: 0;
-            margin-top: 20px;
-            width: 700px;
-            overflow: auto;
+        body.dark & {
+          background-color: rgba(45, 44, 44, 0.8);
+        }
+
+        .Foro_Profile_Banner_PicturesSide {
+          width: 100%;
+          height: 200px;
+          position: relative;
+
+          .Foro_Baner_Input {
+            display: none;
+          }
+
+          .editProfilePicButton {
+            background-color: white;
+            position: absolute;
+            z-index: 3;
+            width: 28px;
+            height: 28px;
+            left: 150px;
+            bottom: 20px;
+            border-radius: 100%;
+            padding: 3px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.2s ease-in;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+
+          .editButton {
+            background-color: white;
+            position: absolute;
+            z-index: 3;
+            width: 28px;
+            height: 28px;
+            top: 10px;
+            right: 10px;
+            border-radius: 100%;
+            padding: 3px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.2s ease-in;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            z-index: 2;
+          }
+          .profilePic {
+            border-radius: 100%;
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 60%;
+            left: 20px;
+            cursor: pointer;
+            background-color: $standard-color-blue;
+            z-index: 2;
+          }
+          .profilePicDefault {
+            border-radius: 100%;
+            width: 150px;
+            height: 150px;
+            padding: 30px;
+            position: absolute;
+            top: 60%;
+            left: 20px;
+            cursor: pointer;
+            background-color: $standard-color-blue;
+            z-index: 2;
+          }
+        }
+
+        .Foro_Profile_NameSide {
+          width: 100%;
+          display: flex;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          //background-color: red;
+
+          .Foro_Profile_NameDefault {
+            margin-left: 200px;
+            font-family: $standard-font-Outfit-sans-serif;
+            color: rgb(37, 36, 36);
+            font-size: 25px;
+            padding: 15px 5px;
+            overflow: hidden;
+          }
+          h1 {
+            margin-left: 200px;
+            font-family: $standard-font-Outfit-sans-serif;
+            color: rgb(37, 36, 36);
+            font-size: 25px;
+            white-space: nowrap;
+            //background-color: green;
+            max-width: 80%;
+            overflow: hidden;
+
+            body.dark & {
+              color: white;
+            }
+          }
+          p {
+            padding-left: 200px;
+            font-family: $standard-font-Outfit-sans-serif;
+            color: rgb(37, 36, 36);
+            //background-color: $standard-color-blue;
+            body.dark & {
+              color: white;
+            }
+          }
+        }
+
+        .Foro_Profile_ContentSide {
+          display: flex;
+          //border: 1px solid red;
+          margin: 20px;
+          justify-content: space-around;
+
+          .Foro_Profile_StatContainer {
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-family: $standard-font-Outfit-sans-serif;
-            overflow-x: hidden;
-            //border: 1px solid red;
+            cursor: pointer;
 
-            &::-webkit-scrollbar {
-                width: 5px;
-                background-color: $standard-background;
+            img {
+              width: 36px;
             }
 
-            &::-webkit-scrollbar-thumb {
-                background-color: $standard-color-blue;
-                border-radius: 5px;
-            }
-
-            &::-webkit-scrollbar-button {
-                //background-color: red;
-                width: 2px;
-                height: 100%;
-            }
-
-            .Foro_Profile_Container {
-                width: 100%;
-                height: 350px;
-                background-color: white;
-                //margin-top: 20px;
-                border-radius: 5px;
-
-                .Foro_Profile_Banner_PicturesSide {
-                    width: 100%;
-                    height: 200px;
-                    position: relative;
-
-                    .Foro_Baner_Input {
-                        display: none;
-                    }
-
-                    .editProfilePicButton {
-                        background-color: white;
-                        position: absolute;
-                        z-index: 3;
-                        width: 28px;
-                        height: 28px;
-                        left: 150px;
-                        bottom: 20px;
-                        border-radius: 100%;
-                        padding: 3px;
-                        opacity: .6;
-                        cursor: pointer;
-                        transition: all .2s ease-in;
-
-                        &:hover {
-                            opacity: .8;
-                        }
-                    }
-
-                    .editButton {
-                        background-color: white;
-                        position: absolute;
-                        z-index: 3;
-                        width: 28px;
-                        height: 28px;
-                        top: 10px;
-                        right: 10px;
-                        border-radius: 100%;
-                        padding: 3px;
-                        opacity: .6;
-                        cursor: pointer;
-                        transition: all .2s ease-in;
-
-                        &:hover {
-                            opacity: .8;
-                        }
-                    }
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        border-top-left-radius: 5px;
-                        border-top-right-radius: 5px;
-                        z-index: 2;
-                    }
-                    .profilePic {
-                        border-radius: 100%;
-                        width: 150px;
-                        height: 150px;
-                        position: absolute;
-                        top: 60%;
-                        left: 20px;
-                        cursor: pointer;
-                        background-color: $standard-color-blue;
-                        z-index: 2;
-                    }
-                    .profilePicDefault {
-                        border-radius: 100%;
-                        width: 150px;
-                        height: 150px;
-                        padding: 30px;
-                        position: absolute;
-                        top: 60%;
-                        left: 20px;
-                        cursor: pointer;
-                        background-color: $standard-color-blue;
-                        z-index: 2;
-                    }
-                }
-
-                .Foro_Profile_NameSide {
-                    width: 100%;
-                    display: flex;
-                    display: flex;
-                    flex-direction: column;
-                    overflow: hidden;
-                    //background-color: red;
-                    
-                    .Foro_Profile_NameDefault {
-                        margin-left: 200px;
-                        font-family: $standard-font-Outfit-sans-serif;
-                        color: rgb(37, 36, 36);
-                        font-size: 25px;
-                        padding: 15px 5px;
-                        overflow: hidden;
-                    }
-                    h1 {
-                        margin-left: 200px;
-                        font-family: $standard-font-Outfit-sans-serif;
-                        color: rgb(37, 36, 36);
-                        font-size: 25px;
-                        white-space: nowrap;
-                        //background-color: green;
-                        max-width: 80%;
-                        overflow: hidden;
-                    }
-                    p {
-                        padding-left: 200px;
-                        font-family: $standard-font-Outfit-sans-serif;
-                        color: rgb(37, 36, 36);
-                        //background-color: $standard-color-blue;
-                    }
-                }
-
-                .Foro_Profile_ContentSide {
-                    display: flex;
-                    //border: 1px solid red;
-                    margin: 20px;
-                    justify-content: space-around;
-
-                    .Foro_Profile_StatContainer {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        cursor: pointer;
-
-                        img {
-                            width: 36px;
-                        }
-
-                        p {
-                            font-family: $standard-font-Outfit-sans-serif;
-                            color: rgb(37, 36, 36);
-                        }
-                        &:hover img {
-                            transform: scale(1.2);
-                        }
-                    }
-                }
-            }
-                
-            .foro_profile_NotPost {
-                margin-top: 30px;
-                border-radius: 20px;
-                background-color: $standard-color-blue;
+            p {
+              font-family: $standard-font-Outfit-sans-serif;
+              color: rgb(37, 36, 36);
+              body.dark & {
                 color: white;
-                padding: 2px 15px;
+              }
             }
-        }  
-
-        .foro_profile_UserListContainer {
-            width: 300px;
-            height: 350px;
-            overflow: auto;
-            background-color: white;
-            margin: 20px;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            
-
-            &::-webkit-scrollbar {
-                width: 5px;
-                background-color: $standard-background;
+            &:hover img {
+              transform: scale(1.2);
             }
-
-            &::-webkit-scrollbar-thumb {
-                //background-color: $standard-color-blue;
-                border-radius: 5px;
-            }
-
-            &::-webkit-scrollbar-button {
-                //background-color: red;
-                width: 2px;
-                height: 100%;
-            }
-
-            .foro_profile_UserList_Header {
-                display: flex;
-                justify-content: center;
-
-                h3 {
-                    font-family: $standard-font-Outfit-sans-serif;
-                }
-            }
-
-            .foro_profile_UserList_Content {
-                display: flex;
-                flex-direction: column;
-
-                .foro_profile_UserList_Container {
-                    display: flex;
-                    margin: 10px 0px;
-                    //background-color: red;
-                    align-items: center;
-
-                    &:hover .foro_profile_UserList_NameSide p {
-                        color: cornflowerblue;
-                    }
-                    
-
-                    .foro_profile_UserList_ImgSide {
-                        width: 30%;
-                        height: 60px;
-
-                        img {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-                    .foro_profile_UserList_NameSide {
-                        width: 100%;
-                        
-
-                        p {
-                            margin-left: 10px;
-                            font-family: $standard-font-Outfit-sans-serif;
-                            color: black;
-                            
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
+
+      .foro_profile_NotPost {
+        margin-top: 30px;
+        border-radius: 20px;
+        background-color: $standard-color-blue;
+        color: white;
+        padding: 2px 15px;
+      }
     }
 
+    .foro_profile_UserListContainer {
+      width: 300px;
+      height: 350px;
+      overflow: auto;
+      background-color: white;
+      margin: 20px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
 
+      body.dark & {
+        background-color: rgba(45, 44, 44, 0.8);
+      }
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $standard-background;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        //background-color: $standard-color-blue;
+        border-radius: 5px;
+      }
+
+      &::-webkit-scrollbar-button {
+        //background-color: red;
+        width: 2px;
+        height: 100%;
+      }
+
+      .foro_profile_UserList_Header {
+        display: flex;
+        justify-content: center;
+
+        h3 {
+          font-family: $standard-font-Outfit-sans-serif;
+        }
+      }
+
+      .foro_profile_UserList_Content {
+        display: flex;
+        flex-direction: column;
+
+        .foro_profile_UserList_Container {
+          display: flex;
+          margin: 10px 0px;
+          //background-color: red;
+          align-items: center;
+
+          &:hover .foro_profile_UserList_NameSide p {
+            color: cornflowerblue;
+          }
+
+          .foro_profile_UserList_ImgSide {
+            width: 30%;
+            height: 60px;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .foro_profile_UserList_NameSide {
+            width: 100%;
+
+            p {
+              margin-left: 10px;
+              font-family: $standard-font-Outfit-sans-serif;
+              color: black;
+              body.dark & {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
-
-
-

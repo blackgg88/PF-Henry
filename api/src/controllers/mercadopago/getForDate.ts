@@ -64,13 +64,12 @@ export const getForDate = async (req: Request, res: Response) => {
       },
     );
 
-    const payments = response.data.results.map((purchase: PurchaseByMP) => {
+    const payments: Purchase[] = response.data.results.map((purchase: PurchaseByMP) => {
       return {
         id: purchase.id,
         date_created: new Date(purchase.date_created).toLocaleDateString(),
         total_paid_amount: purchase.transaction_details.total_paid_amount,
-        status: purchase.status,
-      } as Purchase;
+      };
     });
     const result = {};
 

@@ -9,6 +9,7 @@ import energyW from '../../../assets/foro/energyW.svg';
 import securityW from '../../../assets/foro/securityW.svg';
 import healthW from '../../../assets/foro/health.svg';
 import confort from '../../../assets/foro/confortW.svg';
+import filter from '../../../assets/foro/filterIcon.svg'
 import { uploadImage, uploadImagePost } from "../../../../helpers/foro/uploadImage";
 
 
@@ -21,7 +22,9 @@ export default function Foro_createPost({
   previewTag,
   HandlerpreviewTags,
   handlerQuitPreview,
-  setForm
+  setForm,
+  FiltersOpen,
+  setFiltersOpen,
 }: any) {
 
   const [uploadinImg, setUploading] = useState<boolean>(false);
@@ -152,20 +155,8 @@ export default function Foro_createPost({
       <hr />
       <div className="foro_posts_buttonSide">
         <div className="foro_posts_AddImagen_Container">
-          {
-            /*
-
-            <div
-              onClick={() => setImageOpen(!imageOpen)}
-              className="foro_post_ImageDiv"
-              >
-              <img src={addIMage} alt="Add_Image" />
-              <p>Add Image</p>
-            </div>
-
-            */
-          }
           <div className="foro_post_ImageDiv">
+              <img onClick={()=> setFiltersOpen(!FiltersOpen)} src={filter} alt="filters" />
               <label htmlFor="file-input" className="foro_post_Label">
                 <img src={addIMage} alt="Add_Image" />
               </label>

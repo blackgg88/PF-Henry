@@ -26,6 +26,7 @@ interface filterPanel {
   handleFilterByTitle: any;
   resetFilter: any;
   handleFilterByCategory: any;
+
 }
 export default function FilterPanel({
   searchInput,

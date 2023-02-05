@@ -198,9 +198,9 @@ export const Foro_Profile = () => {
   return (
     <div className='Foro_Profile_ALLContainer'>
 
-        <div className='foro_Profile_MenuSide'>
-            <Foro_Menu refresh={refresh} setRefresh={setRefresh} setUser={setUser} setOnLoadPost={setOnLoadPost} setPostByUser={setPostByUser}/>
-        </div>
+        
+        <Foro_Menu refresh={refresh} setRefresh={setRefresh} setUser={setUser} setOnLoadPost={setOnLoadPost} setPostByUser={setPostByUser}/>
+        
 
         <div className='FORO_PROFILE'>
             <div className='Foro_Profile_PostSide'>

@@ -6,14 +6,11 @@
     overflow: hidden;
     @media(max-width:900px){
         // flex-direction: column-reverse;
-        height: auto;
-        align-items: center;
-        
+         
     }
-    @media (max-width:500px){
+    @media (max-width:610px){
         flex-direction: column-reverse;
-        // heighy
-        
+        justify-content: flex-end;
     }
 
     .FORO_PROFILE {
@@ -21,18 +18,25 @@
         display: flex;
         //flex-direction: column;
         justify-content: center;
+        //background-color: green;
+        @media (max-width: 500px) {
+            height: 90vh;
+            justify-content: flex-start;
+        }
 
         .Foro_Profile_PostSide {
             padding: 20px;
             padding-top: 0;
             margin-top: 20px;
             width: 700px;
+            height: 80vh;
             overflow: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             font-family: $standard-font-Outfit-sans-serif;
             overflow-x: hidden;
+            //background-color: red;
             //border: 1px solid red;
 
             @media(max-width:900px){
@@ -40,6 +44,7 @@
                 padding: 0px;
                 margin-top: 20px;
             }
+            
             &::-webkit-scrollbar {
                 width: 5px;
                 background-color: $standard-background;
@@ -85,6 +90,7 @@
                         opacity: .6;
                         cursor: pointer;
                         transition: all .2s ease-in;
+                        z-index: 3;
                         @media(max-width:450px){
                             left: 90px;
                             bottom: 19px;
@@ -108,6 +114,7 @@
                         opacity: .6;
                         cursor: pointer;
                         transition: all .2s ease-in;
+                        z-index: 1;
 
                         &:hover {
                             opacity: .8;

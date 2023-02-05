@@ -107,6 +107,13 @@ const NavBar = () => {
         <NavLink
           onClick={() => setResponsiveMenu(!responsiveMenu)}
           className='link-style'
+          to='/foro'
+        >
+          <p className='nav_middle_button'>Foro</p>
+        </NavLink>
+        <NavLink
+          onClick={() => setResponsiveMenu(!responsiveMenu)}
+          className='link-style'
           to='/shop'
         >
           <p className='nav_middle_button'>Shop</p>

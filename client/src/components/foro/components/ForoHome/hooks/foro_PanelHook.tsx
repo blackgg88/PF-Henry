@@ -9,6 +9,8 @@ export const foro_PanelHook = () => {
     const [safety, setSafety] = useState<boolean>(false)
     const [comfort, setComfort] = useState<boolean>(false)
 
+    const [FiltersOpen, setFiltersOpen] = useState<boolean>(false)
+
     const allFunction= [setLife, setConnect, setHome, setEnergy, setSafety, setComfort]
     const allState = [life, connect, home, energy, safety, comfort]
 
@@ -25,7 +27,9 @@ export const foro_PanelHook = () => {
   return [
     {
         selectedHandler,
-        allState
+        allState,
+        FiltersOpen,
+        setFiltersOpen
     }
   ]
 }

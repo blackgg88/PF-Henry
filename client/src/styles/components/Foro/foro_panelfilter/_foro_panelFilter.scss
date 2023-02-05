@@ -91,7 +91,25 @@
 
         }
 
-        
+        .foro_panel_Menu_SELECTED {
+            cursor: pointer;
+            display: flex;
+            //flex-direction: column;
+            //justify-content: center;
+            align-items: center;
+            color: cornflowerblue;
+            border-radius: 5px;
+            background-color:rgb(17, 22, 54);
+            transition: all .1s ease-in;
+            overflow: hidden;
+            
+            img {
+                width: 20px;
+                margin: 5px;
+                margin-right: 20px;
+            }
+
+        }
     }
 
     .foro_panel_logoContainer {

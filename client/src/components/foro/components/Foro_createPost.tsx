@@ -9,6 +9,7 @@ import energyW from '../../../assets/foro/energyW.svg';
 import securityW from '../../../assets/foro/securityW.svg';
 import healthW from '../../../assets/foro/health.svg';
 import confort from '../../../assets/foro/confortW.svg';
+import { uploadImage, uploadImagePost } from "../../../../helpers/foro/uploadImage";
 
 
 export default function Foro_createPost({
@@ -19,13 +20,26 @@ export default function Foro_createPost({
   selectedTag,
   previewTag,
   HandlerpreviewTags,
-  handlerQuitPreview
+  handlerQuitPreview,
+  setForm
 }: any) {
 
-  const [imageOpen, setImageOpen] = useState<boolean>(false);
+  const [uploadinImg, setUploading] = useState<boolean>(false);
+  const [charged, setCharged] = useState<boolean>(false)
   const userByBd = useAppSelector((state) => state.userReducer.userState);
 
-  
+  const handlerImage = (e: any)=> {
+    setForm({
+      ...form,
+      image: ''
+    })
+    setCharged(true)
+    setUploading(true)
+    uploadImagePost(e, form,  setForm)
+    .then(res => {
+      setUploading(false)
+    })
+  }
   
 
   return (
@@ -133,29 +147,36 @@ export default function Foro_createPost({
               <img onMouseEnter={HandlerpreviewTags} onMouseLeave={handlerQuitPreview} id='Lifestyle and Health' onClick={handleTags} src={healthW} />
             </div>
           </div>
-          {imageOpen && (
-            <input
-              value={form.image}
-              onChange={handlerChangePost}
-              name="image"
-              placeholder="Image"
-              type="text"
-            />
-          )}
         </div>
       </div>
       <hr />
       <div className="foro_posts_buttonSide">
         <div className="foro_posts_AddImagen_Container">
-          <div
-            onClick={() => setImageOpen(!imageOpen)}
-            className="foro_post_ImageDiv"
-          >
-            <img src={addIMage} alt="Add_Image" />
-            <p>Add Image</p>
+          {
+            /*
+
+            <div
+              onClick={() => setImageOpen(!imageOpen)}
+              className="foro_post_ImageDiv"
+              >
+              <img src={addIMage} alt="Add_Image" />
+              <p>Add Image</p>
+            </div>
+
+            */
+          }
+          <div className="foro_post_ImageDiv">
+              <label htmlFor="file-input" className="foro_post_Label">
+                <img src={addIMage} alt="Add_Image" />
+              </label>
+              <input onChange={handlerImage} className='foro_post_IMPUT' id="file-input" type="file"></input>
+              {
+                charged&&(uploadinImg?
+                <p>cargando...</p>:<p>Completado</p>)
+              }
           </div>
         </div>
-        <button onClick={handlerSubmit}>POST</button>
+        <button disabled={uploadinImg?true:false} onClick={handlerSubmit}>POST</button>
       </div>
     </div>
   );

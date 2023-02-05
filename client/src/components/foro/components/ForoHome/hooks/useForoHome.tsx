@@ -539,7 +539,8 @@ export function useForoHome() {
       setSelectedTag,
       HandlerpreviewTags,
       handlerQuitPreview,
-      handlerConsole
+      handlerConsole,
+      setForm
     },
   ];
 }

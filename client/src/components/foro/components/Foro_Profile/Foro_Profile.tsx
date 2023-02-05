@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom';
 import { Foro_Menu } from '../Foro_Menu/Foro_Menu'
-import defaultBanne from '../../../../assets/images/SmartBackground.jpg'
+import { Foro_card } from '../Foro_card';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../../../Redux/hook';
+import { useForoHome } from '../ForoHome/hooks/useForoHome';
 import { userInterface } from '../../../../Redux/slice/user/user.slice';
+import { changePicture } from '../../../../Redux/slice/user/user.slice';
+
+//--- ICON --------
+import defaultBanne from '../../../../assets/images/SmartBackground.jpg'
 import PostIcon from '../../../../assets/foro/postsIcon.svg'
 import edit from '../../../../assets/foro/edit.svg'
 import commentIcon from '../../../../assets/foro/commentsIcon.svg'
-import { useForoHome } from '../ForoHome/hooks/useForoHome';
-import { Foro_card } from '../Foro_card';
-import { getUserByEmail } from '../../../../../helpers/user/getUserByEmail';
-import { getAllPostUser } from '../../../../../helpers/user/getAllPostUser';
 import logoDiscord from '../../../../assets/discord.svg';
-import { changePicture } from '../../../../Redux/slice/user/user.slice';
-import Foro_editPost from '../EditPost/Foro_editPost';
+
+//--- HELPERS ---------
+import { getFormatedUsers } from '../../../../../helpers/user/getFormatedUsers';
+import { getAllPostUser } from '../../../../../helpers/user/getAllPostUser';
 import { uploadImage } from '../../../../../helpers/foro/uploadImage';
 import { putProfileBanner } from '../../../../../helpers/user/putProfileBanner';
-import Swal from "sweetalert2";
 import { putProfilePicture } from '../../../../../helpers/user/putProfilePicture';
-import { UserByID } from '../../../../../helpers/user/getUserByID'
-import {notification} from '../../../../../helpers/foro/notification'
+import { getUserByEmail } from '../../../../../helpers/user/getUserByEmail'
+import { UserByID } from '../../../../../helpers/user/getUserByID';
+import {notification} from '../../../../../helpers/foro/notification';
+//---------------------
 
 interface UserProfile {
     _id: string
@@ -32,6 +37,13 @@ interface UserProfile {
     posts: string[]
     comments: string[]
     banner: string
+}
+
+interface iOtherUser {
+    _id: string
+    username: string
+    picture: string
+    email: string
 }
 
 
@@ -53,12 +65,39 @@ export const Foro_Profile = () => {
     const [bannerChange, setBannerChange] = useState<string>('')
     const [imageChange, setImageChange] = useState<string>('')
     const [onLoadPost, setOnLoadPost] = useState<boolean>(false)
+    const [otherUsers, setOthersUsers] = useState<iOtherUser[]>([])
     
     const {id} = useParams()
     const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
     const dispatch = useAppDispatch()
+    const changeUser = (e: any)=> {
+        setPostByUser([])
+        setUser({
+            _id: '',
+            firstName: '',
+            lastName: '',
+            username: '',
+            email: '',
+            comments: [],
+            picture: '',
+            banner: '',
+            posts: [],
+            role: ''
+        })
+        setOnLoadPost(false)
+        
+        getAllPostUser(e.target.id)
+            .then( res => {
+                setPostByUser(res)
+                setOnLoadPost(true)
+            })
+        getUserByEmail(e.target.id)
+        .then( res => {
+            setUser(res)
+        })
+    }
     
-
+    // Hook
     const [
         form,
     commentary,
@@ -96,7 +135,6 @@ export const Foro_Profile = () => {
     // GET User information
     useEffect( ()=> { 
         if (id) {
-            //getUserByEmail(emailProfile.email)
             UserByID(id)
             .then( res => {
                 setUser(res)
@@ -149,7 +187,15 @@ export const Foro_Profile = () => {
             setImageChange('')
           }
     }, [imageChange])
+
+    useEffect( ()=> {
+        getFormatedUsers()
+        .then(res => {
+            setOthersUsers(res)
+        })
+    }, [])
     
+
   return (
     <div className='Foro_Profile_ALLContainer'>
 
@@ -237,6 +283,26 @@ export const Foro_Profile = () => {
                     <p>{User.username} has not published any post yet</p>
                 </div>
             }
+            </div>
+
+            <div className='foro_profile_UserListContainer'>
+                <div className='foro_profile_UserList_Header'>
+                    <h3>Other Users</h3>
+                </div>
+                <div className='foro_profile_UserList_Content'>
+                    {
+                        otherUsers.map( user => {
+                            return <NavLink id={user.email} key={user._id} onClick={changeUser} to={`/foro/profile/${user._id}`} className='foro_profile_UserList_Container'>
+                                <div id={user.email} className='foro_profile_UserList_ImgSide'>
+                                    <img id={user.email} src={user.picture} />
+                                </div>
+                                <div id={user.email} className='foro_profile_UserList_NameSide'>
+                                    <p id={user.email}> {user.username}</p>
+                                </div>
+                            </NavLink>
+                        })
+                    }
+                </div>
             </div>
         </div>
     </div> 

@@ -120,6 +120,20 @@
             cursor: pointer;
             margin-right: 10px;
 
+            .foro_post_Label {
+              img {
+                cursor: pointer;
+                transition: all .2s ease;
+                &:hover {
+                  transform: scale(1.1);
+                }
+              }
+            }
+
+            .foro_post_IMPUT {
+              display: none;
+            }
+
             img {
               width: 40px;
               margin-right: 5px;
@@ -135,6 +149,15 @@
           padding: 8px 20px;
           background-color: $standard-color-blue;
           color: white;
+          border: 1px solid white;
+          transition: all .2s ease;
+          &:disabled {
+            transition: all .2s ease;
+            cursor: not-allowed;
+            background-color: white;
+            border: 1px solid #e63946;
+            color: #e63946;
+          }
         }
       }
     }

@@ -8,12 +8,14 @@ import { deleteUser } from '../controllers/users/deleteUser';
 import { putUser } from '../controllers/users/putUser';
 import { putImgUser } from '../controllers/users/putImageUser';
 import { putBannerUser } from '../controllers/users/putBannerUser';
+import { getAllUsersformated } from '../controllers/users/getAllUsersformated'
 
 const user = Router();
 
 // // USER ROUTES!!
 
 user.get('/', getAllUsers);
+user.get('/list', getAllUsersformated)
 
 user.put('/img', putImgUser);
 user.put('/banner', putBannerUser);

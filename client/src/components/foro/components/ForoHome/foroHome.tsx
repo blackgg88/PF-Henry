@@ -44,7 +44,8 @@ export default function ForoHome() {
       handleTags,
       handleFilterByCategory,
       HandlerpreviewTags,
-      handlerQuitPreview
+      handlerQuitPreview,
+      setForm
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
@@ -78,6 +79,7 @@ export default function ForoHome() {
           previewTag={previewTag}
           HandlerpreviewTags={HandlerpreviewTags}
           handlerQuitPreview={handlerQuitPreview}
+          setForm={setForm}
         />
         }
         

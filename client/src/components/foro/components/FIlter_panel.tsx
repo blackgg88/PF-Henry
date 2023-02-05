@@ -48,7 +48,9 @@ export default function FilterPanel({
 
   return (
     <div className='foro_panelContainer'>
-      <div>
+      <div >
+        <div className='foro_panel_search_div'>
+
         <form className="foro_panel_SearchContainer" onSubmit={handleFilterByTitle}>
           <input
             name='title'
@@ -61,11 +63,12 @@ export default function FilterPanel({
             <img className='foro_panel_findIcon' src={findIcon} alt="find" />
           </button>
         </form>
-        
         <div onClick={Reset} className='foro_panel_refreshContainer'>
           <img src={refreshIcon} alt="refresh" />
-          <p>Reset</p>
+       
         </div>
+        </div>
+        
         {
           <div className='foro_panel_MenuContainer'>
 
@@ -102,9 +105,9 @@ export default function FilterPanel({
           </div>
         }
       </div>
-      <div className='foro_panel_logoContainer'>
+      {/* <div className='foro_panel_logoContainer'>
         <img src={logoSmartW} alt="logoSmartNEST" />
-      </div>
+      </div> */}
     </div>
   );
 }

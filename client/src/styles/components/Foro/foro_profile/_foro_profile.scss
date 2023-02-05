@@ -4,6 +4,17 @@
     height: calc(100vh - $navbar-height - $navbar-height-maring-top - $navbar-height-maring-button);
     background-color: #DAE0E6;
     overflow: hidden;
+    @media(max-width:900px){
+        // flex-direction: column-reverse;
+        height: auto;
+        align-items: center;
+        
+    }
+    @media (max-width:500px){
+        flex-direction: column-reverse;
+        // heighy
+        
+    }
 
     .FORO_PROFILE {
         width: 100%;
@@ -24,6 +35,11 @@
             overflow-x: hidden;
             //border: 1px solid red;
 
+            @media(max-width:900px){
+                width: 98%;
+                padding: 0px;
+                margin-top: 20px;
+            }
             &::-webkit-scrollbar {
                 width: 5px;
                 background-color: $standard-background;
@@ -69,6 +85,10 @@
                         opacity: .6;
                         cursor: pointer;
                         transition: all .2s ease-in;
+                        @media(max-width:450px){
+                            left: 90px;
+                            bottom: 19px;
+                        }
 
                         &:hover {
                             opacity: .8;
@@ -111,6 +131,12 @@
                         cursor: pointer;
                         background-color: $standard-color-blue;
                         z-index: 2;
+                        @media(max-width:450px){
+                            width: 100px;
+                            height: 100px;
+                            top: 75%;
+                            left: 10px;
+                        }
                     }
                     .profilePicDefault {
                         border-radius: 100%;
@@ -151,12 +177,22 @@
                         //background-color: green;
                         max-width: 80%;
                         overflow: hidden;
+                        @media (max-width: 450px) {
+                            margin-left: 120px;
+                            font-size: 20px;
+                        }
                     }
                     p {
                         padding-left: 200px;
                         font-family: $standard-font-Outfit-sans-serif;
                         color: rgb(37, 36, 36);
                         //background-color: $standard-color-blue;
+                        
+                        @media (max-width: 450px) {
+                            padding-left: 120px;
+                            // font-size: 20px;
+                        }
+
                     }
                 }
 
@@ -206,6 +242,9 @@
             display: flex;
             flex-direction: column;
             padding: 15px;
+            @media (max-width: 900px){
+                display:none;
+            }
             
 
             &::-webkit-scrollbar {
@@ -274,6 +313,14 @@
     }
 
 
+}
+
+.foro_Profile_MenuSide{
+    @media (max-width: 500px){
+        display: flex;
+        width: 100%;
+        position:absolute;
+    }
 }
 
 

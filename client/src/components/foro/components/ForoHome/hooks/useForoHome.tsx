@@ -478,7 +478,7 @@ export function useForoHome() {
   };
 
   const handleFilterByCategory = (category:string) => {
-    console.log("hola")
+    
     const filterPost = allPostRespaldo.filter((post) => {
       if(post.category){
 

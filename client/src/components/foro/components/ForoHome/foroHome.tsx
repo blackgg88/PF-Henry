@@ -52,7 +52,7 @@ export default function ForoHome() {
 
   const {user, isAuthenticated} = useAuth0()
   const [refresh, setRefresh] = useState<boolean>(false)
-  console.log(searchInput)
+
 
   return (
     <div className='foro_home_container'>

@@ -1,0 +1,30 @@
+.Foro_Menu_Container {
+    width: 70px;
+    height: 100%;
+    background-color: $standard-color-blue;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    color: white;
+    //border-top: 1px solid $standard-background;
+
+    .Menu_ButtonContainer {
+        transition: all .2s ease-in;
+        cursor: pointer;
+        border-radius: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0px;
+        margin-bottom: 12px;
+
+        &:hover {
+            background-color:rgb(17, 22, 54);
+        }
+
+        img {
+            width: 36px;
+        }
+    }
+}

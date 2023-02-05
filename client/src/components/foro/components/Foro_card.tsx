@@ -1,18 +1,17 @@
-import likeLogo from "../../../assets/foro/like-red.png";
-//import commentLogo from "../../../assets/foro/comment.png";
-import editLogo from "../../../assets/foro/edit.png";
-import trashlogo from "../../../assets/foro/trash.png";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import Foro_comments from "./Foro_comments";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { postCommentsPosts } from "../../../../helpers/foro/postCommentsPosts";
 
+import { useAppSelector } from '../../../Redux/hook';
 import likeNo from '../../../assets/foro/heart-svgrepo-com.svg';
 import likeYes from '../../../assets/foro/heart-svgrepo-com (1).svg';
 import edit from '../../../assets/foro/edit-svgrepo-com.svg';
 import deleteIcon from '../../../assets/foro/trash-delete-remove-clean-svgrepo-com.svg';
 import commentLogo from '../../../assets/foro/comment-svgrepo-com.svg';
+import { NavLink } from "react-router-dom";
+import { notification } from '../../../../helpers/foro/notification'
 
 interface Comment {
   _id: string;
@@ -47,6 +46,7 @@ interface Foro_Card {
   created: Date
   onDeleteComment: any
   likeCommentHandler: any
+  category: string
 }
 // : React.FC
 export function Foro_card({
@@ -67,10 +67,11 @@ export function Foro_card({
   onEdit,
   created,
   onDeleteComment,
-  likeCommentHandler
+  likeCommentHandler,
+  category
 }: Foro_Card) {
-  const { user } = useAuth0();
-  const [emailLoged, setEmailLoged] = useState<string>('')
+  const { user, isAuthenticated } = useAuth0();
+  const userByBd = useAppSelector((state) => state.userReducer.userState);
   
   const openComment = (id:string)=> {
     var x = document.getElementById(`comment-${id}`);
@@ -85,12 +86,21 @@ export function Foro_card({
     openComment(id)
   }, [])
 
+  const commentValidation = () => {
+      notification.fire({
+        icon: 'error',
+        text: 'Only users can comment this post'
+      })
+  }
+
 
   return (
     <div className='foro_card_Container' key={id}>
       <div className='foro_card_InfoPOST'>
         <div className='foro_card_authorSide'>
-          <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
+          <NavLink to={`/foro/profile/${userId}`}>
+            <h3>{author.charAt(0).toUpperCase()+author.slice(1)}</h3>
+          </NavLink>
           <h5>{moment(created).fromNow()}</h5>
         </div>
         <div className='foro_card_titleSide'>
@@ -99,6 +109,9 @@ export function Foro_card({
         {}
         <div className='foro_card_contentSide'>
           <p>{content}</p>
+        </div>
+        <div>
+          {category}
         </div>
 
         {img && (
@@ -137,7 +150,7 @@ export function Foro_card({
               src={likes.includes(user.email)?likeYes:likeNo}
               alt='like'
             />:<img
-            onClick={() => alert('Only users can like this post')}
+            onClick={() => notification.fire({ icon: 'error', text: 'Only users can like this post'})}
             className='foro_card_buttonLike'
             src={likeNo}
             alt='like'
@@ -146,7 +159,7 @@ export function Foro_card({
             
             <p>{comments.filter(e=> e.deleted==false).length}</p>
             <img
-              onClick={()=> openComment(id)}
+              onClick={isAuthenticated ? ()=> openComment(id):()=>commentValidation()}
               className='foro_card_buttonComment'
               src={commentLogo}
               alt='comment'
@@ -158,7 +171,7 @@ export function Foro_card({
       <div className='foro_card_infoCOMMENT'>
         <div id={`comment-${id}`} className='foro_card_ALL'>
         <div className='foro_card_CommentPostSide'>
-          <img src={user?.picture} alt="" />
+          <img src={userByBd.picture} alt="" />
           <textarea onChange={handlerChangeComment} name="content" placeholder="Post a commentary..." value={commentary.content} className="foro_card_CommentArea" />
         </div>
         <div className="foro_card_SubmitCommentSide">

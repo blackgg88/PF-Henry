@@ -1,20 +1,31 @@
-import React from "react";
-import useFiltersPanel from './hook/useFiltersPanel'
-import FilterByName from "./components/FilterByName/FilterByName";
-import FilterByRating from "./components/FilterByRating/FilterByRating";
-import FilterByCategory from "./components/FilterByCategory/FilterByCategory";
-import FilterByPrice from "./components/FilterByPriceRange/FilterByPrice";
-import FilterOrder from "./components/FilterOrder/FilterOrder";
+import React from 'react';
+import useFiltersPanel from './hook/useFiltersPanel';
+import FilterByName from './components/FilterByName/FilterByName';
+import FilterByRating from './components/FilterByRating/FilterByRating';
+import FilterByCategory from './components/FilterByCategory/FilterByCategory';
+import FilterByPrice from './components/FilterByPriceRange/FilterByPrice';
+import FilterOrder from './components/FilterOrder/FilterOrder';
+import { productFetch } from '../Redux/slice/product/ProductController';
+import { resetFilters, getProduct } from '../Redux/slice/product/product.slice';
+import { useAppDispatch } from '../Redux/hook';
 
-import filterName from "../assets/images/icons/filter/filterName.png";
-import filterRating from "../assets/images/icons/filter/filterRating.png";
-import filterPrice from "../assets/images/icons/filter/filterPrice.png";
-import filterCategory from "../assets/images/icons/filter/filterCategory.png";
-import filterSpace from "../assets/images/icons/filter/filterSpace.png";
+import filterName from '../assets/images/icons/filter/filterName.png';
+import filterRating from '../assets/images/icons/filter/filterRating.png';
+import filterPrice from '../assets/images/icons/filter/filterPrice.png';
+import filterCategory from '../assets/images/icons/filter/filterCategory.png';
+import filterSpace from '../assets/images/icons/filter/filterSpace.png';
+import Sorters from './components/sorters/Sorters';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
 const FiltersPanel: React.FC<{}> = () => {
-
-  const { handleFilter } = useFiltersPanel()
+  const { handleFilter } = useFiltersPanel();
+  const dispatch = useAppDispatch();
+  const resetFiltersHandler = () => {
+    dispatch(resetFilters());
+    productFetch().then((res) => {
+      dispatch(getProduct(res));
+    });
+  };
 
   return (
     <div className='new-contain-FilterPanel' id='idFilterPanel'>

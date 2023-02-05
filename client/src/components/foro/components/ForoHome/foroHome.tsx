@@ -5,6 +5,8 @@ import Foro_editPost from "../EditPost/Foro_editPost";
 import FilterPanel from "../FIlter_panel";
 import Foro_createPost from "../Foro_createPost";
 import { useAuth0 } from '@auth0/auth0-react';
+import { Foro_Menu } from "../Foro_Menu/Foro_Menu";
+import { useState } from "react";
 //---------------
 
 export default function ForoHome() {
@@ -17,6 +19,12 @@ export default function ForoHome() {
     editPost,
     allPostRespaldo,
     searchInput,
+    selectedTag,
+    previewTag,
+    addLike, 
+    addPost, 
+    addEdit, 
+    addComment,
     {
       likeHandler,
       handlerSubmit,
@@ -32,13 +40,18 @@ export default function ForoHome() {
       setallPostRespaldo,
       onChangeSearch,
       handleFilterByTitle,
-      resetFilter
+      resetFilter,
+      handleTags,
+      handleFilterByCategory,
+      HandlerpreviewTags,
+      handlerQuitPreview,
+      setForm
     },
   ]: any = useForoHome();
   //-------CUSTOM HOOK-------
 
   const {user, isAuthenticated} = useAuth0()
-
+  const [refresh, setRefresh] = useState<boolean>(false)
   console.log(searchInput)
 
   return (
@@ -51,13 +64,22 @@ export default function ForoHome() {
           onClose={setEditOpen}
         />
       )}
+
+      <Foro_Menu refresh={refresh} setRefresh={setRefresh} />
+
       <div className='foro_posts_container'>
         {
           isAuthenticated&&
           <Foro_createPost
+          selectedTag={selectedTag}
+          handleTags={handleTags}
           form={form}
           handlerChangePost={handlerChangePost}
           handlerSubmit={handlerSubmit}
+          previewTag={previewTag}
+          HandlerpreviewTags={HandlerpreviewTags}
+          handlerQuitPreview={handlerQuitPreview}
+          setForm={setForm}
         />
         }
         
@@ -87,13 +109,16 @@ export default function ForoHome() {
             created={post.created}
             onDeleteComment={onDeleteComment}
             likeCommentHandler={likeCommentHandler}
+            category={post.category}
+            
           />
         )):
         <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
       }
       </div>
 
-      <FilterPanel resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />
+      <FilterPanel
+      handleFilterByCategory={handleFilterByCategory} resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />
     </div>
   );
 }

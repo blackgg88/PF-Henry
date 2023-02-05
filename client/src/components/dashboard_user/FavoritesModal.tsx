@@ -20,6 +20,20 @@ import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import CloseIcon from '@mui/icons-material/Close';
 import { addFavorite } from '../../Redux/slice/user/user.slice';
 import { addFavoriteFetch } from '../../Redux/slice/user/userController';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
 
 interface Props {
   closeModal: Function;
@@ -30,6 +44,8 @@ interface Props {
 const favoritesModal: React.FC<Props> = ({ closeModal, favorites, user_id }) => {
   const dispatch = useAppDispatch();
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
 
   const handleRemoveFavorite = async (product: ProductState) => {
     const favoritesUpdated: ProductState[] = favorites.filter(
@@ -96,67 +112,65 @@ const favoritesModal: React.FC<Props> = ({ closeModal, favorites, user_id }) => 
   };
 
   return (
-    <>
-      <div className='ModalFavorite_Overlay'>
-        <div className='ModalFavorite_Container'>
-          <div className='ModalFavorite_H2_and_x'>
-            <h2>My Favorites</h2>
+    <div className='ModalFavorite_Overlay'>
+      <div className='ModalFavorite_Container'>
+        <div className='ModalFavorite_H2_and_x'>
+          <h2>My Favorites</h2>
+          <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+            <CssBaseline />
+
             <IconButton size='large' onClick={() => closeModal(false)}>
               <CloseIcon />
             </IconButton>
-          </div>
+          </ThemeProvider>
+        </div>
 
-          {favorites.length ? (
-            favorites.map((favorite) => (
-              <div className='ModelFavorite_Item-Container'>
-                <div className='ModalFavorite_TitleContainer'>{favorite.name}</div>
-                <div className='ModalFavorite-Grid'>
-                  <div className='ModalFavorite_Image'>
-                    <Link to={`/product/${favorite._id}`}>
-                      <img src={favorite.images[0]} alt={favorite.name} />
-                    </Link>
-                  </div>
+        {favorites.length ? (
+          favorites.map((favorite) => (
+            <div className='ModelFavorite_Item-Container'>
+              <div className='ModalFavorite_TitleContainer'>{favorite.name}</div>
+              <div className='ModalFavorite-Grid'>
+                <div className='ModalFavorite_Image'>
+                  <Link to={`/product/${favorite._id}`}>
+                    <img src={favorite.images[0]} alt={favorite.name} />
+                  </Link>
+                </div>
 
-                  <div className='ModalFavorite_info'>
-                    <p>Brand: {favorite.brand}</p>
-                    <p>$ {favorite.price.toFixed(2)}</p>
-                    <div className='ModalFavorite_info_buttons'>
-                      {favorite.stock > 0 &&
-                      !productsInCart.find((el) => el._id === favorite._id) ? (
-                        <div className='add-car-card-beta' onClick={() => handleAddCart(favorite)}>
-                          <IconButton color='primary'>
-                            <AddShoppingCartIcon />
-                          </IconButton>
-                        </div>
-                      ) : favorite.stock > 0 &&
-                        productsInCart.find((el) => el._id === favorite._id) ? (
-                        <div
-                          className='add-car-card-beta'
-                          onClick={() => handleRemoveCart(favorite)}
-                        >
-                          <IconButton color='error'>
-                            <RemoveShoppingCartIcon />
-                          </IconButton>
-                        </div>
-                      ) : (
-                        <div className='add-car-card-beta'>
-                          <button disabled>out of Stock</button>
-                        </div>
-                      )}
-                      <IconButton color='error' onClick={() => handleRemoveFavorite(favorite)}>
-                        <DeleteForeverIcon />
-                      </IconButton>
-                    </div>
+                <div className='ModalFavorite_info'>
+                  <p>Brand: {favorite.brand}</p>
+                  <p>$ {favorite.price.toFixed(2)}</p>
+                  <div className='ModalFavorite_info_buttons'>
+                    {favorite.stock > 0 && !productsInCart.find((el) => el._id === favorite._id) ? (
+                      <div className='add-car-card-beta' onClick={() => handleAddCart(favorite)}>
+                        <IconButton color='primary'>
+                          <AddShoppingCartIcon />
+                        </IconButton>
+                      </div>
+                    ) : favorite.stock > 0 &&
+                      productsInCart.find((el) => el._id === favorite._id) ? (
+                      <div className='add-car-card-beta' onClick={() => handleRemoveCart(favorite)}>
+                        <IconButton color='error'>
+                          <RemoveShoppingCartIcon />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <div className='add-car-card-beta'>
+                        <button disabled>out of Stock</button>
+                      </div>
+                    )}
+                    <IconButton color='error' onClick={() => handleRemoveFavorite(favorite)}>
+                      <DeleteForeverIcon />
+                    </IconButton>
                   </div>
                 </div>
               </div>
-            ))
-          ) : (
-            <div>You have no favorites yet</div>
-          )}
-        </div>
+            </div>
+          ))
+        ) : (
+          <div>You have no favorites yet</div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

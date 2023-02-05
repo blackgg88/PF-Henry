@@ -1,8 +1,8 @@
-import axios from "axios";
-import { Request, Response } from "express";
-import mercadopago, { payment } from "mercadopago";
+import axios from 'axios';
+import { Request, Response } from 'express';
+import mercadopago, { payment } from 'mercadopago';
 
-import { ACCESS_TOKEN } from "../../../config";
+import { ACCESS_TOKEN } from '../../../config';
 
 mercadopago.configure({ access_token: ACCESS_TOKEN! });
 
@@ -61,7 +61,7 @@ export const getForDate = async (req: Request, res: Response) => {
       `https://api.mercadopago.com/v1/payments/search?sort=date_approved&criteria=asc`,
       {
         headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
-      }
+      },
     );
 
     const payments = response.data.results.map((purchase: PurchaseByMP) => {
@@ -69,18 +69,22 @@ export const getForDate = async (req: Request, res: Response) => {
         id: purchase.id,
         date_created: new Date(purchase.date_created).toLocaleDateString(),
         total_paid_amount: purchase.transaction_details.total_paid_amount,
-      };
+        status: purchase.status,
+      } as Purchase;
     });
     const result = {};
 
-    payments.forEach(object => {
-      const [day, month, year] = object.date_created.split("/");
+    payments.forEach((object) => {
+      const [day, month, year] = object.date_created.split('/');
       const key = `${day}-${month}-${year}`;
+      console.log(object);
 
       if (!result[key]) result[key] = { date: key, TotalSales: 0, TotalCount: 0 };
-      
-      result[key].TotalSales += object.total_paid_amount;
-      result[key].TotalCount += 1;
+
+      if (object.status === 'approved') {
+        result[key].TotalSales += object.total_paid_amount;
+        result[key].TotalCount += 1;
+      }
     });
 
     const tuRespuesta = Object.values(result);

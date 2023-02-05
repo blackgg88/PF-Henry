@@ -6,6 +6,7 @@ import logoTop from '../../assets/logo_smart_b.png';
 import menuResp from '../../assets/responsive-menu-icon.png';
 import cart from '../../assets/car_w.png';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { changeTheme } from '../../Redux/slice/theme/theme.slice';
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -13,7 +14,9 @@ const NavBar = () => {
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   const userByBd = useAppSelector((state) => state.userReducer.userState);
+  const dark = useAppSelector((state) => state.themeReducer.dark);
 
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if (responsiveMenu) {
       document.body.style.overflow = 'hidden';
@@ -28,10 +31,14 @@ const NavBar = () => {
     setProfileWindow(false);
   };
 
+  const handleChangeTheme = () => {
+    dispatch(changeTheme(!dark));
+  };
+
   return (
     <div className='Nav_topLanding'>
       <NavLink to={'/'} className='Nav_container_logo'>
-        <img className='nav_toplogo' src={logoTop} alt='logo' />
+        <img className='nav_toplogo' src={dark ? logoWhite : logoTop} alt='logo' />
       </NavLink>
 
       <div className='Nav_container_navbar'>
@@ -72,6 +79,8 @@ const NavBar = () => {
               <p>Admin</p>
             </NavLink>
           )}
+
+          <button onClick={handleChangeTheme}>dark</button>
 
           {isAuthenticated && (
             <div className='profile-div'>

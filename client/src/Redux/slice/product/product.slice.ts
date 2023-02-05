@@ -41,26 +41,26 @@ const initialState: {
 } = {
   Products: [],
   ProductDetail: {
-    _id: "",
-    name: "",
+    _id: '',
+    name: '',
     price: 0,
-    description: "",
-    brand: "",
+    description: '',
+    brand: '',
     images: [],
     rating: 0,
-    categories: { _id: "", name: "" },
+    categories: { _id: '', name: '' },
     stock: 0,
     isActive: true,
   },
   Filters: {
-    name: "",
-    categories: "",
+    name: '',
+    categories: '',
     pricemin: 0,
     pricemax: 3000,
     rating: 0,
-    order: "all",
+    order: '',
   },
-  CategoryQuantity: []
+  CategoryQuantity: [],
 };
 
 export const productSlice = createSlice({
@@ -97,9 +97,20 @@ export const productSlice = createSlice({
       state.Filters.order = action.payload;
     },
 
-    getCategoryQuantity: (state,action) => {
+    getCategoryQuantity: (state, action) => {
       state.CategoryQuantity = action.payload;
-    }
+    },
+    resetFilters: (state) => {
+      state.Filters = {
+        ...state,
+        name: '',
+        categories: '',
+        pricemin: 0,
+        pricemax: 3000,
+        rating: 0,
+        order: 'all',
+      };
+    },
   },
 });
 
@@ -114,4 +125,5 @@ export const {
   updatePriceMaxFilter,
   updateOrderFilter,
   getCategoryQuantity,
+  resetFilters,
 } = productSlice.actions;

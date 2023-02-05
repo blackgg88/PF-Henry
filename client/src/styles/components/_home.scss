@@ -1,6 +1,11 @@
 body {
   margin: 0;
   box-sizing: border-box;
+
+  &.dark {
+    background-color: $standard-color-black;
+    color: $standard-color-white;
+  }
 }
 // ------Scroll Bar ----
 body::-webkit-scrollbar {
@@ -35,15 +40,16 @@ body::-webkit-scrollbar-thumb {
         align-items: flex-end;
         width: 50%;
         z-index: 2;
-        
+
         .home_text_1 {
           position: relative;
           font-family: $standard-font-Poiret-One;
           font-size: 150px;
           left: 80px;
-          
-          @media (max-width: 1075px) { // --------text 1 
-            font-size: 120px;;
+
+          @media (max-width: 1075px) {
+            // --------text 1
+            font-size: 120px;
           }
 
           @media (max-width: 870px) {
@@ -58,9 +64,8 @@ body::-webkit-scrollbar-thumb {
             font-size: 60px;
           }
           @media (max-width: 430px) {
-           left: 50px;
+            left: 50px;
           }
-
         }
 
         .home_text_2 {
@@ -70,9 +75,10 @@ body::-webkit-scrollbar-thumb {
           bottom: 40px;
           left: 60px;
 
-          @media (max-width: 1075px) { // ----------- text 2
-            font-size: 90px;;
-            bottom:30px;
+          @media (max-width: 1075px) {
+            // ----------- text 2
+            font-size: 90px;
+            bottom: 30px;
           }
 
           @media (max-width: 870px) {
@@ -95,7 +101,6 @@ body::-webkit-scrollbar-thumb {
             bottom: 10px;
             left: 50px;
           }
-
         }
 
         .home_button_li {
@@ -117,7 +122,8 @@ body::-webkit-scrollbar-thumb {
           cursor: pointer;
           transition: background-color 0.6s, border 0.6s;
 
-          @media (max-width: 1075px) { // ----------- text 2
+          @media (max-width: 1075px) {
+            // ----------- text 2
             width: 180px;
             height: 40px;
             font-size: 25px;
@@ -172,14 +178,14 @@ body::-webkit-scrollbar-thumb {
         justify-content: center;
         width: 50%;
         z-index: 1;
-        
 
         img {
           position: relative;
           right: 100px;
           width: 500px;
 
-          @media (max-width: 1075px) { //IMAGE RESPONSIVE
+          @media (max-width: 1075px) {
+            //IMAGE RESPONSIVE
             width: 400px;
             right: 70px;
           }
@@ -209,17 +215,15 @@ body::-webkit-scrollbar-thumb {
 
   // ----- Carrousel ---------------------
   .home_container_carrouselSide {
-    background-image: url("https://i.ibb.co/0Q0G65y/bacground-Carrucel.png");
+    background-image: url('https://i.ibb.co/0Q0G65y/bacground-Carrucel.png');
     height: 450px;
     display: flex;
     background-size: cover;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    transform: rotateY(calc(var(--offset) * 50deg))
-      scaleY(calc(1 + var(--abs-offset) * -0.4))
-      translateZ(calc(var(--abs-offset) * -30rem))
-      translateX(calc(var(--direction) * -5rem));
+    transform: rotateY(calc(var(--offset) * 50deg)) scaleY(calc(1 + var(--abs-offset) * -0.4))
+      translateZ(calc(var(--abs-offset) * -30rem)) translateX(calc(var(--direction) * -5rem));
     filter: blur(calc(var(--abs-offset) * 1rem));
     transition: all 0.3s ease-out;
     background-repeat: no-repeat;
@@ -227,18 +231,18 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     z-index: 1;
 
-      .home_carrouselIMG {
-        height: 80%;
-        margin-top: 45px;
-        margin-bottom: 45px;
-        position: absolute;
-        left: -20px;
-        top: 0;
-        @media (max-width: 1050px) {
-          display: none;
-        }
+    .home_carrouselIMG {
+      height: 80%;
+      margin-top: 45px;
+      margin-bottom: 45px;
+      position: absolute;
+      left: -20px;
+      top: 0;
+      @media (max-width: 1050px) {
+        display: none;
       }
-    
+    }
+
     .home_carrousel_ContainerDiv {
       display: flex;
       //background-color: aliceblue;
@@ -274,12 +278,12 @@ body::-webkit-scrollbar-thumb {
         margin-top: 30px;
         display: flex;
         align-items: center;
-        font-family: "Josefin Sans", sans-serif;
-        background: linear-gradient(
-          40deg,
-          $standard-color-gray,
-          $standard-color-white
-        );
+        font-family: 'Josefin Sans', sans-serif;
+        background: linear-gradient(40deg, $standard-color-gray, $standard-color-white);
+
+        body.dark & {
+          background: linear-gradient(40deg, $standard-color-black, $standard-color-black-ligth);
+        }
 
         .title-news {
           font-family: $standard-font-Poiret-One;
@@ -287,6 +291,10 @@ body::-webkit-scrollbar-thumb {
           color: $standard-color-blue-secundary;
 
           margin-left: 55px;
+
+          body.dark & {
+            color: $standard-color-white;
+          }
         }
       }
 
@@ -295,7 +303,7 @@ body::-webkit-scrollbar-thumb {
         display: flex;
         justify-content: flex-end;
         margin-right: 15px;
-        font-family: "Josefin Sans", sans-serif;
+        font-family: 'Josefin Sans', sans-serif;
         font-size: 2rem;
         cursor: pointer;
 
@@ -308,7 +316,13 @@ body::-webkit-scrollbar-thumb {
           font-size: 30px;
           color: $standard-color-blue;
           transition: color 1s;
-          &:hover {
+
+          body.dark & {
+            color: $standard-color-white;
+          }
+
+          &:hover,
+          body.dark &:hover {
             color: $standard-color-red;
           }
         }
@@ -342,4 +356,3 @@ body::-webkit-scrollbar-thumb {
 }
 
 //--------RESPONSIVE -------------
-

@@ -74,7 +74,7 @@ export default function FilterPanel({
               <p>Lifestyle and Health</p>
             </div>
 
-            <div onClick={()=> Filter("Lifestyle and Health", 1)} className={allState[1]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Connectivity and Control", 1)} className={allState[1]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={connectivityIconW} alt="connectivity" />
               <p onClick={()=>handleFilterByCategory("Connectivity and Control")}>Connectivity and Control</p>
             </div>

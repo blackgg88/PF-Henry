@@ -41,6 +41,11 @@ export default function FilterPanel({
     selectedHandler(6)
   }
 
+  const Filter = (filter: string, num: number) =>{
+    handleFilterByCategory(filter)
+    selectedHandler(num)
+  }
+
   return (
     <div className='foro_panelContainer'>
       <div>
@@ -64,34 +69,34 @@ export default function FilterPanel({
         {
           <div className='foro_panel_MenuContainer'>
 
-            <div onClick={()=> selectedHandler(0)} className={allState[0]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Lifestyle and Health", 0)} className={allState[0]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={healthW} alt="profile_Icon" />
-              <p onClick={()=>handleFilterByCategory("Lifestyle and Health")}>Lifestyle and Health</p>
+              <p>Lifestyle and Health</p>
             </div>
 
-            <div onClick={()=> selectedHandler(1)} className={allState[1]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Lifestyle and Health", 1)} className={allState[1]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={connectivityIconW} alt="connectivity" />
               <p onClick={()=>handleFilterByCategory("Connectivity and Control")}>Connectivity and Control</p>
             </div>
 
-            <div onClick={()=> selectedHandler(2)} className={allState[2]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Home Entertainment", 2)} className={allState[2]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={entertainmentW} alt="entertainment" />
-              <p onClick={()=>handleFilterByCategory("Home Entertainment")}>Home Entertainment</p>
+              <p>Home Entertainment</p>
             </div>
 
-            <div onClick={()=> selectedHandler(3)} className={allState[3]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Energy Management", 3)} className={allState[3]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={energyW} alt="energy" />
-              <p onClick={()=>handleFilterByCategory("Energy Management")} >Energy Management</p>
+              <p>Energy Management</p>
             </div>
 
-            <div onClick={()=> selectedHandler(4)} className={allState[4]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Safety and Security", 4)} className={allState[4]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={securityW} alt="security" />
-              <p onClick={()=>handleFilterByCategory("Safety and Security")}>Safety and Security</p>
+              <p>Safety and Security</p>
             </div>
 
-            <div onClick={()=> selectedHandler(5)} className={allState[5]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
+            <div onClick={()=> Filter("Comfort and Ease", 5)} className={allState[5]?'foro_panel_Menu_SELECTED':'foro_panel_Menu_HomeContainer'}>
               <img src={confort} alt="comfort" />
-              <p onClick={()=>handleFilterByCategory("Comfort and Ease")}>Comfort and Ease</p>
+              <p>Comfort and Ease</p>
             </div>
 
           </div>

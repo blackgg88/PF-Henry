@@ -79,11 +79,8 @@ export const getForDate = async (req: Request, res: Response) => {
       const key = `${day}-${month}-${year}`;
 
       if (!result[key]) result[key] = { date: key, TotalSales: 0, TotalCount: 0 };
-
-      if (object.status === 'approved') {
-        result[key].TotalSales += object.total_paid_amount;
-        result[key].TotalCount += 1;
-      }
+      result[key].TotalSales += object.total_paid_amount;
+      result[key].TotalCount += 1;
     });
 
     const tuRespuesta = Object.values(result);

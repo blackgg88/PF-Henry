@@ -14,7 +14,7 @@ import Form from './components/checkout/FormComponent';
 import ForoHome from './components/foro/components/ForoHome/foroHome';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppDispatch } from './Redux/hook';
+import { useAppDispatch, useAppSelector } from './Redux/hook';
 import { addProduct } from './Redux/slice/shoppingCart/shoppingCart.slice';
 import { getUserLogin } from './Redux/slice/user/user.slice';
 import { ToastContainer } from 'react-toastify';
@@ -27,6 +27,7 @@ function App() {
   const location = useLocation();
   // console.log(location.pathname);
   const dispatch = useAppDispatch();
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
 
   useEffect(() => {
     const productsInLS = JSON.parse(localStorage.getItem('shoppingCart') as string) ?? [];
@@ -39,6 +40,12 @@ function App() {
 
     if (userInLS.email) {
       dispatch(getUserLogin(userInLS));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (dark) {
+      document.body.classList.toggle('dark');
     }
   }, []);
 
@@ -59,14 +66,10 @@ function App() {
         <Route path='/checkout' element={<Form />} />
         <Route path='/foro' element={<ForoHome />} />
         <Route path='*' element={<Page404 />} />
-        <Route path='/foro/profile/:id' element={<Foro_Profile/>} />
+        <Route path='/foro/profile/:id' element={<Foro_Profile />} />
       </Routes>
-      
 
-      {
-        (!location.pathname.includes('foro') && !location.pathname.includes('admin'))&&<Footer />
-      }
-
+      {!location.pathname.includes('foro') && !location.pathname.includes('admin') && <Footer />}
     </>
   );
 }

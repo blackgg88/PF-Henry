@@ -3,13 +3,23 @@
   min-height: 80vh;
   padding: 20px;
 
+  body.dark & {
+    background-color: $standard-color-black-ligth;
+  }
+
   .ShoppingCart_info {
     display: flex;
     margin: 30px;
     padding: 0px;
     width: auto;
     border-radius: 20px;
-    box-shadow: 2px 2px 2px 2px rgba(161, 159, 159, 0.3);
+    // box-shadow: 2px 2px 2px 2px rgba(161, 159, 159, 0.3);
+    background: #d9d8d8;
+    box-shadow: 12px 12px 24px #a3a2a2, -12px -12px 24px #ffffff;
+    body.dark & {
+      background: #1c1c1c;
+      box-shadow: 12px 12px 24px #151515, -12px -12px 24px #232323;
+    }
 
     .ShoppingCart_items-container {
       border-top-left-radius: 20px;
@@ -21,13 +31,17 @@
       overflow: scroll;
       margin-bottom: 0px;
       background-color: white;
+
+      body.dark & {
+        background-color: $standard-color-black;
+      }
       &::-webkit-scrollbar {
         display: none;
       }
 
       .ShoppingCart_items-titles {
         display: grid;
-        grid-template-columns: 45% 20% 10%;
+        grid-template-columns: 50% 20% 10%;
         padding: 5px;
         padding-left: 30px;
         background-color: $standard-color-blue;
@@ -40,6 +54,10 @@
       .ShoppingCart_items {
         padding: 20px;
 
+        body.dark & {
+          background-color: $standard-color-black;
+        }
+
         .ShoppingCart_item-wrapper {
           background-color: $standard-color-white;
           display: grid;
@@ -48,6 +66,10 @@
           margin-bottom: 10px;
           align-items: center;
           font-family: 'Barlow', sans-serif;
+
+          body.dark & {
+            background-color: $standard-color-black;
+          }
 
           .ShoppingCart_image {
             align-self: center;
@@ -78,15 +100,6 @@
           .ShoppingCart_quantity-container {
             margin: auto;
             width: 70%;
-
-            select {
-              padding-top: 5px;
-              padding-bottom: 5px;
-              padding-left: 20px;
-              padding-right: 20px;
-              border-radius: 5px;
-              border: 2px solid $standard-color-gray;
-            }
           }
 
           .ShoppingCart_price {
@@ -195,6 +208,7 @@
         max-height: none;
 
         .ShoppingCart_items-titles {
+          grid-template-columns: 48% 20% 10%;
           border-top-right-radius: 20px;
           border-bottom-right-radius: 20px;
         }

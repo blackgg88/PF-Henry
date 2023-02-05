@@ -88,11 +88,11 @@ const Card: React.FC<Props> = ({ product }) => {
         <h1>$ {product.price}</h1>
       </div>
       <div className='HomeCard_AddCartButtonContainer'>
-        {product.stock && !productsInCart.find((el) => el._id === product._id) ? (
+        {product.stock > 0 && !productsInCart.find((el) => el._id === product._id) ? (
           <button className='Home_add-car-card-beta' onClick={() => handleAddCart(product)}>
             add to Cart
           </button>
-        ) : product.stock && productsInCart.find((el) => el._id === product._id) ? (
+        ) : product.stock > 0 && productsInCart.find((el) => el._id === product._id) ? (
           <button className='Home_add-car-card-beta' onClick={() => handleRemoveCart(product)}>
             Remove
           </button>

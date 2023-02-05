@@ -13,6 +13,7 @@ const NavBar = () => {
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   const userByBd = useAppSelector((state) => state.userReducer.userState);
+  const dark = useAppSelector((state) => state.themeReducer.dark);
 
   useEffect(() => {
     if (responsiveMenu) {
@@ -31,7 +32,7 @@ const NavBar = () => {
   return (
     <div className='Nav_topLanding'>
       <NavLink to={'/'} className='Nav_container_logo'>
-        <img className='nav_toplogo' src={logoTop} alt='logo' />
+        <img className='nav_toplogo' src={dark ? logoWhite : logoTop} alt='logo' />
       </NavLink>
 
       <div className='Nav_container_navbar'>

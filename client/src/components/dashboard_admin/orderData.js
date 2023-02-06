@@ -55,7 +55,15 @@ const orderData = (data, resource, order, field) => {
           return bName.localeCompare(aName);
         });
       }
-    } 
+    }
+    if(field === 'Status_Detail'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
+      }
+      else{
+        data.sort((a, b) => b[field]?.localeCompare(a[field]));
+      }
+    }
   }
   // console.log(data);
 

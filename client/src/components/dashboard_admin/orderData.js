@@ -2,11 +2,21 @@ const orderData = (data, resource, order, field) => {
 
   //------------Tabla USERS (funcionan todos)
   if(resource === 'users'){
-    if(order === 'ASC'){
-      data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
+    if(field === 'isActive'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => b[field] - a[field]);
+      }
+      else{
+        data.sort((a, b) => a[field] - b[field]);
+      }
     }
     else{
-      data.sort((a, b) => b[field]?.localeCompare(a[field]));
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
+      }
+      else{
+        data.sort((a, b) => b[field]?.localeCompare(a[field]));
+      }
     }
   }
 
@@ -20,7 +30,7 @@ const orderData = (data, resource, order, field) => {
         data.sort((a, b) => b[field]?.localeCompare(a[field]));
       }
     } 
-    else if(field === 'price' || field === 'stock'){
+    else if(field === 'price' || field === 'stock' || field === 'isActive'){
       if(order === 'ASC'){
         data = data.sort((a, b) => b[field] - a[field]);
       }
@@ -38,7 +48,7 @@ const orderData = (data, resource, order, field) => {
     }
   }
 
-  //-------------Tabla PURCHASES (solo por apellido-nombre)
+  //-------------Tabla PURCHASES (todos menos por id)
   if(resource === 'purchases'){
     if(field === 'Payer'){
       if(order === 'ASC'){
@@ -56,12 +66,36 @@ const orderData = (data, resource, order, field) => {
         });
       }
     }
-    if(field === 'Status_Detail'){
+    else if(field === 'Status_Detail'){
       if(order === 'ASC'){
-        data = data.sort((a, b) => a[field]?.localeCompare(b[field]));
+        data = data.sort((a, b) => a['status_detail']?.localeCompare(b['status_detail']));
       }
       else{
-        data.sort((a, b) => b[field]?.localeCompare(a[field]));
+        data.sort((a, b) => b['status_detail']?.localeCompare(a['status_detail']));
+      }
+    }
+    else if(field === 'Date_of_Purcharse'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a['date_created']?.localeCompare(b['date_created']));
+      }
+      else{
+        data.sort((a, b) => b['date_created']?.localeCompare(a['date_created']));
+      }
+    }
+    else if(field === 'Status'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => a['status']?.localeCompare(b['status']));
+      }
+      else{
+        data.sort((a, b) => b['status']?.localeCompare(a['status']));
+      }
+    }
+    else if(field === 'Total_Paid'){
+      if(order === 'ASC'){
+        data = data.sort((a, b) => b['total_paid_amount'] - a['total_paid_amount']);
+      }
+      else{
+        data.sort((a, b) => a['total_paid_amount'] - b['total_paid_amount']);
       }
     }
   }

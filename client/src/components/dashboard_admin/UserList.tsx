@@ -15,6 +15,7 @@ const UserList = (props: Props) => {
         <TextField source='_id' />
         <TextField source='userName' />
         <EmailField source='email' />
+        <TextField source='isActive' />
 
         {/* para que no tire errores le ponemos resource en vez de basePath */}
         <EditButton resource='users' />

@@ -20,6 +20,7 @@ const ProductList = (props: Props) => {
             <TextField source='price' />
             <TextField source='stock' />
             <TextField source='categories' />
+            <TextField source='isActive' />
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
             @ts-ignore */}
             {/* para que no tire errores le ponemos resource en vez de basePath */}

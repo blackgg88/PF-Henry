@@ -23,6 +23,7 @@ const dataProvider = {
     let url;
     console.log(field, order);
     console.log(resource);
+    
 
     if (resource === "purchases") {
       url = `${API_URL}/checkout`;
@@ -34,6 +35,7 @@ const dataProvider = {
 
     let data = await response.json();
 
+    console.log(data)
     data = orderData(data, resource, order, field);
 
     const total = data.length;

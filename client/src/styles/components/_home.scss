@@ -284,7 +284,7 @@ body::-webkit-scrollbar-thumb {
         background: linear-gradient(40deg, $standard-color-gray, $standard-color-white);
 
         body.dark & {
-          background: linear-gradient(40deg, $standard-color-black, $standard-color-black-ligth);
+          background: linear-gradient(40deg, $standard-color-black-ligth, $standard-color-black);
         }
 
         .title-news {

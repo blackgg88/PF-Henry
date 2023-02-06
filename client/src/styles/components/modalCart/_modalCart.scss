@@ -1,68 +1,70 @@
 .Modal_Cart_Overlay {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,.5);
-    padding: 40px;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+
+  .Modal_Cart_Container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    top: -50px;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    font-family: $standard-font-Poiret-One;
     z-index: 6;
 
-    .Modal_Cart_Container {
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-        min-height: 100px;
-        background: #fff;
-        position: relative;
-        top: -50px;
-        border-radius: 5px;
-        box-shadow: rgba(100,100,111,.2) 0px 7px 29px 0px;
-        padding: 20px;
-        font-family: $standard-font-Poiret-One;
-        z-index: 6;
-
-
-        .Modal_Cart_Info {
-            margin: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            .Modal_Cart_submitContainer {
-                display: flex;
-                width: 100%;
-                justify-content: center;
-            }
-
-            img {
-                width: 150px;
-            }
-
-            button {
-                font-family: "Poiret One", cursive;
-                margin-top: 10px;
-                width: 100px;
-                height: 35px;
-                border: none;
-                background-color: $standard-color-blue;
-                color: white;
-                border-radius: 20px;
-                cursor: pointer;
-                font-size: 25px;
-                margin-left: 5px;
-                margin-right: 5px;
-                &:hover {
-                    background-color: white;
-                    border: 1px solid $standard-color-blue;
-                    color: $standard-color-blue;
-                }
-            }
-        }
-
+    body.dark & {
+      background: $standard-color-black;
     }
+
+    .Modal_Cart_Info {
+      margin: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .Modal_Cart_submitContainer {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      img {
+        width: 150px;
+      }
+
+      button {
+        font-family: 'Poiret One', cursive;
+        margin-top: 10px;
+        width: 100px;
+        height: 35px;
+        border: none;
+        background-color: $standard-color-blue;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 25px;
+        margin-left: 5px;
+        margin-right: 5px;
+        &:hover {
+          background-color: white;
+          border: 1px solid $standard-color-blue;
+          color: $standard-color-blue;
+        }
+      }
+    }
+  }
 }

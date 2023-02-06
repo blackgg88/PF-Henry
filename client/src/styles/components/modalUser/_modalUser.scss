@@ -1,173 +1,167 @@
-
 .Modal_Overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
 
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,.5);
-    padding: 40px;
+  body.dark & {
+    background-color: rgba(0, 0, 0, 0.845);
+  }
+
+  .Modal_Container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    top: -15px;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    font-family: $standard-font-Poiret-One;
     z-index: 6;
 
-    .Modal_Container {
-        
+    body.dark & {
+      background-color: rgba(0, 0, 0, 0.779);
+    }
+    @media (max-width: 900px) {
+      width: 70%;
+    }
+    @media (max-width: 610px) {
+      width: 100%;
+    }
+
+    .Modal_TitleContainer {
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .Modal_SubmitContainer {
+      display: flex;
+      justify-content: center;
+
+      .Modal_buttonSave {
+        background-color: $standard-color-blue;
+        padding: 5px;
+        width: 70px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        color: #fff;
+        margin-right: 5px;
+        font-family: $standard-font-Barlow;
+      }
+
+      .Modal_resetButton {
+        font-family: $standard-font-Barlow;
+        background-color: #ef233c;
+        border-radius: 15px;
+        border: none;
+        color: white;
+        padding: 10px 5px;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+
+    .Modal_buttonCancel {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      border: none;
+      width: 35px;
+      cursor: pointer;
+    }
+
+    .Modal_ProfilePic {
+      display: flex;
+      justify-content: center;
+      //background-color: blue;
+
+      .Modal_PicContainer {
+        display: flex;
+        position: relative;
+
+        img {
+          border-radius: 100%;
+          width: 150px;
+          height: 150px;
+          //border: 4px solid rgb(222, 225, 238);
+        }
+
+        .modal_ChangePicICON {
+          width: 40px;
+          height: 40px;
+          position: absolute;
+          padding: 0;
+          bottom: 0;
+
+          border-radius: 0;
+          right: 10px;
+          cursor: pointer;
+          background-color: rgb(222, 225, 238);
+          border-radius: 100%;
+        }
+
+        input[type='file'] {
+          position: absolute;
+          bottom: 1000px;
+        }
+
+        input[type='file']::-webkit-file-upload-button {
+          display: none;
+          width: 1px;
+        }
+      }
+    }
+
+    .Modal_infoSide {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-family: $standard-font-Barlow;
+      //flex-direction: column;
+
+      @media (max-width: 900px) {
+        flex-direction: column;
+      }
+
+      .Modal_info1 {
+        width: 45%;
         display: flex;
         flex-direction: column;
-        width: 60%;
-        min-height: 100px;
-        background: #fff;
-        position: relative;
-        top: -15px;
-        border-radius: 5px;
-        box-shadow: rgba(100,100,111,.2) 0px 7px 29px 0px;
-        padding: 20px;
-        font-family: $standard-font-Poiret-One;
-        z-index: 6;
-        @media (max-width:900px) {
-            width: 70%;
-            
+        @media (max-width: 900px) {
+          width: 100%;
         }
-        @media (max-width:610px) {
-            width: 100%;
-            
+        input {
+          margin-bottom: 10px;
+          height: 30px;
         }
+      }
 
-
-        .Modal_TitleContainer {
-            margin-top: 5px;
-            display: flex;
-            justify-content: center;
-            
+      .Modal_info2 {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        @media (max-width: 900px) {
+          width: 100%;
         }
-
-        .Modal_SubmitContainer {
-            display: flex;
-            justify-content: center;
-            
-
-            .Modal_buttonSave {
-                background-color: $standard-color-blue;
-                padding: 5px;
-                width: 70px;
-                border: none;
-                border-radius: 15px;
-                cursor: pointer;
-                color: #fff;
-                margin-right: 5px;
-                font-family: $standard-font-Barlow;
-            }
-
-            .Modal_resetButton {
-                font-family: $standard-font-Barlow;
-                background-color: #ef233c;
-                border-radius: 15px;
-                border: none;
-                color: white;
-                padding: 10px 5px;
-                margin-right: 5px;
-                cursor: pointer;
-            }
+        input {
+          margin-bottom: 10px;
+          height: 30px;
         }
-
-        .Modal_buttonCancel {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            border: none;
-            width: 35px;
-            cursor: pointer;
-        }
-        
-        .Modal_ProfilePic {
-            display: flex;
-            justify-content: center;
-            //background-color: blue;
-            
-
-            .Modal_PicContainer {
-                display: flex;
-                position: relative;
-                
-
-                img {
-                    border-radius: 100%;
-                    width: 150px;
-                    height: 150px;
-                    //border: 4px solid rgb(222, 225, 238);
-                }
-                
-                .modal_ChangePicICON {
-                    width: 40px;
-                    height: 40px;
-                    position: absolute;
-                    padding: 0;
-                    bottom: 0;
-                    
-                    border-radius: 0;
-                    right: 10px;
-                    cursor: pointer;
-                    background-color: rgb(222, 225, 238);
-                    border-radius: 100%;
-                    
-                }
-
-                input[type="file"] {
-                    position: absolute;
-                    bottom: 1000px;
-                  }
-
-                input[type="file"]::-webkit-file-upload-button {
-                   display: none;
-                   width: 1px;
-                }
-            }
-        }
-
-        .Modal_infoSide {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            font-size: 20px;
-            font-family: $standard-font-Barlow;
-            //flex-direction: column;
-
-            @media (max-width:900px) {
-                flex-direction: column;
-                
-            }
-
-            .Modal_info1 {
-                width: 45%;
-                display: flex;
-                flex-direction: column;
-                @media (max-width:900px) {
-                    width: 100%;
-                    
-                }
-                input {
-                    margin-bottom: 10px;
-                    height: 30px;
-                }
-            }
-
-            .Modal_info2 {
-                width: 45%;
-                display: flex;
-                flex-direction: column;
-                @media (max-width:900px) {
-                    width: 100%;
-                    
-                }
-                input {
-                    margin-bottom: 10px;
-                    height: 30px;
-                }
-            }
-        }
+      }
     }
+  }
 }

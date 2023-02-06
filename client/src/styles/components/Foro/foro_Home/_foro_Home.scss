@@ -1,15 +1,10 @@
 .foro_home_container {
   display: flex;
   justify-content: space-between;
-  height: calc(
-    100vh - $navbar-height - $navbar-height-maring-top -
-      $navbar-height-maring-button
-  );
-  background-color: #DAE0E6;
+  height: calc(100vh - $navbar-height - $navbar-height-maring-top - $navbar-height-maring-button);
+  background-color: #dae0e6;
   overflow: hidden;
   width: 100%;
-
-  
 
   .FORO_HOME_SIDE {
     display: flex;
@@ -22,11 +17,16 @@
       align-items: center;
       overflow: hidden;
       justify-content: flex-end;
-      
     }
-    
 
-    .foro_posts_container { // TODOS LOS POST CONTAINER
+    transition: all 0.5s ease-out;
+
+    body.dark & {
+      background-color: $standard-color-black;
+    }
+
+    .foro_posts_container {
+      // TODOS LOS POST CONTAINER
       padding: 20px;
       width: 700px;
       overflow: auto;
@@ -37,16 +37,15 @@
       border-radius: 10px;
       // background-color: red;
       //background-color: green;
-      
+
       @media (max-width: 900px) {
         width: 98%;
         padding: 0px;
         margin-top: 20px;
         height: auto;
-        
       }
 
-      @media (max-width:500px) {
+      @media (max-width: 500px) {
         overflow: auto;
         height: 100vh;
         overflow-x: hidden;
@@ -61,6 +60,10 @@
         padding: 10px 25px;
         border-radius: 5px;
 
+        body.dark & {
+          background-color: rgba(45, 44, 44, 0.8);
+        }
+
         .foro_post_inputsAndImage {
           display: flex;
           align-items: flex-start;
@@ -74,11 +77,11 @@
               width: 50px;
               margin-right: 10px;
               border-radius: 100%;
-              @media (max-width:390px){
-                display:none;
+              @media (max-width: 390px) {
+                display: none;
               }
             }
-    
+
             input {
               width: 90%;
               height: 40px;
@@ -108,16 +111,18 @@
               text-decoration: none;
               padding-left: 15px;
               margin-bottom: 10px;
+
               &:focus {
                 outline: none;
                 //border: 0;
               }
-              
+
+              body.dark & {
+                background-color: rgba(45, 44, 44, 0.8);
+                color: white;
+              }
             }
-    
-            
-    
-            
+
             .foro_post_textAREA {
               width: 100%;
               height: 50px;
@@ -129,16 +134,18 @@
               border-left: 1px solid rgb(146, 140, 140);
               border-right: 1px solid rgb(146, 140, 140);
               resize: none;
+
               &:focus {
                 outline: none;
+              }
+
+              body.dark & {
+                background-color: rgba(45, 44, 44, 0.8);
+                color: white;
               }
             }
           }
         }
-
-        
-
-  
 
         .foro_posts_buttonSide {
           margin-top: 10px;
@@ -159,7 +166,7 @@
               .foro_post_Label {
                 img {
                   cursor: pointer;
-                  transition: all .2s ease;
+                  transition: all 0.2s ease;
                   &:hover {
                     transform: scale(1.1);
                   }
@@ -186,9 +193,9 @@
             background-color: $standard-color-blue;
             color: white;
             border: 1px solid white;
-            transition: all .2s ease;
+            transition: all 0.2s ease;
             &:disabled {
-              transition: all .2s ease;
+              transition: all 0.2s ease;
               cursor: not-allowed;
               background-color: white;
               border: 1px solid #e63946;
@@ -197,27 +204,26 @@
           }
         }
       }
-      
+
       overflow-x: hidden;
 
       &::-webkit-scrollbar {
         width: 5px;
         background-color: $standard-background;
-    }
+      }
 
-    &::-webkit-scrollbar-thumb {
+      &::-webkit-scrollbar-thumb {
         background-color: $standard-color-blue;
         border-radius: 5px;
-    }
+      }
 
-    &::-webkit-scrollbar-button {
+      &::-webkit-scrollbar-button {
         //background-color: red;
         width: 2px;
         height: 100%;
-    }
+      }
     }
   }
-
 }
 
 .foro_home_loaderGif {
@@ -225,7 +231,7 @@
   margin-top: 50px;
 }
 
-.foro_post_tags{
+.foro_post_tags {
   display: flex;
   font-size: 10px;
   width: 100%;
@@ -248,12 +254,14 @@
     left: 0;
     padding: 10px;
     margin: 10px;
-    @media (max-width:550px){
+    @media (max-width: 550px) {
       display: none;
+    }
 
+    body.dark & {
+      color: white;
     }
   }
-  
 
   .foro_post_tag_normal {
     background-color: #8fa3ce;
@@ -266,7 +274,7 @@
     cursor: pointer;
     margin: 0px 5px;
     position: relative;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 
     &:hover {
       transform: scale(1.1);
@@ -285,10 +293,10 @@
       width: 150px;
       text-align: center;
       font-size: 15px;
-      @media (max-width:475px){
+      @media (max-width: 475px) {
         font-size: 10px;
-        padding:6px;
-        width:100px;
+        padding: 6px;
+        width: 100px;
       }
     }
 
@@ -297,7 +305,7 @@
     }
   }
 
-  .foro_post_tag_selected{
+  .foro_post_tag_selected {
     background-color: $standard-color-blue;
     background-color: #8fa3ce;
     display: flex;
@@ -308,9 +316,8 @@
     cursor: pointer;
     margin: 0px 5px;
     position: relative;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 
-    
     &:hover {
       transform: scale(1.1);
     }
@@ -328,20 +335,18 @@
       width: 150px;
       text-align: center;
       font-size: 15px;
-      @media (max-width:475px){
+      @media (max-width: 475px) {
         font-size: 10px;
-        padding:6px;
-        width:100px;
-        
+        padding: 6px;
+        width: 100px;
       }
     }
-    
+
     .previewOff {
       display: none;
     }
   }
 }
-
 
 .FORO_HOME_PANELdiv {
   @media (max-width: 900px) {
@@ -360,6 +365,5 @@
 
   @media (max-width: 610px) {
     display: none;
-    
   }
 }

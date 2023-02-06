@@ -2,6 +2,8 @@ body {
   margin: 0;
   box-sizing: border-box;
 
+  transition: all 0.5s ease-out;
+
   &.dark {
     background-color: $standard-color-black;
     color: $standard-color-white;
@@ -282,7 +284,7 @@ body::-webkit-scrollbar-thumb {
         background: linear-gradient(40deg, $standard-color-gray, $standard-color-white);
 
         body.dark & {
-          background: linear-gradient(40deg, $standard-color-black, $standard-color-black-ligth);
+          background: linear-gradient(40deg, $standard-color-black-ligth, $standard-color-black);
         }
 
         .title-news {

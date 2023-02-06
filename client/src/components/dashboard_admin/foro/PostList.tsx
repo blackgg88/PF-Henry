@@ -13,7 +13,7 @@ const PostList = () => {
         <TextField source='deleted' />
         <EditButton resource='/posts' />
 
-        <DeleteButton resource='/posts' />
+        <DeleteButton resource='posts' />
       </Datagrid>
     </List>
   )

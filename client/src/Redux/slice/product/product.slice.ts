@@ -27,11 +27,17 @@ export interface FilterState {
   order: string;
 }
 
+export interface ProductQuantityState {
+  id: string;
+  quantity: number;
+}
+
 // Define the initial state using that type
 const initialState: {
   Products: ProductState[];
   ProductDetail: ProductState;
   Filters: FilterState;
+  CategoryQuantity: ProductQuantityState[];
 } = {
   Products: [],
   ProductDetail: {
@@ -54,6 +60,7 @@ const initialState: {
     rating: 0,
     order: '',
   },
+  CategoryQuantity: [],
 };
 
 export const productSlice = createSlice({
@@ -89,6 +96,10 @@ export const productSlice = createSlice({
     updateOrderFilter: (state, action) => {
       state.Filters.order = action.payload;
     },
+
+    getCategoryQuantity: (state, action) => {
+      state.CategoryQuantity = action.payload;
+    },
     resetFilters: (state) => {
       state.Filters = {
         ...state,
@@ -113,5 +124,6 @@ export const {
   updatePriceMinFilter,
   updatePriceMaxFilter,
   updateOrderFilter,
+  getCategoryQuantity,
   resetFilters,
 } = productSlice.actions;

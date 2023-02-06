@@ -6,6 +6,7 @@ import logoTop from '../../assets/logo_smart_b.png';
 import menuResp from '../../assets/responsive-menu-icon.png';
 import cart from '../../assets/car_w.png';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { changeTheme } from '../../Redux/slice/theme/theme.slice';
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -15,6 +16,7 @@ const NavBar = () => {
   const userByBd = useAppSelector((state) => state.userReducer.userState);
   const dark = useAppSelector((state) => state.themeReducer.dark);
 
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if (responsiveMenu) {
       document.body.style.overflow = 'hidden';
@@ -27,6 +29,10 @@ const NavBar = () => {
     localStorage.removeItem('userByBd');
     logout();
     setProfileWindow(false);
+  };
+
+  const handleChangeTheme = () => {
+    dispatch(changeTheme(!dark));
   };
 
   return (
@@ -73,6 +79,8 @@ const NavBar = () => {
               <p>Admin</p>
             </NavLink>
           )}
+
+          <button onClick={handleChangeTheme}>dark</button>
 
           {isAuthenticated && (
             <div className='profile-div'>

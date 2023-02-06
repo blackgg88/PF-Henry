@@ -1,6 +1,6 @@
 import React from 'react';
-import { Admin, Resource, Layout, useNotify } from "react-admin";
-import UserIcon from "@mui/icons-material/Group";
+import { Admin, Resource, Layout, useNotify } from 'react-admin';
+import UserIcon from '@mui/icons-material/Group';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import PaidIcon from '@mui/icons-material/Paid';
@@ -14,28 +14,29 @@ import PurchaseList from './PurchaseList';
 import PostList from './foro/PostList';
 import PostCreate from './foro/PostCreate';
 import PostEdit from './foro/PostEdit';
-import { Dashboard } from './Dashboard';
+import { Dashboard } from './Dashboard/Dashboard';
 import { MyAppBar } from './MyAppBar';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import dataProvider from './dataProvider';
 
-// const NotifyButton = () => {
-//   const notify = useNotify();
-//   const handleClick = () => {
-//     notify(`Comment approved`, { type: "success" });
-//   };
-//   return <button onClick={handleClick}>Notify</button>;
-// };
-
-const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />;
+const MyLayout = (props: any) => (
+  <Layout {...props} appBar={MyAppBar} style={{ backgroundColor: ` #2b4076` }} />
+);
+// console.log(dataProvider);
 
 const AppAdmin = () => {
   return (
     <div>
       <Admin basename='/admin' dataProvider={dataProvider} dashboard={Dashboard} layout={MyLayout}>
-        <Resource name='users' list={UserList} edit={UserEdit} create={UserCreate} icon={UserIcon}/>
+        <Resource
+          name='users'
+          list={UserList}
+          edit={UserEdit}
+          create={UserCreate}
+          icon={UserIcon}
+        />
         <Resource
           name='products'
           list={ProductList}
@@ -43,8 +44,14 @@ const AppAdmin = () => {
           create={ProductCreate}
           icon={LocalGroceryStoreIcon}
         />
-        <Resource name='purchases' list={PurchaseList} icon={PaidIcon}/>
-        <Resource name='posts' list={PostList} create={PostCreate} edit={PostEdit} icon={TextSnippetIcon} />
+        <Resource name='purchases' list={PurchaseList} icon={PaidIcon} />
+        <Resource
+          name='posts'
+          list={PostList}
+          create={PostCreate}
+          edit={PostEdit}
+          icon={TextSnippetIcon}
+        />
         {/* <MyNotification /> */}
       </Admin>
     </div>

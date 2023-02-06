@@ -1,12 +1,5 @@
-import React from "react";
-import {
-  List,
-  Datagrid,
-  TextField,
-  EmailField,
-  EditButton,
-  DeleteButton,
-} from "react-admin";
+import React from 'react';
+import { List, Datagrid, TextField, EmailField, EditButton, DeleteButton } from 'react-admin';
 
 interface Props {
   id: string;
@@ -22,10 +15,10 @@ const UserList = (props: Props) => {
         <TextField source='_id' />
         <TextField source='userName' />
         <EmailField source='email' />
-        <TextField source='isActive' />
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        @ts-ignore */}
-        <EditButton basePath='users' />
+
+        {/* para que no tire errores le ponemos resource en vez de basePath */}
+        <EditButton resource='users' />
+
         <DeleteButton resource='users' />
       </Datagrid>
     </List>

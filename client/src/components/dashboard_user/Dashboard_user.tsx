@@ -40,7 +40,6 @@ export const Dashboard_user = () => {
   const email = userByBd.email;
   const verified = userByBd.email_verified;
 
-
   useEffect(() => {
     const handleGetItems = async () => {
       const response = await controllerUser(email);
@@ -69,7 +68,7 @@ export const Dashboard_user = () => {
           <img src={userByBd.picture} alt='picture-profile' />
         </div>
         <div className='dash_profile_InfoSide'>
-          <h2>{user?.name}</h2>
+          <h2>{user?.name?.toUpperCase()}</h2>
           <p>{email}</p>
           <p>
             {verified ? (

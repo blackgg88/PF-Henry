@@ -36,11 +36,16 @@
     border-radius: 20px;
     border: 2px solid rgb(74, 73, 73);
     border-radius: 10px;
-    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-      0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 18px 0px rgba(0, 0, 0, 0.12);
     padding: 16px;
     width: 50%;
     height: 40%;
+
+    body.dark & {
+      background: $standard-color-black;
+    }
+
     .product-info {
       display: flex;
       flex-direction: row;
@@ -120,10 +125,17 @@
           font-size: 30px;
           font-weight: bold;
           color: $standard-color-blue;
+
+          body.dark & {
+            color: white;
+          }
         }
         .product-brand {
           font-size: 25px;
           margin-bottom: 8px;
+          body.dark & {
+            color: white;
+          }
         }
 
         .product-price {
@@ -131,6 +143,9 @@
           //background-color: aqua;
           position: relative;
           font-family: $standard-font-Barlow;
+          body.dark & {
+            color: white;
+          }
         }
         .product-rating {
           //background-color: aqua;
@@ -153,6 +168,10 @@
             .value-raing {
               font-size: 4vw;
               font-family: $standard-font-Barlow;
+            }
+
+            body.dark & {
+              color: white;
             }
           }
 

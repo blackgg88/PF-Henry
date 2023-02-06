@@ -11,8 +11,6 @@ import { Rating } from '@mui/material';
 //import "./quicklook.css";
 import { Link } from 'react-router-dom';
 
-import modal from '../dashboard_user/FavoritesModal';
-
 interface Props {
   product: ProductState;
   handleAddCart: (product: ProductState) => void;

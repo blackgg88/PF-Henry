@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { ProductState } from '../product/product.slice';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { ProductState } from "../product/product.slice";
 
 export interface userInterface {
   email: string;
@@ -12,6 +12,7 @@ export interface userInterface {
   picture: string;
   username: string;
   connection: string;
+
   favorites: ProductState[];
   banner: string;
 }
@@ -30,26 +31,26 @@ const initialState: {
   userState: userInterface;
 } = {
   userState: {
-    connection: '',
-    email: '',
-    _id: '',
-    role: 'user',
-    firstName: '',
-    lastName: '',
+    connection: "",
+    email: "",
+    _id: "",
+    role: "user",
+    firstName: "",
+    lastName: "",
     email_verified: false,
-    picture: '',
-    username: '',
+    picture: "",
+    username: "",
     favorites: [],
     banner: ''
   },
 };
 
 const handleSaveLS = (user: userInterface) => {
-  localStorage.setItem('userByBd', JSON.stringify(user));
+  localStorage.setItem("userByBd", JSON.stringify(user));
 };
 
 export const userSlice = createSlice({
-  name: 'userState',
+  name: "userState",
   initialState,
   reducers: {
     getUserLogin: (state, action: PayloadAction<userInterface>) => {
@@ -65,7 +66,7 @@ export const userSlice = createSlice({
     },
 
     changePicture: (state, action: PayloadAction<userChangeIMG>) => {
-      state.userState = { ...state.userState, ...action.payload}
+      state.userState = { ...state.userState, ...action.payload };
     },
 
     addFavorite: (state, action: PayloadAction<ProductState[]>) => {
@@ -79,4 +80,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { getUserLogin, kevinPapitoMiAmor, addFavorite, changePicture } = userSlice.actions;
+export const { getUserLogin, kevinPapitoMiAmor, addFavorite, changePicture } =
+  userSlice.actions;

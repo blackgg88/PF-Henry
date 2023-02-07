@@ -6,25 +6,99 @@ import { getProductId } from '../../Redux/slice/product/product.slice';
 import { productIdFetch } from '../../Redux/slice/product/ProductController';
 import { Link } from 'react-router-dom';
 
-import { Rating } from '@mui/material';
+import Ratingcomp from './Ratingcomp';
+import ShareIcon from '@mui/icons-material/Share';
+import FacebookCom from './FacebookCom';
 
-import star from "../../assets/images/icons/iconStartB.png"
+import ForumIcon from '@mui/icons-material/Forum';
+
+//.........
+import {
+  addProduct,
+  deleteProduct,
+  ProductCart,
+} from '../../Redux/slice/shoppingCart/shoppingCart.slice';
+import { toast, Zoom } from 'react-toastify';
+
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  InstapaperShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+  InstapaperIcon,
+} from 'react-share';
+
+import { IconButton, Rating } from '@mui/material';
+
+import star from '../../assets/images/icons/iconStartB.png';
 
 const Detail: React.FC<{}> = () => {
   const id = useParams().id as string;
   const dispatch = useAppDispatch();
 
-  const productDetail: ProductState = useAppSelector(
-    (state) => state.productReducer.ProductDetail,
-  );
+  const productDetail: ProductState = useAppSelector((state) => state.productReducer.ProductDetail);
 
-  const allProducts: ProductState[] = useAppSelector(
-    (state) => state.productReducer.Products,
-  );
+  const allProducts: ProductState[] = useAppSelector((state) => state.productReducer.Products);
 
-  console.log("ssssssssssssssssssss", productDetail);
+  const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+  //----------------------> SHARE FEATURE  <----------------------------
+
+  // const currentPageUrl = window.location.href;
+  // const currentPageUrl = `https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`
+  const currentPageUrl = `https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop${productDetail._id}`;
+
+  //-----------------------> ADD TO CART BUTTON <-------------------------
+
+  const handleAddCart = (product: ProductState) => {
+    const productCart: ProductCart = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      brand: product.brand,
+      images: product.images,
+      categories: product.categories,
+      stock: product.stock,
+      quantity: 1,
+      inCart: true,
+    };
+
+    dispatch(addProduct(productCart));
+
+    toast.success('Product added to Cart', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Zoom,
+    });
+  };
+
+  const handleRemoveCart = (product: ProductState) => {
+    dispatch(deleteProduct(product._id));
+
+    toast.error('Product removed from Cart', {
+      position: 'top-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Zoom,
+    });
+  };
+
   const [principalImage, setPrincipalImage] = useState<string>('');
   const [relatedProduct, setRelatedProduct] = useState<ProductState[]>([]);
+  //console.log("ssssssssssssssssssss", relatedProduct);
 
   useEffect(() => {
     productIdFetch(id).then((res) => {
@@ -32,16 +106,14 @@ const Detail: React.FC<{}> = () => {
       handleFilter(res);
       setPrincipalImage(res.images[0]);
     });
-  }, [id]);
+  }, []);
 
   const handleSetImage = (image: string) => {
     setPrincipalImage(image);
   };
 
   const handleFilter = (res: ProductState) => {
-    let aux = allProducts.filter(
-      (product: any) => product.categories._id === res.categories,
-    );
+    let aux = allProducts.filter((product: any) => product.categories._id === res.categories);
 
     if (aux.length > 5) aux = aux.slice(0, 5);
     setRelatedProduct(aux);
@@ -60,6 +132,19 @@ const Detail: React.FC<{}> = () => {
   return (
     <div className='detail-contain'>
       <div className='info-pincipal-detail'>
+        {/* <div className="land-images">
+          {productDetail?.images?.map((image) => (
+            <div key={image.slice(5)} className="secondary-images">
+              <img
+                src={image}
+                onMouseOver={() => {
+                  handleSetImage(image);
+                }}
+              />
+            </div>
+          ))}
+        </div> */}
+
         <div className='land-images'>
           {productDetail?.images?.map((image) => (
             <div key={image.slice(5)} className='secondary-images'>
@@ -72,59 +157,156 @@ const Detail: React.FC<{}> = () => {
             </div>
           ))}
         </div>
+        <div>
+          <FacebookCom />
+        </div>
         <div className='imagen-principal-detail'>
           <div className='principal-image'>
             <img src={principalImage} alt={productDetail.name} />
           </div>
         </div>
         <div className='principal-details'>
-          
           <div className='transaction-details'>
+            <div className='name'>{productDetail.name}</div>
 
-
-
-              Description:
-              <div>{productDetail.description}</div>
-              <div>{productDetail.name}</div>
-            <div className="rating">
-              <Rating size='large' value={productDetail.rating} precision={0.01} readOnly />
-              <div className='product-rating'>{productDetail.rating}</div>
-
+            <div className='description-rating-branding'>
+              <div className='rating-brand'>
+                <div className='rating'>
+                  <Rating
+                    className='stars'
+                    size='large'
+                    value={productDetail.rating}
+                    precision={0.1}
+                    readOnly
+                  />
+                  <div className='product-rating'>{productDetail.rating}</div>
+                  <div className='brand-nest'>{/* <img src={logo} alt="logo smartNest" /> */}</div>
+                </div>
+                <div className='resumen'>
+                  Brand:<div className='brand'> {productDetail.brand}</div>
+                </div>
+                <div className='resumen'>
+                  stock:<div className='brand'>{productDetail.stock}</div>
+                </div>
+              </div>
+              <div className='description'>
+                Description:
+                <div className='text-description'>{productDetail.description}</div>
+              </div>
             </div>
-            <div className='product-rating'>stock: {productDetail.stock}</div>
-
-            <div className="price">
-              <div className='transaction-price'>USD ${productDetail.price}</div>
-              <button> add to cart</button>
-
+            <div className='price'>
+              <div className='transaction-price'>
+                <div className='link-to-forum'>
+                  <Link to='/foro'>
+                    <IconButton>
+                      <ForumIcon />
+                    </IconButton>
+                  </Link>
+                </div>
+                <div className='value-price'>${productDetail.price.toFixed(2)}</div>
+                USD
+              </div>
+              {/* <button> add to cart</button> */}
+              <div className='content-add-car-card-beta'>
+                <div className='social-media-buttons-wrap'>
+                  <span>
+                    Share <ShareIcon />
+                  </span>
+                  <div className='container-share'>
+                    <FacebookShareButton url={currentPageUrl}>
+                      <i className='facebook'>
+                        <FacebookIcon size={32} round={true} />
+                      </i>
+                    </FacebookShareButton>
+                    <TwitterShareButton url={currentPageUrl}>
+                      <i className='twitter'>
+                        <TwitterIcon size={32} round={true} />
+                      </i>
+                    </TwitterShareButton>
+                    <WhatsappShareButton url={currentPageUrl}>
+                      <i className='whatsapp'>
+                        <WhatsappIcon size={32} round={true} />
+                      </i>
+                    </WhatsappShareButton>
+                    <InstapaperShareButton url={currentPageUrl}>
+                      <i className='email'>
+                        <InstapaperIcon size={32} round={true} />
+                      </i>
+                    </InstapaperShareButton>
+                  </div>
+                </div>
+                {productDetail?.stock > 0 &&
+                !productsInCart.find((el) => el._id === productDetail._id) ? (
+                  <div className='add-car-card-beta' onClick={() => handleAddCart(productDetail)}>
+                    <p>add to Cart</p>
+                  </div>
+                ) : productDetail.stock > 0 &&
+                  productsInCart.find((el) => el._id === productDetail._id) ? (
+                  <div
+                    className='add-car-card-beta'
+                    onClick={() => handleRemoveCart(productDetail)}
+                  >
+                    <p>Remove</p>
+                  </div>
+                ) : (
+                  <div
+                    className='add-car-card-beta'
+                    style={{
+                      color: 'rgba(20, 20, 20, 0.8)',
+                      backgroundColor: 'rgba(229, 229, 229, 1)',
+                      fontFamily: "'Urbanist', sans-serif",
+                      fontWeight: '500',
+                    }}
+                  >
+                    out of Stock
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className='text-related-product'>Related products</div>
       <div className='section-description'>
         <div className='detail-detail'>
           {relatedProduct?.map((product) => (
-            <div className='releated-images'>
+            <Link
+              className='releated-images'
+              to={`/product/${product._id}`}
+              style={{
+                backgroundImage: `url(${product.images[0]})`,
+                backgroundSize: '60%',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            >
+              {/* 
+              <img src={product.images[0]} alt={product.name[0]} />
+            */}
               <p className='detail_product-name'>{product.name}</p>
-              <Link to={`/product/${product._id}`}>
-                <img src={product.images[0]} alt={product.name[0]} />
-              </Link>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
+
       <div className='comments-section'>
         <div className='comments-box'>
           <div
             className='fb-comments'
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
-            data-width='50'
+            data-width='100%'
             data-numposts='5'
           ></div>
-          <span className="fb-comments-count" data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}></span>
+          <span
+            className='fb-comments-count'
+            data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
+          ></span>
           comments
         </div>
-        <div className='other-box'>other-box</div>
+        <div className='other-box'>
+          <p>Rate this product</p>
+          <Ratingcomp id={productDetail._id} />
+        </div>
       </div>
     </div>
   );

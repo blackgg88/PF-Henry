@@ -36,7 +36,7 @@ const Home = () => {
     productFetch().then((res) => {
       dispatch(getProduct(res));
     });
-  }, [productNews]);
+  }, []);
 
   return (
     <div className='home_wrapper'>

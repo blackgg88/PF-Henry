@@ -10,6 +10,19 @@ export function productIdFetch(id: string) {
   return fetch(`${API_URL}/products/${id}`).then((res) => res.json());
 }
 
+export const postRating = async (id: string, rating: number) => {
+  const response = await fetch(`${API_URL}/products/${id}/rating`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      rating: rating,
+    }),
+  });
+  return response.json();
+};
+
 export function productsFilter(filters: FilterState) {
   const { name, categories, pricemin, pricemax, rating, order } = filters;
   try {

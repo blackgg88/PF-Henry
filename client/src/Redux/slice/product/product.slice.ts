@@ -14,6 +14,7 @@ export interface ProductState {
   brand: string;
   images: string[];
   rating: number;
+
   categories: Categories;
   stock: number;
   isActive: boolean;
@@ -48,6 +49,7 @@ const initialState: {
     brand: '',
     images: [],
     rating: 0,
+
     categories: { _id: '', name: '' },
     stock: 0,
     isActive: true,

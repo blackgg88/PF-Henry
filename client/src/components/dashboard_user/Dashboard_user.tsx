@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { controllerUser } from './controller';
-import Navbar from '../navbar/Navbar';
-import logo from '../../assets/logo_smart_b.png';
 import { useAppSelector } from '../../Redux/hook';
 import { userInterface } from '../../Redux/slice/user/user.slice';
 import verified_true from '../../assets/verified/verified_true.png';
@@ -10,7 +8,6 @@ import verified_false from '../../assets/verified/verified_false.png';
 import ModalUser from '../modalUser/ModalUser';
 import FavoritesModal from './FavoritesModal';
 
-// creame una interface para este estado const { purchase, setPurchase} = useState ([]) ;
 interface Items {
   title: string;
   id: string;
@@ -49,6 +46,8 @@ export const Dashboard_user = () => {
       handleGetItems();
     }
   }, [isAuthenticated]);
+
+  console.log(purchase);
 
   const handleFormatedDate = (date_created: string) => {
     const dateString = date_created;

@@ -2,7 +2,8 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Rating } from '@mui/material';
 import { toast, Zoom } from 'react-toastify';
-
+import onLike from '../../assets/foro/DarkMode/onLike.svg'
+import outLike from '../../assets/foro/DarkMode/outLike.svg'
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { addFavoriteFetch } from '../../Redux/slice/user/userController';
 import { addFavorite } from '../../Redux/slice/user/user.slice';
@@ -21,6 +22,7 @@ import { ProductCart } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 import favoriteUnset_w from '../../assets/images/icons/favorite/favorite_w.png';
 import favoriteSet_w from '../../assets/images/icons/favorite/favorite_b.png';
 import AddFavoritesModal from './AddFavoritesModal';
+
 
 const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
@@ -91,7 +93,7 @@ const CardBeta: React.FC<{}> = () => {
 
   //----------------------> FAVORITES CARD FEATURES
   const [modalOpen, setModalOpen] = useState(false);
-
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
   const { user, isAuthenticated } = useAuth0();
 
   //!--------------------------------------------------------------------------------------
@@ -193,11 +195,11 @@ const CardBeta: React.FC<{}> = () => {
     <div className='container-render-card-v-beta'>
       <div className='container-card-beta'>
         {currentItems?.map((product) => {
-          let iconFavorite = favoriteUnset_w;
+          let iconFavorite = dark?onLike:favoriteUnset_w;
 
           getFavorites.map((favorite) => {
             if (favorite._id === product._id) {
-              iconFavorite = favoriteSet_w;
+              iconFavorite = dark?outLike:favoriteSet_w;
             }
           });
 
@@ -253,8 +255,8 @@ const CardBeta: React.FC<{}> = () => {
                     <p>Remove</p>
                   </div>
                 ) : (
-                  <div className='add-car-card-beta'>
-                    <button disabled>Out of Stock</button>
+                  <div className='add-car-card-betaOut'>
+                    <p>Out of Stock</p>
                   </div>
                 )}
               </div>

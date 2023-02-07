@@ -1,14 +1,20 @@
 .Nav_topLanding {
   // height: calc($navbar-height - $navbar-height-maring-button - $navbar-height-maring-top);
-  height: $navbar-height;
+  //height: $navbar-height;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: $standard-font-Poiret-One;
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-top: $navbar-height-maring-top;
-  margin-bottom: $navbar-height-maring-button;
+  //margin-right: 30px;
+  //margin-left: 30px;
+  //margin-top: $navbar-height-maring-top;
+  //margin-bottom: $navbar-height-maring-button;
+  //background-color: red;
+  padding: 20px 30px;
+
+  body.dark & {
+    background-color: $standard-container-black;
+  }
 
   @media (max-width: 900px) {
     justify-content: center;
@@ -63,6 +69,22 @@
   width: auto;
   margin-right: 10px;
   z-index: 5;
+
+  .Nav_ThemeDiv {
+    //background-color: red;
+    border: 1px solid white;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    cursor: pointer;
+    img {
+      width: 20px;
+    }
+  }
 
   @media (max-width: 900px) {
     justify-content: space-between;

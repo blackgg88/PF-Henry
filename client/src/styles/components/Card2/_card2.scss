@@ -218,7 +218,40 @@
             padding: 10px;
           }
         }
+
+        .add-car-card-betaOut {
+          height: 90%;
+          width: 95%;
+          border-radius: 20px;
+          background-color: $standard-color-blue;
+          transition: background-color 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: not-allowed;
+
+          &:hover {
+            background-color: $standard-color-blue-glass;
+          }
+
+          p {
+            height: 100%;
+            width: 100%;
+            font-family: $standard-font-Urbanis-sans-serif;
+            color: $standard-color-white;
+            font-weight: 500;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+          }
+        }
       }
     }
   }
+}
+
+
+.quickLook_eye {
+  width: 20px;
 }

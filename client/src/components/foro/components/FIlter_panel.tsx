@@ -1,4 +1,5 @@
 import findIcon from '../../../assets/foro/findIcon.svg';
+import findIconW from '../../../assets/foro/DarkMode/search.svg';
 import refreshIcon from '../../../assets/foro/refresh.svg';
 import logoSmartW from '../../../assets/logo_smart_w.png';
 import connectivityIconW from '../../../assets/foro/connectivityIconW.svg';
@@ -7,6 +8,8 @@ import energyW from '../../../assets/foro/energyW.svg';
 import securityW from '../../../assets/foro/securityW.svg'
 import healthW from '../../../assets/foro/health.svg'
 import confort from '../../../assets/foro/confortW.svg';
+import { useAppSelector } from '../../../Redux/hook';
+
 
 //--- HOOK ----
 import { foro_PanelHook } from './ForoHome/hooks/foro_PanelHook';
@@ -36,6 +39,7 @@ export default function FilterPanel({
 }: filterPanel) {
 
   const [{ selectedHandler, allState }] = foro_PanelHook()
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
 
   const Reset = ()=> {
     resetFilter()
@@ -61,7 +65,7 @@ export default function FilterPanel({
             placeholder='Search'
           />
           <button>
-            <img className='foro_panel_findIcon' src={findIcon} alt="find" />
+            <img className='foro_panel_findIcon' src={dark?findIconW:findIcon} alt="find" />
           </button>
         </form>
         <div onClick={Reset} className='foro_panel_refreshContainer'>

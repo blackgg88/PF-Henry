@@ -15,7 +15,7 @@ $standard-font-Urbanis-sans-serif: 'Urbanist', sans-serif;
   font-family: $standard-font-Outfit-sans-serif;
 
   body.dark & {
-    background-color: rgba(45, 44, 44, 0.8);
+    background-color: $standard-container-black;
   }
 
   .foro_card_infoCOMMENT {
@@ -137,11 +137,19 @@ $standard-font-Urbanis-sans-serif: 'Urbanist', sans-serif;
         width: 28px;
         margin-right: 10px;
         cursor: pointer;
+        transition: transform .2s ease;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
 
       .foro_card_button_Edit {
         width: 28px;
         cursor: pointer;
+        transition: transform .2s ease;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
 

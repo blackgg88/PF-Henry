@@ -34,7 +34,7 @@
       padding-left: 10px;
 
       body.dark & {
-        background-color: rgba(45, 44, 44, 0.8);
+        background-color: $standard-color-black;
         color: white;
       }
 
@@ -53,7 +53,8 @@
       cursor: pointer;
 
       body.dark & {
-        background-color: rgba(45, 44, 44, 0.8);
+        background-color: $standard-color-black;
+        
       }
 
       .foro_panel_findIcon {

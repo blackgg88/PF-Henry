@@ -3,12 +3,14 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../../Redux/hook';
 //---------------
 import addIMage from "../../../assets/foro/addImage.svg";
+import addIMageW from '../../../assets/foro/DarkMode/adImageW.svg'
 import connectivityIconW from '../../../assets/foro/connectivityIconW.svg';
 import entertainmentW from '../../../assets/foro/EntertainmentW.svg';
 import energyW from '../../../assets/foro/energyW.svg';
 import securityW from '../../../assets/foro/securityW.svg';
 import healthW from '../../../assets/foro/health.svg';
 import confort from '../../../assets/foro/confortW.svg';
+import filterW from '../../../assets/foro/DarkMode/filterW.svg'
 import filter from '../../../assets/foro/filterIcon.svg'
 import { uploadImage, uploadImagePost } from "../../../../helpers/foro/uploadImage";
 
@@ -30,6 +32,8 @@ export default function Foro_createPost({
   const [uploadinImg, setUploading] = useState<boolean>(false);
   const [charged, setCharged] = useState<boolean>(false)
   const userByBd = useAppSelector((state) => state.userReducer.userState);
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
+
 
   const handlerImage = (e: any)=> {
     setForm({
@@ -156,9 +160,9 @@ export default function Foro_createPost({
       <div className="foro_posts_buttonSide">
         <div className="foro_posts_AddImagen_Container">
           <div className="foro_post_ImageDiv">
-              <img onClick={()=> setFiltersOpen(!FiltersOpen)} src={filter} alt="filters" />
+                <img onClick={()=> setFiltersOpen(!FiltersOpen)} src={dark?filterW:filter} alt="filters" />
               <label htmlFor="file-input" className="foro_post_Label">
-                <img src={addIMage} alt="Add_Image" />
+                <img src={dark?addIMageW:addIMage} alt="Add_Image" />
               </label>
               <input onChange={handlerImage} className='foro_post_IMPUT' id="file-input" type="file"></input>
               {

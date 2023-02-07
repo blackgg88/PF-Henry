@@ -42,7 +42,8 @@ export const team = [
     name: "Kevin Picado",
     linkedin: "https://www.linkedin.com/in/kevin-p-131203255/",
     github: "https://github.com/kpv22",
-    picture: "",
+    picture:
+      "https://res.cloudinary.com/dwzkkqzdt/image/upload/v1675808138/Imagen_de_WhatsApp_2023-02-07_a_las_19.15.17_soihlm.jpg",
   },
   {
     name: "Daniel Viuasus",
@@ -79,6 +80,6 @@ export const defaultOption: LottieOptions = {
   loop: true,
   autoplay: true,
   rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
+    preserveAspectRatio: "xMidYMid slice",
   },
 };

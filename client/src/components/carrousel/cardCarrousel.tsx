@@ -100,7 +100,13 @@ const Card: React.FC<Props> = ({ product }) => {
           <button
             className='Home_add-car-card-beta'
             disabled={true}
-            style={{ cursor: 'not-allowed' }}
+            style={{
+              color: 'rgba(20, 20, 20, 0.8)',
+              backgroundColor: 'rgba(229, 229, 229, 1)',
+              fontFamily: "'Urbanist', sans-serif",
+              fontWeight: '500',
+              cursor: 'no-drop',
+            }}
           >
             out of Stock
           </button>

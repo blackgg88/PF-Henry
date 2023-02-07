@@ -176,7 +176,7 @@
             .rating {
               //background-color: aqua;
               height: 160px;
-              width: 150px;
+              width: auto;
               display: flex;
               flex-direction: column;
               align-items: center;
@@ -193,7 +193,7 @@
                 padding: 3% 0%;
               }
               .product-rating {
-                width: 100%;
+                width: auto;
                 text-align: center;
                 font-size: 4rem;
                 // background-color: $standard-color-red;

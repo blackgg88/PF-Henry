@@ -56,11 +56,15 @@
       &::-webkit-scrollbar {
         width: 5px;
         background-color: $standard-background;
+        body.dark & {
+          background-color: $standard-color-black;
+        }
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: $standard-color-blue;
         border-radius: 5px;
+        
       }
 
       &::-webkit-scrollbar-button {
@@ -273,7 +277,7 @@
       padding: 15px;
 
       body.dark & {
-        background-color: rgba(45, 44, 44, 0.8);
+        background-color: $standard-container-black;
       }
 
       @media (max-width: 900px) {
@@ -283,6 +287,9 @@
       &::-webkit-scrollbar {
         width: 5px;
         background-color: $standard-background;
+        body.dark & {
+          background-color: $standard-container-black;
+        }
       }
 
       &::-webkit-scrollbar-thumb {

@@ -7,6 +7,8 @@ import menuResp from '../../assets/responsive-menu-icon.png';
 import cart from '../../assets/car_w.png';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { changeTheme } from '../../Redux/slice/theme/theme.slice';
+import moon from '../../assets/foro/DarkMode/moonW.svg'
+import sun from '../../assets/foro/DarkMode/sunB.svg'
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -79,8 +81,13 @@ const NavBar = () => {
               <p>Admin</p>
             </NavLink>
           )}
-
-          <button onClick={handleChangeTheme}>dark</button>
+          <div className='Nav_ThemeDiv' onClick={handleChangeTheme}> 
+            {
+              dark?
+              <img src={moon} />:
+              <img src={sun} />
+            }
+          </div>
 
           {isAuthenticated && (
             <div className='profile-div'>

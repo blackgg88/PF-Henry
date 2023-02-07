@@ -7,9 +7,14 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from '../../../Redux/hook';
 import likeNo from '../../../assets/foro/heart-svgrepo-com.svg';
 import likeYes from '../../../assets/foro/heart-svgrepo-com (1).svg';
+import editW from '../../../assets/foro/DarkMode/editW.svg'
 import edit from '../../../assets/foro/edit-svgrepo-com.svg';
 import deleteIcon from '../../../assets/foro/trash-delete-remove-clean-svgrepo-com.svg';
+import deleteIconW from '../../../assets/foro/DarkMode/deleteW.svg'
+import commentLogoW from '../../../assets/foro/DarkMode/commentW.svg'
 import commentLogo from '../../../assets/foro/comment-svgrepo-com.svg';
+import onLike from '../../../assets/foro/DarkMode/onLike.svg';
+import outLike from '../../../assets/foro/DarkMode/outLike.svg';
 import { NavLink } from "react-router-dom";
 import { notification } from '../../../../helpers/foro/notification'
 
@@ -72,6 +77,7 @@ export function Foro_card({
 }: Foro_Card) {
   const { user, isAuthenticated } = useAuth0();
   const userByBd = useAppSelector((state) => state.userReducer.userState);
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
   
   const openComment = (id:string)=> {
     var x = document.getElementById(`comment-${id}`);
@@ -126,7 +132,7 @@ export function Foro_card({
               user?.email===email&&
               <img
                 className='foro_card_button_Delete'
-                src={deleteIcon}
+                src={dark?deleteIconW:deleteIcon}
                 onClick={() => onDeletePost(id, userId)}
               />
             }
@@ -135,7 +141,7 @@ export function Foro_card({
               <img
               onClick={() => onEdit(id, content)}
               className='foro_card_button_Edit'
-              src={edit}
+              src={dark?editW:edit}
             />
             }
           </div>
@@ -147,7 +153,7 @@ export function Foro_card({
               <img
               onClick={() => onLikePost(id)}
               className='foro_card_buttonLike'
-              src={likes.includes(user.email)?likeYes:likeNo}
+              src={likes.includes(user.email)?(dark?onLike:likeYes):(dark?outLike:likeNo)}
               alt='like'
             />:<img
             onClick={() => notification.fire({ icon: 'error', text: 'Only users can like this post'})}
@@ -161,7 +167,7 @@ export function Foro_card({
             <img
               onClick={isAuthenticated ? ()=> openComment(id):()=>commentValidation()}
               className='foro_card_buttonComment'
-              src={commentLogo}
+              src={dark?commentLogoW:commentLogo}
               alt='comment'
             />
           </div>

@@ -3,6 +3,8 @@ body {
   box-sizing: border-box;
 
   transition: all 0.5s ease-out;
+  padding-right: 0 !important;
+  overflow: auto !important;
 
   &.dark {
     background-color: $standard-color-black;

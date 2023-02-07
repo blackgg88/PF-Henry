@@ -82,11 +82,13 @@ const NavBar = () => {
             </NavLink>
           )}
           <div className='Nav_ThemeDiv' onClick={handleChangeTheme}> 
-            {
-              dark?
-              <img src={moon} />:
-              <img src={sun} />
-            }
+            <div className={dark?'Nav_Theme_moon':'Nav_theme_sun'}>
+              {
+                dark?
+               <img src={moon}/>:
+               <img src={sun}/>
+              }
+            </div>
           </div>
 
           {isAuthenticated && (

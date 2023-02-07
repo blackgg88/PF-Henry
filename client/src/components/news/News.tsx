@@ -115,11 +115,7 @@ export const News = () => {
         </div>
       ) : (
         <div className="news_container_firstLine">
-          <img
-            className="news_loader"
-            src="https://feccoo-madrid.org/f4404720ece11355df318a0acf525cb1000063.gif"
-            alt="loading"
-          />
+          <img className="news_container_loader" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
         </div>
       )}
       <div className="news_paginated">

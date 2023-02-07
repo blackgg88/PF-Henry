@@ -20,7 +20,7 @@ user.get('/list', getAllUsersformated)
 user.put('/img', putImgUser);
 user.put('/banner', putBannerUser);
 //find by ID and Email // devuelve el usuario buscado por ID y Email
-user.get('/id/:id', getOneUser);
+user.get('/:id', getOneUser);
 user.get('/:email', getUserByEmail);
 
 //post user // crea un nuevo usuario

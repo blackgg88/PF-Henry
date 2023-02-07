@@ -21,10 +21,6 @@ const dataProvider = {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
     let url;
-    console.log(field, order);
-    console.log(resource);
-    
-
     if (resource === "purchases") {
       url = `${API_URL}/checkout`;
     } else {
@@ -35,7 +31,6 @@ const dataProvider = {
 
     let data = await response.json();
 
-    console.log(data)
     data = orderData(data, resource, order, field);
 
     const total = data.length;
@@ -88,8 +83,7 @@ const dataProvider = {
   },
 
   getOne: async (resource, params) => {
-    console.log(params.id);
-    const response = await fetch(`${API_URL}/${resource}/id/${params.id}`);
+    const response = await fetch(`${API_URL}/${resource}/${params.id}`);
     let data = await response.json();
 
     data = {
@@ -129,21 +123,22 @@ const dataProvider = {
   },
 
   update: (resource, params) => {
+    console.log(11 )
     httpClient(`${API_URL}/${resource}/${params.id}`, {
       method: "PUT",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({ data: json }))},
 
-  // updateMany: (resource, params) => {
-  //   const query = {
-  //     filter: JSON.stringify({ id: params.ids }),
-  //   };
-  //   return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
-  //     method: "PUT",
-  //     body: JSON.stringify(params.data),
-  //   })
-  //   .then(({ json }) => ({ data: json }));
-  // },
+  updateMany: (resource, params) => {
+    const query = {
+      filter: JSON.stringify({ id: params.ids }),
+    };
+    return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
+      method: "PUT",
+      body: JSON.stringify(params.data),
+    })
+    .then(({ json }) => ({ data: json }));
+  },
 
   create: (resource, params) =>
     httpClient(`${API_URL}/${resource}`, {

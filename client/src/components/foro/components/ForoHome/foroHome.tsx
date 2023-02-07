@@ -5,6 +5,9 @@ import Foro_editPost from "../EditPost/Foro_editPost";
 import FilterPanel from "../FIlter_panel";
 import Foro_createPost from "../Foro_createPost";
 import { useAuth0 } from '@auth0/auth0-react';
+import { Foro_Menu } from "../Foro_Menu/Foro_Menu";
+import { useState } from "react";
+import { foro_PanelHook } from "./hooks/foro_PanelHook";
 //---------------
 
 export default function ForoHome() {
@@ -17,6 +20,12 @@ export default function ForoHome() {
     editPost,
     allPostRespaldo,
     searchInput,
+    selectedTag,
+    previewTag,
+    addLike, 
+    addPost, 
+    addEdit, 
+    addComment,
     {
       likeHandler,
       handlerSubmit,
@@ -32,14 +41,21 @@ export default function ForoHome() {
       setallPostRespaldo,
       onChangeSearch,
       handleFilterByTitle,
-      resetFilter
+      resetFilter,
+      handleTags,
+      handleFilterByCategory,
+      HandlerpreviewTags,
+      handlerQuitPreview,
+      setForm
     },
   ]: any = useForoHome();
+
+  const [{ FiltersOpen, setFiltersOpen}] = foro_PanelHook()
   //-------CUSTOM HOOK-------
 
   const {user, isAuthenticated} = useAuth0()
+  const [refresh, setRefresh] = useState<boolean>(false)
 
-  console.log(searchInput)
 
   return (
     <div className='foro_home_container'>
@@ -51,49 +67,71 @@ export default function ForoHome() {
           onClose={setEditOpen}
         />
       )}
-      <div className='foro_posts_container'>
-        {
-          isAuthenticated&&
-          <Foro_createPost
-          form={form}
-          handlerChangePost={handlerChangePost}
-          handlerSubmit={handlerSubmit}
-        />
-        }
-        
+      <Foro_Menu refresh={refresh} setRefresh={setRefresh} />
 
-        {
-        
-        allPost.length?
-        allPost?.map((post: any) => (
-          <Foro_card
-            commentary={commentary}
-            handlerChangeComment={handlerChangeComment}
-            submitComment={submitComment}
-            key={post._id}
-            id={post._id}
-            title={post.title}
-            content={post.content}
-            img={post.image}
-            post={post}
-            author={post.author.userName || post.author.username}
-            email={post.author.email}
-            userId={post.author._id}
-            comments={post.comments}
-            likes={post.likes}
-            onDeletePost={onDeletePost}
-            onLikePost={likeHandler}
-            onEdit={editHandlerModal}
-            created={post.created}
-            onDeleteComment={onDeleteComment}
-            likeCommentHandler={likeCommentHandler}
+      <div className="FORO_HOME_SIDE">
+
+        <div className='foro_posts_container'>
+          {
+            isAuthenticated&&
+            <Foro_createPost
+            selectedTag={selectedTag}
+            handleTags={handleTags}
+            form={form}
+            handlerChangePost={handlerChangePost}
+            handlerSubmit={handlerSubmit}
+            previewTag={previewTag}
+            HandlerpreviewTags={HandlerpreviewTags}
+            handlerQuitPreview={handlerQuitPreview}
+            setForm={setForm}
+            FiltersOpen={FiltersOpen}
+            setFiltersOpen={setFiltersOpen}
           />
-        )):
-        <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
-      }
-      </div>
+          }
+          
 
-      <FilterPanel resetFilter={resetFilter} handleFilterByTitle={handleFilterByTitle} onChangeSearch={onChangeSearch} searchInput={searchInput} />
+          {
+          
+          allPost.length?
+          allPost?.map((post: any) => (
+            <Foro_card
+              commentary={commentary}
+              handlerChangeComment={handlerChangeComment}
+              submitComment={submitComment}
+              key={post._id}
+              id={post._id}
+              title={post.title}
+              content={post.content}
+              img={post.image}
+              post={post}
+              author={post.author.userName || post.author.username}
+              email={post.author.email}
+              userId={post.author._id}
+              comments={post.comments}
+              likes={post.likes}
+              onDeletePost={onDeletePost}
+              onLikePost={likeHandler}
+              onEdit={editHandlerModal}
+              created={post.created}
+              onDeleteComment={onDeleteComment}
+              likeCommentHandler={likeCommentHandler}
+              category={post.category}
+              
+            />
+          )):
+          <img className="foro_home_loaderGif" src="https://usagif.com/wp-content/uploads/loading-25.gif" alt="loader" />
+        }
+        </div>
+        <div className={FiltersOpen?"FORO_HOME_PANELdiv":"FORO_HOME_PANELdiv_OFF"}>
+          <FilterPanel
+          handleFilterByCategory={handleFilterByCategory} 
+          resetFilter={resetFilter} 
+          handleFilterByTitle={handleFilterByTitle} 
+          onChangeSearch={onChangeSearch} 
+          searchInput={searchInput} 
+          />
+        </div>
+      </div>
     </div>
   );
 }

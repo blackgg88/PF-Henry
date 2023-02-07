@@ -24,7 +24,8 @@ const dataProvider = {
     console.log(field, order);
     console.log(resource);
     
-    if (resource === 'purchases') {
+
+    if (resource === "purchases") {
       url = `${API_URL}/checkout`;
     } else {
       url = `${API_URL}/${resource}`;
@@ -34,46 +35,45 @@ const dataProvider = {
 
     let data = await response.json();
 
+    console.log(data)
     data = orderData(data, resource, order, field);
 
     const total = data.length;
 
     data = data.slice((page - 1) * perPage, page * perPage);
-    if (resource === 'purchases') {
-      data = data.map((purchase) => {
+    if (resource === "purchases") {
+      data = data.map(purchase => {
         return {
           id: purchase.id,
           Payer: `${purchase.payer?.last_name} ${purchase.payer?.first_name}`,
           Products: purchase.items
-            .map((product) => `${product.quantity} X ${product.title}`)
-            .join('----'),
+            .map(product => `${product.quantity} X ${product.title}`)
+            .join("----"),
           Date_of_Purcharse: handleFormatedDate(purchase.date_created),
           Status: purchase.status,
           Status_Detail: purchase.status_detail,
           Total_Paid: purchase.total_paid_amount.toFixed(2),
         };
       });
-    } else if (resource === 'products') {
-      data = data.map((d) => {
+    } else if (resource === "products") {
+      data = data.map(d => {
         return {
           ...d,
           id: d._id,
           categories: d.categories.name,
         };
       });
-    } 
-      else if(resource === 'posts'){
-        data = data.map((d) => {
-          return{
-            ...d,
-            id: d._id,
-            author: d.author.username,
-            likes: d.likes.length,
-          }
-        })
-    } 
-    else {
-      data = data.map((d) => {
+    } else if (resource === "posts") {
+      data = data.map(d => {
+        return {
+          ...d,
+          id: d._id,
+          author: d.author.username,
+          likes: d.likes.length,
+        };
+      });
+    } else {
+      data = data.map(d => {
         return {
           ...d,
           id: d._id,
@@ -88,13 +88,14 @@ const dataProvider = {
   },
 
   getOne: async (resource, params) => {
-    const response = await fetch(`${API_URL}/${resource}/${params.id}`);
+    console.log(params.id);
+    const response = await fetch(`${API_URL}/${resource}/id/${params.id}`);
     let data = await response.json();
 
     data = {
       data: {
         ...data,
-        id: data._id,
+        id: data.id,
       },
     };
     return data;
@@ -123,37 +124,38 @@ const dataProvider = {
 
     return httpClient(url).then(({ headers, json }) => ({
       data: json,
-      total: parseInt(headers.get('content-range').split('/').pop(), 10),
+      total: parseInt(headers.get("content-range").split("/").pop(), 10),
     }));
   },
 
-  update: (resource, params) =>
+  update: (resource, params) => {
     httpClient(`${API_URL}/${resource}/${params.id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json })),
+    }).then(({ json }) => ({ data: json }))},
 
-  updateMany: (resource, params) => {
-    const query = {
-      filter: JSON.stringify({ id: params.ids }),
-    };
-    return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
-      method: 'PUT',
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json }));
-  },
+  // updateMany: (resource, params) => {
+  //   const query = {
+  //     filter: JSON.stringify({ id: params.ids }),
+  //   };
+  //   return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
+  //     method: "PUT",
+  //     body: JSON.stringify(params.data),
+  //   })
+  //   .then(({ json }) => ({ data: json }));
+  // },
 
   create: (resource, params) =>
     httpClient(`${API_URL}/${resource}`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({
       data: { ...params.data, id: json.id },
     })),
 
-  delete: (resource, params) =>
+  delete: (resource, params) => 
     httpClient(`${API_URL}/${resource}/${params.id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     }).then(({ json }) => ({ data: json })),
 
   deleteMany: (resource, params) => {
@@ -161,7 +163,7 @@ const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
     return httpClient(`${API_URL}/${resource}?${stringify(query)}`, {
-      method: 'DELETE',
+      method: "DELETE",
     }).then(({ json }) => ({ data: json }));
   },
 };

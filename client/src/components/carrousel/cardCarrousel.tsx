@@ -79,8 +79,8 @@ const Card: React.FC<Props> = ({ product }) => {
         <p>{product.description.substring(0, 50).toLowerCase()}...</p>
       </div>
       <div className='HomeCard_RatingContainer'>
-        {[...new Array(Math.floor(product.rating))].map((e) => {
-          return <img src={iconStarB} alt='' />;
+        {[...new Array(Math.floor(product.rating))].map((e, i) => {
+          return <img src={iconStarB} alt='' key={i} />;
         })}
         <img src={iconStarM} alt='' />
       </div>
@@ -88,11 +88,11 @@ const Card: React.FC<Props> = ({ product }) => {
         <h1>$ {product.price}</h1>
       </div>
       <div className='HomeCard_AddCartButtonContainer'>
-        {product.stock && !productsInCart.find((el) => el._id === product._id) ? (
+        {product.stock > 0 && !productsInCart.find((el) => el._id === product._id) ? (
           <button className='Home_add-car-card-beta' onClick={() => handleAddCart(product)}>
             add to Cart
           </button>
-        ) : product.stock && productsInCart.find((el) => el._id === product._id) ? (
+        ) : product.stock > 0 && productsInCart.find((el) => el._id === product._id) ? (
           <button className='Home_add-car-card-beta' onClick={() => handleRemoveCart(product)}>
             Remove
           </button>

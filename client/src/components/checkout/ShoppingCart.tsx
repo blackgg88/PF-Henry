@@ -7,6 +7,7 @@ import {
   ProductCart,
   changeQuantity,
   deleteProduct,
+  emptyCar,
 } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -16,12 +17,29 @@ import FormControl from '@mui/material/FormControl';
 import ModalCart from './ModalCart';
 import { toast, Zoom } from 'react-toastify';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
+
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
 
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -37,7 +55,7 @@ const ShoppingCart = () => {
   };
 
   const handleRemoveProduct = (id: string) => {
-    toast.success('Product removed', {
+    toast.error('Product removed from Cart', {
       position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
@@ -45,7 +63,7 @@ const ShoppingCart = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'light',
+      theme: 'colored',
       transition: Zoom,
     });
 
@@ -104,18 +122,21 @@ const ShoppingCart = () => {
                     <p className='ShoppingCart_brand'>Brand: {ele.brand}</p>
                   </div>
                   <div className='ShoppingCart_quantity-container'>
-                    <FormControl fullWidth>
-                      <InputLabel id='id_quantity'>Quantity</InputLabel>
-                      <Select
-                        labelId='id_quantity'
-                        id='demo-simple-select'
-                        value={ele.quantity}
-                        label='Quantity'
-                        onChange={(e) => handleSetQuantity(e, ele._id)}
-                      >
-                        {renderStock(ele.stock)}
-                      </Select>
-                    </FormControl>
+                    <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+                      <CssBaseline />
+                      <FormControl fullWidth>
+                        <InputLabel id='id_quantity'>Quantity</InputLabel>
+                        <Select
+                          labelId='id_quantity'
+                          id='demo-simple-select'
+                          value={ele.quantity}
+                          label='Quantity'
+                          onChange={(e) => handleSetQuantity(e, ele._id)}
+                        >
+                          {renderStock(ele.stock)}
+                        </Select>
+                      </FormControl>
+                    </ThemeProvider>
                   </div>
                   <div className='ShoppingCart_price'>
                     <p>${(ele.price * ele.quantity).toFixed(2)}</p>

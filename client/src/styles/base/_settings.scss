@@ -9,24 +9,24 @@ $main: #7000b1;
 $secondary: #01bebe;
 $white: #f5f5f5;
 $dark: #001e24;
+$standard-background: #dae0e6;
 
 //TODO fonts
 
-$standard-font-Barlow: "Barlow", sans-serif;
-$standard-background: #dae0e6;
-$standard-font-Josefin-Sans: "Josefin Sans", sans-serif;
-$standard-font-Poiret-One: "Poiret One", cursive; // principal title 1
-$standard-font-Quicksand: "Quicksand", sans-serif; // principal title 2
-$standard-font-Satisfy: "Satisfy", cursive;
+$standard-font-Barlow: 'Barlow', sans-serif;
+$standard-font-Josefin-Sans: 'Josefin Sans', sans-serif;
+$standard-font-Poiret-One: 'Poiret One', cursive; // principal title 1
+$standard-font-Quicksand: 'Quicksand', sans-serif; // principal title 2
+$standard-font-Satisfy: 'Satisfy', cursive;
 
-$standard-font-Hanken-Grotesk: "Hanken Grotesk", sans-serif;
-$standard-font-IBM-Plex-Sans-Arabic: "IBM Plex Sans Arabic", sans-serif;
-$standard-font-Lexend-Deca-sans-serif: "Lexend Deca", sans-serif;
-$standard-font-Outfit-sans-serif: "Outfit", sans-serif;
-$standard-font-Urbanis-sans-serif: "Urbanist", sans-serif;
+$standard-font-Hanken-Grotesk: 'Hanken Grotesk', sans-serif;
+$standard-font-IBM-Plex-Sans-Arabic: 'IBM Plex Sans Arabic', sans-serif;
+$standard-font-Lexend-Deca-sans-serif: 'Lexend Deca', sans-serif;
+$standard-font-Outfit-sans-serif: 'Outfit', sans-serif;
+$standard-font-Urbanis-sans-serif: 'Urbanist', sans-serif;
 
 //TODO color palette ( RGB )
-$standard-color-black: rgba(0, 0, 0, 1);
+$standard-color-black: rgb(16, 16, 16);
 $standard-color-black-ligth: rgba(20, 20, 20, 0.8);
 $standard-color-beige: #a0937d;
 $standard-color-blue: rgba(20, 33, 66, 1);
@@ -86,7 +86,7 @@ $standard-basic-heith-home: 1080px;
 // $standard-space-between-elements: 19px;
 $navbar-height: 70px;
 $footer-height: 70px;
-$navbar-height-maring-top: 10px;
-$navbar-height-maring-button: 12px;
+$navbar-height-maring-top: 20px;
+$navbar-height-maring-button: 20px;
 $filterPanel-width: 300px;
 $filterFilt-height: 400px;

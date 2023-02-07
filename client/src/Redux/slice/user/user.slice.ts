@@ -14,6 +14,7 @@ export interface userInterface {
   connection: string;
 
   favorites: ProductState[];
+  banner: string;
 }
 
 export interface userChange {
@@ -22,7 +23,8 @@ export interface userChange {
 }
 
 export interface userChangeIMG {
-  picture: string;
+  picture?: string;
+  banner?: string
 }
 
 const initialState: {
@@ -39,6 +41,7 @@ const initialState: {
     picture: "",
     username: "",
     favorites: [],
+    banner: ''
   },
 };
 

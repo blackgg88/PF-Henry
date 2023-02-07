@@ -11,6 +11,10 @@
   justify-content: center;
   z-index: 6;
 
+  body.dark & {
+    background-color: rgba(0, 0, 0, 0.845);
+  }
+
   .ModalFavorite_Container {
     display: flex;
     flex-direction: column;
@@ -23,6 +27,11 @@
     font-family: $standard-font-Poiret-One;
     z-index: 6;
     overflow-y: scroll;
+
+    body.dark & {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
     @media (max-width: 900px) {
       width: 70%;
     }

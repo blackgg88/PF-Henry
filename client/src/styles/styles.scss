@@ -3,54 +3,41 @@
 
 // Components
 @import './components/navbar';
-@import './components/footer';
+@import './components/Footer/footer';
 @import './components/home';
 @import './components/carrousel';
 @import './components/dashboard_user';
 @import './components/newsHome';
 @import './components/news/news';
-@import './components/footer';
 @import './components/Checkout/shoppingCart';
 @import './components/Checkout/form';
 @import './components/modalUser/modalUser';
 @import './components/modalCart/modalCart';
+@import './components/page404/page404';
+@import './components/Dashboard_admin/dashboardAdmin';
+@import './components/About/About';
+// Foro
 @import './components/Foro/foro_Home/foro_Home';
 @import './components/Foro/foro_card/foro_card';
 @import './components/Foro/foro_createCard/foro_createCard';
 @import './components/Foro/foro_comments/foro_comments';
 @import './components/ModalFavorites/modalFavorites';
 @import './components/Foro/foro_panelfilter/foro_panelFilter';
-@import './components/page404/page404';
+@import './components//Foro//foro_menu/foro_menu';
+@import './components/Foro/foro_profile/foro_profile';
 
-//! Detail
-@import './components/Detail/detail';
-//! FilterPanel
-@import './components/FilterPanel/filterPanel';
-//! NewFilterPanel
-@import './components/FilterPanel/filterPanel2';
-//! FilterBy
-@import './components/FilterBy/filterBy';
-//! NewFilterBy
-@import './components/FilterBy/newFilterBy';
-//! FilterList
-@import './components/FilterList/filterList';
-//! ItemFilter
-@import './components/ItemFilter/itemFilter';
-//! RenderCard
-@import './components/RenderCard/renderCard';
-//! RenderCard
-@import './components/Card2/card2';
-//! Pagination
-@import './components/pagination/pagination'; // screens
-//! BreadCrumb
-@import './components//breadCrumb'; // screens
-//! Shop
+// Shop/
 @import './components/Shop/shop';
-//! FilterByRating
+@import './components/FilterPanel/filterPanel2';
+@import './components/ItemFilter/itemFilter';
+@import './components/FilterList/filterList';
+@import './components/Detail/detail';
+@import './components/Card2/card2';
+@import './components/pagination/pagination'; // screens
+@import './components//breadCrumb'; // screens
 @import './components/FilterRating/filterRating';
-//! FilterPrice
 @import './components/FilterPrice/filterPrice';
-//! NewFilterName
 @import './components/FilterName/filterName';
-//! NewFilterCategory
 @import './components/FilterCategory/filterCategory';
+
+@import './components/QuickLook/quickLook';

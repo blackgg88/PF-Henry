@@ -1,14 +1,17 @@
-import { Router } from 'express'
-import { getAllPost } from '../../controllers/foro/post/getAllPost'
-import { getPostById } from '../../controllers/foro/post/getPostById'
-import { putPost } from '../../controllers/foro/post/putPost'
-import { deletePost } from '../../controllers/foro/post/deletePost'
-import { createPost } from '../../controllers/foro/post/createPost'
-import { likePost } from '../../controllers/foro/post/likePost'
+import { Router } from 'express';
+import { getAllPost } from '../../controllers/foro/post/getAllPost';
+import { getPostById } from '../../controllers/foro/post/getPostById';
+import { putPost } from '../../controllers/foro/post/putPost';
+import { deletePost } from '../../controllers/foro/post/deletePost';
+import { createPost } from '../../controllers/foro/post/createPost';
+import { likePost } from '../../controllers/foro/post/likePost';
+import { getPostByUser } from '../../controllers/foro/post/getPostByUser';
 
 const post = Router()
 
 post.get('/', getAllPost) // <--- controlador
+
+post.get('/author/:email', getPostByUser)
 
 post.post('/likes', likePost)
 

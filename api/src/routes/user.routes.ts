@@ -2,19 +2,25 @@ import { Router } from 'express';
 
 import { getAllUsers } from '../controllers/users/getAllUsers';
 import { getUserByEmail } from '../controllers/users/getUserByEmail';
+import { getOneUser } from '../controllers/users/getOneUser';
 import { postUser } from '../controllers/users/postUser';
 import { deleteUser } from '../controllers/users/deleteUser';
 import { putUser } from '../controllers/users/putUser';
 import { putImgUser } from '../controllers/users/putImageUser';
+import { putBannerUser } from '../controllers/users/putBannerUser';
+import { getAllUsersformated } from '../controllers/users/getAllUsersformated'
 
 const user = Router();
 
 // // USER ROUTES!!
 
 user.get('/', getAllUsers);
+user.get('/list', getAllUsersformated)
 
 user.put('/img', putImgUser);
-//find by ID // devuelve el usuario buscado por ID
+user.put('/banner', putBannerUser);
+//find by ID and Email // devuelve el usuario buscado por ID y Email
+user.get('/id/:id', getOneUser);
 user.get('/:email', getUserByEmail);
 
 //post user // crea un nuevo usuario

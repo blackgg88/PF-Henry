@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface Categories {
   _id: string;
@@ -28,38 +28,45 @@ export interface FilterState {
   order: string;
 }
 
+export interface ProductQuantityState {
+  id: string;
+  quantity: number;
+}
+
 // Define the initial state using that type
 const initialState: {
   Products: ProductState[];
   ProductDetail: ProductState;
   Filters: FilterState;
+  CategoryQuantity: ProductQuantityState[];
 } = {
   Products: [],
   ProductDetail: {
-    _id: "",
-    name: "",
+    _id: '',
+    name: '',
     price: 0,
-    description: "",
-    brand: "",
+    description: '',
+    brand: '',
     images: [],
     rating: 0,
 
-    categories: { _id: "", name: "" },
+    categories: { _id: '', name: '' },
     stock: 0,
     isActive: true,
   },
   Filters: {
-    name: "",
-    categories: "",
+    name: '',
+    categories: '',
     pricemin: 0,
     pricemax: 3000,
     rating: 0,
-    order: "all",
+    order: '',
   },
+  CategoryQuantity: [],
 };
 
 export const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState,
   reducers: {
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
@@ -91,6 +98,21 @@ export const productSlice = createSlice({
     updateOrderFilter: (state, action) => {
       state.Filters.order = action.payload;
     },
+
+    getCategoryQuantity: (state, action) => {
+      state.CategoryQuantity = action.payload;
+    },
+    resetFilters: (state) => {
+      state.Filters = {
+        ...state,
+        name: '',
+        categories: '',
+        pricemin: 0,
+        pricemax: 3000,
+        rating: 0,
+        order: 'all',
+      };
+    },
   },
 });
 
@@ -104,4 +126,6 @@ export const {
   updatePriceMinFilter,
   updatePriceMaxFilter,
   updateOrderFilter,
+  getCategoryQuantity,
+  resetFilters,
 } = productSlice.actions;

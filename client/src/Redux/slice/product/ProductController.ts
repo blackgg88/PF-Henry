@@ -40,3 +40,7 @@ export function productsFilter(filters: FilterState) {
     return console.error({ message: error });
   }
 }
+
+export function productQuantity() {
+  return fetch(`${API_URL}/products/quantity`).then((res) => res.json());
+}

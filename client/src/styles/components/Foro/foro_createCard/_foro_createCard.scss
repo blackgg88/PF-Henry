@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: center;
   z-index: 6;
-  
 
   .foro_create_containere {
     display: flex;
@@ -25,6 +24,10 @@
     padding: 20px;
     font-family: $standard-font-Outfit-sans-serif;
     z-index: 6;
+
+    body.dark & {
+      background-color: rgba(18, 18, 18, 0.966);
+    }
 
     .foro_create_header {
       display: flex;
@@ -42,7 +45,7 @@
       //background-color: red;
       justify-content: center;
       margin-top: 15px;
-      
+
       .foro_create_EditTextArea {
         resize: none;
         width: 100%;
@@ -52,6 +55,11 @@
 
         &:focus {
           outline: none;
+        }
+
+        body.dark & {
+          background-color: rgba(45, 44, 44, 0.8);
+          color: white;
         }
       }
     }

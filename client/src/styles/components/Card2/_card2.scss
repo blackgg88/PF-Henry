@@ -1,103 +1,64 @@
 .container-render-card-v-beta {
-  width: 97%;
-  height: 98%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
-  // background-color: red;
   background-color: $standard-color-blue-light;
 
-  @media only screen and (max-width: $medium-screen) {
-    width: 84%;
+  body.dark & {
+    background: $standard-color-black-ligth;
   }
-
-  @media only screen and (max-width: $small-screen) {
-    //background-color: red;
-    width: 90%;
-  }
-
   .container-card-beta {
     padding: 20px;
-    width: 90%;
     height: 100%;
-    // align-items: center;
-    // justify-content: flex-start;
-    // display: flex;
-    // flex-wrap: wrap;
-    // padding-left: 6%;
-    // gap: 100px;
-    // border-radius: $standard-border-radius;
-
-    //background-color: $standard-color-blue-light;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    align-items: center;
-    justify-items: center;
-    // background-color: $standard-color-blue-light;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    overflow: hidden;
+    overflow-y: auto;
 
-    //background-color: blue;
-
-    @media only screen and (max-width: 1670px) {
-      gap: 50px;
-      justify-content: center;
-      //background-color: aqua;
+    @media (max-width: 1280px) {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    @media only screen and (max-width: $medium-screen) {
-      gap: 50px;
-      justify-content: center;
-      //background-color: aqua;
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    @media only screen and (max-width: 1030px) {
-      gap: 20px;
-      justify-content: center;
-      //background-color: aqua;
-    }
-
-    @media only screen and (max-width: $small-screen) {
-      height: auto;
-      overflow-x: scroll;
-      align-items: center;
-      justify-content: center;
+    @media (max-width: 610px) {
+      grid-template-columns: 1fr;
+      width: 100%;
     }
 
     .product-card-beta {
-      width: 12.5%;
-      width: 10vw;
-      height: 40%;
-      height: 15vw;
+      width: 100%;
+      height: max-content;
       background-color: $standard-color-white;
       box-shadow: 5px 5px 10px 1px $standard-color-blue-light; //!
-      border-radius: 15px 5px 15px 20px;
-      padding: 1vw;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
 
-      //background-color: red;
-
-      @media only screen and (max-width: $medium-screen) {
-        width: 12vw;
-        height: 15vw;
+      body.dark & {
+        background: $standard-color-black;
       }
 
-      @media only screen and (max-width: $small-screen) {
-        width: 85vw;
-        height: 80vw;
+      @media (max-width: 450px) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
       }
 
       .header-card-beta {
         width: 100%;
-        height: 8%;
-        //background-color: green;
+        height: 25px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        @media only screen and (max-width: $medium-screen) {
-          height: 8%;
-        }
-        @media only screen and (max-width: $small-screen) {
-        }
 
         .container-favorite {
           height: 100%;
@@ -111,34 +72,26 @@
             scale: 1.1;
           }
 
-          //background-color: aqua;
           img {
             height: 100%;
           }
         }
-
-        .quickLook {
-          background-color: red;
+        .quick-modal {
+          button {
+            padding: 0;
+            &:hover {
+              scale: 1.1;
+            }
+          }
         }
       }
 
       .content-image-card-beta {
-        width: 100%;
-        height: 45%;
+        width: auto;
+        height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
-        //background-color: yellow;
-
-        @media only screen and (max-width: $medium-screen) {
-          width: 50%;
-          height: 60%;
-          justify-content: flex-start;
-        }
-        @media only screen and (max-width: $small-screen) {
-          width: 60%;
-          height: 60%;
-        }
 
         .link-image-card {
           width: 100%;
@@ -146,220 +99,97 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          // background-color: brown;
 
-          @media only screen and (max-width: $medium-screen) {
-            justify-content: center;
-            width: 100%;
-          }
+          // @media only screen and (max-width: $medium-screen) {
+          //   justify-content: center;
+          //   width: 100%;
+          // }
 
-          @media only screen and (max-width: $small-screen) {
-            justify-content: center;
-            width: 100%;
-          }
+          // @media only screen and (max-width: $small-screen) {
+          //   justify-content: center;
+          //   width: 100%;
+          // }
 
           .image-card {
             max-width: 100%;
             max-height: 95%;
             border-radius: 3px;
-            @media only screen and (max-width: $medium-screen) {
-              max-width: 100%;
-            }
-            @media only screen and (max-width: $small-screen) {
-              max-width: 100%;
-              max-height: 100%;
-            }
+
+            // @media only screen and (max-width: $medium-screen) {
+            //   max-width: 100%;
+            // }
+            // @media only screen and (max-width: $small-screen) {
+            //   max-width: 100%;
+            //   max-height: 100%;
+            // }
           }
         }
       }
 
       .content-title-description-card-beta {
         width: 100%;
-        height: 20%;
-        //background-color: aqua;
 
-        @media only screen and (max-width: $medium-screen) {
-          height: 20%;
-        }
-        @media only screen and (max-width: $small-screen) {
-          height: auto;
-        }
-
-        .content-title-card-beta {
-          height: 40%;
+        .product-name-card-beta {
           width: 100%;
           display: flex;
           align-items: center;
-          padding-left: 2%;
-          font-size: 0.55vw;
-          //background-color: violet;
+          font-family: $standard-font-Outfit-sans-serif;
+          font-weight: 600;
+          color: $standard-color-blue;
 
-          @media only screen and (max-width: $medium-screen) {
-            height: 80%;
-            width: 100%;
-            align-items: center;
-          }
-          @media only screen and (max-width: $small-screen) {
-          }
-
-          .product-name-card-beta {
-            font-family: $standard-font-Poiret-One;
-            font-weight: 600;
-            color: $standard-color-blue;
-
-            @media only screen and (max-width: $medium-screen) {
-              font-size: 0.8vw;
-              font-weight: 900;
-              //position: relative;
-              //top: 80%;
-              //background-color: black;
-            }
-            @media only screen and (max-width: $small-screen) {
-              //background-color: yellowgreen;
-              font-size: 4vw;
-              position: relative;
-              left: 8%;
-            }
+          body.dark & {
+            color: white;
           }
         }
 
-        .content-description-card-beta {
-          height: 60%;
-          padding-top: 3%;
-          font-size: 0.4vw;
+        .product-description-card-beta {
+          display: none;
           font-family: $standard-font-IBM-Plex-Sans-Arabic;
           font-weight: 400;
-
-          @media only screen and (max-width: $medium-screen) {
-            display: none;
-          }
-          @media only screen and (max-width: $small-screen) {
-            // display: flex;
-            // height: auto;
-          }
-
-          //background-color: aliceblue;
-          .product-description-card-beta {
-            height: 100%;
-            width: 100%;
-            padding-left: 3%;
-            //background-color: orange;
-            @media only screen and (max-width: $small-screen) {
-              font-size: 3vw;
-              font-family: $standard-font-Lexend-Deca-sans-serif;
-            }
-          }
+          height: 100%;
+          width: 100%;
         }
       }
 
       .content-value-rating-card-beta {
         width: 100%;
-        height: 12%;
+        // height: 30px;
+        padding: 5px 0;
         display: flex;
-        align-items: center;
-        padding-left: 2%;
-        gap: 1%;
-        //background-color: yellowgreen;
-
-        @media only screen and (max-width: $medium-screen) {
-          width: 45%;
-          height: 60%;
-          flex-direction: column;
-          position: relative;
-          left: 55%;
-          bottom: 80%;
-        }
-        @media only screen and (max-width: $small-screen) {
-          align-items: flex-end;
-          left: 60%;
-          width: 40%;
-          bottom: 66%;
-          //background-color: powderblue;
-        }
+        justify-content: space-between;
 
         .content-rating-card-beta {
           height: 100%;
-          width: 48%;
           display: flex;
-          align-items: flex-start;
-          //background-color: greenyellow;
-
-          @media only screen and (max-width: $medium-screen) {
-            height: 13%;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            right: 60%;
-            bottom: -5%;
-            scale: 0.8;
-            //background-color: aqua;
-          }
-          @media only screen and (max-width: $small-screen) {
-            scale: 1;
-            top: 0%;
-            left: 0%;
-            height: 50%;
-          }
+          align-items: center;
 
           img {
-            padding-top: 4%;
-            width: 17%;
+            height: 100%;
           }
         }
 
         .content-value-card-beta {
           height: 100%;
-          width: 50%;
           display: flex;
-          align-items: flex-end;
-          justify-content: flex-end;
-          padding-right: 2%;
-          background-color: $standard-color-white;
-
-          @media only screen and (max-width: $medium-screen) {
-            width: 100%;
-          }
-          @media only screen and (max-width: $small-screen) {
-            height: 50%;
-          }
+          align-items: center;
 
           .price2 {
             color: $standard-color-black-ligth;
             font-family: $standard-font-Lexend-Deca-sans-serif;
-            font-family: $standard-font-Outfit-sans-serif;
             font-weight: 600;
 
-            @media only screen and (max-width: $medium-screen) {
-              font-size: 0.88vw;
-            }
-            @media only screen and (max-width: $small-screen) {
-              font-size: 6vw;
-              font-weight: 300;
+            body.dark & {
+              color: white;
             }
           }
         }
       }
 
       .content-add-car-card-beta {
-        height: 13%;
-        width: 100%;
-        margin-top: 10px;
+        width: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
-        //background-color: purple;
-
-        @media only screen and (max-width: $medium-screen) {
-          position: relative;
-          bottom: 70%;
-          width: 100%;
-          right: 0%;
-          height: 15%;
-        }
-        @media only screen and (max-width: $small-screen) {
-          bottom: 63%;
-        }
 
         .add-car-card-beta {
           height: 90%;
@@ -371,43 +201,21 @@
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          //background-color: aqua;
-          @media only screen and (max-width: $medium-screen) {
-            width: 85%;
-            height: 80%;
-            position: relative;
-            bottom: 5%;
-          }
-          @media only screen and (max-width: $small-screen) {
-            top: 1%;
-          }
 
           &:hover {
-            background-color: $standard-color-blue-green;
+            background-color: $standard-color-blue-glass;
           }
 
           p {
             height: 100%;
             width: 100%;
-            font-size: 1vw;
             font-family: $standard-font-Urbanis-sans-serif;
             color: $standard-color-white;
             font-weight: 500;
             display: inline-block;
             text-align: center;
             vertical-align: middle;
-            padding-top: 1%;
-            // background-color: red;
-
-            @media only screen and (max-width: $medium-screen) {
-              font-size: 0.8vw;
-              position: relative;
-              width: auto;
-              height: auto;
-            }
-            @media only screen and (max-width: $small-screen) {
-              font-size: 6vw;
-            }
+            padding: 10px;
           }
         }
       }

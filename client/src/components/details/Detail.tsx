@@ -175,11 +175,11 @@ const Detail: React.FC<{}> = () => {
                   <Rating
                     className='stars'
                     size='large'
-                    value={productDetail.rating}
+                    value={Number(productDetail.rating.toFixed(2))}
                     precision={0.1}
                     readOnly
                   />
-                  <div className='product-rating'>{productDetail.rating}</div>
+                  <div className='product-rating'>{productDetail.rating.toFixed(2)}</div>
                   <div className='brand-nest'>{/* <img src={logo} alt="logo smartNest" /> */}</div>
                 </div>
                 <div className='resumen'>

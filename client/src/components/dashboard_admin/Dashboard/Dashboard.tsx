@@ -2,9 +2,6 @@ import users from "../../../assets/dashboard_admin/users-young.png";
 import stock from "../../../assets/dashboard_admin/stock.png";
 import money from "../../../assets/dashboard_admin/money.png";
 import { Card, CardContent, CardHeader } from "@mui/material";
-import UserIcon from "@mui/icons-material/Group";
-import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
-import PaidIcon from "@mui/icons-material/Paid";
 import {
   CartesianGrid,
   XAxis,
@@ -83,10 +80,6 @@ export const Dashboard = () => {
             <PieChart className='PieChart_graphic'>
                 <Pie
                   data={CategoryQuantity}
-                  // cx={200}
-                  // cy={200}
-                  // innerRadius={40}
-                  // outerRadius={80}
                   fill='#8884d8'
                   dataKey='quantity'
                   className='pie'
@@ -95,13 +88,11 @@ export const Dashboard = () => {
                     <Cell key={index} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                {/* <Tooltip /> */}
+                <Tooltip />
                 <Legend
                   align='right'
                   layout='vertical'
                   verticalAlign='middle'
-                  // height={80}
-                  // width={200}
                 />
             </PieChart>
           </ResponsiveContainer>

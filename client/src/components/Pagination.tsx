@@ -1,10 +1,6 @@
 import React from "react";
-import { Pagination, Stack } from "@mui/material";
 import btnNext from "../assets/images/buttons/paginationBtnNext.png"
 import btnPrev from "../assets/images/buttons/paginationBtnBack.png"
-import btnSet from "../assets/images/buttons/paginationBtnSet.png"
-import btnUnSet from "../assets/images/buttons/paginationBtnUnset.png"
-import bg from "../assets/images/buttons/paginationBackground.png"
 
 interface PagProps {
   itemsPerPage: number;

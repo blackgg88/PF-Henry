@@ -1,7 +1,6 @@
-// @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+$pagination-btn-unset: url('../../../assets/images/buttons/paginationBtnUnset.png');
 
 .container-pagination {
-  //background-color: aqua;
   height: auto;
   width: 100%;
   background-size: contain;
@@ -15,7 +14,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  //background-color: aquamarine;
   gap: 10px;
 
   .pagination-button-next {
@@ -23,7 +21,6 @@
     width: 30px;
     height: 40px;
     border: 1px solid $standard-color-transparent;
-    //box-shadow: 4px 4px 20px 5px rgba(0, 0, 0, 0.8);
     background-color: $standard-color-transparent;
     scale: 1;
     transition: all 0.3s;
@@ -40,15 +37,12 @@
     display: flex;
     gap: 15px;
     background-color: $standard-color-gray;
-    // background-color: $standard-color-red;
     border-radius: 20px;
   }
 
   .pagination-button {
     position: relative;
     display: inline-block;
-    //border-radius: 30px;
-    // color: #2c3e50;
     border-radius: 50%;
     width: 18px;
     height: 18px;
@@ -60,7 +54,6 @@
     transition: all 0.3s;
     cursor: pointer;
     &:hover {
-      //background-color: rgba(48, 79, 104, 1);
       color: $standard-color-white;
       scale: 1.1;
       background-color: $standard-color-blue-green;
@@ -87,47 +80,9 @@
 
 .pagination-button.active {
   transform: scale(1.3);
-  //background-color: rgba(20, 33, 66, 1);
   background-color: $standard-color-blue-green;
   color: aliceblue;
   font-weight: 300;
   font-size: 0.8rem;
-  background-image: url("../../../assets/images/buttons/paginationBtnUnset.png");
+  background-image: url($pagination-btn-unset);
 }
-
-// .pagination-button.pagination-newer {
-//   margin-right: 50px;
-// }
-
-// .pagination-button.pagination-older {
-//   margin-left: 50px;
-// }
-
-// .pagination-container {
-//   position: absolute;
-//   top: 50%;
-//   right: 0;
-//   left: 0;
-//   width: 180px;
-//   height: 20px;
-//   margin: 0 auto;
-//   transform: translateY(-50%);
-//   overflow: hidden;
-//   z-index: 1;
-// }
-
-// .pagination-button {
-//   width: 20px;
-//   height: 20px;
-//   float: left;
-//   margin-right: 20px;
-//   background-color: #fff;
-//   border-radius: 20px;
-//   cursor: pointer;
-//   transition: 0.3s ease width;
-// }
-
-// .pagination-button.active {
-//   width: 60px;
-//   cursor: auto;
-// }

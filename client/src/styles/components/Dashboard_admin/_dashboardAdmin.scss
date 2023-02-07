@@ -1,12 +1,21 @@
+.MuiDrawer-root, .MuiDrawer-docked, .RaSidebar-docked,  .css-rraw3v-MuiDrawer-docked-RaSidebar-root {
+  width: 50px !important;
+}
+
 .main {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 100vw;
-  // margin-top: 30px;
-  // margin-bottom: 30px;
-  // padding: 20px;
+  max-width: calc(100vw - 50px);
+
+  @media (max-width: 600px) {
+    max-width: 100vw;
+  }
+  
+  #main-content{
+    max-width: 100vw;
+  }
 
   .dashboardAdmin_wrapper {
     display: flex;

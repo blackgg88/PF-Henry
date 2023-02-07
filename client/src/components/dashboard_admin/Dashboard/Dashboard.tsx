@@ -33,7 +33,6 @@ export const Dashboard = () => {
   ]: any = useDashboard();
 
   return (
- 
     <Card className='main'>
       <CardHeader title='Welcome to the administration' />
       <CardContent className='dashboardAdmin_wrapper'>
@@ -66,7 +65,6 @@ export const Dashboard = () => {
       </CardContent>
 
       <div className='main_graphics'>
-
         <div className='PieChart'>
           <ResponsiveContainer>
             <ComposedChart data={payments}>
@@ -83,28 +81,28 @@ export const Dashboard = () => {
         <div className='ComposedChart'>
           <ResponsiveContainer>
             <PieChart className='PieChart_graphic'>
-              <Pie
-                data={CategoryQuantity}
-                cx={200}
-                cy={200}
-                innerRadius={40}
-                outerRadius={80}
-                fill='#8884d8'
-                dataKey='quantity'
-                className='pie'
-              >
-                {CategoryQuantity.map((entry: any, index: any) => (
-                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend
-                align='right'
-                layout='vertical'
-                verticalAlign='middle'
-                height={80}
-                width={200}
-              />
+                <Pie
+                  data={CategoryQuantity}
+                  // cx={200}
+                  // cy={200}
+                  // innerRadius={40}
+                  // outerRadius={80}
+                  fill='#8884d8'
+                  dataKey='quantity'
+                  className='pie'
+                >
+                  {CategoryQuantity.map((entry: any, index: any) => (
+                    <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                {/* <Tooltip /> */}
+                <Legend
+                  align='right'
+                  layout='vertical'
+                  verticalAlign='middle'
+                  // height={80}
+                  // width={200}
+                />
             </PieChart>
           </ResponsiveContainer>
         </div>

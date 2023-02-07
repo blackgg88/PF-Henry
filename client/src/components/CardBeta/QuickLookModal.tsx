@@ -5,8 +5,8 @@ import { ProductState } from '../../Redux/slice/product/product.slice';
 import { useAppSelector, useAppDispatch } from '../../Redux/hook';
 import { toast, Zoom } from 'react-toastify';
 import { addProduct, deleteProduct } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
-import eyeW from '../../assets/foro/DarkMode/eyeW.svg'
-import eyeB from '../../assets/foro/DarkMode/eyeB.svg'
+import eyeW from '../../assets/foro/DarkMode/eyeW.svg';
+import eyeB from '../../assets/foro/DarkMode/eyeB.svg';
 
 import { Rating } from '@mui/material';
 
@@ -66,7 +66,7 @@ const QuickLookModal: React.FC<Props> = ({
   return (
     <div className='container-quickLook'>
       <Button size='small' onClick={handleOpenModal}>
-        <img className='quickLook_eye' src={dark?eyeW:eyeB} alt="EYE" />
+        <img className='quickLook_eye' src={dark ? eyeW : eyeB} alt='EYE' />
       </Button>
       <Modal open={showModal} onClose={handleCloseModal} className='modal'>
         <div className='paper'>

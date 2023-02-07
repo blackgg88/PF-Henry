@@ -194,11 +194,11 @@ const CardBeta: React.FC<{}> = () => {
     <div className='container-render-card-v-beta'>
       <div className='container-card-beta'>
         {currentItems?.map((product) => {
-          let iconFavorite = dark ? onLike : favoriteUnset_w;
+          let iconFavorite = dark ? outLike : favoriteUnset_w;
 
           getFavorites.map((favorite) => {
             if (favorite._id === product._id) {
-              iconFavorite = dark ? outLike : favoriteSet_w;
+              iconFavorite = dark ? onLike : favoriteSet_w;
             }
           });
 

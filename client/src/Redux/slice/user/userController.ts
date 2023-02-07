@@ -3,7 +3,6 @@ import { ProductState } from '../product/product.slice';
 
 export async function userFetch(user: any) {
   const email: string = user.email;
-  console.log(email);
   if (user.family_name) {
     const response = await fetch(`${API_URL}/users`, {
       method: 'POST',
@@ -14,7 +13,6 @@ export async function userFetch(user: any) {
 
   const response = await fetch(`${API_URL}/users/email/${email}`);
   const data = await response.json();
-  console.log(data);
 
   return data;
 }

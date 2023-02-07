@@ -23,6 +23,7 @@ import Page404 from './components/page404/page404';
 import About from './components/about/About';
 import { Foro_Profile } from './components/foro/components/Foro_Profile/Foro_Profile';
 import { useAuth0 } from '@auth0/auth0-react';
+import { changeTheme } from './Redux/slice/theme/theme.slice';
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,11 @@ function App() {
 
     if (productsInLS.length) {
       dispatch(addProduct(productsInLS));
+    }
+    const darkInLS = JSON.parse(localStorage.getItem('dark') as any) ?? false;
+
+    if (darkInLS === true || darkInLS === false) {
+      dispatch(changeTheme(darkInLS));
     }
 
     if (isAuthenticated) {

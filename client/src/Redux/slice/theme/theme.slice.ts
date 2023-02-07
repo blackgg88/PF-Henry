@@ -14,7 +14,12 @@ export const themeSlice = createSlice({
     changeTheme: (state, action: PayloadAction<boolean>) => {
       state.dark = action.payload;
 
-      document.body.classList.toggle('dark');
+      localStorage.setItem('dark', JSON.stringify(state.dark));
+      if (action.payload) {
+        document.body.classList.value = 'dark';
+      } else {
+        document.body.classList.value = '';
+      }
     },
   },
 });

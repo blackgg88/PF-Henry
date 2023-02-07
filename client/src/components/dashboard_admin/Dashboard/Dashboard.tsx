@@ -1,6 +1,6 @@
-import users from '../../../assets/dashboard_admin/users-young.png';
-import stock from '../../../assets/dashboard_admin/stock.png';
-import money from '../../../assets/dashboard_admin/money.png';
+import users from "../../../assets/dashboard_admin/users-young.png";
+import stock from "../../../assets/dashboard_admin/stock.png";
+import money from "../../../assets/dashboard_admin/money.png";
 import { Card, CardContent, CardHeader } from "@mui/material";
 import UserIcon from "@mui/icons-material/Group";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
@@ -32,45 +32,8 @@ export const Dashboard = () => {
     payments,
   ]: any = useDashboard();
 
-  const data = [
-    {
-      "date": "21-1-2023",
-      "TotalSales": 254395.63,
-      "TotalCount": 3
-    },
-    {
-      "date": "25-1-2023",
-      "TotalSales": 109859.70,
-      "TotalCount": 7
-    },
-    {
-      "date": "26-1-2023",
-      "TotalSales": 549847.6,
-      "TotalCount": 15
-    },
-    {
-      "date": "30-1-2023",
-      "TotalSales": 78577.98,
-      "TotalCount": 5
-    },
-    {
-      "date": "31-1-2023",
-      "TotalSales": 549847.6,
-      "TotalCount": 10
-    },
-    {
-      "date": "01-2-2023",
-      "TotalSales": 949847.6,
-      "TotalCount": 16
-    },
-    {
-      "date": "02-2-2023",
-      "TotalSales": 1549847.6,
-      "TotalCount": 24
-    },
-  ]
-
   return (
+ 
     <Card className='main'>
       <CardHeader title='Welcome to the administration' />
       <CardContent className='dashboardAdmin_wrapper'>
@@ -101,16 +64,12 @@ export const Dashboard = () => {
           <p>{purchasesCount}</p>
         </Card>
       </CardContent>
-      
+
       <div className='main_graphics'>
-        <div className='primerDiv'>
-          <div className='ComposedChart'>
-            <h2>Total sales per day:</h2>
-            <ComposedChart
-              width={1000}
-              height={400}
-              data={payments}
-            >
+
+        <div className='PieChart'>
+          <ResponsiveContainer>
+            <ComposedChart data={payments}>
               <XAxis dataKey='date' />
               <YAxis />
               <Tooltip />
@@ -118,10 +77,12 @@ export const Dashboard = () => {
               <CartesianGrid stroke='#f5f5f5' />
               <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
             </ComposedChart>
-          </div>
-          <div className='PieChart'>
-            <h2>Products by category:</h2>
-            <PieChart width={500} height={330} className='PieChart_graphic'>
+          </ResponsiveContainer>
+        </div>
+
+        <div className='ComposedChart'>
+          <ResponsiveContainer>
+            <PieChart className='PieChart_graphic'>
               <Pie
                 data={CategoryQuantity}
                 cx={200}
@@ -137,16 +98,20 @@ export const Dashboard = () => {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend align='right' layout='vertical' verticalAlign='middle' height={80} width={200} />
+              <Legend
+                align='right'
+                layout='vertical'
+                verticalAlign='middle'
+                height={80}
+                width={200}
+              />
             </PieChart>
-          </div>
-
+          </ResponsiveContainer>
         </div>
-        
-        <div className='segundoDiv'>
-          <div className='AreaChart'>
-            <h2>Products sold per day:</h2>
-            <AreaChart width={1500} height={400} data={payments} >
+
+        <div className='AreaChart'>
+          <ResponsiveContainer>
+            <AreaChart data={payments}>
               <CartesianGrid strokeDasharray='8 8' />
               <XAxis dataKey='date' />
               <YAxis />
@@ -158,7 +123,7 @@ export const Dashboard = () => {
                 fill='#8884d8'
               />
             </AreaChart>
-          </div>
+          </ResponsiveContainer>
         </div>
       </div>
     </Card>

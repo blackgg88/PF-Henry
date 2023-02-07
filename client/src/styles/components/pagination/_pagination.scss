@@ -22,6 +22,7 @@ $pagination-btn-unset: url('../../../assets/images/buttons/paginationBtnUnset.pn
     background-color: $standard-color-transparent;
     scale: 1;
     transition: all 0.3s;
+    cursor: pointer;
 
     &:hover {
       background-color: $standard-color-transparent;

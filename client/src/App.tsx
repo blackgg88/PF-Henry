@@ -29,7 +29,6 @@ function App() {
   const location = useLocation();
   // console.log(location.pathname);
   const dispatch = useAppDispatch();
-  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -38,6 +37,7 @@ function App() {
     if (productsInLS.length) {
       dispatch(addProduct(productsInLS));
     }
+
     const darkInLS = JSON.parse(localStorage.getItem('dark') as any) ?? false;
 
     if (darkInLS === true || darkInLS === false) {

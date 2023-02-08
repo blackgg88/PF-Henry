@@ -11,15 +11,14 @@ $card-size: 18rem;
 .carousel {
   position: relative;
   width: $card-size;
-  height: 25rem;
+  height: 400px;
   perspective: 500px;
   transform-style: preserve-3d;
 
   @media (max-width: 710px) {
     width: 15rem;
-    height: 20.5rem;
+    height: 315px;
     .Carrousel_card-container {
-      //padding-bottom: 10px;
       .HomeCard_ImageContainer {
         img {
           height: 100px;

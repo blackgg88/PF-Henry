@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { useAppDispatch, useAppSelector } from '../../Redux/hook';
-import { ProductState } from '../../Redux/slice/product/product.slice';
-import { getProductId } from '../../Redux/slice/product/product.slice';
-import { productIdFetch } from '../../Redux/slice/product/ProductController';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../Redux/hook";
+import { ProductState } from "../../Redux/slice/product/product.slice";
+import { getProductId } from "../../Redux/slice/product/product.slice";
+import { productIdFetch } from "../../Redux/slice/product/ProductController";
+import { Link } from "react-router-dom";
 
-import Ratingcomp from './Ratingcomp';
-import ShareIcon from '@mui/icons-material/Share';
-import FacebookCom from './FacebookCom';
+import Ratingcomp from "./Ratingcomp";
+import ShareIcon from "@mui/icons-material/Share";
+import FacebookCom from "./FacebookCom";
 
-import ForumIcon from '@mui/icons-material/Forum';
+import ForumIcon from "@mui/icons-material/Forum";
 
 //.........
 import {
   addProduct,
   deleteProduct,
   ProductCart,
-} from '../../Redux/slice/shoppingCart/shoppingCart.slice';
-import { toast, Zoom } from 'react-toastify';
+} from "../../Redux/slice/shoppingCart/shoppingCart.slice";
+import { toast, Zoom } from "react-toastify";
 
 import {
   FacebookShareButton,
@@ -29,19 +29,23 @@ import {
   TwitterIcon,
   WhatsappIcon,
   InstapaperIcon,
-} from 'react-share';
+} from "react-share";
 
-import { IconButton, Rating } from '@mui/material';
+import { IconButton, Rating } from "@mui/material";
 
-import star from '../../assets/images/icons/iconStartB.png';
+import star from "../../assets/images/icons/iconStartB.png";
 
 const Detail: React.FC<{}> = () => {
   const id = useParams().id as string;
   const dispatch = useAppDispatch();
 
-  const productDetail: ProductState = useAppSelector((state) => state.productReducer.ProductDetail);
+  const productDetail: ProductState = useAppSelector(
+    (state) => state.productReducer.ProductDetail
+  );
 
-  const allProducts: ProductState[] = useAppSelector((state) => state.productReducer.Products);
+  const allProducts: ProductState[] = useAppSelector(
+    (state) => state.productReducer.Products
+  );
 
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   //----------------------> SHARE FEATURE  <----------------------------
@@ -67,15 +71,15 @@ const Detail: React.FC<{}> = () => {
 
     dispatch(addProduct(productCart));
 
-    toast.success('Product added to Cart', {
-      position: 'top-center',
+    toast.success("Product added to Cart", {
+      position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+      theme: "colored",
       transition: Zoom,
     });
   };
@@ -83,20 +87,20 @@ const Detail: React.FC<{}> = () => {
   const handleRemoveCart = (product: ProductState) => {
     dispatch(deleteProduct(product._id));
 
-    toast.error('Product removed from Cart', {
-      position: 'top-center',
+    toast.error("Product removed from Cart", {
+      position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+      theme: "colored",
       transition: Zoom,
     });
   };
 
-  const [principalImage, setPrincipalImage] = useState<string>('');
+  const [principalImage, setPrincipalImage] = useState<string>("");
   const [relatedProduct, setRelatedProduct] = useState<ProductState[]>([]);
   //console.log("ssssssssssssssssssss", relatedProduct);
 
@@ -113,7 +117,9 @@ const Detail: React.FC<{}> = () => {
   };
 
   const handleFilter = (res: ProductState) => {
-    let aux = allProducts.filter((product: any) => product.categories._id === res.categories);
+    let aux = allProducts.filter(
+      (product: any) => product.categories._id === res.categories
+    );
 
     if (aux.length > 5) aux = aux.slice(0, 5);
     setRelatedProduct(aux);
@@ -130,8 +136,8 @@ const Detail: React.FC<{}> = () => {
   // _id:"63c6db802aaabb925fc78a56"
 
   return (
-    <div className='detail-contain'>
-      <div className='info-pincipal-detail'>
+    <div className="detail-contain">
+      <div className="info-pincipal-detail">
         {/* <div className="land-images">
           {productDetail?.images?.map((image) => (
             <div key={image.slice(5)} className="secondary-images">
@@ -145,9 +151,9 @@ const Detail: React.FC<{}> = () => {
           ))}
         </div> */}
 
-        <div className='land-images'>
+        <div className="land-images">
           {productDetail?.images?.map((image) => (
-            <div key={image.slice(5)} className='secondary-images'>
+            <div key={image.slice(5)} className="secondary-images">
               <img
                 src={image}
                 onMouseOver={() => {
@@ -160,76 +166,78 @@ const Detail: React.FC<{}> = () => {
         <div>
           <FacebookCom />
         </div>
-        <div className='imagen-principal-detail'>
-          <div className='principal-image'>
+        <div className="imagen-principal-detail">
+          <div className="principal-image">
             <img src={principalImage} alt={productDetail.name} />
           </div>
         </div>
-        <div className='principal-details'>
-          <div className='transaction-details'>
-            <div className='name'>{productDetail.name}</div>
+        <div className="principal-details">
+          <div className="transaction-details">
+            <div className="name">{productDetail.name}</div>
 
-            <div className='description-rating-branding'>
-              <div className='rating-brand'>
-                <div className='rating'>
+            <div className="description-rating-branding">
+              <div className="rating-brand">
+                <div className="rating">
                   <Rating
-                    className='stars'
-                    size='large'
+                    className="stars"
+                    size="large"
                     value={Number(productDetail.rating.toFixed(2))}
                     precision={0.1}
                     readOnly
                   />
-                  <div className='product-rating'>{productDetail.rating.toFixed(2)}</div>
-                  <div className='brand-nest'>{/* <img src={logo} alt="logo smartNest" /> */}</div>
+                  <div className="product-rating">
+                    {productDetail.rating.toFixed(2)}
+                  </div>
+                  <div className="brand-nest">
+                    {/* <img src={logo} alt="logo smartNest" /> */}
+                  </div>
                 </div>
-                <div className='resumen'>
-                  Brand:<div className='brand'> {productDetail.brand}</div>
+                <div className="resumen">
+                  Brand:<div className="brand"> {productDetail.brand}</div>
                 </div>
-                <div className='resumen'>
-                  stock:<div className='brand'>{productDetail.stock}</div>
+                <div className="resumen">
+                  stock:<div className="brand">{productDetail.stock}</div>
                 </div>
               </div>
-              <div className='description'>
+              <div className="description">
                 Description:
-                <div className='text-description'>{productDetail.description}</div>
+                <div className="text-description">
+                  {productDetail.description}
+                </div>
               </div>
             </div>
-            <div className='price'>
-              <div className='transaction-price'>
-                <div className='link-to-forum'>
-                  <Link to='/foro'>
-                    <IconButton>
-                      <ForumIcon />
-                    </IconButton>
-                  </Link>
+            <div className="price">
+              <div className="transaction-price">
+                <div className="link-to-forum"></div>
+                <div className="value-price">
+                  ${productDetail.price.toFixed(2)}
                 </div>
-                <div className='value-price'>${productDetail.price.toFixed(2)}</div>
                 USD
               </div>
               {/* <button> add to cart</button> */}
-              <div className='content-add-car-card-beta'>
-                <div className='social-media-buttons-wrap'>
+              <div className="content-add-car-card-beta">
+                <div className="social-media-buttons-wrap">
                   <span>
                     Share <ShareIcon />
                   </span>
-                  <div className='container-share'>
+                  <div className="container-share">
                     <FacebookShareButton url={currentPageUrl}>
-                      <i className='facebook'>
+                      <i className="facebook">
                         <FacebookIcon size={32} round={true} />
                       </i>
                     </FacebookShareButton>
                     <TwitterShareButton url={currentPageUrl}>
-                      <i className='twitter'>
+                      <i className="twitter">
                         <TwitterIcon size={32} round={true} />
                       </i>
                     </TwitterShareButton>
                     <WhatsappShareButton url={currentPageUrl}>
-                      <i className='whatsapp'>
+                      <i className="whatsapp">
                         <WhatsappIcon size={32} round={true} />
                       </i>
                     </WhatsappShareButton>
                     <InstapaperShareButton url={currentPageUrl}>
-                      <i className='email'>
+                      <i className="email">
                         <InstapaperIcon size={32} round={true} />
                       </i>
                     </InstapaperShareButton>
@@ -237,25 +245,28 @@ const Detail: React.FC<{}> = () => {
                 </div>
                 {productDetail?.stock > 0 &&
                 !productsInCart.find((el) => el._id === productDetail._id) ? (
-                  <div className='add-car-card-beta' onClick={() => handleAddCart(productDetail)}>
+                  <div
+                    className="add-car-card-beta"
+                    onClick={() => handleAddCart(productDetail)}
+                  >
                     <p>add to Cart</p>
                   </div>
                 ) : productDetail.stock > 0 &&
                   productsInCart.find((el) => el._id === productDetail._id) ? (
                   <div
-                    className='add-car-card-beta'
+                    className="add-car-card-beta"
                     onClick={() => handleRemoveCart(productDetail)}
                   >
                     <p>Remove</p>
                   </div>
                 ) : (
                   <div
-                    className='add-car-card-beta'
+                    className="add-car-card-beta"
                     style={{
-                      color: 'rgba(20, 20, 20, 0.8)',
-                      backgroundColor: 'rgba(229, 229, 229, 1)',
+                      color: "rgba(20, 20, 20, 0.8)",
+                      backgroundColor: "rgba(229, 229, 229, 1)",
                       fontFamily: "'Urbanist', sans-serif",
-                      fontWeight: '500',
+                      fontWeight: "500",
                     }}
                   >
                     out of Stock
@@ -266,46 +277,53 @@ const Detail: React.FC<{}> = () => {
           </div>
         </div>
       </div>
-      <div className='text-related-product'>Related products</div>
-      <div className='section-description'>
-        <div className='detail-detail'>
+      <div className="text-related-product">Related products</div>
+      <div className="section-description">
+        <div className="detail-detail">
           {relatedProduct?.map((product) => (
             <Link
-              className='releated-images'
+              className="releated-images"
               to={`/product/${product._id}`}
               style={{
                 backgroundImage: `url(${product.images[0]})`,
-                backgroundSize: '60%',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
+                backgroundSize: "60%",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
               }}
             >
               {/* 
               <img src={product.images[0]} alt={product.name[0]} />
             */}
-              <p className='detail_product-name'>{product.name}</p>
+              <p className="detail_product-name">{product.name}</p>
             </Link>
           ))}
         </div>
       </div>
 
-      <div className='comments-section'>
-        <div className='comments-box'>
+      <div className="comments-section">
+        <div className="comments-box">
           <div
-            className='fb-comments'
+            className="fb-comments"
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
-            data-width='100%'
-            data-numposts='5'
+            data-width="100%"
+            data-numposts="5"
           ></div>
           <span
-            className='fb-comments-count'
+            className="fb-comments-count"
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
           ></span>
-          comments
         </div>
-        <div className='other-box'>
-          <p>Rate this product</p>
-          <Ratingcomp id={productDetail._id} />
+        <div className="fb-comments-buttonSide">
+          <div className="other-box">
+            <div className="fb-comments-Title">
+              <p>Rate and review this product</p>
+            </div>
+
+            <Ratingcomp
+              ratingProp={Number(productDetail.rating.toFixed(2))}
+              id={productDetail._id}
+            />
+          </div>
         </div>
       </div>
     </div>

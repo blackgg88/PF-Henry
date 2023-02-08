@@ -2,19 +2,23 @@
 @import './base/settings';
 
 // Components
+@import './components/dashboard_user';
+@import './components/Dashboard_admin/dashboardAdmin';
+@import './components/Dashboard_admin/dashboardForm';
+
 @import './components/navbar';
 @import './components/Footer/footer';
 @import './components/home';
+@import './components/page404/page404';
+
 @import './components/carrousel';
-@import './components/dashboard_user';
 @import './components/newsHome';
 @import './components/news/news';
 @import './components/Checkout/shoppingCart';
 @import './components/Checkout/form';
 @import './components/modalUser/modalUser';
 @import './components/modalCart/modalCart';
-@import './components/page404/page404';
-@import './components/Dashboard_admin/dashboardAdmin';
+
 @import './components/About/About';
 // Foro
 @import './components/Foro/foro_Home/foro_Home';

@@ -9,6 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ForumIcon from '@mui/icons-material/Forum';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import GroupsIcon from '@mui/icons-material/Groups';
+import { VITE_CLIENT_URL } from "../../config";
 
 export default function Footer() {
   return (
@@ -25,50 +26,50 @@ export default function Footer() {
           <div className='footer_links'>
             <ul className='footer_list'>
               <li className='footer_list-item'>
-                <a href='https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/'>
+                <a href={`${VITE_CLIENT_URL}/`}>
                   <Button>
                     <HomeIcon className='icon' />
-                    <Typography variant='body2' style={{ color: 'white' }}>
+                    <Typography variant='body2' style={{ color: "white" }}>
                       Home
                     </Typography>
                   </Button>
                 </a>
               </li>
               <li className='footer_list-item'>
-                <a href='https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop'>
+                <a href={`${VITE_CLIENT_URL}/shop`}>
                   <Button>
                     <ShoppingCartIcon className='icon' />
-                    <Typography variant='body2' style={{ color: 'white' }}>
+                    <Typography variant='body2' style={{ color: "white" }}>
                       Shop
                     </Typography>
                   </Button>
                 </a>
               </li>
               <li className='footer_list-item'>
-                <a href='https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/news'>
+                <a href={`${VITE_CLIENT_URL}/news`}>
                   <Button>
                     <NewspaperIcon className='icon' />
-                    <Typography variant='body2' style={{ color: 'white' }}>
+                    <Typography variant='body2' style={{ color: "white" }}>
                       News
                     </Typography>
                   </Button>
                 </a>
               </li>
               <li className='footer_list-item'>
-                <a href='https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/foro'>
+                <a href={`${VITE_CLIENT_URL}/foro`}>
                   <Button>
                     <ForumIcon className='icon' />
-                    <Typography variant='body2' style={{ color: 'white' }}>
+                    <Typography variant='body2' style={{ color: "white" }}>
                       FORUM
                     </Typography>
                   </Button>
                 </a>
               </li>
               <li className='footer_list-item'>
-                <a href='https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/about'>
+                <a href={`${VITE_CLIENT_URL}/about`}>
                   <Button>
                     <GroupsIcon className='icon' />
-                    <Typography variant='body2' style={{ color: 'white' }}>
+                    <Typography variant='body2' style={{ color: "white" }}>
                       ABOUT
                     </Typography>
                   </Button>
@@ -83,7 +84,9 @@ export default function Footer() {
         </div>
       </div>
       <div className='footer_copyright'>
-        <p className='footer_text-copyright'>&#169; All Rights Reserved SmartNest 2023</p>
+        <p className='footer_text-copyright'>
+          &#169; All Rights Reserved SmartNest 2023
+        </p>
       </div>
     </div>
   );

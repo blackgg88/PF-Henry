@@ -9,9 +9,9 @@ import { toast, Zoom } from "react-toastify";
 import { useAuth0 } from "@auth0/auth0-react";
 import RateModal from "./RateModal";
 
-import ForumIcon from '@mui/icons-material/Forum';
-import {Link} from 'react-router-dom';
-import { IconButton } from '@mui/material';
+import ForumIcon from "@mui/icons-material/Forum";
+import { Link } from "react-router-dom";
+import { IconButton } from "@mui/material";
 
 interface Props {
   id: string;
@@ -85,10 +85,15 @@ const Ratingcomp: React.FC<Props> = ({ id, ratingProp }) => {
 
   return (
     <div className="fb-comments-Rating">
-      <form className="foro-comments-form" action="" onSubmit={(e) => { e.preventDefault();
+      <form
+        className="foro-comments-form"
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
           console.log("rating: ", rating);
           handleSubmit(rating);
-        }}>
+        }}
+      >
         <div className="foro-comments-stars">
           <Rating
             size="large"
@@ -102,20 +107,25 @@ const Ratingcomp: React.FC<Props> = ({ id, ratingProp }) => {
             onChangeActive={(event, newHover) => {
               setHover(newHover);
             }}
-            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+            emptyIcon={
+              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+            }
           />
           {rating !== null && (
             <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
           )}
 
           <div className="foro-comments-buttonSide">
-            <button className="Rating-button-Submit" type="submit"> Rate</button>
-            <Link to='/foro'>
-            <IconButton>
-              <ForumIcon />
-            </IconButton>
-          </Link>
-        </div>
+            <button className="Rating-button-Submit" type="submit">
+              {" "}
+              Rate
+            </button>
+            <Link to={`/foro/profile/63dd4cdc15d4a80012819190`}>
+              <IconButton>
+                <ForumIcon />
+              </IconButton>
+            </Link>
+          </div>
         </div>
 
         <div className="foro-comments-bars">
@@ -133,9 +143,6 @@ const Ratingcomp: React.FC<Props> = ({ id, ratingProp }) => {
             <div className="foro-comments-BelowAverage"></div>
             <div className="foro-comments-Poor"></div>
           </div>
-
-         
-
         </div>
       </form>
       {modalOpen && <RateModal />}

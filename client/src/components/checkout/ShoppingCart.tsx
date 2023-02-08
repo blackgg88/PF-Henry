@@ -8,6 +8,7 @@ import {
   changeQuantity,
   deleteProduct,
   emptyCar,
+  addProduct,
 } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -19,6 +20,8 @@ import { toast, Zoom } from 'react-toastify';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { productFetch } from '../../Redux/slice/product/ProductController';
+import { getProduct, ProductState } from '../../Redux/slice/product/product.slice';
 
 const darkTheme = createTheme({
   palette: {
@@ -34,12 +37,15 @@ const lightTheme = createTheme({
 
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
+  const [checkoutOk, setCheckoutOk] = useState(true);
 
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
 
   const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
+
+  const products = useAppSelector((state) => state.productReducer.Products);
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -48,6 +54,44 @@ const ShoppingCart = () => {
   useEffect(() => {
     handleTotal();
   }, [productsInCart]);
+
+  useEffect(() => {
+    if (productsInCart.length) {
+      productFetch().then((res) => {
+        dispatch(getProduct(res));
+
+        const productsInCartUpdated: ProductCart[] = [];
+
+        res.forEach((product: ProductState) => {
+          if (
+            productsInCart.some((productInCart: ProductCart) => productInCart._id === product._id)
+          ) {
+            const productUpdated: ProductCart = {
+              _id: product._id,
+              name: product.name,
+              price: product.price,
+              brand: product.brand,
+              images: product.images,
+              categories: product.categories,
+              stock: product.stock,
+              quantity: 1,
+              inCart: true,
+            };
+
+            productsInCartUpdated.push(productUpdated);
+          }
+        });
+
+        if (productsInCartUpdated.length > 0) {
+          dispatch(addProduct(productsInCartUpdated));
+
+          if (productsInCartUpdated.some((product) => product.stock <= 0)) {
+            setCheckoutOk(false);
+          }
+        }
+      });
+    }
+  }, []);
 
   const handleSetQuantity = (e: SelectChangeEvent<number>, id: string) => {
     const quantity = Number(e.target.value);
@@ -72,7 +116,10 @@ const ShoppingCart = () => {
 
   const handleTotal = () => {
     const total = productsInCart
-      .reduce((acc, product) => acc + product.quantity * product.price, 0)
+      .reduce((acc, product) => {
+        if (product.stock > 0) return acc + product.quantity * product.price;
+        return acc;
+      }, 0)
       .toFixed(2);
 
     setTotal(Number(total));
@@ -175,7 +222,20 @@ const ShoppingCart = () => {
           </div>
           <div className='ShoppingCart_confirm-button'>
             <Link to={`/checkout`}>
-              <button>Checkout</button>
+              <button
+                disabled={!checkoutOk}
+                style={
+                  !checkoutOk
+                    ? {
+                        cursor: 'no-drop',
+                        color: 'rgba(20, 20, 20, 0.8)',
+                        backgroundColor: 'rgba(229, 229, 229, 1)',
+                      }
+                    : {}
+                }
+              >
+                Checkout
+              </button>
             </Link>
           </div>
         </div>

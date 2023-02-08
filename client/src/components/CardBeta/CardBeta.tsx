@@ -11,7 +11,7 @@ import { addFavoriteFetch } from '../../Redux/slice/user/userController';
 import { addFavorite } from '../../Redux/slice/user/user.slice';
 import { userInterface, getUserLogin } from '../../Redux/slice/user/user.slice';
 
-import { ProductState } from '../../Redux/slice/product/product.slice';
+import { FilterState, ProductState } from '../../Redux/slice/product/product.slice';
 import { getProduct } from '../../Redux/slice/product/product.slice';
 import { productFetch } from '../../Redux/slice/product/ProductController';
 import PaginationComp from '../Pagination';
@@ -31,11 +31,16 @@ const CardBeta: React.FC<{}> = () => {
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
   const [getFavorites, setGetFavorites] = useState<ProductState[]>([]);
 
-  const [orderProducts, setOrderProductos] = useState<ProductState[]>([]);
+  const filters: FilterState = useAppSelector((state) => state.productReducer.Filters);
 
   const dispatch = useAppDispatch();
 
-  const stars = [1, 2, 3, 4, 5];
+  useEffect(() => {
+    productFetch().then((res) => {
+      dispatch(getProduct(res));
+    });
+  }, []);
+
   useEffect(() => {
     if (!Allproduct.length) {
       productFetch().then((res) => {
@@ -177,6 +182,10 @@ const CardBeta: React.FC<{}> = () => {
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
+  // useEffect(() => {
+  //   handlePageChange(1);
+  // }, [filters]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

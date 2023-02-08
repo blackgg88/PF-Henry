@@ -6,3 +6,4 @@ export const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY_MP;
 export const NEWS_API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 export const API_URL = import.meta.env.VITE_API_URL;
+export const VITE_CLIENT_URL = import.meta.env.VITE_CLIENT_URL;

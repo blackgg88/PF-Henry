@@ -26,7 +26,7 @@
     padding: 40px;
     font-family: $standard-font-Poiret-One;
     z-index: 6;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     body.dark & {
       background-color: rgba(0, 0, 0, 0.8);

@@ -124,18 +124,22 @@ const ShoppingCart = () => {
                   <div className='ShoppingCart_quantity-container'>
                     <ThemeProvider theme={dark ? darkTheme : lightTheme}>
                       <CssBaseline />
-                      <FormControl fullWidth>
-                        <InputLabel id='id_quantity'>Quantity</InputLabel>
-                        <Select
-                          labelId='id_quantity'
-                          id='demo-simple-select'
-                          value={ele.quantity}
-                          label='Quantity'
-                          onChange={(e) => handleSetQuantity(e, ele._id)}
-                        >
-                          {renderStock(ele.stock)}
-                        </Select>
-                      </FormControl>
+                      {ele.stock > 0 ? (
+                        <FormControl fullWidth>
+                          <InputLabel id='id_quantity'>Quantity</InputLabel>
+                          <Select
+                            labelId='id_quantity'
+                            id='demo-simple-select'
+                            value={ele.quantity}
+                            label='Quantity'
+                            onChange={(e) => handleSetQuantity(e, ele._id)}
+                          >
+                            {renderStock(ele.stock)}
+                          </Select>
+                        </FormControl>
+                      ) : (
+                        <p>out of Stock</p>
+                      )}
                     </ThemeProvider>
                   </div>
                   <div className='ShoppingCart_price'>

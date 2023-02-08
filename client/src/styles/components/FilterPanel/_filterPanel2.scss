@@ -66,25 +66,38 @@
     @media only screen and (max-width: $medium-screen) {
         gap: 0px;
         font-size: 0.5rem;
-
+        
     }
-
+    
     &:hover {
-
+        
         border-right: 0px solid $standard-color-blue;
         background-color: $standard-color-blue;
         width: 25vw;
         transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
+        
         .sectrion-filter {
-
+            
             .block-filter {
                 display: flex;
             }
         }
 
+        @media (max-width: $portatil-screen) {
+            //background-color: red;
+            width: 35vw;
+        }
+        @media (max-width: $small-screen) {
+            //background-color: red;
+            width: 45vw;
+        }
+        @media (max-width: $movil-screen) {
+            //background-color: red;
+            width: 80vw;
+        }
+        
     }
-
+    
     .separator {
         height: 1px;
         width: 100%;
@@ -92,6 +105,27 @@
         border-radius: 10px;
     }
 
+    .sectrion-filter-d {
+        height: 15%;
+        width: 100%;
+        //position: absolute;
+        align-items: center;
+        padding-left: 4px;
+        display: flex;
+        gap: 10px;
+        overflow: hidden;
+        //background-color: gray;
+        //transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+        .title-filter {
+            color: $standard-color-blue-green;
+            //background-color: $standard-color-red;
+            width: 100%;
+            font-weight: 300;
+        }
+        
+    }
+    
     .sectrion-filter {
         height: 15%;
         width: 100%;
@@ -106,13 +140,13 @@
 
         &:hover {
             background-color: $standard-color-black-ligth;
-            transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+            transition: all 0.33s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
             .hovr-selector {
                 width: 3px;
                 height: 80%;
                 background-color: $standard-color-blue-green;
-                transition: all 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
             }
 
             .img {
@@ -186,3 +220,6 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+

@@ -36,6 +36,16 @@
             // position: absolute;
             // top: 0%;
             //background-color: green;
+            
+            @media (max-width: $portatil-screen) {
+                font-size: 1vw;
+            }
+            @media (max-width: $small-screen) {
+                font-size: 2vw;
+            }
+            @media (max-width: $movil-screen) {
+                font-size: 4vw;
+            }
 
             &:focus {
                 border: 0px;
@@ -43,10 +53,10 @@
                 text-decoration: none;
                 color: $standard-color-blue-green;
                 width: 80%;
-            height: 80%;
+                height: 80%;
 
                 .suggestions-dropdown {
-                   
+
                     top: 100%;
                     width: 85%;
                     height: auto;
@@ -54,11 +64,11 @@
                     padding: 5px;
                     //background-color: purple;
                     background-color: $standard-color-blue-light;
-            
+
                     .link {
                         //color: red;
                         max-width: 90%;
-            
+
                     }
                 }
             }
@@ -68,7 +78,7 @@
                 outline: none;
                 text-decoration: none;
                 width: 80%;
-            height: 80%;
+                height: 80%;
             }
 
 
@@ -100,10 +110,10 @@
         }
     }
 
-    
+
 }
 
 .suggestions-dropdown {
-    
+
     z-index: -1;
 }

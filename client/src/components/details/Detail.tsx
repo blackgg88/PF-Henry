@@ -283,6 +283,9 @@ const Detail: React.FC<{}> = () => {
       <div className="section-description">
         <div className="detail-detail">
           {relatedProduct?.map((product) => (
+
+            <div>
+
             <Link
               className="releated-images"
               to={`/product/${product._id}`}
@@ -292,12 +295,13 @@ const Detail: React.FC<{}> = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
-            >
+              >
               {/* 
               <img src={product.images[0]} alt={product.name[0]} />
             */}
               <p className="detail_product-name">{product.name}</p>
             </Link>
+            </div>
           ))}
         </div>
       </div>

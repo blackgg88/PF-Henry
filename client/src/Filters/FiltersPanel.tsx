@@ -10,6 +10,7 @@ import filterName from "../assets/images/icons/filter/filterName.png";
 import filterRating from "../assets/images/icons/filter/filterRating.png";
 import filterPrice from "../assets/images/icons/filter/filterPrice.png";
 import filterCategory from "../assets/images/icons/filter/filterCategory.png";
+import filterOrder from "../assets/images/icons/filter/filterOrder.png";
 import filterSpace from "../assets/images/icons/filter/filterSpace.png";
 
 const FiltersPanel: React.FC<{}> = () => {
@@ -64,7 +65,7 @@ const FiltersPanel: React.FC<{}> = () => {
 
       <div className='sectrion-filter'>
         <div className='hovr-selector'></div>
-        <img className='img' src={filterCategory} alt='' />
+        <img className='img' src={filterOrder} alt='' />
         <div className='block-filter'>
           <h2 className='title-filter'>Order</h2>
           <FilterOrder />

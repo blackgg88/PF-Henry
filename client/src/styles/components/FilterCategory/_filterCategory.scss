@@ -37,11 +37,25 @@
         text-decoration: none;
     }
 
+    @media (max-width: $portatil-screen) {
+        font-size: 1vw;
+    }
+    @media (max-width: $small-screen) {
+        font-size: 2vw;
+    }
+    @media (max-width: $movil-screen) {
+        font-size: 4vw;
+    }
+
     option{
         position: relative;
         left: 100%;
         color: $standard-color-blue-green;
         background-color: $standard-color-blue-secundary;
+
+        @media (max-width: $movil-screen) {
+            font-size: 4vw;
+        }
         
         &:hover{
             background-color: aqua;

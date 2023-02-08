@@ -49,7 +49,10 @@ $standard-color-yellow-ligth: rgba(252, 163, 17, 0.7);
 //TODO dimensions (px)
 $standard-with-full-hd: 1920px;
 $standard-heigth-full-hd: 1080px;
-$small-screen: 920px;
+
+$small-screen: 900px;
+$movil-screen: 425px;
+$portatil-screen: 1024px;
 $medium-screen: 1520px;
 
 $standard-border-radius: 10px;
@@ -57,7 +60,7 @@ $standard-space-between-elements: 19px;
 
 $standard-basic-heith-home: 1080px;
 
-// transition: all 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+// transition: all 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
 //===============================
 

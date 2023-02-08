@@ -21,7 +21,7 @@ import { toast, Zoom } from 'react-toastify';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { productFetch } from '../../Redux/slice/product/ProductController';
-import { getProduct } from '../../Redux/slice/product/product.slice';
+import { getProduct, ProductState } from '../../Redux/slice/product/product.slice';
 
 const darkTheme = createTheme({
   palette: {
@@ -56,44 +56,42 @@ const ShoppingCart = () => {
   }, [productsInCart]);
 
   useEffect(() => {
-    productFetch().then((res) => {
-      dispatch(getProduct(res));
-    });
-  }, []);
-
-  useEffect(() => {
     if (productsInCart.length) {
-      const productsInLSUpdated: ProductCart[] = [];
+      productFetch().then((res) => {
+        dispatch(getProduct(res));
 
-      products.forEach((product) => {
-        if (
-          productsInCart.some((productInCart: ProductCart) => productInCart._id === product._id)
-        ) {
-          const productUpdated: ProductCart = {
-            _id: product._id,
-            name: product.name,
-            price: product.price,
-            brand: product.brand,
-            images: product.images,
-            categories: product.categories,
-            stock: product.stock,
-            quantity: 1,
-            inCart: true,
-          };
+        const productsInCartUpdated: ProductCart[] = [];
 
-          productsInLSUpdated.push(productUpdated);
+        res.forEach((product: ProductState) => {
+          if (
+            productsInCart.some((productInCart: ProductCart) => productInCart._id === product._id)
+          ) {
+            const productUpdated: ProductCart = {
+              _id: product._id,
+              name: product.name,
+              price: product.price,
+              brand: product.brand,
+              images: product.images,
+              categories: product.categories,
+              stock: product.stock,
+              quantity: 1,
+              inCart: true,
+            };
+
+            productsInCartUpdated.push(productUpdated);
+          }
+        });
+
+        if (productsInCartUpdated.length > 0) {
+          dispatch(addProduct(productsInCartUpdated));
+
+          if (productsInCartUpdated.some((product) => product.stock <= 0)) {
+            setCheckoutOk(false);
+          }
         }
       });
-
-      if (productsInLSUpdated.length > 0) {
-        dispatch(addProduct(productsInLSUpdated));
-
-        if (productsInLSUpdated.some((product) => product.stock <= 0)) {
-          setCheckoutOk(false);
-        }
-      }
     }
-  }, [products]);
+  }, []);
 
   const handleSetQuantity = (e: SelectChangeEvent<number>, id: string) => {
     const quantity = Number(e.target.value);

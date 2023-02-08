@@ -74,7 +74,7 @@ const NavBar = () => {
             <p className='nav_middle_button'>Shop</p>
           </NavLink>
           <NavLink className='link-style' to='/news'>
-            <p className='nav_middle_button'>News</p>
+            <p className={userByBd.role == 'admin' ? 'nav_middle_button' : ''}>News</p>
           </NavLink>
           {userByBd.role == 'admin' && (
             <NavLink className='link-style' to='/admin'>

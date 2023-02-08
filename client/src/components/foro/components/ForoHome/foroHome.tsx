@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Foro_Menu } from "../Foro_Menu/Foro_Menu";
 import { useRef, useState } from "react";
 import { foro_PanelHook } from "./hooks/foro_PanelHook";
-import scrollUp from "../../../../assets/images/buttons/arrow-open-up-svgrepo-com.svg";
+import scrollUp from "../../../../assets/images/buttons/arrow-up-2-svgrepo-com.svg";
 
 //---------------
 
@@ -72,6 +72,7 @@ export default function ForoHome() {
       top: 0,
       behavior: "smooth",
     });
+    setVisible(false)
   };
 
   foroRef.current?.addEventListener("scroll", toggleVisible);
@@ -133,18 +134,14 @@ export default function ForoHome() {
                   category={post.category}
                 />
               ))}
-              <button className="buttonUp" onClick={scrollToTop}>
-                <img
-                  src={scrollUp}
-                  style={{
-                    display: visible ? "inline" : "none",
-                    width: "50px",
-                    margin: "auto",
-                    position: "fixed",
-                    right: "1 0px",
-                    bottom: "0",
-                  }}
-                />
+              <button
+                className='buttonUp'
+                onClick={scrollToTop}
+                style={{
+                  display: visible ? "inline" : "none",
+                }}
+              >
+                <img src={scrollUp} />
               </button>
             </>
           ) : (

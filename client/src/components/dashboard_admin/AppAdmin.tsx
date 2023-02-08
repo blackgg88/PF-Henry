@@ -22,7 +22,7 @@ import { MyAppBar } from './MyAppBar';
 import dataProvider from './dataProvider';
 
 const MyLayout = (props: any) => (
-  <Layout {...props} appBar={MyAppBar} style={{ backgroundColor: ` #2b4076` }} />
+  <Layout {...props} appBar={MyAppBar}  />
 );
 // console.log(dataProvider);
 

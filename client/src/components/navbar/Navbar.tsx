@@ -7,8 +7,8 @@ import menuResp from '../../assets/responsive-menu-icon.png';
 import cart from '../../assets/car_w.png';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
 import { changeTheme } from '../../Redux/slice/theme/theme.slice';
-import moon from '../../assets/foro/DarkMode/moonW.svg'
-import sun from '../../assets/foro/DarkMode/sunB.svg'
+import moon from '../../assets/foro/DarkMode/moonW.svg';
+import sun from '../../assets/foro/DarkMode/sunB.svg';
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -74,20 +74,16 @@ const NavBar = () => {
             <p className='nav_middle_button'>Shop</p>
           </NavLink>
           <NavLink className='link-style' to='/news'>
-            <p className={userByBd.role == 'admin' ? 'nav_middle_button' : ''}>News</p>
+            <p className='nav_middle_button'>News</p>
           </NavLink>
           {userByBd.role == 'admin' && (
             <NavLink className='link-style' to='/admin'>
               <p>Admin</p>
             </NavLink>
           )}
-          <div className='Nav_ThemeDiv' onClick={handleChangeTheme}> 
-            <div className={dark?'Nav_Theme_moon':'Nav_theme_sun'}>
-              {
-                dark?
-               <img src={moon}/>:
-               <img src={sun}/>
-              }
+          <div className='Nav_ThemeDiv' onClick={handleChangeTheme}>
+            <div className={dark ? 'Nav_Theme_moon' : 'Nav_theme_sun'}>
+              {dark ? <img src={moon} /> : <img src={sun} />}
             </div>
           </div>
 

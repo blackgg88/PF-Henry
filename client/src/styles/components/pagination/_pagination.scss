@@ -79,5 +79,5 @@ $pagination-btn-unset: url('../../../assets/images/buttons/paginationBtnUnset.pn
   color: aliceblue;
   font-weight: 300;
   font-size: 0.8rem;
-  background-image: url($pagination-btn-unset);
+  background-image: $pagination-btn-unset;
 }

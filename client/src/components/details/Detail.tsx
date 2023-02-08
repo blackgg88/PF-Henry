@@ -197,11 +197,7 @@ const Detail: React.FC<{}> = () => {
             <div className='price'>
               <div className='transaction-price'>
                 <div className='link-to-forum'>
-                  <Link to='/foro'>
-                    <IconButton>
-                      <ForumIcon />
-                    </IconButton>
-                  </Link>
+                  
                 </div>
                 <div className='value-price'>${productDetail.price.toFixed(2)}</div>
                 USD
@@ -301,11 +297,16 @@ const Detail: React.FC<{}> = () => {
             className='fb-comments-count'
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
           ></span>
-          comments
+          
         </div>
-        <div className='other-box'>
-          <p>Rate this product</p>
-          <Ratingcomp id={productDetail._id} />
+        <div className='fb-comments-buttonSide'>
+          <div className='other-box'>
+            <div className='fb-comments-Title'>
+              <p>Rate and review this product</p>
+            </div>
+            
+            <Ratingcomp ratingProp={Number(productDetail.rating.toFixed(2))} id={productDetail._id} />
+          </div>
         </div>
       </div>
     </div>

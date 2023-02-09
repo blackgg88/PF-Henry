@@ -31,6 +31,12 @@ const CardBeta: React.FC<{}> = () => {
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
   const [getFavorites, setGetFavorites] = useState<ProductState[]>([]);
 
+  const AllproductLength = Allproduct.reduce((acc, product) => {
+    if (product.isActive) return acc + 1;
+
+    return acc;
+  }, 0);
+
   const filters: FilterState = useAppSelector((state) => state.productReducer.Filters);
 
   const dispatch = useAppDispatch();
@@ -289,7 +295,7 @@ const CardBeta: React.FC<{}> = () => {
       <div className='pagination2'>
         <PaginationComp
           itemsPerPage={itemsPerPage}
-          totalItems={Allproduct.length}
+          totalItems={AllproductLength}
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />

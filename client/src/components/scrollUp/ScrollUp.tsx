@@ -1,11 +1,8 @@
 import { useState } from "react";
-
 import scrollUp from "../../assets/images/buttons/arrow-up-2-svgrepo-com.svg";
 
 export default function ScrollUp({ refUse }: any) {
   const [visible, setVisible] = useState(false);
-
-  console.log(refUse);
 
   const toggleVisible = () => {
     const scrolled = refUse.current?.scrollTop;

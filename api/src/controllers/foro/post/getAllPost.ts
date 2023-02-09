@@ -10,22 +10,21 @@ export const getAllPost = async (req: Request, res: Response) => {
     const { deleted } = req.query;
     try {
         const Allposts = await PostModel.find()
-        .populate("author", "userName")
-        .populate("likes","userName")
+        .populate("author")
+        .populate("likes")
         .populate({
             path: "comments",
-            select: "content author likes",
+            select: "content author likes deleted created",
             populate: {
                 path: "author",
-                select: "userName"
             }
         })
         .select('-__v');
 
         if(deleted){
-            return res.json(Allposts.filter(e => e.deleted === false));
+            return res.json(Allposts.filter(e => e.deleted === false).reverse());
         } else{
-            return res.json(Allposts);
+            return res.json(Allposts.reverse());
         }
     } catch (error) {
         res.status(400).json({ message: 'Error getting post', error })

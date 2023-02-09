@@ -1,0 +1,92 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: calc(100vw - 50px);
+
+  @media (max-width: 600px) {
+    max-width: 100vw;
+  }
+  
+  #main-content{
+    max-width: 100vw;
+  }
+
+  .dashboardAdmin_wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+    width: 96%;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 3px 2px 1px lightgray;
+
+
+    .dashboardAdmin_card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      height: 140px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 3px 2px 1px rgb(175, 175, 175);
+
+      img{
+        height: 45px;
+        width: 45px;
+        margin-top: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .dashboardAdmin_icon {
+        height: 70px;
+        width: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #00c91b;
+      }
+    }
+  }
+
+  .main_graphics{
+    width: 100%;
+    min-height: 100vh;
+    
+    .PieChart, .ComposedChart, .AreaChart{
+      height: 100vh;
+      padding: 9px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      box-shadow: 3px 2px 1px lightgray;
+      margin-top: 9px;
+      margin-bottom: 9px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+  }
+  
+}

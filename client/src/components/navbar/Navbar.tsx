@@ -6,6 +6,9 @@ import logoTop from '../../assets/logo_smart_b.png';
 import menuResp from '../../assets/responsive-menu-icon.png';
 import cart from '../../assets/car_w.png';
 import { useAppDispatch, useAppSelector } from '../../Redux/hook';
+import { changeTheme } from '../../Redux/slice/theme/theme.slice';
+import moon from '../../assets/foro/DarkMode/moonW.svg';
+import sun from '../../assets/foro/DarkMode/sunB.svg';
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -13,7 +16,9 @@ const NavBar = () => {
   const [responsiveMenu, setResponsiveMenu] = useState<boolean>(false);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   const userByBd = useAppSelector((state) => state.userReducer.userState);
+  const dark = useAppSelector((state) => state.themeReducer.dark);
 
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if (responsiveMenu) {
       document.body.style.overflow = 'hidden';
@@ -23,14 +28,19 @@ const NavBar = () => {
   }, [responsiveMenu]);
 
   const logoutUser = () => {
+    localStorage.removeItem('userByBd');
     logout();
     setProfileWindow(false);
+  };
+
+  const handleChangeTheme = () => {
+    dispatch(changeTheme(!dark));
   };
 
   return (
     <div className='Nav_topLanding'>
       <NavLink to={'/'} className='Nav_container_logo'>
-        <img className='nav_toplogo' src={logoTop} alt='logo' />
+        <img className='nav_toplogo' src={dark ? logoWhite : logoTop} alt='logo' />
       </NavLink>
 
       <div className='Nav_container_navbar'>
@@ -55,6 +65,11 @@ const NavBar = () => {
           <NavLink className='link-style' to='/'>
             <p className='nav_middle_button'>Home</p>
           </NavLink>
+          {isAuthenticated && (
+            <NavLink className='link-style' to='/foro'>
+              <p className='nav_middle_button'>Forum</p>
+            </NavLink>
+          )}
           <NavLink className='link-style' to='/shop'>
             <p className='nav_middle_button'>Shop</p>
           </NavLink>
@@ -66,6 +81,11 @@ const NavBar = () => {
               <p>Admin</p>
             </NavLink>
           )}
+          <div className='Nav_ThemeDiv' onClick={handleChangeTheme}>
+            <div className={dark ? 'Nav_Theme_moon' : 'Nav_theme_sun'}>
+              {dark ? <img src={moon} /> : <img src={sun} />}
+            </div>
+          </div>
 
           {isAuthenticated && (
             <div className='profile-div'>
@@ -73,7 +93,7 @@ const NavBar = () => {
                 onClick={() => setProfileWindow(!profileWindow)}
                 src={
                   isAuthenticated
-                    ? user?.picture
+                    ? userByBd.picture
                     : 'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg'
                 }
                 alt={'pic'}
@@ -96,6 +116,13 @@ const NavBar = () => {
       <div className={responsiveMenu ? 'nav_responsive_MENU' : 'nav_responsive_MENUClosed'}>
         <NavLink onClick={() => setResponsiveMenu(!responsiveMenu)} className='link-style' to='/'>
           <p className='nav_middle_button'>Home</p>
+        </NavLink>
+        <NavLink
+          onClick={() => setResponsiveMenu(!responsiveMenu)}
+          className='link-style'
+          to='/foro'
+        >
+          <p className='nav_middle_button'>Foro</p>
         </NavLink>
         <NavLink
           onClick={() => setResponsiveMenu(!responsiveMenu)}

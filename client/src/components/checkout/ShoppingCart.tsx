@@ -7,6 +7,8 @@ import {
   ProductCart,
   changeQuantity,
   deleteProduct,
+  emptyCar,
+  addProduct,
 } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -16,12 +18,34 @@ import FormControl from '@mui/material/FormControl';
 import ModalCart from './ModalCart';
 import { toast, Zoom } from 'react-toastify';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { productFetch } from '../../Redux/slice/product/ProductController';
+import { getProduct, ProductState } from '../../Redux/slice/product/product.slice';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
+
 const ShoppingCart = () => {
   const [total, setTotal] = useState(0);
+  const [checkoutOk, setCheckoutOk] = useState(true);
 
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
 
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
+
+  const products = useAppSelector((state) => state.productReducer.Products);
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -31,13 +55,51 @@ const ShoppingCart = () => {
     handleTotal();
   }, [productsInCart]);
 
+  useEffect(() => {
+    if (productsInCart.length) {
+      productFetch().then((res) => {
+        dispatch(getProduct(res));
+
+        const productsInCartUpdated: ProductCart[] = [];
+
+        res.forEach((product: ProductState) => {
+          if (
+            productsInCart.some((productInCart: ProductCart) => productInCart._id === product._id)
+          ) {
+            const productUpdated: ProductCart = {
+              _id: product._id,
+              name: product.name,
+              price: product.price,
+              brand: product.brand,
+              images: product.images,
+              categories: product.categories,
+              stock: product.stock,
+              quantity: 1,
+              inCart: true,
+            };
+
+            productsInCartUpdated.push(productUpdated);
+          }
+        });
+
+        if (productsInCartUpdated.length > 0) {
+          dispatch(addProduct(productsInCartUpdated));
+
+          if (productsInCartUpdated.some((product) => product.stock <= 0)) {
+            setCheckoutOk(false);
+          }
+        }
+      });
+    }
+  }, []);
+
   const handleSetQuantity = (e: SelectChangeEvent<number>, id: string) => {
     const quantity = Number(e.target.value);
     dispatch(changeQuantity({ id, quantity }));
   };
 
   const handleRemoveProduct = (id: string) => {
-    toast.success('Product removed', {
+    toast.error('Product removed from Cart', {
       position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
@@ -45,7 +107,7 @@ const ShoppingCart = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'light',
+      theme: 'colored',
       transition: Zoom,
     });
 
@@ -54,10 +116,29 @@ const ShoppingCart = () => {
 
   const handleTotal = () => {
     const total = productsInCart
-      .reduce((acc, product) => acc + product.quantity * product.price, 0)
+      .reduce((acc, product) => {
+        if (product.stock > 0) return acc + product.quantity * product.price;
+        return acc;
+      }, 0)
       .toFixed(2);
 
     setTotal(Number(total));
+  };
+
+  const renderStock = (stock: number) => {
+    const items = [];
+
+    if (stock > 5) stock = 5;
+
+    for (let i = 1; i <= stock; i++) {
+      items.push(
+        <MenuItem key={i} value={i}>
+          {i}
+        </MenuItem>,
+      );
+    }
+
+    return items;
   };
 
   return (
@@ -88,22 +169,25 @@ const ShoppingCart = () => {
                     <p className='ShoppingCart_brand'>Brand: {ele.brand}</p>
                   </div>
                   <div className='ShoppingCart_quantity-container'>
-                    <FormControl fullWidth>
-                      <InputLabel id='id_quantity'>Quantity</InputLabel>
-                      <Select
-                        labelId='id_quantity'
-                        id='demo-simple-select'
-                        value={ele.quantity}
-                        label='Quantity'
-                        onChange={(e) => handleSetQuantity(e, ele._id)}
-                      >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+                      <CssBaseline />
+                      {ele.stock > 0 ? (
+                        <FormControl fullWidth>
+                          <InputLabel id='id_quantity'>Quantity</InputLabel>
+                          <Select
+                            labelId='id_quantity'
+                            id='demo-simple-select'
+                            value={ele.quantity}
+                            label='Quantity'
+                            onChange={(e) => handleSetQuantity(e, ele._id)}
+                          >
+                            {renderStock(ele.stock)}
+                          </Select>
+                        </FormControl>
+                      ) : (
+                        <p>out of Stock</p>
+                      )}
+                    </ThemeProvider>
                   </div>
                   <div className='ShoppingCart_price'>
                     <p>${(ele.price * ele.quantity).toFixed(2)}</p>
@@ -138,7 +222,20 @@ const ShoppingCart = () => {
           </div>
           <div className='ShoppingCart_confirm-button'>
             <Link to={`/checkout`}>
-              <button>Checkout</button>
+              <button
+                disabled={!checkoutOk}
+                style={
+                  !checkoutOk
+                    ? {
+                        cursor: 'no-drop',
+                        color: 'rgba(20, 20, 20, 0.8)',
+                        backgroundColor: 'rgba(229, 229, 229, 1)',
+                      }
+                    : {}
+                }
+              >
+                Checkout
+              </button>
             </Link>
           </div>
         </div>

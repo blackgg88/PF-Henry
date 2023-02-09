@@ -67,15 +67,18 @@ export const getPayment = async (req: Request, res: Response) => {
 
     if (email) {
       response = await axios.get(
-        `https://api.mercadopago.com/v1/payments/search?external_reference=${email}`,
+        `https://api.mercadopago.com/v1/payments/search?sort=date_created&criteria=desc&external_reference=${email}&limit=300`,
         {
           headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
         },
       );
     } else {
-      response = await axios.get(`https://api.mercadopago.com/v1/payments/search`, {
-        headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
-      });
+      response = await axios.get(
+        `https://api.mercadopago.com/v1/payments/search?sort=date_created&criteria=desc&limit=200`,
+        {
+          headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
+        },
+      );
     }
 
     const payments = response.data.results.map((purchase: PurchaseByMP) => {

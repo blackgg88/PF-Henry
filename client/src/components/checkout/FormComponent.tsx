@@ -1,11 +1,27 @@
 import { useAppSelector, useAppDispatch } from '../../Redux/hook';
 import { emptyCar } from '../../Redux/slice/shoppingCart/shoppingCart.slice';
-import { TextField } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import { Formik, Form, Field } from 'formik';
 import { fetchMP, Values, Payer } from '../../../helpers/mercadopago/index';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
+
 const FormComponent: React.FC = () => {
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
+  const dark: boolean = useAppSelector((state) => state.themeReducer.dark);
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: Values) => {
@@ -66,44 +82,15 @@ const FormComponent: React.FC = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <div className='form_email-DNI'>
-                <div className='form_email'>
-                  <Field name='email'>
-                    {({ field }: any) => (
-                      <TextField
-                        {...field}
-                        type='email'
-                        label='email'
-                        variant='standard'
-                        name='email'
-                        error={Boolean(touched.email && errors.email)}
-                        helperText={touched.email && errors.email}
-                      />
-                    )}
-                  </Field>
-                </div>
-                <div className='form_DNI'>
-                  <Field name='DNI'>
-                    {({ field }: any) => (
-                      <TextField
-                        {...field}
-                        type='text'
-                        label='DNI'
-                        variant='standard'
-                        name='DNI'
-                        error={Boolean(touched.DNI && errors.DNI)}
-                        helperText={touched.DNI && errors.DNI}
-                      />
-                    )}
-                  </Field>
-                </div>
-              </div>
-              <div className='form_name'>
-                <div className='form_firstname'>
+              <h1 className='span2'>Checkout</h1>
+              <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+                <CssBaseline />
+                <div className='form_firstname input'>
                   <Field name='name'>
                     {({ field }: any) => (
                       <TextField
                         {...field}
+                        fullWidth
                         type='text'
                         label='firstname'
                         variant='standard'
@@ -114,11 +101,12 @@ const FormComponent: React.FC = () => {
                     )}
                   </Field>
                 </div>
-                <div className='form_lastname'>
+                <div className='form_lastname input'>
                   <Field name='surname'>
                     {({ field }: any) => (
                       <TextField
                         {...field}
+                        fullWidth
                         type='text'
                         label='lastname'
                         variant='standard'
@@ -129,9 +117,25 @@ const FormComponent: React.FC = () => {
                     )}
                   </Field>
                 </div>
-              </div>
-              <div>
-                <div className='form_street-name'>
+
+                <div className='form_email input span2'>
+                  <Field name='email'>
+                    {({ field }: any) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        type='email'
+                        label='email'
+                        variant='standard'
+                        name='email'
+                        error={Boolean(touched.email && errors.email)}
+                        helperText={touched.email && errors.email}
+                      />
+                    )}
+                  </Field>
+                </div>
+
+                <div className='form_street-name input span2'>
                   <Field name='street_name'>
                     {({ field }: any) => (
                       <TextField
@@ -147,40 +151,58 @@ const FormComponent: React.FC = () => {
                     )}
                   </Field>
                 </div>
-                <div className='form_street-zip'>
-                  <div className='form_street-number'>
-                    <Field name='street_number'>
-                      {({ field }: any) => (
-                        <TextField
-                          {...field}
-                          type='text'
-                          label='street number'
-                          variant='standard'
-                          name='street_number'
-                          error={Boolean(touched.street_number && errors.street_number)}
-                          helperText={touched.street_number && errors.street_number}
-                        />
-                      )}
-                    </Field>
-                  </div>
-                  <div className='form_street-zip-code'>
-                    <Field name='zip_code'>
-                      {({ field }: any) => (
-                        <TextField
-                          {...field}
-                          type='text'
-                          label='zip code'
-                          variant='standard'
-                          name='zip_code'
-                          error={Boolean(touched.zip_code && errors.zip_code)}
-                          helperText={touched.zip_code && errors.zip_code}
-                        />
-                      )}
-                    </Field>
-                  </div>
+
+                <div className='form_street-number input'>
+                  <Field name='street_number'>
+                    {({ field }: any) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        type='text'
+                        label='street number'
+                        variant='standard'
+                        name='street_number'
+                        error={Boolean(touched.street_number && errors.street_number)}
+                        helperText={touched.street_number && errors.street_number}
+                      />
+                    )}
+                  </Field>
                 </div>
-              </div>
-              <button type='submit'>Confirm</button>
+                <div className='form_street-zip-code input'>
+                  <Field name='zip_code'>
+                    {({ field }: any) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        type='text'
+                        label='zip code'
+                        variant='standard'
+                        name='zip_code'
+                        error={Boolean(touched.zip_code && errors.zip_code)}
+                        helperText={touched.zip_code && errors.zip_code}
+                      />
+                    )}
+                  </Field>
+                </div>
+
+                <div className='form_DNI input span2'>
+                  <Field name='DNI'>
+                    {({ field }: any) => (
+                      <TextField
+                        {...field}
+                        type='text'
+                        label='DNI'
+                        variant='standard'
+                        name='DNI'
+                        error={Boolean(touched.DNI && errors.DNI)}
+                        helperText={touched.DNI && errors.DNI}
+                      />
+                    )}
+                  </Field>
+                </div>
+              </ThemeProvider>
+
+              <Button type='submit'>Submit</Button>
             </Form>
           )}
         </Formik>

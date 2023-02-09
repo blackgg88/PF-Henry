@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  List,
-  Datagrid,
-  TextField,
-  EmailField,
-  EditButton,
-  DeleteButton,
-} from 'react-admin';
+import { List, Datagrid, TextField, EmailField, EditButton, DeleteButton } from 'react-admin';
 
 interface Props {
   id: string;
   userName: string;
   email: string;
+  isActive: boolean;
 }
 
 const UserList = (props: Props) => {
@@ -21,11 +15,12 @@ const UserList = (props: Props) => {
         <TextField source='_id' />
         <TextField source='userName' />
         <EmailField source='email' />
+        <TextField source='isActive' />
 
         {/* para que no tire errores le ponemos resource en vez de basePath */}
-        <EditButton resource='/users' />
+        <EditButton resource='users' />
 
-        <DeleteButton resource='/users' />
+        <DeleteButton resource='users' />
       </Datagrid>
     </List>
   );

@@ -21,8 +21,6 @@ const dataProvider = {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
     let url;
-    console.log(field, order);
-    console.log(resource);
     if (resource === 'purchases') {
       url = `${API_URL}/checkout`;
     } else {
@@ -38,9 +36,7 @@ const dataProvider = {
     const total = data.length;
 
     data = data.slice((page - 1) * perPage, page * perPage);
-
     if (resource === 'purchases') {
-      // console.log(data);
       data = data.map((purchase) => {
         return {
           id: purchase.id,
@@ -60,6 +56,15 @@ const dataProvider = {
           ...d,
           id: d._id,
           categories: d.categories.name,
+        };
+      });
+    } else if (resource === 'posts') {
+      data = data.map((d) => {
+        return {
+          ...d,
+          id: d._id,
+          author: d.author.username,
+          likes: d.likes.length,
         };
       });
     } else {
@@ -84,7 +89,7 @@ const dataProvider = {
     data = {
       data: {
         ...data,
-        id: data._id,
+        id: data.id,
       },
     };
     return data;
@@ -117,11 +122,13 @@ const dataProvider = {
     }));
   },
 
-  update: (resource, params) =>
+  update: (resource, params) => {
+    console.log(11);
     httpClient(`${API_URL}/${resource}/${params.id}`, {
       method: 'PUT',
       body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json })),
+    }).then(({ json }) => ({ data: json }));
+  },
 
   updateMany: (resource, params) => {
     const query = {

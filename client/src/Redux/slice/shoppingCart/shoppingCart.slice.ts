@@ -14,6 +14,8 @@ export interface ProductCart {
   categories: Category;
   stock: number;
   quantity: number;
+  // remove and add to cart button
+  inCart: boolean;
 }
 
 const initialState: {
@@ -30,11 +32,11 @@ export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState,
   reducers: {
-    addProduct: (state, action: PayloadAction<ProductCart>) => {
+    addProduct: (state, action: PayloadAction<ProductCart | ProductCart[]>) => {
       if (Array.isArray(action.payload)) {
         state.Products = action.payload;
       } else {
-        state.Products = [...state.Products, action.payload];
+        state.Products = [...state.Products, { ...action.payload, inCart: true }];
       }
 
       handleSaveLS(state.Products);

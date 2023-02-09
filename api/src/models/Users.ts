@@ -1,6 +1,7 @@
 import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
 import { Role, RoleEnum } from './Role';
 import { Post } from './Post';
+import { Comment } from './Comments';
 import { Product } from './Product';
 import { boolean } from 'webidl-conversions';
 
@@ -26,6 +27,9 @@ export class User {
   @prop({ type: String, trim: true })
   picture: string;
 
+  @prop({type: String, required: false, default: ''})
+  banner: string
+
   @prop({ type: Boolean, default: true })
   isActive: boolean;
 
@@ -34,6 +38,9 @@ export class User {
 
   @prop({ ref: () => Post })
   posts: Ref<Post>[];
+
+  @prop({ ref: () => Comment })
+  comments: Ref<Comment>[];
 
   //asignacion de rol al usuario ref hace referencia a la tabla roles donde hay 3 roles
 

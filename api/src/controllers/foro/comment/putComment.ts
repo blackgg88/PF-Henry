@@ -13,9 +13,9 @@ export const putComment = async (req: Request, res: Response) => {
           new: true,
         }
       )
-      res.json(comment)
+      return res.json(comment)
     } catch (error) {
-      res.status(400).json({
+      return res.status(400).json({
         message: `Error updating the comment: ${req.params.id}`,
         error,
       })

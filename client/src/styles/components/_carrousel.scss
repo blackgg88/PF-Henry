@@ -1,29 +1,25 @@
 $color-purple: #9892a7;
-$color-pink: #EC4899;
-$color-gray: #9CA3AF;
-$color-black: #1F2937;
+$color-pink: #ec4899;
+$color-gray: #9ca3af;
+$color-black: #1f2937;
 $card-size: 18rem;
-
 
 * {
   box-sizing: border-box;
-  //border: 1px solid red;
 }
 
 .carousel {
   position: relative;
   width: $card-size;
-  height: 25rem;
+  height: 400px;
   perspective: 500px;
   transform-style: preserve-3d;
 
-  @media (max-width:710px) {
+  @media (max-width: 710px) {
     width: 15rem;
-    height: 20.5rem;
+    height: 315px;
     .Carrousel_card-container {
-      //padding-bottom: 10px;
       .HomeCard_ImageContainer {
-        
         img {
           height: 100px;
         }
@@ -33,7 +29,6 @@ $card-size: 18rem;
       }
       .HomeCard_PriceContainer {
         font-size: 10px;
-        
       }
       .HomeCard_RatingContainer {
         img {
@@ -43,7 +38,7 @@ $card-size: 18rem;
       .HomeCard_AddCartButtonContainer {
         .Home_add-car-card-beta {
           height: 30px;
-          @media (max-width:420px) {
+          @media (max-width: 420px) {
             font-size: 10px;
             padding: 0;
           }
@@ -51,18 +46,14 @@ $card-size: 18rem;
       }
     }
   }
-
 }
 
 .Carrousel_card-container {
   position: absolute;
   width: 100%;
   height: 100%;
-  transform: 
-    rotateY(calc(var(--offset) * 50deg)) 
-    scaleY(calc(1 + var(--abs-offset) * -0.4))
-    translateZ(calc(var(--abs-offset) * -30rem))
-    translateX(calc(var(--direction) * -5rem));
+  transform: rotateY(calc(var(--offset) * 50deg)) scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -30rem)) translateX(calc(var(--direction) * -5rem));
   filter: blur(calc(var(--abs-offset) * 1rem));
   transition: all 0.3s ease-out;
 }
@@ -80,11 +71,15 @@ $card-size: 18rem;
   display: flex;
   flex-direction: column;
 
+  body.dark & {
+    background: $standard-color-black;
+  }
+
   .HomeCard_HeaderContainer {
     //background-color: #EC4899;
     display: flex;
     justify-content: center;
-    font-family: "Poiret One", cursive;;
+    font-family: 'Poiret One', cursive;
     position: relative;
     bottom: 15px;
     font-size: 20px;
@@ -103,30 +98,36 @@ $card-size: 18rem;
   .HomeCard_NameContainer {
     display: flex;
     width: 100%;
-    
+
     h1 {
-      font-family:  $standard-font-Barlow;
+      font-family: $standard-font-Barlow;
       margin-top: 5px;
       color: black;
       font-size: 14px;
       text-decoration: none;
       text-justify: auto;
-
+      body.dark & {
+        color: white;
+      }
     }
   }
-  
+
   .HomeCard_DescriptionContainer {
     display: flex;
     width: 100%;
-    font-family: "Quicksand", sans-serif;
+    font-family: 'Quicksand', sans-serif;
     color: black;
+
+    body.dark & {
+      color: white;
+    }
   }
 
   .HomeCard_RatingContainer {
     display: flex;
     align-items: center;
     margin-top: 10px;
-    
+
     img {
       width: 20px;
     }
@@ -135,42 +136,40 @@ $card-size: 18rem;
   .HomeCard_PriceContainer {
     display: flex;
     justify-content: flex-end;
-    font-family: "Urbanist", sans-serif;
+    font-family: 'Urbanist', sans-serif;
     color: black;
     font-size: 14px;
+
+    body.dark & {
+      color: white;
+    }
   }
 
   .HomeCard_AddCartButtonContainer {
-     //background-color: green;
-     height: 49px;
-     width: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
+    height: 49px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-     .Home_add-car-card-beta {
-         padding: 5px 25px;
-         border-radius: 20px;
-         background: rgb(191, 51, 186);
-         background: linear-gradient(90deg, rgba(191, 51, 186, 0.5) 0%, rgba(22, 9, 121, 0.5) 52%, rgba(0, 212, 255, 0.5) 100%);
-         font-family:$standard-font-Urbanis-sans-serif;
-         font-weight: 500;
-         color: $standard-color-white;
-         transition: background-color 0.3s;
-         cursor: pointer;
-         width: 90%;
-         height: 40px;
-         border: 0;
+    .Home_add-car-card-beta {
+      padding: 5px 25px;
+      border-radius: 20px;
+      background: $standard-color-blue;
+      font-family: $standard-font-Urbanis-sans-serif;
+      font-weight: 500;
+      color: $standard-color-white;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      width: 90%;
+      height: 40px;
+      border: 0;
 
-         &:hover{
-             background-color: rgb(191, 51, 186);
-         background-color: linear-gradient(90deg, rgba(191, 51, 186, 1) 0%, rgba(22, 9, 121, 1) 52%, rgba(0, 212, 255, 1) 100%);
-         
-         }
-     }
-
- }
-
+      &:hover {
+        background: $standard-color-blue-glass;
+      }
+    }
+  }
 
   h2 {
     text-align: center;
@@ -179,8 +178,9 @@ $card-size: 18rem;
     margin: 0 0 0.7em;
     color: $color-black;
   }
-  
-  p, h2 {
+
+  p,
+  h2 {
     transition: all 0.3s ease-out;
     opacity: var(--active);
   }
@@ -199,14 +199,13 @@ $card-size: 18rem;
   user-select: none;
   background: unset;
   border: unset;
-  
+
   &.left {
     transform: translateX(-100%) translatey(-50%);
   }
-  
+
   &.right {
     right: 0;
     transform: translateX(100%) translatey(-50%);
   }
 }
-

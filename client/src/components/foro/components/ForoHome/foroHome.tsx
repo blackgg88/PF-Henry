@@ -8,8 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Foro_Menu } from "../Foro_Menu/Foro_Menu";
 import { useRef, useState } from "react";
 import { foro_PanelHook } from "./hooks/foro_PanelHook";
-import scrollUp from "../../../../assets/images/buttons/arrow-up-2-svgrepo-com.svg";
-
+import ScrollUp from "../../../scrollUp/ScrollUp";
 //---------------
 
 export default function ForoHome() {
@@ -134,15 +133,7 @@ export default function ForoHome() {
                   category={post.category}
                 />
               ))}
-              <button
-                className='buttonUp'
-                onClick={scrollToTop}
-                style={{
-                  display: visible ? "inline" : "none",
-                }}
-              >
-                <img src={scrollUp} />
-              </button>
+              <ScrollUp refUse={foroRef}/>
             </>
           ) : (
             <img

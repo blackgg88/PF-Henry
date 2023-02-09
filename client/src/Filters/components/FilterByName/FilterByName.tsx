@@ -14,35 +14,35 @@ const FilterByName: React.FC<{}> = () => {
   ]: any = useFilterByName();
 
   return (
-    <form className='new-container-filterBy-c' onSubmit={handlerSubmit}>
-      <div className='input'>
+    <form className="new-container-filterBy-c" onSubmit={handlerSubmit}>
+      <div className="input">
         <input
-          className='input-filterByName'
-          type='text'
-          id='inputName'
+          className="input-filterByName"
+          type="text"
+          id="inputName"
           value={Filters.name}
-          placeholder='Search...'
-          onChange={e => handleName(e)}
+          placeholder="Search..."
+          onChange={(e) => handleName(e)}
         />
 
-        <button className='🔍' type='submit'>
-          <img className='img-btn' src={icon} alt='icon' />
+        <button className="🔍" type="submit">
+          <img className="img-btn" src={icon} alt="icon" />
         </button>
       </div>
 
       {showSuggestions && (
-        <select className='suggestions-dropdown'>
+        <select className="suggestions-dropdown">
           {suggestions.slice(0, 5).map((el: string) => (
             <Link
-              className='link'
+              className="link"
               to={`/product/${Product.find((p: any) => p.name === el)?._id}`}
             >
-              <div
-                className='suggestion-row'
+              <option
+                className="suggestion-row"
                 onClick={() => dispatch(getProductName(el))}
               >
                 {el.slice(0, 20)} ...
-              </div>
+              </option>
             </Link>
           ))}
         </select>

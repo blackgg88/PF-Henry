@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../../../config";
 
-import { Rating, Box } from "@mui/material";
+import { Rating, Box, Button } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
 //------------
@@ -12,6 +12,7 @@ import RateModal from "./RateModal";
 import ForumIcon from "@mui/icons-material/Forum";
 import { Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
+import { useAppSelector } from "../../Redux/hook";
 
 interface Props {
   id: string;
@@ -83,6 +84,14 @@ const Ratingcomp: React.FC<Props> = ({ id, ratingProp }) => {
     // console.log("rating: ", rating);
   }, [rating]);
 
+  const dark = useAppSelector((state) => state.themeReducer.dark);
+  let ColorFont = "rgba(20, 33, 66, 1)";
+  console.log(dark);
+  if (dark) {
+    ColorFont = "rgba(255, 255, 255, 1)";
+  } else {
+    ColorFont = "rgba(20, 33, 66, 1)";
+  }
   return (
     <div className="fb-comments-Rating">
       <form
@@ -112,24 +121,30 @@ const Ratingcomp: React.FC<Props> = ({ id, ratingProp }) => {
             }
           />
           {rating !== null && (
-            <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
+            <Box className="XXD" sx={{ ml: 2 }}>
+              {labels[hover !== -1 ? hover : rating]}
+            </Box>
           )}
 
           <div className="foro-comments-buttonSide">
             <button className="Rating-button-Submit" type="submit">
-              {" "}
               Rate
             </button>
-            <Link to={`/foro/profile/63dd4cdc15d4a80012819190`}>
-              <IconButton>
-                <ForumIcon />
-              </IconButton>
+            <Link
+              className="Rating-button-Submit"
+              to={`/foro/profile/63dd4cdc15d4a80012819190`}
+            >
+              <ForumIcon fontSize="small" />
+              Review
             </Link>
           </div>
         </div>
 
         <div className="foro-comments-bars">
-          <div className="foro-comments-bars-container-text">
+          <div
+            className="foro-comments-bars-container-text"
+            style={{ color: `${ColorFont}` }}
+          >
             <p>Excellent</p>
             <p>Good</p>
             <p>Average</p>
@@ -137,11 +152,24 @@ const Ratingcomp: React.FC<Props> = ({ id, ratingProp }) => {
             <p>Poor</p>
           </div>
           <div className="foro-comments-bars-container-bars">
-            <div className="foro-comments-excelent"></div>
-            <div className="foro-comments-Good"></div>
-            <div className="foro-comments-Average"></div>
-            <div className="foro-comments-BelowAverage"></div>
-            <div className="foro-comments-Poor"></div>
+            <div className="foro-comments-back">
+              <div className="foro-comments-excelent"></div>
+            </div>
+            <div className="foro-comments-back">
+              <div className="foro-comments-Good"></div>
+            </div>
+
+            <div className="foro-comments-back">
+              <div className="foro-comments-Average"></div>
+            </div>
+
+            <div className="foro-comments-back">
+              <div className="foro-comments-BelowAverage"></div>
+            </div>
+
+            <div className="foro-comments-back">
+              <div className="foro-comments-Poor"></div>
+            </div>
           </div>
         </div>
       </form>

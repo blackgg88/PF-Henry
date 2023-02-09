@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../Redux/hook";
-import { ProductState } from "../../Redux/slice/product/product.slice";
+import {
+  ProductState,
+  getProduct,
+} from "../../Redux/slice/product/product.slice";
 import { getProductId } from "../../Redux/slice/product/product.slice";
-import { productIdFetch } from "../../Redux/slice/product/ProductController";
+import {
+  productIdFetch,
+  productFetch,
+} from "../../Redux/slice/product/ProductController";
+//import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { SHARE_SOCIALMEDIA } from "../../../config";
 
 import Ratingcomp from "./Ratingcomp";
 import ShareIcon from "@mui/icons-material/Share";
-import FacebookCom from "./FacebookCom";
 
 import ForumIcon from "@mui/icons-material/Forum";
 
@@ -52,7 +59,7 @@ const Detail: React.FC<{}> = () => {
 
   // const currentPageUrl = window.location.href;
   // const currentPageUrl = `https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`
-  const currentPageUrl = `https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop${productDetail._id}`;
+  const currentPageUrl = `${SHARE_SOCIALMEDIA}${productDetail._id}`;
 
   //-----------------------> ADD TO CART BUTTON <-------------------------
 
@@ -105,12 +112,18 @@ const Detail: React.FC<{}> = () => {
   //console.log("ssssssssssssssssssss", relatedProduct);
 
   useEffect(() => {
+    productFetch().then((res) => {
+      dispatch(getProduct(res));
+    });
+  }, []);
+
+  useEffect(() => {
     productIdFetch(id).then((res) => {
       dispatch(getProductId(res));
       handleFilter(res);
       setPrincipalImage(res.images[0]);
     });
-  }, []);
+  }, [allProducts, id]);
 
   const handleSetImage = (image: string) => {
     setPrincipalImage(image);
@@ -134,6 +147,15 @@ const Detail: React.FC<{}> = () => {
   // rating:4.2
   // stock:17
   // _id:"63c6db802aaabb925fc78a56"
+
+  const dark = useAppSelector((state) => state.themeReducer.dark);
+  let ColorFont = "rgba(20, 33, 66, 1)";
+  console.log(dark);
+  if (dark) {
+    ColorFont = "rgba(255, 255, 255, 1)";
+  } else {
+    ColorFont = "rgba(20, 33, 66, 1)";
+  }
 
   return (
     <div className="detail-contain">
@@ -163,9 +185,7 @@ const Detail: React.FC<{}> = () => {
             </div>
           ))}
         </div>
-        <div>
-          <FacebookCom />
-        </div>
+
         <div className="imagen-principal-detail">
           <div className="principal-image">
             <img src={principalImage} alt={productDetail.name} />
@@ -243,13 +263,14 @@ const Detail: React.FC<{}> = () => {
                     </InstapaperShareButton>
                   </div>
                 </div>
+
                 {productDetail?.stock > 0 &&
                 !productsInCart.find((el) => el._id === productDetail._id) ? (
                   <div
                     className="add-car-card-beta"
                     onClick={() => handleAddCart(productDetail)}
                   >
-                    <p>add to Cart</p>
+                    <p>Add to Cart</p>
                   </div>
                 ) : productDetail.stock > 0 &&
                   productsInCart.find((el) => el._id === productDetail._id) ? (
@@ -269,7 +290,7 @@ const Detail: React.FC<{}> = () => {
                       fontWeight: "500",
                     }}
                   >
-                    out of Stock
+                    Out of Stock
                   </div>
                 )}
               </div>
@@ -277,7 +298,9 @@ const Detail: React.FC<{}> = () => {
           </div>
         </div>
       </div>
-      <div className="text-related-product">Related products</div>
+      <div className="text-related-product" style={{ color: `${ColorFont}` }}>
+        Related products
+      </div>
       <div className="section-description">
         <div className="detail-detail">
           {relatedProduct?.map((product) => (
@@ -291,9 +314,8 @@ const Detail: React.FC<{}> = () => {
                 backgroundPosition: "center",
               }}
             >
-              {/* 
-              <img src={product.images[0]} alt={product.name[0]} />
-            */}
+              {/* {  <img src={product.images[0]} alt={product.name[0]} />} */}
+
               <p className="detail_product-name">{product.name}</p>
             </Link>
           ))}
@@ -301,7 +323,7 @@ const Detail: React.FC<{}> = () => {
       </div>
 
       <div className="comments-section">
-        <div className="comments-box">
+        {/* <div className="comments-box">
           <div
             className="fb-comments"
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
@@ -312,13 +334,14 @@ const Detail: React.FC<{}> = () => {
             className="fb-comments-count"
             data-href={`https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`}
           ></span>
-        </div>
+        </div> */}
         <div className="fb-comments-buttonSide">
           <div className="other-box">
             <div className="fb-comments-Title">
-              <p>Rate and review this product</p>
+              <p style={{ color: `${ColorFont}` }}>
+                Rate and review this product
+              </p>
             </div>
-
             <Ratingcomp
               ratingProp={Number(productDetail.rating.toFixed(2))}
               id={productDetail._id}

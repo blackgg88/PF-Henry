@@ -5,13 +5,13 @@ export default function Foro_navbar() {
     <>
       <img src={logo} />
       <div>
-        <label htmlFor=''>searchbar</label>
-        <input type='text' />
+        <label htmlFor="">Search bar</label>
+        <input type="text" />
       </div>
       <div>
         <button>Create post</button>
       </div>
-      <div>user info</div>
+      <div>User info</div>
     </>
   );
 }

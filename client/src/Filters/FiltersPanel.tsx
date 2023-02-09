@@ -13,6 +13,8 @@ import filterName from "../assets/images/icons/filter/filterName.png";
 import filterRating from "../assets/images/icons/filter/filterRating.png";
 import filterPrice from "../assets/images/icons/filter/filterPrice.png";
 import filterCategory from "../assets/images/icons/filter/filterCategory.png";
+import filterOrder from "../assets/images/icons/filter/filterOrder.png";
+
 import filterSpace from "../assets/images/icons/filter/filterSpace.png";
 import Sorters from "./components/sorters/Sorters";
 import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore";
@@ -42,7 +44,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <div className="hovr-selector"></div>
         <img className="img" src={filterName} alt="" />
         <div className="block-filter">
-          <h2 className="title-filter">Filter by Name:</h2>
+          <h2 className="title-filter">Search by Name</h2>
           <FilterByName />
         </div>
       </div>
@@ -76,7 +78,7 @@ const FiltersPanel: React.FC<{}> = () => {
 
       <div className="section-filter">
         <div className="hovr-selector"></div>
-        <img className="img" src={filterCategory} alt="" />
+        <img className="img" src={filterOrder} alt="" />
         <div className="block-filter">
           <h2 className="title-filter">Order</h2>
           <FilterOrder />
@@ -87,7 +89,7 @@ const FiltersPanel: React.FC<{}> = () => {
         <img className="img" src={filterSpace} alt="" />
         <div className="block-filter">
           <button className="btn-selector-filter" onClick={handleFilter}>
-            Filtrar
+            Apply
           </button>
           <button className="btn-selector-filter" onClick={resetFiltersHandler}>
             <RefreshIcon />

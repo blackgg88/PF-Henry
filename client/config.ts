@@ -7,3 +7,4 @@ export const NEWS_API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 export const API_URL = import.meta.env.VITE_API_URL;
 export const VITE_CLIENT_URL = import.meta.env.VITE_CLIENT_URL;
+export const SHARE_SOCIALMEDIA = import.meta.env.VITE_SHARE_SOCIALMEDIA;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from "react";
 import { NavLink } from 'react-router-dom';
 import { Foro_Menu } from '../Foro_Menu/Foro_Menu';
 import { Foro_card } from '../Foro_card';
@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from '../../../../Redux/hook';
 import { useForoHome } from '../ForoHome/hooks/useForoHome';
 import { userInterface } from '../../../../Redux/slice/user/user.slice';
 import { changePicture } from '../../../../Redux/slice/user/user.slice';
+import ScrollUp from "../../../scrollUp/ScrollUp";
 
 //--- ICON --------
 import defaultBanne from '../../../../assets/images/SmartBackground.jpg';
@@ -48,25 +49,27 @@ interface iOtherUser {
 
 export const Foro_Profile = () => {
   const [User, setUser] = useState<UserProfile>({
-    _id: '',
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
+    _id: "",
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
     comments: [],
-    picture: '',
-    banner: '',
+    picture: "",
+    banner: "",
     posts: [],
-    role: '',
+    role: "",
   });
   const [refresh, setRefresh] = useState<boolean>(false);
   const [postByUser, setPostByUser] = useState([]);
-  const [bannerChange, setBannerChange] = useState<string>('');
-  const [imageChange, setImageChange] = useState<string>('');
+  const [bannerChange, setBannerChange] = useState<string>("");
+  const [imageChange, setImageChange] = useState<string>("");
   const [onLoadPost, setOnLoadPost] = useState<boolean>(false);
   const [otherUsers, setOthersUsers] = useState<iOtherUser[]>([]);
   const { id } = useParams();
-  const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
+  const userByBd: userInterface = useAppSelector(
+    state => state.userReducer.userState
+  );
   const dispatch = useAppDispatch();
 
   // Hook
@@ -104,19 +107,29 @@ export const Foro_Profile = () => {
     },
   ]: any = useForoHome();
 
+  const ref = useRef<HTMLDivElement>(null);
+
   // GET User information
   useEffect(() => {
     if (id) {
-      UserByID(id).then((res) => {
+      UserByID(id).then(res => {
         setUser(res);
       });
     }
-  }, [refresh, addLike, addPost, addEdit, addComment, imageChange, bannerChange]);
+  }, [
+    refresh,
+    addLike,
+    addPost,
+    addEdit,
+    addComment,
+    imageChange,
+    bannerChange,
+  ]);
 
   // GET Post user
   useEffect(() => {
     if (User.email) {
-      getAllPostUser(User.email).then((res) => {
+      getAllPostUser(User.email).then(res => {
         setPostByUser(res);
         setOnLoadPost(true);
       });
@@ -127,16 +140,16 @@ export const Foro_Profile = () => {
   useEffect(() => {
     if (bannerChange) {
       putProfileBanner(userByBd.email, bannerChange)
-        .then((res) => res.json)
-        .then((res) => {
+        .then(res => res.json)
+        .then(res => {
           notification.fire({
-            icon: 'success',
-            title: 'You have changed your Banner picture',
+            icon: "success",
+            title: "You have changed your Banner picture",
           });
         });
       dispatch(changePicture({ banner: bannerChange }));
       setRefresh(!refresh);
-      setBannerChange('');
+      setBannerChange("");
     }
   }, [bannerChange]);
 
@@ -144,21 +157,21 @@ export const Foro_Profile = () => {
   useEffect(() => {
     if (imageChange) {
       putProfilePicture(userByBd.email, imageChange)
-        .then((res) => res.json())
-        .then((res) => {
+        .then(res => res.json())
+        .then(res => {
           notification.fire({
-            icon: 'success',
-            title: 'You have changed your profile picture',
+            icon: "success",
+            title: "You have changed your profile picture",
           });
         });
       dispatch(changePicture({ picture: imageChange }));
       setRefresh(!refresh);
-      setImageChange('');
+      setImageChange("");
     }
   }, [imageChange]);
 
   useEffect(() => {
-    getFormatedUsers().then((res) => {
+    getFormatedUsers().then(res => {
       setOthersUsers(res);
     });
   }, []);
@@ -166,24 +179,24 @@ export const Foro_Profile = () => {
   const changeUser = (e: any) => {
     setPostByUser([]);
     setUser({
-      _id: '',
-      firstName: '',
-      lastName: '',
-      username: '',
-      email: '',
+      _id: "",
+      firstName: "",
+      lastName: "",
+      username: "",
+      email: "",
       comments: [],
-      picture: '',
-      banner: '',
+      picture: "",
+      banner: "",
       posts: [],
-      role: '',
+      role: "",
     });
     setOnLoadPost(false);
 
-    getAllPostUser(e.target.id).then((res) => {
+    getAllPostUser(e.target.id).then(res => {
       setPostByUser(res);
       setOnLoadPost(true);
     });
-    getUserByEmail(e.target.id).then((res) => {
+    getUserByEmail(e.target.id).then(res => {
       setUser(res);
     });
   };
@@ -199,34 +212,43 @@ export const Foro_Profile = () => {
       />
 
       <div className='FORO_PROFILE'>
-        <div className='Foro_Profile_PostSide'>
+        <div className='Foro_Profile_PostSide' ref={ref}>
           <div className='Foro_Profile_Container'>
             <div className='Foro_Profile_Banner_PicturesSide'>
               {userByBd._id == id && (
-                <label htmlFor='file-input' className='Modal_custom-file-upload'>
+                <label
+                  htmlFor='file-input'
+                  className='Modal_custom-file-upload'
+                >
                   <img className='editButton' src={edit} alt='edit' />
                 </label>
               )}
               <input
-                onChange={(e) => uploadImage(e, setBannerChange)}
+                onChange={e => uploadImage(e, setBannerChange)}
                 className='Foro_Baner_Input'
                 id='file-input'
                 type='file'
               ></input>
               {userByBd._id == id && (
-                <label htmlFor='profile-input' className='Modal_custom-file-upload'>
+                <label
+                  htmlFor='profile-input'
+                  className='Modal_custom-file-upload'
+                >
                   <img className='editProfilePicButton' src={edit} alt='edit' />
                 </label>
               )}
               <input
-                onChange={(e) => uploadImage(e, setImageChange)}
+                onChange={e => uploadImage(e, setImageChange)}
                 className='Foro_Baner_Input'
                 id='profile-input'
                 type='file'
               ></input>
-              <img src={User.banner ? User.banner : defaultBanne} alt='banner' />
               <img
-                className={User.picture ? 'profilePic' : 'profilePicDefault'}
+                src={User.banner ? User.banner : defaultBanne}
+                alt='banner'
+              />
+              <img
+                className={User.picture ? "profilePic" : "profilePicDefault"}
                 src={User.picture ? User.picture : logoDiscord}
                 alt='profilePic'
               />
@@ -241,7 +263,9 @@ export const Foro_Profile = () => {
                 </h1>
               )}
               {User.firstName && <p>{User.username}</p>}
-              {!User.firstName && <h1 className='Foro_Profile_NameDefault'>{User.username}</h1>}
+              {!User.firstName && (
+                <h1 className='Foro_Profile_NameDefault'>{User.username}</h1>
+              )}
             </div>
 
             <div className='Foro_Profile_ContentSide'>
@@ -292,6 +316,7 @@ export const Foro_Profile = () => {
               <p>{User.username} has not published any post yet</p>
             </div>
           )}
+          <ScrollUp refUse={ref} />
         </div>
 
         <div className='foro_profile_UserListContainer'>
@@ -299,7 +324,7 @@ export const Foro_Profile = () => {
             <h3>Most active users</h3>
           </div>
           <div className='foro_profile_UserList_Content'>
-            {otherUsers.map((user) => {
+            {otherUsers.map(user => {
               return (
                 <NavLink
                   id={user.email}
@@ -308,10 +333,16 @@ export const Foro_Profile = () => {
                   to={`/foro/profile/${user._id}`}
                   className='foro_profile_UserList_Container'
                 >
-                  <div id={user.email} className='foro_profile_UserList_ImgSide'>
+                  <div
+                    id={user.email}
+                    className='foro_profile_UserList_ImgSide'
+                  >
                     <img id={user.email} src={user.picture} />
                   </div>
-                  <div id={user.email} className='foro_profile_UserList_NameSide'>
+                  <div
+                    id={user.email}
+                    className='foro_profile_UserList_NameSide'
+                  >
                     <p id={user.email}> {user.username}</p>
                   </div>
                 </NavLink>

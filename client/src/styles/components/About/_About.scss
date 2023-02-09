@@ -3,7 +3,6 @@
   flex-direction: column;
   padding-top: 30px;
   align-items: center;
-  //background-color: $standard-background;
   width: 100%;
   min-height: 80vh;
   font-family: $standard-font-Poiret-One;
@@ -133,17 +132,18 @@
         }
 
         .About_PictureSide {
-          //background-color: grey;
           height: 150px;
           padding: 10px;
           display: flex;
           justify-content: center;
           margin-top: 10px;
+
           img {
             border-radius: 100%;
             width: 150px;
             height: 150px;
             z-index: 2;
+            object-fit: cover;
           }
         }
 

@@ -164,9 +164,7 @@ const Detail: React.FC<{}> = () => {
             </div>
           ))}
         </div>
-        <div>
-          <FacebookCom />
-        </div>
+        <div>{/* <FacebookCom /> */}</div>
         <div className='imagen-principal-detail'>
           <div className='principal-image'>
             <img src={principalImage} alt={productDetail.name} />
@@ -213,7 +211,7 @@ const Detail: React.FC<{}> = () => {
                   <span>
                     Share <ShareIcon />
                   </span>
-                  <div className='container-share'>
+                  {/* <div className='container-share'>
                     <FacebookShareButton url={currentPageUrl}>
                       <i className='facebook'>
                         <FacebookIcon size={32} round={true} />
@@ -234,7 +232,7 @@ const Detail: React.FC<{}> = () => {
                         <InstapaperIcon size={32} round={true} />
                       </i>
                     </InstapaperShareButton>
-                  </div>
+                  </div> */}
                 </div>
                 {productDetail?.stock > 0 &&
                 !productsInCart.find((el) => el._id === productDetail._id) ? (

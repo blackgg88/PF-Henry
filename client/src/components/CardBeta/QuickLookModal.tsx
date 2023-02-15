@@ -95,8 +95,13 @@ const QuickLookModal: React.FC<Props> = ({
               <div className='product-price'>$ {priceFormat(product.price)}</div>
               <div className='product-rating'>
                 <div className='rating'>
-                  <Rating className='star-rating' value={product.rating} precision={0.1} readOnly />
-                  <div className='value-raing'>{product.rating}</div>
+                  <Rating
+                    className='star-rating'
+                    value={Number(product.rating.toFixed(2))}
+                    precision={0.1}
+                    readOnly
+                  />
+                  <div className='value-raing'>{Number(product.rating.toFixed(2))}</div>
                 </div>
 
                 <div className='details2'>

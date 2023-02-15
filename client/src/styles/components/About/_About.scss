@@ -6,6 +6,9 @@
   width: 100%;
   min-height: 80vh;
   font-family: $standard-font-Poiret-One;
+  @media (max-width: 610px) {
+    overflow: hidden;
+  }
 
   .About_AboutSide {
     display: flex;
@@ -23,6 +26,14 @@
       display: flex;
       margin-top: 15px;
       justify-content: space-around;
+      @media (max-width: 950px) {
+        flex-direction: column;
+      }
+
+      @media (max-width: 610px) {
+        //background-color: red;
+        flex-direction: column;
+      }
 
       .About_AboutIMG {
         width: 500px;
@@ -34,9 +45,24 @@
         justify-content: center;
         align-items: center;
         padding: 30px;
+
+        @media (max-width: 610px) {
+          width: 100%;
+          height: auto;
+          //background-color: green;
+        }
+
         p {
           text-align: justify;
           font-family: $standard-font-Hanken-Grotesk;
+          @media (max-width: 610px) {
+            width: 88%;
+            word-break: keep-all;
+          }
+
+          @media (max-width: 390px) {
+            width: 70%;
+          }
         }
       }
     }

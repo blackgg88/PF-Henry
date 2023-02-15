@@ -131,7 +131,6 @@
           color: $standard-color-blue;
           height: 25%;
           max-width: 100%;
-          
 
           body.dark & {
             color: white;
@@ -160,7 +159,7 @@
               font-size: 0.9rem;
               font-weight: 300;
             }
-            
+
             body.dark & {
               color: rgba(255, 255, 255, 0.795);
             }
@@ -240,7 +239,6 @@
                 text-align: center;
                 padding: 2px 8px;
                 border-radius: 15px;
-                
 
                 body.dark & {
                   color: rgba(255, 255, 255, 0.795);
@@ -271,7 +269,7 @@
               font-size: 2.5rem;
               //background-color: aqua;
             }
-            
+
             body.dark & {
               color: rgba(255, 255, 255, 0.795);
             }
@@ -303,6 +301,10 @@
               will-change: transform;
               -webkit-transition: all 0.2s ease-in-out;
               transition: all 0.2s ease-in-out;
+
+              body.dark & {
+                background-color: $standard-color-blue-light;
+              }
 
               &:hover {
                 /* transition-delay: .4s; */
@@ -477,12 +479,10 @@
           bottom: 0%;
           transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
         }
-
       }
     }
   }
 }
-
 
 .comments-section {
   //background-color: blue;
@@ -504,10 +504,10 @@
 
       .fb-comments-Title {
         background-color: $standard-color-blue;
-        font-family: "Poiret One", cursive;
+        font-family: 'Poiret One', cursive;
         width: 100%;
-      
-        p{
+
+        p {
           margin: 0;
           color: white;
         }
@@ -520,7 +520,7 @@
         padding-bottom: 20px;
         //background-color: blue;
         width: 100%;
-        
+
         .foro-comments-form {
           display: flex;
           width: 100%;
@@ -529,9 +529,8 @@
 
           .foro-comments-stars {
             //background-color: red;
-            
+
             width: 250px;
-            
           }
 
           .foro-comments-bars {
@@ -545,7 +544,7 @@
                 font-size: 15.7px;
               }
             }
-            
+
             .foro-comments-bars-container-bars {
               display: flex;
               flex-direction: column;
@@ -592,7 +591,7 @@
             //background-color: blue;
             width: 100%;
             margin-top: 15px;
-  
+
             .Rating-button-Submit {
               padding-top: 10px;
               padding: 4px 35px;
@@ -602,14 +601,12 @@
               border: none;
               font-size: 20px;
               cursor: pointer;
-              font-family: "Poiret One", cursive;
+              font-family: 'Poiret One', cursive;
               margin-right: 10px;
             }
           }
         }
-
       }
-      
     }
   }
 }

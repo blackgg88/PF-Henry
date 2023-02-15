@@ -1,10 +1,7 @@
 .foro_home_container {
   display: flex;
   justify-content: space-between;
-  height: calc(
-    100vh - $navbar-height - $navbar-height-maring-top -
-      $navbar-height-maring-button
-  );
+  height: calc(100vh - $navbar-height - $navbar-height-maring-top - $navbar-height-maring-button);
   background-color: #dae0e6;
   overflow: hidden;
   width: 100%;
@@ -41,11 +38,11 @@
       border-radius: 10px;
 
       .buttonUp {
-        appearance:inherit;
+        appearance: inherit;
         position: fixed;
         width: 50px;
         height: 50px;
-        background-color: rgba(20, 33, 66, .85);
+        background-color: rgba(20, 33, 66, 0.85);
         backdrop-filter: blur(2px);
         bottom: 20px;
         right: 20px;
@@ -218,6 +215,24 @@
             }
           }
 
+          button {
+            border: none;
+            font-size: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 8px 20px;
+            background-color: $standard-color-blue;
+            color: white;
+            border: 1px solid white;
+            transition: all 0.2s ease;
+            &:disabled {
+              transition: all 0.2s ease;
+              cursor: not-allowed;
+              background-color: white;
+              border: 1px solid #e63946;
+              color: #e63946;
+            }
+          }
         }
       }
 

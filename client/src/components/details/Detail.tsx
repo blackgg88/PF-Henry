@@ -48,7 +48,7 @@ const Detail: React.FC<{}> = () => {
 
   // const currentPageUrl = window.location.href;
   // const currentPageUrl = `https://henry-pf-smartnest.netlify.app/product/${productDetail._id}`
-  const currentPageUrl = `https://dev--kaleidoscopic-tarsier-9d0a45.netlify.app/shop${productDetail._id}`;
+  const currentPageUrl = `https://smartnest-pf.netlify.app//shop${productDetail._id}`;
 
   //-----------------------> ADD TO CART BUTTON <-------------------------
 
@@ -164,9 +164,7 @@ const Detail: React.FC<{}> = () => {
             </div>
           ))}
         </div>
-        <div>
-          <FacebookCom />
-        </div>
+        <div>{/* <FacebookCom /> */}</div>
         <div className='imagen-principal-detail'>
           <div className='principal-image'>
             <img src={principalImage} alt={productDetail.name} />

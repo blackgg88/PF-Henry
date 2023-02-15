@@ -10,7 +10,8 @@ export const team = [
     name: 'Federico Arrascaeta',
     linkedin: 'https://www.linkedin.com/in/arrascaetaf/',
     github: 'https://github.com/ArrascaetaFedericoIgnacio',
-    picture: 'https://asset.cloudinary.com/dgz6pvzdx/f54291dec115392b524fd833ececc7c8',
+    picture:
+      'https://res.cloudinary.com/dgz6pvzdx/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1675880259/1660007790054_w9ywbk.jpg',
   },
   {
     name: 'Saul Paredes',

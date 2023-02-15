@@ -6,22 +6,29 @@
   width: 100%;
   background-color: $standard-color-white;
   display: flex;
-  overflow: hidden;
 
   body.dark & {
     background: $standard-color-black-ligth;
   }
 
+  @media (max-width: 768px) {
+    height: auto;
+  }
+
   @media (max-width: 610px) {
-    height: calc(100vh - $navbar-height - $footer-height);
+    // height: auto;
   }
 
   .shop-contain {
     width: 100%;
-    height: 100%;
+    // min-height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   .breadcrumb {
@@ -29,5 +36,17 @@
     width: 100%;
     height: auto;
     padding: 10px;
+  }
+
+  .buttonUp {
+    bottom: 80px;
+    // right: 20px;
+
+    @media (max-width: 900px) {
+      //   left: 50%;
+      //   bottom: 120px;
+      bottom: 80px;
+      right: 20px;
+    }
   }
 }

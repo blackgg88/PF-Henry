@@ -4,32 +4,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border-radius: 15px;
   background-color: $standard-color-blue-light;
+  overflow: hidden;
+  overflow-y: auto;
+
+  // ::-webkit-scrollbar {
+  //   width: 3px;
+  // }
+  // ::-webkit-scrollbar-thumb {
+  //   background-color: rgb(20, 33, 66);
+  // }
 
   body.dark & {
     background: $standard-color-black-ligth;
   }
   .container-card-beta {
     padding: 20px;
-    height: 100%;
+    // min-height: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, 360px);
     gap: 20px;
     overflow: hidden;
     overflow-y: auto;
 
     @media (max-width: 1280px) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, 360px);
     }
 
-    @media (max-width: 960px) {
-      grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, 260px);
     }
 
     @media (max-width: 610px) {
-      grid-template-columns: 1fr;
-      width: 100%;
+      grid-template-columns: repeat(auto-fill, 100%);
     }
 
     .product-card-beta {
@@ -47,11 +59,11 @@
         background: $standard-color-black;
       }
 
-      @media (max-width: 450px) {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-      }
+      // @media (max-width: 450px) {
+      //   display: flex;
+      //   flex-direction: column;
+      //   width: 100%;
+      // }
 
       .header-card-beta {
         width: 100%;
@@ -136,6 +148,8 @@
           font-family: $standard-font-Outfit-sans-serif;
           font-weight: 600;
           color: $standard-color-blue;
+          white-space: nowrap;
+          overflow: hidden;
 
           body.dark & {
             color: white;
@@ -250,7 +264,6 @@
     }
   }
 }
-
 
 .quickLook_eye {
   width: 20px;

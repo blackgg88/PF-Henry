@@ -60,11 +60,16 @@ export const Dashboard = () => {
           <p>{purchasesCount}</p>
         </Card>
       </CardContent>
-
+      
       <div className='main_graphics'>
-        <div className='PieChart'>
-          <ResponsiveContainer>
-            <ComposedChart data={payments}>
+        <div className='primerDiv'>
+          <div className='ComposedChart'>
+            <h2>Total sales per day:</h2>
+            <ComposedChart
+              width={1000}
+              height={400}
+              data={payments}
+            >
               <XAxis dataKey='date' />
               <YAxis />
               <Tooltip />
@@ -72,35 +77,35 @@ export const Dashboard = () => {
               <CartesianGrid stroke='#f5f5f5' />
               <Bar dataKey='TotalSales' barSize={20} fill='#413ea0' />
             </ComposedChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className='ComposedChart'>
-          <ResponsiveContainer>
-            <PieChart className='PieChart_graphic'>
-                <Pie
-                  data={CategoryQuantity}
-                  fill='#8884d8'
-                  dataKey='quantity'
-                  className='pie'
-                >
-                  {CategoryQuantity.map((entry: any, index: any) => (
-                    <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend
-                  align='right'
-                  layout='vertical'
-                  verticalAlign='middle'
-                />
+          </div>
+          <div className='PieChart'>
+            <h2>Products by category:</h2>
+            <PieChart width={500} height={330} className='PieChart_graphic'>
+              <Pie
+                data={CategoryQuantity}
+                cx={200}
+                cy={200}
+                innerRadius={40}
+                outerRadius={80}
+                fill='#8884d8'
+                dataKey='quantity'
+                className='pie'
+              >
+                {CategoryQuantity.map((entry: any, index: any) => (
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend align='right' layout='vertical' verticalAlign='middle' height={80} width={200} />
             </PieChart>
-          </ResponsiveContainer>
-        </div>
+          </div>
 
-        <div className='AreaChart'>
-          <ResponsiveContainer>
-            <AreaChart data={payments}>
+        </div>
+        
+        <div className='segundoDiv'>
+          <div className='AreaChart'>
+            <h2>Products sold per day:</h2>
+            <AreaChart width={1500} height={400} data={payments} >
               <CartesianGrid strokeDasharray='8 8' />
               <XAxis dataKey='date' />
               <YAxis />
@@ -112,7 +117,7 @@ export const Dashboard = () => {
                 fill='#8884d8'
               />
             </AreaChart>
-          </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </Card>

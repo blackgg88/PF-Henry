@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Rating } from '@mui/material';
 import { toast, Zoom } from 'react-toastify';
@@ -25,19 +25,18 @@ import favoriteUnset_w from '../../assets/images/icons/favorite/favorite_w.png';
 import favoriteSet_w from '../../assets/images/icons/favorite/favorite_b.png';
 import AddFavoritesModal from './AddFavoritesModal';
 
+import ScrollUp from "../scrollUp/ScrollUp";
+
 const CardBeta: React.FC<{}> = () => {
   const Allproduct: ProductState[] = useAppSelector((state) => state.productReducer.Products);
   const productsInCart = useAppSelector((state) => state.cartReducer.Products);
   const userByBd: userInterface = useAppSelector((state) => state.userReducer.userState);
   const [getFavorites, setGetFavorites] = useState<ProductState[]>([]);
 
-  const AllproductLength = Allproduct.reduce((acc, product) => {
-    if (product.isActive) return acc + 1;
-
-    return acc;
-  }, 0);
-
   const filters: FilterState = useAppSelector((state) => state.productReducer.Filters);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const refMovile = useRef<HTMLDivElement>(null);
 
   const dispatch = useAppDispatch();
 
@@ -208,98 +207,127 @@ const CardBeta: React.FC<{}> = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className='container-render-card-v-beta'>
-      <div className='container-card-beta'>
-        {currentItems?.map((product) => {
-          if (product.isActive) {
-            let iconFavorite = dark ? outLike : outLikeBlue;
+    <div className='container-render-card-v-beta' >
+      <div className='container-card-beta' ref={ref}>
+        {currentItems?.map(product => {
+          let iconFavorite = dark ? outLike : outLikeBlue;
 
-            getFavorites.map((favorite) => {
-              if (favorite._id === product._id) {
-                iconFavorite = dark ? onLike : onLikeBlue;
-              }
-            });
+          getFavorites.map(favorite => {
+            if (favorite._id === product._id) {
+              iconFavorite = dark ? onLike : onLikeBlue;
+            }
+          });
 
-            return (
-              <div key={product._id} className='product-card-beta'>
-                <div className='header-card-beta'>
-                  <div className='container-favorite' onClick={() => handleToggleFavorite(product)}>
-                    <img src={iconFavorite} alt={iconFavorite} />
-                  </div>
+          return (
+            <div key={product._id} className='product-card-beta'>
+              <div className='header-card-beta'>
+                <div
+                  className='container-favorite'
+                  onClick={() => handleToggleFavorite(product)}
+                >
+                  <img src={iconFavorite} alt={iconFavorite} />
+                </div>
 
-                  <QuickLookModal
-                    product={product}
-                    handleAddCart={handleAddCart}
-                    // handleRemoveCart={handleRemoveCart}
-                    priceFormat={priceFormat}
+                <QuickLookModal
+                  product={product}
+                  handleAddCart={handleAddCart}
+                  // handleRemoveCart={handleRemoveCart}
+                  priceFormat={priceFormat}
 
-                    // handleCloseModal={handleCloseModal}
-                    // showModal={showModal}
+                  // handleCloseModal={handleCloseModal}
+                  // showModal={showModal}
+                />
+              </div>
+
+              <div className='content-image-card-beta'>
+                <Link
+                  className='link-image-card'
+                  to={`/product/${product._id}`}
+                >
+                  <img
+                    className='image-card'
+                    src={product.images[0]}
+                    alt='image'
+                  />
+                </Link>
+              </div>
+
+              <div className='content-title-description-card-beta'>
+                <h3 className='product-name-card-beta'>
+                  {product.name.substring(0, 25)}...
+                </h3>
+
+                <p className='product-description-card-beta'>
+                  {product.description.substring(0, 57)}...
+                </p>
+              </div>
+
+              <div className='content-value-rating-card-beta'>
+                <div className='content-rating-card-beta'>
+                  <Rating
+                    size='small'
+                    value={product.rating}
+                    precision={0.5}
+                    readOnly
                   />
                 </div>
 
-                <div className='content-image-card-beta'>
-                  <Link className='link-image-card' to={`/product/${product._id}`}>
-                    <img className='image-card' src={product.images[0]} alt='image' />
-                  </Link>
-                </div>
-
-                <div className='content-title-description-card-beta'>
-                  <h3 className='product-name-card-beta'>{product.name.substring(0, 25)}...</h3>
-
-                  <p className='product-description-card-beta'>
-                    {product.description.substring(0, 57)}...
-                  </p>
-                </div>
-
-                <div className='content-value-rating-card-beta'>
-                  <div className='content-rating-card-beta'>
-                    <Rating size='small' value={product.rating} precision={0.5} readOnly />
-                  </div>
-
-                  <div className='content-value-card-beta'>
-                    <h4 className='price2'>$ {priceFormat(product.price)}</h4>
-                  </div>
-                </div>
-
-                <div className='content-add-car-card-beta'>
-                  {product.stock > 0 && !productsInCart.find((el) => el._id === product._id) ? (
-                    <div className='add-car-card-beta' onClick={() => handleAddCart(product)}>
-                      <p>Add to Cart</p>
-                    </div>
-                  ) : product.stock > 0 && productsInCart.find((el) => el._id === product._id) ? (
-                    <div className='add-car-card-beta' onClick={() => handleRemoveCart(product)}>
-                      <p>Remove</p>
-                    </div>
-                  ) : (
-                    <div
-                      className='add-car-card-beta'
-                      style={{
-                        color: 'rgba(20, 20, 20, 0.8)',
-                        backgroundColor: 'rgba(229, 229, 229, 1)',
-                        fontFamily: "'Urbanist', sans-serif",
-                        fontWeight: '500',
-                        cursor: 'no-drop',
-                      }}
-                    >
-                      <p style={{ color: 'rgba(20, 20, 20, 0.8)' }}>out of Stock</p>
-                    </div>
-                  )}
+                <div className='content-value-card-beta'>
+                  <h4 className='price2'>$ {priceFormat(product.price)}</h4>
                 </div>
               </div>
-            );
-          }
+
+              <div className='content-add-car-card-beta'>
+                {product.stock > 0 &&
+                !productsInCart.find(el => el._id === product._id) ? (
+                  <div
+                    className='add-car-card-beta'
+                    onClick={() => handleAddCart(product)}
+                  >
+                    <p>Add to Cart</p>
+                  </div>
+                ) : product.stock > 0 &&
+                  productsInCart.find(el => el._id === product._id) ? (
+                  <div
+                    className='add-car-card-beta'
+                    onClick={() => handleRemoveCart(product)}
+                  >
+                    <p>Remove</p>
+                  </div>
+                ) : (
+                  <div
+                    className='add-car-card-beta'
+                    style={{
+                      color: "rgba(20, 20, 20, 0.8)",
+                      backgroundColor: "rgba(229, 229, 229, 1)",
+                      fontFamily: "'Urbanist', sans-serif",
+                      fontWeight: "500",
+                      cursor: "no-drop",
+                    }}
+                  >
+                    <p style={{ color: "rgba(20, 20, 20, 0.8)" }}>
+                      out of Stock
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
         })}
+        <ScrollUp refUse={ref} />
       </div>
+
       {modalOpen && <AddFavoritesModal />}
+
       <div className='pagination2'>
         <PaginationComp
           itemsPerPage={itemsPerPage}
-          totalItems={AllproductLength}
+          totalItems={Allproduct.length}
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />
       </div>
+      {/* <ScrollUp refUse={refMovile} /> */}
     </div>
   );
 };

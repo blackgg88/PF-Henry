@@ -111,13 +111,13 @@ $standard-font-Urbanis-sans-serif: 'Urbanist', sans-serif;
 
   .foro_card_imagenSide {
     display: flex;
-    //border: 1px solid green;
     height: 300px;
     margin: 15px 0px;
+    justify-content: center;
     overflow: hidden;
     img {
-      width: 100%;
-      //min-height: 350px;
+      width: auto;
+      max-height: 100%;
     }
   }
 

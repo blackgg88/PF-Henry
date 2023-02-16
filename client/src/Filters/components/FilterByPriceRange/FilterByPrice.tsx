@@ -11,7 +11,7 @@ const FilterByPrice: React.FC = () => {
         className="price"
         value={[Filters.pricemin, Filters.pricemax]}
         onChange={handleChange}
-        valueLabelDisplay='on'
+        valueLabelDisplay='auto'
         aria-labelledby='range-slider'
         step={10}
         min={0}

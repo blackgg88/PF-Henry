@@ -11,7 +11,7 @@ import { addFavoriteFetch } from '../../Redux/slice/user/userController';
 import { addFavorite } from '../../Redux/slice/user/user.slice';
 import { userInterface, getUserLogin } from '../../Redux/slice/user/user.slice';
 
-import { FilterState, ProductState } from '../../Redux/slice/product/product.slice';
+import { changePagination, FilterState, ProductState } from '../../Redux/slice/product/product.slice';
 import { getProduct } from '../../Redux/slice/product/product.slice';
 import { productFetch } from '../../Redux/slice/product/ProductController';
 import PaginationComp from '../Pagination';
@@ -34,6 +34,7 @@ const CardBeta: React.FC<{}> = () => {
   const [getFavorites, setGetFavorites] = useState<ProductState[]>([]);
 
   const filters: FilterState = useAppSelector((state) => state.productReducer.Filters);
+  const currentPage: number = useAppSelector((state) => state.productReducer.Pagination);
 
   const ref = useRef<HTMLDivElement>(null);
   const refMovile = useRef<HTMLDivElement>(null);
@@ -181,11 +182,12 @@ const CardBeta: React.FC<{}> = () => {
 
   //-----------------> PAGINATION <----------------------------------
 
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+    dispatch(changePagination(pageNumber));
+    // setCurrentPage(pageNumber);
   };
 
   // useEffect(() => {

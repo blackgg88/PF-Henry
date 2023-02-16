@@ -39,6 +39,7 @@ const initialState: {
   ProductDetail: ProductState;
   Filters: FilterState;
   CategoryQuantity: ProductQuantityState[];
+  Pagination: number;
 } = {
   Products: [],
   ProductDetail: {
@@ -63,12 +64,16 @@ const initialState: {
     order: '',
   },
   CategoryQuantity: [],
+  Pagination: 1,
 };
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
+    changePagination: (state, action) => {
+      state.Pagination = action.payload
+    },
     getProduct: (state, action: PayloadAction<ProductState[]>) => {
       state.Products = [...action.payload];
     },
@@ -117,6 +122,7 @@ export const productSlice = createSlice({
 });
 
 export const {
+  changePagination,
   getProduct,
   getProductId,
   getProductName,
